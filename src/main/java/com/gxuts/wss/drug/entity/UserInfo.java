@@ -21,6 +21,7 @@ public class UserInfo {
 	private String no;
 	private String name;
 	private int age;
+	private String sex;
 	private Date createDate;
 	@ManyToOne(fetch=FetchType.EAGER)
 	private UserInfo createUser;
@@ -91,6 +92,15 @@ public class UserInfo {
 
 	public void setCreateUser(UserInfo createUser) {
 		this.createUser = createUser;
+	}
+	
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 
 	@Override

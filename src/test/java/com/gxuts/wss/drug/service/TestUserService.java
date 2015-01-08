@@ -53,4 +53,8 @@ public class TestUserService {
 //		System.out.println(user.getRoles());
 	}
 	
+	@Test
+	public void testUpdateByHql(){
+		userService.updateByHql("update UserInfo set no='NF000' where age<10");
+	}
 }

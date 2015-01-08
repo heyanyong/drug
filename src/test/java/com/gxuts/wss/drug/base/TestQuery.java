@@ -1,14 +1,13 @@
 package com.gxuts.wss.drug.base;
 
-import javax.sound.midi.Track;
-
-import net.sf.ehcache.search.expression.Between;
+import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +22,12 @@ import com.gxuts.wss.drug.entity.UserInfo;
 public class TestQuery {
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	
+	@Before
+	public void setUp(){
+		
+	}
 	
 	//属性查询
 	@Test
@@ -45,9 +50,28 @@ public class TestQuery {
 	public void testQueryRelation(){
 		Session session=sessionFactory.getCurrentSession();
 		Criteria criteria =session.createCriteria(UserInfo.class);
-		 //关联关系查
 		 criteria.createCriteria("roles").add(Restrictions.like("name", "角色一"));
 		System.out.println(criteria.list());
 		System.out.println(criteria.list().size());
 	}
+	//分组
+	@Test
+	@Transactional
+	public void testSexGroup(){
+		Session session=sessionFactory.getCurrentSession();
+		Query query=session.createQuery("select sex,count(*) from UserInfo u where u.age>10 group by sex ");
+		List<Object[]> sexGroup=query.list();
+		for (Object[] tt:sexGroup) {
+			System.out.println(tt[0]+"--"+tt[1]);
+		}
+	}
+		//HQL更新
+		@Test
+		@Transactional
+		public void testUpdateByHql(){
+			Session session=sessionFactory.getCurrentSession();
+			Query query=session.createQuery("update UserInfo set  no='NF001' where age<10");
+			query.executeUpdate();
+	}
+		
 }

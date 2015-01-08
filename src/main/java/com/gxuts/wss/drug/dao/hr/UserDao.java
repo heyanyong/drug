@@ -11,5 +11,6 @@ public interface UserDao {
 	public UserInfo get(String hql, Map<String, Object> params);
 	public UserInfo load(Class<UserInfo> c, Serializable id);
 	public UserInfo getObject(String hql,  Object[] params);
+	public int updateByHql(String hql);
 	
 }

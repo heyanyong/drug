@@ -43,4 +43,9 @@ public class UserServiceImpl implements UserService {
 		return userDao.getObject(hql, params);
 	}
 
+	@Override
+	public int updateByHql(String hql) {
+		return userDao.updateByHql(hql);
+	}
+
 }

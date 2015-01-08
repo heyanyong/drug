@@ -29,10 +29,23 @@ public class BaseDao<T> {
 		getSession().delete(t);
 	}
 	
+	public void update(T t){
+		getSession().update(t);
+	}
+	public int updateByHql(String hql){
+		return getSession().createQuery(hql).executeUpdate();
+	}
+	
+	
 	@SuppressWarnings("unchecked")
 	public T load(Class<T> c,Serializable id){
 		return (T) getSession().load(c, id);
 	}
+	
+	public List<T> listByHql(){
+		return null;
+	}
+	
 	/**
 	 * 通过HQL语句获取一个对象
 	 * @param hql HQL语句
