@@ -1,9 +1,12 @@
 package com.gxuts.wss.drug.entity.customer;
 
+import java.util.Date;
+
 public class Custonmer {
 	private Integer id;
 	private String name;
 	private String type;
+	private Date createDate;
 	public Integer getId() {
 		return id;
 	}
