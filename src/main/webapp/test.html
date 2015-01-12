@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>test</title>
+ <script src="jquery.min.js"></script>
+<style>
+ .left{height:500px; float:left; width:200px;}
+ .main{position:absolute;top:80px; left:180px; }
+ #label li {float:left; height:50px; line-height:50px;  margin-right:20px; }
+ .labelContainer{position:absolute;top:0; left:230px; }
+  #label span{background:green;}
+  #label .closeSpan{background:red;}
+</style>
+</head>
+<body> 
+ <div class="left">
+  <ul class="menus">
+    <li><a href="page1.html" id="1111">第一个菜单</a></li>
+	<li><a href="page2.html" id="2222">第2个菜单</a></li>
+	<li><a href="page3.html" id="3333">第3个菜单</a></li>
+  </ul>
+  <input type="button" value="新增一个页面" onClick="newPage('page1.html','新页面');" />
+ </div>
+ <div  class="labelContainer">
+  <ul id="label">    
+  </ul>
+ </div>
+ <div class="main" id="main">
+    <iFrame name="mainFrame" src="home.html"></iFrame>	
+ </div>
+</body>
+<script >
+ $(".menus a").click(function(){	 
+	 if(!$("#f"+$(this).attr('id')).attr('src')){
+	$("#label").append("<li mid='"+$(this).attr('id')+"'><span onclick='currentPage(this)'>"+$(this).text()+"</span><span class='closeSpan' onclick='closePage(this)' >关闭</span></li>");
+ $("#main iFrame").css("display","none");
+ $("#main").append(" <iFrame  src='"+$(this).attr("href")+"' id='f"+$(this).attr('id')+"'></iFrame>");
+	 }else{
+	  $("iFrame").css("display","none");     
+	$("#f"+$(this).attr('id')).css("display","block");
+	 }
+ return false; 
+ });
+ function currentPage(index){
+	$("iFrame").css("display","none");
+    var pli=$(index).parent(); 
+	$("#f"+pli.attr('mid')).css("display","block");
+ }
+function closePage(index){
+	var pli=$(index).parent();
+	pli.remove();
+	$("#f"+pli.attr('mid')).remove();
+    $("iFrame:last").css("display","block"); 
+}
+function newPage(url,title){
+	 var labelid=Date.parse(new Date()); 	 
+     $("#label").append("<li mid='"+labelid+"'><span onclick='currentPage(this)'>"+title+"</span><span class='closeSpan' onclick='closePage(this)' >关闭</span></li>");
+	 $("#main iFrame").css("display","none");
+	 $("#main").append(" <iFrame  src='"+url+"' id='f"+labelid+"'></iFrame>");
+}
+</script>
+</html>

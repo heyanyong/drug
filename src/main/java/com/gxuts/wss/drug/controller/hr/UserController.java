@@ -46,6 +46,7 @@ public class UserController {
 			request.setAttribute("loginMsg", "登陆失败");
 			return "login";
 		}
+		request.getSession().setAttribute("loginUser", user);
 		return "redirect:/index.jsp";
 	}
 	@RequestMapping(value="register",method=RequestMethod.POST)

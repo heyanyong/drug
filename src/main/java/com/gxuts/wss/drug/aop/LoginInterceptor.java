@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class LoginInterceptor implements Interceptor{
 	
+	
 	@Before("execution(* com.gxuts.wss.drug.dao.*.*(..))")
 	public void beforeM(JoinPoint joinPoint) {
 		System.out.println("Interceptor");
