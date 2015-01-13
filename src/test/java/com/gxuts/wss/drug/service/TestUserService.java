@@ -12,7 +12,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.gxuts.wss.drug.entity.RoleInfo;
-import com.gxuts.wss.drug.entity.StructureInfo;
 import com.gxuts.wss.drug.entity.UserInfo;
 import com.gxuts.wss.drug.service.hr.UserService;
 
@@ -26,14 +25,15 @@ public class TestUserService {
 		UserInfo user=new UserInfo();
 		UserInfo createUser=new UserInfo();
 		createUser.setId(10);
-		
-		user.setName("李大嘴");
+		user.setName("test");
+		user.setNo("NF016");
+		user.setPassword("123");
 		user.setCreateUser(createUser);
 		RoleInfo role=new RoleInfo();
 		role.setId(2);
 		Set<RoleInfo> roles=new HashSet();
 		roles.add(role);
-		user.setRoles(roles);
+//		user.setRoles(roles);
 		userService.save(user);
 	}
 	@Test
@@ -56,5 +56,15 @@ public class TestUserService {
 	@Test
 	public void testUpdateByHql(){
 		userService.updateByHql("update UserInfo set no='NF000' where age<10");
+	}
+	
+	@Test
+	public void testLogin(){
+		UserInfo user=new UserInfo();
+		user.setNo("admin");
+		user.setPassword("123");
+		System.out.println(user);
+		UserInfo u=userService.checkLogin(user);
+		System.out.println(u);
 	}
 }

@@ -46,6 +46,7 @@ public class BaseDao<T> {
 		return null;
 	}
 	
+	
 	/**
 	 * 通过HQL语句获取一个对象
 	 * @param hql HQL语句
@@ -60,12 +61,11 @@ public class BaseDao<T> {
 				q.setParameter(key, params.get(key));
 			}
 		}
-		System.out.println(q);
 		List<T> l = q.list();
 		if (l != null && l.size() > 0) {
 			return l.get(0);
 		}
-		return null;
+		return null;  
 	}
 	/**
 	 * 通过HQL语句获取一个对象
@@ -73,9 +73,9 @@ public class BaseDao<T> {
 	 * @param params 参数
 	 * @return 对象
 	 */
+	@SuppressWarnings("unchecked")
 	public T getObject(String hql,  Object[] params) {
 		Query q = this.getSession().createQuery(hql);
-		
 		if(params!=null && params.length>0){
 			for (int i = 0; i < params.length; i++) {
 				q.setParameter(i, params[i]);
@@ -85,7 +85,7 @@ public class BaseDao<T> {
 		if (l != null && l.size() > 0) {
 			return l.get(0);
 		}
-		return null;
+		return null;  
 	}
 
 }

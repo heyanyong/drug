@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.gxuts.wss.drug.entity.UserInfo;
 import com.gxuts.wss.drug.service.hr.UserService;
@@ -41,13 +39,14 @@ public class UserController {
 	}
 	@RequestMapping(value="/checkLogin", method=RequestMethod.POST)
 	public String checkLogin(UserInfo user , HttpServletRequest request){
-		System.out.println(user);
-		if(user.getNo().equals("a")){
+		UserInfo loginUser=userService.checkLogin(user);
+		if(loginUser==null){
 			request.setAttribute("loginMsg", "登陆失败");
 			return "login";
+		}else{
+			request.getSession().setAttribute("loginUser", loginUser);
+			return "redirect:/index.jsp";
 		}
-		request.getSession().setAttribute("loginUser", user);
-		return "redirect:/index.jsp";
 	}
 	@RequestMapping(value="register",method=RequestMethod.POST)
 	public String register( ){

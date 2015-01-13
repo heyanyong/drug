@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,16 +12,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.UniqueConstraint;
+
+import liquibase.util.MD5Util;
 
 @Entity
 public class UserInfo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	@Column(unique=true)
 	private String no;
+	@Column(nullable=false)
 	private String name;
 	private int age;
+	private String password;
 	private String sex;
 	private Date createDate;
 	@ManyToOne(fetch=FetchType.EAGER)
@@ -102,14 +107,24 @@ public class UserInfo {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = MD5Util.computeMD5(password);
+	}
 
 	@Override
 	public String toString() {
 		return "UserInfo [id=" + id + ", no=" + no + ", name=" + name
-				+ ", age=" + age + ", createDate=" + createDate
+				+ ", age=" + age + ", password=" + password + ", sex=" + sex
+				+ ", createDate=" + createDate + ", createUser=" + createUser
 				+ ", structure=" + structure + ", roles=" + roles + "]";
 	}
 
+	 
 	 
 
 }

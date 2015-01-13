@@ -16,13 +16,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gxuts.wss.drug.entity.UserInfo;
+import com.gxuts.wss.drug.service.hr.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class) 
 @ContextConfiguration(locations={"classpath:/spring/applicationContext.xml"})
 public class TestQuery {
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+	@Autowired
+	private UserService userService;
 	
 	@Before
 	public void setUp(){
@@ -73,5 +75,13 @@ public class TestQuery {
 			Query query=session.createQuery("update UserInfo set  no='NF001' where age<10");
 			query.executeUpdate();
 	}
+		
+		@Test
+		public void getObject(){
+			String hql="from UserInfo where name=? and no=?";
+			String[] params={"李大嘴","NF0001"};
+			UserInfo user=userService.getObject(hql, params);
+			System.out.println(user);
+		}
 		
 }

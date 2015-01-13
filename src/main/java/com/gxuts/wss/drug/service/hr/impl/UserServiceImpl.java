@@ -48,4 +48,10 @@ public class UserServiceImpl implements UserService {
 		return userDao.updateByHql(hql);
 	}
 
+	@Override
+	public UserInfo checkLogin(UserInfo user) {
+		return userDao.getObject("from UserInfo where no=? and password=?",new  String[]{user.getNo(),user.getPassword()} );
+		
+	}
+
 }

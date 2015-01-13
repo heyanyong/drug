@@ -12,4 +12,5 @@ public interface UserService {
 	public UserInfo load(Class<UserInfo> c, Serializable id);
 	public UserInfo getObject(String hql,  Object[] params);
 	public int updateByHql(String hql);
+	public UserInfo checkLogin(UserInfo user);
 }
