@@ -25,7 +25,7 @@ public class LoginFilter implements Filter {
 		 if((req.getSession(true).getAttribute("loginUser")!=null)||url.contains("ogin")||url.contains("register")){
 			 chain.doFilter(request, response);
 		 }else{
-			 resp.sendRedirect("user/login");
+			 resp.sendRedirect("/drug/user/login");
 		 }
 	}
 
