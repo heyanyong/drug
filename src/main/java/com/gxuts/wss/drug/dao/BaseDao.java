@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gxuts.wss.drug.base.Page;
 
-public class BaseDao<T> {
+public class BaseDao<T> implements BaseDaoI<T> {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
