@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gxuts.wss.drug.base.Page;
 import com.gxuts.wss.drug.dao.hr.UserDao;
 import com.gxuts.wss.drug.entity.UserInfo;
 import com.gxuts.wss.drug.service.hr.UserService;
@@ -56,6 +57,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int executeHql(String hql) {
 		return userDao.executeHql(hql);
+	}
+
+	@Override
+	public Page<UserInfo> query(String hql, Map<String, Object> params,
+			Integer currentPage, Integer rows) {
+		return userDao.query(hql, params, currentPage, rows);
 	}
 
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.gxuts.wss.drug.base.Page;
 import com.gxuts.wss.drug.entity.UserInfo;
 import com.gxuts.wss.drug.service.hr.UserService;
 
@@ -21,10 +22,11 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+
 	@RequestMapping(value="list")
-	public String getList(HttpServletRequest request){
-		List<UserInfo> users=userService.queryAll(UserInfo.class);
-		request.setAttribute("users", users);
+	public String getList(HttpServletRequest request,Integer currentPage, Integer row){
+		Page<UserInfo> pages=userService.query("from UserInfo", null, currentPage, row);
+		request.setAttribute("pages", pages);
 		return "userList";
 	}
 

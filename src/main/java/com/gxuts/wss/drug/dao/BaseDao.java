@@ -10,6 +10,8 @@ import org.hibernate.SessionFactory;
 import org.mvel2.ast.WithNode.ParmValuePair;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.gxuts.wss.drug.base.Page;
+
 public class BaseDao<T> {
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -32,22 +34,12 @@ public class BaseDao<T> {
 	public void update(T t){
 		getSession().update(t);
 	}
-	/**
-	 * 执行一条HQL语句
-	 * @param hql HQL语句
-	 * @return 响应结果数目
-	 */
+	
 	public int executeHql(String hql) {
 		Query q = this.getSession().createQuery(hql);
 		return q.executeUpdate();
 	}
 
-	/**
-	 * 执行一条HQL语句
-	 * @param hql HQL语句
-	 * @param params 参数
-	 * @return 响应结果数目
-	 */
 	public int executeHql(String hql, Map<String, Object> params) {
 		Query q = this.getSession().createQuery(hql);
 		if (params != null && !params.isEmpty()) {
@@ -68,13 +60,6 @@ public class BaseDao<T> {
 		return (T) getSession().load(c, id);
 	}
 	
-	
-	/**
-	 * 通过HQL语句获取一个对象
-	 * @param hql HQL语句
-	 * @param params 参数
-	 * @return 对象
-	 */
 	public T get(String hql, Map<String, Object> params) {
 		Query q = this.getSession().createQuery(hql);
 		
@@ -89,12 +74,7 @@ public class BaseDao<T> {
 		}
 		return null;  
 	}
-	/**
-	 * 通过HQL语句获取一个对象
-	 * @param hql HQL语句
-	 * @param params 参数
-	 * @return 对象
-	 */
+	
 	@SuppressWarnings("unchecked")
 	public T getObject(String hql,  Object[] params) {
 		Query q = this.getSession().createQuery(hql);
@@ -109,5 +89,25 @@ public class BaseDao<T> {
 		}
 		return null;  
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Page<T> query(String hql, Map<String, Object> params, Integer currentPage, Integer rows) {
+		Page<T> page=new Page<T>();
+		Query q = this.getSession().createQuery(hql);
+		if (params != null && !params.isEmpty()) {
+			for (String key : params.keySet()) {
+				q.setParameter(key, params.get(key));
+			}
+		}
+		page.setTotal(q.list().size());
+		if(currentPage==null||rows==null){
+			page.setData(q.list());
+		}else{
+			page.setData(q.setFirstResult((currentPage - 1) * rows).setMaxResults(rows).list());
+		}
+		return page;
+	}
+	
+
 
 }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import com.gxuts.wss.drug.base.Page;
 import com.gxuts.wss.drug.entity.UserInfo;
 
 public interface UserService {
@@ -15,4 +16,5 @@ public interface UserService {
 	public int executeHql(String hql);
 	public UserInfo checkLogin(UserInfo user);
 	public List<UserInfo> queryAll(Class<UserInfo> c);
+	public Page<UserInfo> query(String hql, Map<String, Object> params, Integer currentPage, Integer rows) ;
 }
