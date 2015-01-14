@@ -1,6 +1,7 @@
 package com.gxuts.wss.drug.service.hr.impl;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Serializable save(UserInfo user) {
 		return userDao.save(user);
-		
 	}
 
 	@Override
@@ -44,14 +44,18 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int updateByHql(String hql) {
-		return userDao.updateByHql(hql);
+	public UserInfo checkLogin(UserInfo user) {
+		return userDao.getObject("from UserInfo where no=? and password=?",new  String[]{user.getNo(),user.getPassword()} );
 	}
 
 	@Override
-	public UserInfo checkLogin(UserInfo user) {
-		return userDao.getObject("from UserInfo where no=? and password=?",new  String[]{user.getNo(),user.getPassword()} );
-		
+	public List<UserInfo> queryAll(Class<UserInfo> c) {
+		return userDao.queryAll(c);
+	}
+
+	@Override
+	public int executeHql(String hql) {
+		return userDao.executeHql(hql);
 	}
 
 }

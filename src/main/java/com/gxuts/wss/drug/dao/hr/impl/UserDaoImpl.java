@@ -9,4 +9,5 @@ import com.gxuts.wss.drug.entity.UserInfo;
 @Repository("userDao")
 public class UserDaoImpl extends BaseDao<UserInfo> implements UserDao{
 
+
 }

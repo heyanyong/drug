@@ -1,5 +1,7 @@
 package com.gxuts.wss.drug.controller.hr;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,13 @@ public class UserController {
 	UserInfo user = new UserInfo();
 	@Autowired
 	private UserService userService;
+	
+	@RequestMapping(value="list")
+	public String getList(HttpServletRequest request){
+		List<UserInfo> users=userService.queryAll(UserInfo.class);
+		request.setAttribute("users", users);
+		return "userList";
+	}
 
 	@RequestMapping(value = "/save")
 	public String save(UserInfo user) {

@@ -32,18 +32,40 @@ public class BaseDao<T> {
 	public void update(T t){
 		getSession().update(t);
 	}
-	public int updateByHql(String hql){
-		return getSession().createQuery(hql).executeUpdate();
+	/**
+	 * 执行一条HQL语句
+	 * @param hql HQL语句
+	 * @return 响应结果数目
+	 */
+	public int executeHql(String hql) {
+		Query q = this.getSession().createQuery(hql);
+		return q.executeUpdate();
+	}
+
+	/**
+	 * 执行一条HQL语句
+	 * @param hql HQL语句
+	 * @param params 参数
+	 * @return 响应结果数目
+	 */
+	public int executeHql(String hql, Map<String, Object> params) {
+		Query q = this.getSession().createQuery(hql);
+		if (params != null && !params.isEmpty()) {
+			for (String key : params.keySet()) {
+				q.setParameter(key, params.get(key));
+			}
+		}
+		return q.executeUpdate();
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<T> queryAll(Class<T> c){
+		return getSession().createCriteria(c).list();
+	}
 	
 	@SuppressWarnings("unchecked")
 	public T load(Class<T> c,Serializable id){
 		return (T) getSession().load(c, id);
-	}
-	
-	public List<T> listByHql(){
-		return null;
 	}
 	
 	

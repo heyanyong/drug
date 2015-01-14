@@ -20,7 +20,7 @@ public class UserInfo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	@Column(unique=true)
+	@Column(unique=true)  //无效
 	private String no;
 	@Column(nullable=false)
 	private String name;
