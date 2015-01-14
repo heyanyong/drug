@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.gxuts.wss.drug.entity.UserInfo;
+import com.gxuts.wss.drug.entity.hr.UserInfo;
 import com.gxuts.wss.drug.service.hr.UserService;
 
 @RestController

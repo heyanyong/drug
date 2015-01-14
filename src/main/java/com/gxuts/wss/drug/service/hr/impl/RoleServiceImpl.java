@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gxuts.wss.drug.base.Page;
 import com.gxuts.wss.drug.dao.hr.RoleDao;
 import com.gxuts.wss.drug.dao.hr.StructureDao;
-import com.gxuts.wss.drug.entity.RoleInfo;
-import com.gxuts.wss.drug.entity.StructureInfo;
+import com.gxuts.wss.drug.entity.hr.RoleInfo;
+import com.gxuts.wss.drug.entity.hr.StructureInfo;
 import com.gxuts.wss.drug.service.hr.RoleService;
 import com.gxuts.wss.drug.service.hr.StructureService;
 @Service("roleService")

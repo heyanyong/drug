@@ -1,4 +1,4 @@
-package com.gxuts.wss.drug.entity;
+package com.gxuts.wss.drug.entity.hr;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,9 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class RoleInfo {
+public class StructureInfo {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String name;
 	public Integer getId() {
@@ -25,7 +25,7 @@ public class RoleInfo {
 	}
 	@Override
 	public String toString() {
-		return "RoleInfo [id=" + id + ", name=" + name + "]";
+		return "StructrueInfo [id=" + id + ", name=" + name + "]";
 	}
 	
 }

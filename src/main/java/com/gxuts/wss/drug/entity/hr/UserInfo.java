@@ -1,4 +1,4 @@
-package com.gxuts.wss.drug.entity;
+package com.gxuts.wss.drug.entity.hr;
 
 import java.util.Date;
 import java.util.Set;

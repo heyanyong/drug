@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.gxuts.wss.drug.base.Page;
-import com.gxuts.wss.drug.entity.RoleInfo;
+import com.gxuts.wss.drug.entity.hr.RoleInfo;
 
 public interface RoleDao {
 	public Serializable save(RoleInfo role);

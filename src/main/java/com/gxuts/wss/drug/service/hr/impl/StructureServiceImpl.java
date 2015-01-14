@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gxuts.wss.drug.dao.hr.StructureDao;
-import com.gxuts.wss.drug.entity.StructureInfo;
+import com.gxuts.wss.drug.entity.hr.StructureInfo;
 import com.gxuts.wss.drug.service.hr.StructureService;
 @Service("structureService")
 @Transactional

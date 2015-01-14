@@ -4,7 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import com.gxuts.wss.drug.dao.BaseDao;
 import com.gxuts.wss.drug.dao.hr.StructureDao;
-import com.gxuts.wss.drug.entity.StructureInfo;
+import com.gxuts.wss.drug.entity.hr.StructureInfo;
 @Repository("structureDao")
 public class StructureUserDaoImpl extends BaseDao<StructureInfo> implements StructureDao{
 

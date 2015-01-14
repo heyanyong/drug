@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.gxuts.wss.drug.base.Page;
-import com.gxuts.wss.drug.entity.UserInfo;
+import com.gxuts.wss.drug.entity.hr.UserInfo;
 
 public interface UserService {
 	public Serializable save(UserInfo user);

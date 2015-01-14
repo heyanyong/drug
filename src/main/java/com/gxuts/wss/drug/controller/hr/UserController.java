@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gxuts.wss.drug.base.Page;
-import com.gxuts.wss.drug.entity.UserInfo;
+import com.gxuts.wss.drug.entity.hr.UserInfo;
 import com.gxuts.wss.drug.service.hr.UserService;
 
 @Controller

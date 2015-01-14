@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gxuts.wss.drug.base.Page;
 import com.gxuts.wss.drug.dao.hr.UserDao;
-import com.gxuts.wss.drug.entity.UserInfo;
+import com.gxuts.wss.drug.entity.hr.UserInfo;
 import com.gxuts.wss.drug.service.hr.UserService;
 @Service("userService")
 @Transactional
