@@ -15,6 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gxuts.wss.drug.entity.RoleInfo;
 import com.gxuts.wss.drug.entity.UserInfo;
 import com.gxuts.wss.drug.service.hr.UserService;
 
@@ -55,6 +56,18 @@ public class TestQuery {
 		 criteria.createCriteria("roles").add(Restrictions.like("name", "角色一"));
 		System.out.println(criteria.list());
 		System.out.println(criteria.list().size());
+	}
+	//对象属性查询
+	@Test
+	@Transactional
+	public void testQueryRelationInfo(){
+		Session session=sessionFactory.getCurrentSession();
+		Query q=session.createQuery("from UserInfo where name like ?");
+		RoleInfo role=new RoleInfo();
+		role.setId(2);
+		q.setParameter(0, "admin");
+		System.out.println(q.list());
+		System.out.println(q.list().size());
 	}
 	//分组
 	@Test
