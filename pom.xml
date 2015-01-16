@@ -13,13 +13,14 @@
 		<tiles-version>2.2.2</tiles-version>
 		<slf4j-version>1.5.8</slf4j-version>
 		<jackson-version>1.9.13</jackson-version>
+		<activiti>5.17.0</activiti>
 	</properties>
 	<dependencies>
 		<dependency>
-	<groupId>javax.servlet</groupId>
-	<artifactId>jstl</artifactId>
-	<version>1.2</version>
-</dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -257,22 +258,39 @@
 			<version>1.2.0</version>
 		</dependency>
 
-	<!-- mail -->
-	<dependency>
-	<groupId>com.sun.mail</groupId>
-	<artifactId>javax.mail</artifactId>
-	<version>1.5.2</version>
-</dependency>
-<dependency>
-	<groupId>javax.activation</groupId>
-	<artifactId>activation</artifactId>
-	<version>1.1</version>
-</dependency>
-<dependency>
-	<groupId>org.springframework.integration</groupId>
-	<artifactId>spring-integration-mail</artifactId>
-	<version>4.1.0.RELEASE</version>
-</dependency>
+		<!-- mail -->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.5.2</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-mail</artifactId>
+			<version>4.1.0.RELEASE</version>
+		</dependency>
+
+		<!-- activiti -->
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-engine</artifactId>
+			<version>${activiti}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-spring</artifactId>
+			<version>${activiti}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-all</artifactId>
+			<version>2.4.0-rc-2</version>
+		</dependency>
 	</dependencies>
 
 	<repositories>
