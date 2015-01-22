@@ -1,5 +1,6 @@
 package com.gxuts.wss.drug.entity.hr;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ import javax.persistence.ManyToOne;
 import liquibase.util.MD5Util;
 
 @Entity
-public class UserInfo {
+public class UserInfo implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;

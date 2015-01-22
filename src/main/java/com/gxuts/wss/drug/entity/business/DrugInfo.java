@@ -1,10 +1,11 @@
 package com.gxuts.wss.drug.entity.business;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.gxuts.wss.drug.entity.hr.UserInfo;
 
-public class DrugInfo {
+public class DrugInfo implements Serializable{
 	private Integer id;
 	private String name;
 	private Date createDate;
@@ -15,5 +16,5 @@ public class DrugInfo {
 	private Date produceDate;
 	private Date expireDate;	
 	private CustomerInfo customer;
-	private SupplierInfo supplier;
+	private SupplierBill supplier;
 }

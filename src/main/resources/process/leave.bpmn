@@ -7,7 +7,7 @@
     <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="leave_usertask1"></sequenceFlow>
     <sequenceFlow id="flow2" sourceRef="leave_usertask1" targetRef="leave_usertask2"></sequenceFlow>
-    <userTask id="leave_usertask3" name="总监审批" activiti:async="true" activiti:assignee="王总"></userTask>
+    <userTask id="leave_usertask3" name="总监审批" activiti:assignee="王总"></userTask>
     <sequenceFlow id="flow3" sourceRef="leave_usertask2" targetRef="leave_usertask3"></sequenceFlow>
     <sequenceFlow id="flow4" sourceRef="leave_usertask3" targetRef="endevent1"></sequenceFlow>
   </process>
