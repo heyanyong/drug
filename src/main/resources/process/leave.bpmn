@@ -3,11 +3,11 @@
   <process id="leave" name="leaveProcess" isExecutable="true">
     <startEvent id="startevent1" name="Start"></startEvent>
     <userTask id="leave_usertask1" name="提交申请" activiti:assignee="张三"></userTask>
-    <userTask id="leave_usertask2" name="经理审批" activiti:candidateUsers="李总1,李总2"></userTask>
+    <userTask id="leave_usertask2" name="主管审批" activiti:assignee="张主管" activiti:candidateUsers="李总1,李总2"></userTask>
     <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="leave_usertask1"></sequenceFlow>
     <sequenceFlow id="flow2" sourceRef="leave_usertask1" targetRef="leave_usertask2"></sequenceFlow>
-    <userTask id="leave_usertask3" name="总监审批" activiti:assignee="王总"></userTask>
+    <userTask id="leave_usertask3" name="总监审批" activiti:assignee="王总监"></userTask>
     <sequenceFlow id="flow3" sourceRef="leave_usertask2" targetRef="leave_usertask3"></sequenceFlow>
     <sequenceFlow id="flow4" sourceRef="leave_usertask3" targetRef="endevent1"></sequenceFlow>
   </process>
