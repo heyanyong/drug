@@ -42,8 +42,6 @@ public class HellowordProcess {
 		.deploy();
 		System.out.println("部署流程ID："+deploy.getId());
 		System.out.println("部署流程名称："+deploy.getName());
-		System.out.println(deploy.getCategory());
-		System.out.println(deploy.getTenantId());
 	}
 	//52501
 	@Test

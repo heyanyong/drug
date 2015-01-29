@@ -1,7 +1,9 @@
 package com.gxuts.wss.drug.base;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -13,16 +15,11 @@ public class TestGrammar {
 	}
 	
 	
-	@Test
-	public void  testMtilParameter(){
-		say("pp",1,1,3);
-	}
-	@Test
-	public void testDateChange(){
-		SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
-		
-		String aa=df.format(new Date());
-		System.out.println(aa);
+	 public static void main(String[] args) {
+		List<String> list=new ArrayList<String>();
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(2);
+		}
 	}
 
 }

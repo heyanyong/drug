@@ -15,9 +15,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gxuts.wss.drug.entity.hr.RoleInfo;
-import com.gxuts.wss.drug.entity.hr.UserInfo;
-import com.gxuts.wss.drug.service.hr.UserService;
+import com.gxuts.wss.dms.entity.hr.RoleInfo;
+import com.gxuts.wss.dms.entity.hr.UserInfo;
+import com.gxuts.wss.dms.service.hr.UserService;
+
 
 @RunWith(SpringJUnit4ClassRunner.class) 
 @ContextConfiguration(locations={"classpath:/spring/applicationContext.xml"})
