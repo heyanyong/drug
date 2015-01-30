@@ -2,33 +2,51 @@ package com.gxuts.wss.dms.entity.hr;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+@Entity
 public class SignInfo {
-	private String no;
-	private String name;
-	private String department;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer id;
+	private String userNo;
+	private String userName;
+	private String departmentName;
 	private Date recordDate;
 	private String status;
 	private Date signIn;
 	private Date signOut;
 	private Integer lateMinute;
 	private String remark;
-	public String getNo() {
-		return no;
+	public Integer getId() {
+		return id;
 	}
-	public void setNo(String no) {
-		this.no = no;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getUserNo() {
+		return userNo;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUserNo(String userNo) {
+		this.userNo = userNo;
 	}
-	public String getDepartment() {
-		return department;
+	public String getUserName() {
+		return userName;
 	}
-	public void setDepartment(String department) {
-		this.department = department;
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	 
+	public String getDepartmentName() {
+		return departmentName;
+	}
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
 	}
 	public Date getRecordDate() {
 		return recordDate;
@@ -66,5 +84,8 @@ public class SignInfo {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
+	
+	
+	 
 	
 }

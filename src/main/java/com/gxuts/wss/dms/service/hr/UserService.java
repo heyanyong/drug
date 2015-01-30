@@ -19,4 +19,6 @@ public interface UserService {
 	public UserInfo checkLogin(UserInfo user);
 	public List<UserInfo> queryAll(Class<UserInfo> c);
 	public Page<UserInfo> query(String hql, Map<String, Object> params, Integer currentPage, Integer rows) ;
+	public UserInfo getByNo(Class<UserInfo> c, String no);
+	public UserInfo getByHql(String hql);
 }

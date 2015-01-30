@@ -15,7 +15,7 @@
       					http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring-1.1.xsd">
 
 	<context:annotation-config />
-	<context:component-scan base-package="com.gxuts.wss.drug" />
+	<context:component-scan base-package="com.gxuts.wss.dms" />
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="user" value="root"></property>
 		<property name="password" value="123456"></property>
@@ -29,7 +29,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan">
 			<list>
-				<value>com.gxuts.wss.drug.entity</value>
+				<value>com.gxuts.wss.dms.entity</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -49,7 +49,7 @@
 	</bean>
 	<aop:config>
 		<aop:pointcut id="serviceMethods"
-			expression="execution(* com.gxuts.wss.drug.dao.*.*(..))" />
+			expression="execution(* com.gxuts.wss.dms.dao.*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethods" />
 	</aop:config>
 

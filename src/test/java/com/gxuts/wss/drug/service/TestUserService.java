@@ -68,4 +68,9 @@ public class TestUserService {
 		UserInfo u=userService.checkLogin(user);
 		System.out.println(u);
 	}
+	@Test
+	public void testGetByNo(){
+		UserInfo user=userService.getByNo(UserInfo.class, "NF007");
+		System.out.println(user.getName());
+	}
 }

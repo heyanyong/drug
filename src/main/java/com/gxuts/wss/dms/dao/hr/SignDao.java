@@ -29,5 +29,6 @@ public interface SignDao {
 
 	public Page<SignInfo> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows);
+	public SignInfo getByHql(String hql);
 	
 }

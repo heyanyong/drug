@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gxuts.wss.dms.base.Page;
@@ -25,6 +27,22 @@ public class BaseDao<T> implements BaseDaoI<T> {
 	@SuppressWarnings("unchecked")
 	public T get(Class<T> c, Serializable id){
 		return (T) getSession().get(c,id);
+	}
+	public T getByNo(Class<T> c, String no){
+		Criteria criteria=getSession().createCriteria(c);
+		List l=criteria.add(Restrictions.eq("no", no)).list();
+		if (l != null && l.size() > 0) {
+			return (T) l.get(0);
+		}
+		return null;  
+	}
+	public T getByHql(String hql){
+		Query q = this.getSession().createQuery(hql);
+		List<T> l=q.list();
+		if (l != null && l.size() > 0) {
+			return (T) l.get(0);
+		}
+		return null;  
 	}
 	public void delete(T t){
 		getSession().delete(t);

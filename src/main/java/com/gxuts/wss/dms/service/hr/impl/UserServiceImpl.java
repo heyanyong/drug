@@ -67,4 +67,16 @@ public class UserServiceImpl implements UserService {
 		return userDao.query(hql, params, currentPage, rows);
 	}
 
+	@Override
+	public UserInfo getByNo(Class<UserInfo> c, String no) {
+		return userDao.getByNo(c, no);
+	}
+
+	@Override
+	public UserInfo getByHql(String hql) {
+		return userDao.getByHql(hql);
+	}
+
+	 
+
 }
