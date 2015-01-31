@@ -15,6 +15,7 @@ import com.gxuts.wss.dms.entity.hr.SignInfo;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.hr.SignService;
 import com.gxuts.wss.dms.service.hr.UserService;
+
 @Service("signService")
 @Transactional
 public class SignServiceImpl implements SignService {
@@ -22,7 +23,6 @@ public class SignServiceImpl implements SignService {
 	private SignDao signDao;
 	@Autowired
 	private UserService userService;
-
 
 	@Override
 	public SignInfo get(Class<SignInfo> c, Serializable id) {
@@ -75,26 +75,32 @@ public class SignServiceImpl implements SignService {
 		return signDao.query(hql, params, currentPage, rows);
 	}
 
+	// 是否用本类方法
 	@Override
 	public Serializable save(String userNo, Date recordDate, Date signDate) {
-		UserInfo user=userService.getByNo(UserInfo.class, userNo);
-		SignInfo sign=new SignInfo();
-		sign.setDepartmentName(user.getStructure().getName());
-		sign.setUserName(user.getName());
-		sign.setUserNo(user.getNo());
-		sign.setRecordDate(recordDate);
-		
-		//查询userNo+recordDate 是否有
-		SignInfo exitSign=getByHql("from SignInfo where userNo='"+user.getNo()+"' and recordDate='"+recordDate+"'");
-		//如果有，对比sign置换保存实体存入。如果没有signDate 当signIn 存入
-		if(exitSign==null){
-			System.out.println("没数据");
-			return null;
-//			sign.setSignIn(signDate);
-			
-//			return signDao.save(sign);
-		}else{
-			System.out.println("123");
+		// 查询是否已有
+		SignInfo exitSign = getByRecord(userNo, recordDate);
+		// 如果有，对比sign置换保存实体存入。如果没有signDate 当signIn 存入
+		if (exitSign == null) {
+			UserInfo user = userService.getByNo(UserInfo.class, userNo);
+			SignInfo sign = new SignInfo();
+			sign.setDepartmentName(user.getStructure().getName());
+			sign.setUserName(user.getName());
+			sign.setUserNo(user.getNo());
+			sign.setRecordDate(recordDate);
+			sign.setSignIn(signDate);
+			return save(sign);
+		} else if (exitSign.getSignIn().before(signDate)) {
+			exitSign.setSignOut(signDate);
+			update(exitSign);
+			return exitSign;
+		} else if (exitSign.getSignIn().after(signDate)) {
+			Date date3 = exitSign.getSignIn();
+			exitSign.setSignIn(signDate);
+			exitSign.setSignOut(date3);
+			signDao.update(exitSign);
+			return exitSign;
+		} else {
 			return null;
 		}
 	}
@@ -102,6 +108,16 @@ public class SignServiceImpl implements SignService {
 	@Override
 	public SignInfo getByHql(String hql) {
 		return signDao.getByHql(hql);
-	} 
- 
+	}
+
+	@Override
+	public SignInfo getByRecord(String userNo, Date recordDate) {
+		return signDao.getByRecord(userNo, recordDate);
+	}
+
+	@Override
+	public Serializable save(SignInfo sign) {
+		return signDao.save(sign);
+	}
+
 }

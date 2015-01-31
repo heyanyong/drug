@@ -1,5 +1,6 @@
 package com.gxuts.wss.dms.entity.hr;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,16 +11,19 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 @Entity
-public class SignInfo {
+public class SignInfo implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	private String userNo;
 	private String userName;
 	private String departmentName;
+	@Temporal(TemporalType.DATE)
 	private Date recordDate;
 	private String status;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date signIn;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date signOut;
 	private Integer lateMinute;
 	private String remark;
@@ -83,6 +87,12 @@ public class SignInfo {
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+	@Override
+	public String toString() {
+		return "SignInfo [id=" + id + ", userNo=" + userNo + ", userName="
+				+ userName + ", recordDate=" + recordDate + ", signIn="
+				+ signIn + ", signOut=" + signOut + "]";
 	}
 	
 	

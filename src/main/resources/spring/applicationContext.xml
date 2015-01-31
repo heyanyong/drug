@@ -18,10 +18,10 @@
 	<context:component-scan base-package="com.gxuts.wss.dms" />
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="user" value="root"></property>
-		<property name="password" value="123456"></property>
+		<property name="password" value="admin"></property>
 		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
 		<property name="jdbcUrl"
-			value="jdbc:mysql://localhost:3306/drug?useUnicode=true&amp;characterEncoding=UTF-8"></property>
+			value="jdbc:mysql://localhost:3306/drug?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"></property>
 	</bean>
 
 	<bean id="sessionFactory"
@@ -49,7 +49,7 @@
 	</bean>
 	<aop:config>
 		<aop:pointcut id="serviceMethods"
-			expression="execution(* com.gxuts.wss.dms.dao.*.*(..))" />
+			expression="execution(* com.gxuts.wss.dms.service..*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethods" />
 	</aop:config>
 
@@ -61,6 +61,27 @@
 			<tx:method name="delete*" />
 		</tx:attributes>
 	</tx:advice>
+	
+	   <!-- 配置Hibernate事务管理器 
+    <bean id="txManager"
+        class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+      <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
+   
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="save*" />
+			<tx:method name="update*" />
+			<tx:method name="delete*" />
+		</tx:attributes>
+    </tx:advice>
+    
+    <aop:config expose-proxy="true">
+        <aop:pointcut id="txPointcut" expression="execution(* com.gxuts.wss.dms.service..*.*(..))" />
+        <aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice"/>
+    </aop:config>
+	-->
 	<aop:aspectj-autoproxy />
 
 

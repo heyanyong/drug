@@ -19,7 +19,7 @@ public class TestStructureService {
 	@Test
 	public void testSave(){
 		StructureInfo structure=new StructureInfo();
-		structure.setName("中文");
+		structure.setName("业务三部");
 		structureService.save(structure);
 	}
 }

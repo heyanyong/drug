@@ -11,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.gxuts.wss.dms.entity.hr.RoleInfo;
+import com.gxuts.wss.dms.entity.hr.SignInfo;
 import com.gxuts.wss.dms.service.hr.SignService;
 
 
@@ -23,9 +24,15 @@ public class TestSignService {
 	@Test
 	public void testSave() throws ParseException{
 		SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
-		Date recordDate=df.parse("2015-01-08");
-		System.out.println( recordDate);
-		Date signDate = null;
-		signService.save("NF007", recordDate, signDate);
+		SimpleDateFormat df2=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		Date recordDate=df.parse("2015-01-06");
+		Date signDate = df2.parse("2015-01-08 18:01:00");
+		System.out.println(signService.save("NF001", recordDate, signDate));
+	}
+	@Test
+	public void testUpdate(){
+		SignInfo sign=signService.get(SignInfo.class, 5);
+		sign.setRemark("1213");
+		signService.update(sign);
 	}
 }

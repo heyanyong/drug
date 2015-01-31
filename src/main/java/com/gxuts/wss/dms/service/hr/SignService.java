@@ -11,7 +11,7 @@ import com.gxuts.wss.dms.entity.hr.SignInfo;
 public interface SignService {
 	public Serializable save(String userNo,Date recordDate, Date signDate);
 	public SignInfo get(Class<SignInfo> c, Serializable id);
-
+	public Serializable save(SignInfo sign);
 	public void delete(SignInfo sign);
 
 	public void update(SignInfo sign);
@@ -31,5 +31,6 @@ public interface SignService {
 	public Page<SignInfo> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows);
 	public SignInfo getByHql(String hql);
+	public SignInfo getByRecord(String userNo,Date recordDate);
 
 }

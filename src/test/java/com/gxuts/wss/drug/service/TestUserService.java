@@ -1,5 +1,6 @@
 package com.gxuts.wss.drug.service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -26,10 +27,12 @@ public class TestUserService {
 		UserInfo user=new UserInfo();
 		UserInfo createUser=new UserInfo();
 		createUser.setId(10);
-		user.setName("test");
-		user.setNo("NF016");
+		user.setName("管理员");
+		user.setNo("NF002");
 		user.setPassword("123");
-		user.setCreateUser(createUser);
+		user.setBirthday(new Date());
+//		user.setCreateUser(createUser);
+		
 		RoleInfo role=new RoleInfo();
 		role.setId(2);
 		Set<RoleInfo> roles=new HashSet();

@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import liquibase.util.MD5Util;
 
@@ -27,7 +29,10 @@ public class UserInfo implements Serializable {
 	private int age;
 	private String password;
 	private String sex;
-	private Date createDate;
+	@Temporal(TemporalType.DATE)
+	private Date birthday;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createDate=new Date();
 	@ManyToOne(fetch=FetchType.EAGER)
 	private UserInfo createUser;
 	@ManyToOne
@@ -114,6 +119,15 @@ public class UserInfo implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = MD5Util.computeMD5(password);
+	}
+	
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
 
 	@Override

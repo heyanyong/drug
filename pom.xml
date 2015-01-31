@@ -298,12 +298,12 @@
 
 	<repositories>
 		<repository>
-			<id>nexus-repositories</id>
-			<url>http://192.168.2.229:8081/nexus/content/groups/public</url>
+			<id>CN</id>
+			<url>http://maven.oschina.net/content/groups/public/</url>
 		</repository>
 		<repository>
-			<id>jboss</id>
-			<url>https://repository.jboss.org/nexus/content/repositories/releases</url>
+			<id>CN</id>
+			<url>http://maven.oschina.net/content/groups/public/</url>
 		</repository>
 	</repositories>
 	<build>

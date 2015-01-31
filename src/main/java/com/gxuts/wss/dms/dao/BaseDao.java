@@ -19,10 +19,13 @@ public class BaseDao<T> implements BaseDaoI<T> {
 	
 	public Session getSession(){
 		return sessionFactory.getCurrentSession();
+//		return sessionFactory.openSession();
 	}
 	
 	public Serializable save(T t){
 		return getSession().save(t);
+		
+		
 	}
 	@SuppressWarnings("unchecked")
 	public T get(Class<T> c, Serializable id){

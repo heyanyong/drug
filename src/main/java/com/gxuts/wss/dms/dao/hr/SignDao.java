@@ -1,6 +1,7 @@
 package com.gxuts.wss.dms.dao.hr;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -30,5 +31,6 @@ public interface SignDao {
 	public Page<SignInfo> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows);
 	public SignInfo getByHql(String hql);
+	public SignInfo getByRecord(String userNo,Date recordDate);
 	
 }
