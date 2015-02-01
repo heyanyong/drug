@@ -43,15 +43,15 @@ public class TestUserService {
 	@Test
 	public void testGet(){
 		Map<String,Object> params=new HashMap<String,Object>();
-		params.put("name", "李丽1");
-		params.put("age", "1");
+		params.put("name", "管理员");
+//		params.put("age", "1");
 		UserInfo user=userService.get("from UserInfo u where 1=1 and  u.name=:name ",params);
 		System.out.println(user.getId());
 //		System.out.println(user.getRoles());
 	}
 	@Test
 	public void getGetUser(){
-		UserInfo user=userService.get(UserInfo.class,13);
+		UserInfo user=userService.get(UserInfo.class,1);
 		System.out.println(user.getStructure());
 		System.out.println(user.getCreateUser());
 //		System.out.println(user.getRoles());

@@ -41,7 +41,7 @@ public class SignServiceImpl implements SignService {
 
 	@Override
 	public int executeHql(String hql) {
-		return 0;
+		return signDao.executeHql(hql);
 	}
 
 	@Override

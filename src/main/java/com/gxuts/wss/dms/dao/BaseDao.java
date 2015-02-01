@@ -56,12 +56,12 @@ public class BaseDao<T> implements BaseDaoI<T> {
 	}
 	
 	public int executeHql(String hql) {
-		Query q = this.getSession().createQuery(hql);
+		Query q = getSession().createQuery(hql);
 		return q.executeUpdate();
 	}
 
 	public int executeHql(String hql, Map<String, Object> params) {
-		Query q = this.getSession().createQuery(hql);
+		Query q =  getSession().createQuery(hql);
 		if (params != null && !params.isEmpty()) {
 			for (String key : params.keySet()) {
 				q.setParameter(key, params.get(key));
@@ -81,7 +81,7 @@ public class BaseDao<T> implements BaseDaoI<T> {
 	}
 	
 	public T get(String hql, Map<String, Object> params) {
-		Query q = this.getSession().createQuery(hql);
+		Query q =  getSession().createQuery(hql);
 		
 		if (params != null && !params.isEmpty()) {
 			for (String key : params.keySet()) {
@@ -97,7 +97,7 @@ public class BaseDao<T> implements BaseDaoI<T> {
 	
 	@SuppressWarnings("unchecked")
 	public T getObject(String hql,  Object[] params) {
-		Query q = this.getSession().createQuery(hql);
+		Query q =  getSession().createQuery(hql);
 		if(params!=null && params.length>0){
 			for (int i = 0; i < params.length; i++) {
 				q.setParameter(i, params[i]);
@@ -113,7 +113,7 @@ public class BaseDao<T> implements BaseDaoI<T> {
 	@SuppressWarnings("unchecked")
 	public Page<T> query(String hql, Map<String, Object> params, Integer currentPage, Integer rows) {
 		Page<T> page=new Page<T>();
-		Query q = this.getSession().createQuery(hql);
+		Query q =  getSession().createQuery(hql);
 		if (params != null && !params.isEmpty()) {
 			for (String key : params.keySet()) {
 				q.setParameter(key, params.get(key));

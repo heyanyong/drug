@@ -47,7 +47,7 @@
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<aop:config>
+	<aop:config expose-proxy="true">
 		<aop:pointcut id="serviceMethods"
 			expression="execution(* com.gxuts.wss.dms.service..*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethods" />
@@ -59,6 +59,7 @@
 			<tx:method name="save*" />
 			<tx:method name="update*" />
 			<tx:method name="delete*" />
+			<tx:method name="*" />
 		</tx:attributes>
 	</tx:advice>
 	<aop:aspectj-autoproxy />

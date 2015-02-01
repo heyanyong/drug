@@ -31,8 +31,17 @@ public class TestSignService {
 	}
 	@Test
 	public void testUpdate(){
-		SignInfo sign=signService.get(SignInfo.class, 5);
+		SignInfo sign=signService.get(SignInfo.class, 10);
 		sign.setRemark("1213");
 		signService.update(sign);
+	}
+	
+	@Test
+	public void testSignException() throws ParseException{
+		String recordDate="2015-01-30";
+		String userNo="NF001";
+		SimpleDateFormat f=new SimpleDateFormat("yyyy-MM-dd");
+		Date rd=f.parse(recordDate);
+		signService.executeHql("update SignInfo set status='正常' where userNo="+userNo+" and recordDate="+rd);
 	}
 }
