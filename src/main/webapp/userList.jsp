@@ -14,6 +14,8 @@ ${user.name }<br />
 ${pages.currentPage }
 ${pages.total }
 ${pages.rows }
+ 
+
 <a href="list?currentPage=1&row=3">1</a>
 <a href="list?currentPage=2&row=3">2</a>
 <a href="list?currentPage=3&row=3">3</a>

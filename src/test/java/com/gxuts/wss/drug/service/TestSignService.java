@@ -25,9 +25,9 @@ public class TestSignService {
 	public void testSave() throws ParseException{
 		SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat df2=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		Date recordDate=df.parse("2015-01-06");
-		Date signDate = df2.parse("2015-01-08 18:01:00");
-		System.out.println(signService.save("NF001", recordDate, signDate));
+		Date recordDate=df.parse("2015-01-4");
+		Date signDate = df2.parse("2015-01-30 8:11:00");
+		System.out.println(signService.save("NF002", recordDate, signDate));
 	}
 	@Test
 	public void testUpdate(){

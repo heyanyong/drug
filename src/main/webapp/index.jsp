@@ -2,6 +2,6 @@
     pageEncoding="UTF-8"%>
 <html>
 <body>
-<h2>index!${loginUser}</h2>
+<h2>index!${loginUser.name}</h2>
 </body>
 </html>

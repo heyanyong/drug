@@ -4,7 +4,7 @@
 	
 	<filter>
 	  <filter-name>loginFilter</filter-name>
-	  <filter-class>com.gxuts.wss.drug.base.LoginFilter</filter-class>
+	  <filter-class>com.gxuts.wss.dms.base.LoginFilter</filter-class>
 	</filter>
 	<filter-mapping>
 	  <filter-name>loginFilter</filter-name>

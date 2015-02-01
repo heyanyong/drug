@@ -75,7 +75,7 @@ public class SignServiceImpl implements SignService {
 		return signDao.query(hql, params, currentPage, rows);
 	}
 
-	// 是否用本类方法
+	// 是否用本类方法?
 	@Override
 	public Serializable save(String userNo, Date recordDate, Date signDate) {
 		// 查询是否已有
@@ -89,10 +89,10 @@ public class SignServiceImpl implements SignService {
 			sign.setUserNo(user.getNo());
 			sign.setRecordDate(recordDate);
 			sign.setSignIn(signDate);
-			return save(sign);
+			return signDao.save(sign);
 		} else if (exitSign.getSignIn().before(signDate)) {
 			exitSign.setSignOut(signDate);
-			update(exitSign);
+			signDao.update(exitSign);
 			return exitSign;
 		} else if (exitSign.getSignIn().after(signDate)) {
 			Date date3 = exitSign.getSignIn();
