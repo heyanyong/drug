@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.transaction.Transactional;
+
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.IdentityService;
 import org.activiti.engine.ProcessEngine;
@@ -23,9 +25,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring/applicationContext.xml" })
+//@Transactional
+//@TransactionConfiguration(transactionManager = "txManager", defaultRollback = true)
 public class TestExportProcess {
 	@Autowired
 	public IdentityService identityService;
@@ -38,7 +43,7 @@ public class TestExportProcess {
 	private TaskService taskService;
 	@Autowired
 	private HistoryService historyService;
-	@Test//1-出库流程-部署完成
+	@Test//52501-出库流程-部署完成
 	public void testDeploy(){
 		String fileName="export";
 		String deployName="出库流程";
@@ -51,25 +56,49 @@ public class TestExportProcess {
 	}
 
 	/**
-	 * 2501
+	 * 15001
 		张三的出库申请:leaveDetail:1001
 	 */
 	@Test
 	public void testStart(){
 		String processDefinitionKey="export";
-		String businessKey="张三的出库申请:leaveDetail:1001";
+		String businessKey="NF0001张三的出库申请2:leaveDetail:1001";
 		Map<String, Object> variables=new HashMap<String, Object>();
 		variables.put("createUser", "NF0001");
 		ProcessInstance processInstance=runtimeService.startProcessInstanceByKey(processDefinitionKey, businessKey,variables);
 		System.out.println(processInstance.getId()); //
 		System.out.println(processInstance.getBusinessKey());//
+		Map<String, Object> vars2=processInstance.getProcessVariables();
+		for(Object o:vars2.values()){
+			System.out.println("*"+o);
+		}
+	}
+
+	@Test
+	public void complete(){
+		String taskId = "92505";
+		String processInstanceId = "92501";
+		
+		taskService.addComment(taskId, processInstanceId, "提交");
+		taskService.complete(taskId);
+		String str=(String) taskService.getVariable("92505", "var1");
+		System.out.println(str);
+		
+	}
+	
+	
+	
+	@Test
+	public void test(){
+		String processInstanceId = "2501";
+		List<IdentityLink> identityList =runtimeService.getIdentityLinksForProcessInstance(processInstanceId);
+		for (IdentityLink vo:identityList) {
+			System.out.println(vo);
+		}
 	}
 	/*
-	 * NF0001
-2505
-提交人
-2501
-张三的出库申请:leaveDetail:1001*/
+	 * 2501
+		张三的出库申请:leaveDetail:1001*/
 	@Test
 	public void testTask(){
 		String assignee="NF0001";
@@ -84,23 +113,9 @@ public class TestExportProcess {
 		}
 	}
 	@Test
-	public void complete(){
-		String taskId = "5016";
-		String processInstanceId = "2501";
-		Map<String,Object> variables=new HashMap<String, Object>();
-		List<String> ckadmin=new ArrayList<String>();
-		ckadmin.add("ck001");
-		ckadmin.add("ck002");
-		variables.put("ckadmin", ckadmin);
-		taskService.addComment(taskId, processInstanceId, "ck 5013 好");
-		taskService.complete(taskId,variables);
-	}
-	@Test
-	public void test(){
-		String processInstanceId = "2501";
-		List<IdentityLink> identityList =runtimeService.getIdentityLinksForProcessInstance(processInstanceId);
-		for (IdentityLink vo:identityList) {
-			System.out.println(vo);
-		}
+	public void getCurrent(){
+		ProcessInstance pi=runtimeService.createProcessInstanceQuery().active().list().get(0);
+		String a=pi.getActivityId();
+		System.out.println(a);
 	}
 }
