@@ -22,11 +22,11 @@ public class LoginFilter implements Filter {
 		 HttpServletRequest req=(HttpServletRequest) request;
 		 HttpServletResponse resp=(HttpServletResponse) response;
 		 String url=req.getRequestURI();
-		 if((req.getSession(true).getAttribute("loginUser")!=null)||url.contains("ogin")||url.contains("register")){
+//		 if((req.getSession(true).getAttribute("loginUser")!=null)||url.contains("ogin")||url.contains("register")){
 			 chain.doFilter(request, response);
-		 }else{
-			 resp.sendRedirect("/drug/user/login");
-		 }
+//		 }else{
+//			 resp.sendRedirect("/drug/user/login");
+//		 }
 	}
 
 	@Override
