@@ -19,6 +19,11 @@ public class DrugInfo implements Serializable{
 	private UserInfo createUser;
 	private Date updateDate;
 	private UserInfo updateUser;
+	
+	public DrugInfo(){};
+	public DrugInfo(Integer id) {
+		this.id=id;
+	}
 	public Integer getId() {
 		return id;
 	}

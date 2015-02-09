@@ -31,15 +31,7 @@ public class PurchaseContractController {
 		System.out.println(contract.getUpdateDate());
 		return "test";
 	}
-	 @InitBinder
-	    public void initBinder(WebDataBinder binder) {
-	        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	        SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd hh24:mm:ss");
-	        dateFormat.setLenient(false);
-	        dateFormat2.setLenient(false);
-	        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
-	        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat2, false));
-	    }
+	 
 
 
 	 

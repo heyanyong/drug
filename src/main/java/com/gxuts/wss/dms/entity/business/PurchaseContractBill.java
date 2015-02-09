@@ -1,11 +1,15 @@
 package com.gxuts.wss.dms.entity.business;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,11 +28,11 @@ public class PurchaseContractBill implements Serializable {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createDate;
 	private UserInfo createUser;
-	@DateTimeFormat(pattern="yyyy-MM-dd hh:Mi:ss")
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")	
 	private Date updateDate;
 	private UserInfo updateUser;
-	@OneToMany
-	private Set<DrugInfo> drugs=new HashSet<DrugInfo>(0);
+	@OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	private List<DrugInfo> drugs;
 
 	public Integer getId() {
 		return id;
@@ -86,11 +90,13 @@ public class PurchaseContractBill implements Serializable {
 		this.updateUser = updateUser;
 	}
 
-	public Set<DrugInfo> getDrugs() {
+ 
+
+	public List<DrugInfo> getDrugs() {
 		return drugs;
 	}
 
-	public void setDrugs(Set<DrugInfo> drugs) {
+	public void setDrugs(List<DrugInfo> drugs) {
 		this.drugs = drugs;
 	}
 

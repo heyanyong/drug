@@ -32,8 +32,7 @@ public class DrugServiceImpl implements DrugService {
 
 	@Override
 	public void update(DrugInfo drug) {
-		// TODO Auto-generated method stub
-		
+		drugDao.update(drug);
 	}
 
 	@Override

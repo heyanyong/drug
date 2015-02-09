@@ -10,8 +10,9 @@
 <form action="contract/save">
 <input name="name" type="text" />
 <input name="createDate" type="text" />
-<input name="updateDate" type="text" />
-
+<input name="updateDate" type="text" /><br />
+0<input name="drugs[0].name" type="text"/>
+1<input name="drugs[1].name" type="text"/>
 <input type="submit" value="保存" />
 </form>
 </body>
