@@ -22,6 +22,8 @@ public class FlowSetRoleImpl implements TaskListener {
 	@Override
 	public void notify(DelegateTask delegateTask) {
 		String var=(String) delegateTask.getVariable("createUser");
+		System.out.println(delegateTask.getVariable("assigneeList"));
+		
 		delegateTask.setVariableLocal("var1", "var1");
 		System.out.println("444"+var);
 		System.out.println(taskService);     //null

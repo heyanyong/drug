@@ -1,6 +1,7 @@
 package com.gxuts.wss.drug.activite;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,6 +66,8 @@ public class TestExportProcess {
 		String businessKey="NF0001张三的出库申请2:leaveDetail:1001";
 		Map<String, Object> variables=new HashMap<String, Object>();
 		variables.put("createUser", "NF0002");
+		List<String> assigneeList=Arrays.asList("liyagn","cooperay","other");
+		variables.put("assigneeList", assigneeList);
 		ProcessInstance processInstance=runtimeService.startProcessInstanceByKey(processDefinitionKey, businessKey,variables);
 		System.out.println(processInstance.getId()); //
 		System.out.println(processInstance.getBusinessKey());//
