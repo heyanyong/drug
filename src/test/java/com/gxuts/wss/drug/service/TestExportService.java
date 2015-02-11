@@ -14,7 +14,7 @@ import com.gxuts.wss.dms.service.hr.SignService;
 
 @RunWith(SpringJUnit4ClassRunner.class) 
 @ContextConfiguration(locations={"classpath:/spring/applicationContext.xml"})
-public class TestPurchaseContractService {
+public class TestExportService {
 	@Autowired
 	private SignService signService;
 	

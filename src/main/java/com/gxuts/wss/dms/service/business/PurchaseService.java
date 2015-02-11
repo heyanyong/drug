@@ -6,13 +6,14 @@ import java.util.Map;
 
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.business.PurchaseBill;
+import com.gxuts.wss.dms.entity.business.PurchaseContractBill;
 
 public interface PurchaseService {
-	public Serializable save(PurchaseBill purchaseBill);
+	public Serializable save(PurchaseBill purchase);
 
-	public void delete(PurchaseBill purchaseBill);
+	public void delete(PurchaseBill purchase);
 
-	public void update(PurchaseBill purchaseBill);
+	public void update(PurchaseBill purchase);
 	public PurchaseBill get(Class<PurchaseBill> c, Serializable id);
 
 	public int executeHql(String hql);
@@ -29,5 +30,6 @@ public interface PurchaseService {
 
 	public Page<PurchaseBill> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows);
+	public PurchaseContractBill purcharseToContract(Integer purchaseId);
 	
 }

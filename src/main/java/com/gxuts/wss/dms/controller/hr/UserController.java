@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.activiti.engine.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.gxuts.wss.dms.base.CommentClassTest;
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.hr.UserService;
@@ -21,7 +23,8 @@ public class UserController {
 	UserInfo user = new UserInfo();
 	@Autowired
 	private UserService userService;
-	
+	@Autowired
+	private TaskService taskService;
 
 	@RequestMapping(value="list")
 	public String getList(HttpServletRequest request,Integer currentPage, Integer row){
@@ -34,7 +37,11 @@ public class UserController {
 	public String save(UserInfo user) {
 		System.out.println("UserController save");
 		user.setName("212");
+		CommentClassTest t=new CommentClassTest();
+		t.say();
 //		userService.save(user);
+		System.out.println("cc:"+taskService);
+		System.out.println("ccu:"+userService);
 		return "test";
 	}
 

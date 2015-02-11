@@ -38,7 +38,7 @@ public class DrugServiceImpl implements DrugService {
 	@Override
 	public DrugInfo get(Class<DrugInfo> c, Serializable id) {
 		// TODO Auto-generated method stub
-		return null;
+		return drugDao.get(c, id);
 	}
 
 	@Override

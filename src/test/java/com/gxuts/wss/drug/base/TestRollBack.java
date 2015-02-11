@@ -1,4 +1,4 @@
-package com.gxuts.wss.drug.activite;
+package com.gxuts.wss.drug.base;
 
 import java.util.HashMap;
 import java.util.Map;

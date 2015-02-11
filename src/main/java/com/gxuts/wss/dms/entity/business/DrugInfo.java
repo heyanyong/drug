@@ -7,6 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+
+
 
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 @Entity
@@ -20,7 +24,12 @@ public class DrugInfo implements Serializable{
 	private Date updateDate;
 	private UserInfo updateUser;
 	
+	private Integer requestNumber;
+	private Integer purchaseNumber;
+	private Integer exportNumber;
+	
 	public DrugInfo(){};
+
 	public DrugInfo(Integer id) {
 		this.id=id;
 	}
@@ -60,6 +69,28 @@ public class DrugInfo implements Serializable{
 	public void setUpdateUser(UserInfo updateUser) {
 		this.updateUser = updateUser;
 	}
+	
+	public Integer getRequestNumber() {
+		return requestNumber;
+	}
+	public void setRequestNumber(Integer requestNumber) {
+		this.requestNumber = requestNumber;
+	}
+	public Integer getPurchaseNumber() {
+		return purchaseNumber;
+	}
+	public void setPurchaseNumber(Integer purchaseNumber) {
+		this.purchaseNumber = purchaseNumber;
+	}
+	public Integer getExportNumber() {
+		return exportNumber;
+	}
+	public void setExportNumber(Integer exportNumber) {
+		this.exportNumber = exportNumber;
+	}
+	
+ 
+
 	@Override
 	public String toString() {
 		return "DrugInfo [id=" + id + ", name=" + name + "]";

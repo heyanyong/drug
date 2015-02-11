@@ -8,11 +8,11 @@ import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.business.PurchaseBill;
 
 public interface PurchaseDao {
-	public Serializable save(PurchaseBill purchaseBill);
+	public Serializable save(PurchaseBill purchase);
 
-	public void delete(PurchaseBill purchaseBill);
+	public void delete(PurchaseBill purchase);
 
-	public void update(PurchaseBill purchaseBill);
+	public void update(PurchaseBill purchase);
 	public PurchaseBill get(Class<PurchaseBill> c, Serializable id);
 
 	public int executeHql(String hql);

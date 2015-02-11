@@ -64,7 +64,7 @@ public class TestExportProcess {
 		String processDefinitionKey="export";
 		String businessKey="NF0001张三的出库申请2:leaveDetail:1001";
 		Map<String, Object> variables=new HashMap<String, Object>();
-		variables.put("createUser", "NF0001");
+		variables.put("createUser", "NF0002");
 		ProcessInstance processInstance=runtimeService.startProcessInstanceByKey(processDefinitionKey, businessKey,variables);
 		System.out.println(processInstance.getId()); //
 		System.out.println(processInstance.getBusinessKey());//

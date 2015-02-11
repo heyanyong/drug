@@ -28,14 +28,12 @@ public class PurchaseContractServiceImpl implements PurchaseContractService {
 
 	@Override
 	public void delete(PurchaseContractBill contract) {
-		// TODO Auto-generated method stub
-		
+		purchaseContractDao.delete(contract);
 	}
 
 	@Override
 	public void update(PurchaseContractBill contract) {
-		// TODO Auto-generated method stub
-		
+		purchaseContractDao.update(contract);
 	}
 
 	@Override
