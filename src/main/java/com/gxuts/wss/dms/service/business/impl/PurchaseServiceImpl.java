@@ -90,7 +90,6 @@ public class PurchaseServiceImpl implements PurchaseService {
 		List<DrugInfo> drugs=purchase.getDrugs();
 		List<DrugInfo> newDrugs=new ArrayList<DrugInfo>(drugs.size());
 		for (DrugInfo drug:drugs) {
-			drug.setId(null);
 			newDrugs.add(drug);
 		}
 		contract.setDrugs(newDrugs);

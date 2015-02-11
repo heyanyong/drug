@@ -12,15 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
-
-
-
 import com.gxuts.wss.dms.entity.hr.UserInfo;
  
 
 @Entity
 public class PurchaseBill implements Serializable {
+	private static final long serialVersionUID = 3346828780680648200L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
