@@ -1,17 +1,15 @@
 package com.gxuts.wss.drug.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.gxuts.wss.drug.controller.hr.UserController;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
-import static org.junit.Assert.*;
-import static org.hamcrest.Matchers.*;
+import com.gxuts.wss.dms.controller.hr.UserController;
 
 public class TestUserController {
 	private MockMvc mockMvc;

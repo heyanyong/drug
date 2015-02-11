@@ -14,25 +14,22 @@
       					http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring   
       					http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring-1.1.xsd">
 
-
-
 	<context:annotation-config />
-	<context:component-scan base-package="com.gxuts.wss.drug" />
-	
+	<context:component-scan base-package="com.gxuts.wss.dms" />
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="user" value="root"></property>
 		<property name="password" value="123456"></property>
 		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/drug?useUnicode=true&amp;characterEncoding=UTF-8"></property>
+		<property name="jdbcUrl"
+			value="jdbc:mysql://localhost:3306/drug?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"></property>
 	</bean>
-
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan">
 			<list>
-				<value>com.gxuts.wss.drug.entity</value>
+				<value>com.gxuts.wss.dms.entity</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -50,9 +47,9 @@
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<aop:config>
+	<aop:config expose-proxy="true">
 		<aop:pointcut id="serviceMethods"
-			expression="execution(* com.gxuts.wss.drug.dao.*.*(..))" />
+			expression="execution(* com.gxuts.wss.dms.service..*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethods" />
 	</aop:config>
 
@@ -62,8 +59,44 @@
 			<tx:method name="save*" />
 			<tx:method name="update*" />
 			<tx:method name="delete*" />
+			<tx:method name="*" />
 		</tx:attributes>
 	</tx:advice>
-
 	<aop:aspectj-autoproxy />
+
+
+	<!-- mail -->
+	<bean id="simpMail" class="org.springframework.mail.SimpleMailMessage">
+		<property name="from" value="heyanyong163@163.com" />
+	</bean>
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.163.com"></property>
+		<property name="username" value="heyanyong163@163.com"></property>
+		<property name="password" value="f123321"></property>
+		<property name="port" value="25"></property>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.timeout">25000</prop>
+				<prop key="mail.smtp.socketFactory.fallback">false</prop>
+				<prop key="mail.smtp.starttls.enable">false</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- activiti -->
+	<bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+		<property name="dataSource" ref="dataSource" />
+		<property name="transactionManager" ref="txManager" />
+		<property name="databaseSchemaUpdate" value="true" />
+		<property name="jobExecutorActivate" value="false" />
+	</bean>
+	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+		<property name="processEngineConfiguration" ref="processEngineConfiguration" />
+	</bean>
+	<bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService" />
+	<bean id="runtimeService" factory-bean="processEngine"		factory-method="getRuntimeService" />
+	<bean id="taskService" factory-bean="processEngine"		factory-method="getTaskService" />
+	<bean id="historyService" factory-bean="processEngine"		factory-method="getHistoryService" />
+	<bean id="managementService" factory-bean="processEngine"		factory-method="getManagementService" />
+	<bean id="identityService" factory-bean="processEngine"		factory-method="getIdentityService" />
 </beans>

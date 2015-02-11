@@ -1,26 +1,29 @@
 package com.gxuts.wss.drug.service;
 
+import java.util.Date;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.gxuts.wss.drug.entity.RoleInfo;
-import com.gxuts.wss.drug.entity.StructureInfo;
-import com.gxuts.wss.drug.service.hr.RoleService;
-import com.gxuts.wss.drug.service.hr.StructureService;
+import com.gxuts.wss.dms.entity.hr.SignInfo;
+import com.gxuts.wss.dms.service.hr.SignService;
+
 
 @RunWith(SpringJUnit4ClassRunner.class) 
 @ContextConfiguration(locations={"classpath:/spring/applicationContext.xml"})
 public class TestRoleService {
 	@Autowired
-	private RoleService roleService;
+	private SignService signService;
 	
 	@Test
 	public void testSave(){
-		RoleInfo role=new RoleInfo();
-		role.setName("角色二");
-		roleService.save(role);
+		String userNo="NF003";
+		Date recordDate=new Date();
+		Date signDate=new Date();
+		signService.save(userNo, recordDate, signDate);
+		  
 	}
 }

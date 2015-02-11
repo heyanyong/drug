@@ -6,7 +6,7 @@
 ${loginMsg}
 <form action="checkLogin" method="post">
  <input name="no"/>
- <input name="password"/>
+ <input name="password" type="password"/>
  <input type="submit"></input>
 </form>
 </body>
