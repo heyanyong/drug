@@ -3,8 +3,8 @@
 2、不同明细 列表查询
 
 懒加载问题：
-fetch = FetchType.LAZY
-无法级联删除
+ 1.fetch = FetchType.LAZY
+ 2.无法级联删除
  
 流程问题：
 1、办理都选择：
