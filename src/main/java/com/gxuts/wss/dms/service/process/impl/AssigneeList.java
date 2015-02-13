@@ -14,6 +14,10 @@ import com.gxuts.wss.dms.service.process.WorkflowService;
  
 @Service
 public class AssigneeList implements  TaskListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Expression roleName;
 	
 	public Expression getRoleName() {
