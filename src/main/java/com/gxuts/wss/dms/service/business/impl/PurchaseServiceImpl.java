@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,7 @@ import com.gxuts.wss.dms.entity.business.DrugInfo;
 import com.gxuts.wss.dms.entity.business.PurchaseBill;
 import com.gxuts.wss.dms.entity.business.PurchaseContractBill;
 import com.gxuts.wss.dms.service.business.DrugService;
+import com.gxuts.wss.dms.service.business.PurchaseContractService;
 import com.gxuts.wss.dms.service.business.PurchaseService;
 @Service("purchaseService")
 @Transactional
@@ -25,6 +27,8 @@ public class PurchaseServiceImpl implements PurchaseService {
 	private PurchaseDao purchaseDao;
 	@Autowired
 	private PurchaseContractDao purchaseContractDao;
+	@Autowired
+	private PurchaseContractService purchaseContractService;
 	@Autowired
 	private DrugDao drugDao;
 	@Override
@@ -81,26 +85,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 			Integer currentPage, Integer rows) {
 		return null;
 	}
-	@Override
-	public PurchaseContractBill purcharseToContract(Integer purchaseId) {
-		PurchaseBill purchase=get(PurchaseBill.class, purchaseId);
-		
-		PurchaseContractBill contract=new PurchaseContractBill();
-		contract.setName("生成");
-		List<DrugInfo> drugs=purchase.getDrugs();
-		List<DrugInfo> newDrugs=new ArrayList<DrugInfo>(drugs.size());
-		for (DrugInfo drug:drugs) {
-			newDrugs.add(drug);
-		}
-		contract.setDrugs(newDrugs);
-		purchaseContractDao.save(contract);
-		return contract;
-	}
-
- 
-
-	 
-	 
+	
 	 
 
 }

@@ -30,6 +30,6 @@ public interface PurchaseService {
 
 	public Page<PurchaseBill> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows);
-	public PurchaseContractBill purcharseToContract(Integer purchaseId);
+
 	
 }

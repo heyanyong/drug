@@ -29,5 +29,5 @@ public interface PurchaseContractService {
 
 	public Page<PurchaseContractBill> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows);
-	
+	public PurchaseContractBill fromPurchase(Integer purchaseId);
 }

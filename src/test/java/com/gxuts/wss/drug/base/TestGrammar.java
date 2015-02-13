@@ -1,25 +1,53 @@
 package com.gxuts.wss.drug.base;
 
-import java.text.SimpleDateFormat;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import org.junit.Test;
 
 public class TestGrammar {
 	
-	public void say(String name, int...arry){
-		System.out.println(name);
-		System.out.println(arry[2]);
+	public static void say( ){
+		try {
+			System.out.println("try");
+		} catch (Exception e) {
+			
+		}finally{
+			System.out.println("finaly");
+		}
 	}
 	
 	
 	 public static void main(String[] args) {
-		List<String> list=new ArrayList<String>();
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println(2);
+		List<String> list=new ArrayList<String>(1);
+		Set set=new HashSet();
+		Map map=new HashMap();
+		map.put(null, "1");
+		say();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection c=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/drug","root", "admin");
+			Statement s=c.createStatement();
+			ResultSet r=s.executeQuery("select * from druginfo");
+			
+			while (r.next()) {
+				int a=r.getInt(1);
+				System.out.println(a);
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+		
 	}
 
 }

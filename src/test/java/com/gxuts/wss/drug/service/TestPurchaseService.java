@@ -32,17 +32,18 @@ public class TestPurchaseService {
 	@Test
 	public void testSave(){
 		 PurchaseBill purchase=new PurchaseBill();
-		 purchase.setName("采购需求");
+		 purchase.setName("采购需求5");
 		 List<DrugInfo> drugs=new ArrayList<DrugInfo>();
 		 DrugInfo drug1=new DrugInfo();
 		 DrugInfo drug2=new DrugInfo();
-		 drug1.setName("感冒");
+		 drug1.setName("感冒1");
 		 drug2.setName("感冒2");
 		 drug1.setRequestNumber(100);
 		 drug2.setRequestNumber(100);
 		 drugs.add(drug1);
 		 drugs.add(drug2);
-		 purchase.setDrugs(drugs);    
+		 purchase.setDrugs(drugs);   
+		 purchase.setId(44);//被忽略
 		 purchaseService.save(purchase);
 	}
 	@Test
@@ -60,14 +61,5 @@ public class TestPurchaseService {
 		 purchaseService.delete(purchase);
 	}
 	
-	@Test
-	public void getPurchaseByDrug(){
-		DrugInfo drug=drugService.get(DrugInfo.class, 5);
-		System.out.println(drug);
-	}
-	//f
-	@Test
-	public void purchaseToContract(){
-		purchaseService.purcharseToContract(10);
-	}
+ 
 }

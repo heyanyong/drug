@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 
 
 
+import javax.persistence.OneToMany;
+
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 @Entity
 public class DrugInfo implements Serializable{
@@ -27,12 +29,23 @@ public class DrugInfo implements Serializable{
 	private Integer requestNumber;
 	private Integer purchaseNumber;
 	private Integer exportNumber;
+	@ManyToOne
+	private PurchaseContractBill contract;
 	
 	public DrugInfo(){};
 
 	public DrugInfo(Integer id) {
 		this.id=id;
 	}
+	
+	public PurchaseContractBill getContract() {
+		return contract;
+	}
+
+	public void setContract(PurchaseContractBill contract) {
+		this.contract = contract;
+	}
+
 	public Integer getId() {
 		return id;
 	}

@@ -31,7 +31,7 @@ public class PurchaseContractBill implements Serializable {
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")	
 	private Date updateDate;
 	private UserInfo updateUser;
-	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)  
+	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER,mappedBy="contract")  
 	private List<DrugInfo> drugs;
 
 	public Integer getId() {

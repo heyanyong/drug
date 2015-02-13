@@ -20,6 +20,8 @@ import com.gxuts.wss.dms.service.business.PurchaseService;
 public class PurchaseContractServiceImpl implements PurchaseContractService {
 
 	@Autowired
+	private PurchaseDao purchaseDao;
+	@Autowired
 	private PurchaseContractDao purchaseContractDao;
 	@Override
 	public Serializable save(PurchaseContractBill contract) {
@@ -41,7 +43,13 @@ public class PurchaseContractServiceImpl implements PurchaseContractService {
 			Serializable id) {
 		return purchaseContractDao.get(c, id);
 	}
-
+	//需要产生采购（未保存状态）
+	public PurchaseContractBill fromPurchase(Integer purchaseId){
+		PurchaseContractBill contract=new PurchaseContractBill();
+		PurchaseBill purchase=purchaseDao.get(PurchaseBill.class, purchaseId);
+		contract.setDrugs(purchase.getDrugs());
+		return contract;
+	}
 	@Override
 	public int executeHql(String hql) {
 		// TODO Auto-generated method stub
