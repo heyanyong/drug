@@ -2,12 +2,25 @@
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
   <process id="leave" name="leaveProcess" isExecutable="true">
     <startEvent id="startevent1" name="Start"></startEvent>
-    <userTask id="leave_usertask1" name="提交申请" activiti:assignee="张三"></userTask>
-    <userTask id="leave_usertask2" name="主管审批" activiti:assignee="张主管" activiti:candidateUsers="李总1,李总2"></userTask>
+    <userTask id="apply" name="提交申请" activiti:assignee="${assignee}"></userTask>
+    <userTask id="leave_usertask2" name="主管审批" activiti:assignee="${assignee}">
+      <extensionElements>
+        <activiti:taskListener event="create" class="com.gxuts.wss.dms.service.process.impl.LeaderAssignee"></activiti:taskListener>
+        <activiti:taskListener event="complete" class="com.gxuts.wss.dms.service.process.impl.AssigneeList">
+          <activiti:field name="roleName">
+            <activiti:string><![CDATA[人力]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+      </extensionElements>
+    </userTask>
     <endEvent id="endevent1" name="End"></endEvent>
-    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="leave_usertask1"></sequenceFlow>
-    <sequenceFlow id="flow2" sourceRef="leave_usertask1" targetRef="leave_usertask2"></sequenceFlow>
-    <userTask id="leave_usertask3" name="总监审批" activiti:assignee="王总监"></userTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="apply"></sequenceFlow>
+    <sequenceFlow id="flow2" sourceRef="apply" targetRef="leave_usertask2"></sequenceFlow>
+    <userTask id="leave_usertask3" name="人力办理" activiti:assignee="${assignee}">
+      <multiInstanceLoopCharacteristics isSequential="false" activiti:collection="assigneeList" activiti:elementVariable="assignee">
+        <completionCondition>${nrOfCompletedInstances/nrOfInstances &gt;= 0}</completionCondition>
+      </multiInstanceLoopCharacteristics>
+    </userTask>
     <sequenceFlow id="flow3" sourceRef="leave_usertask2" targetRef="leave_usertask3"></sequenceFlow>
     <sequenceFlow id="flow4" sourceRef="leave_usertask3" targetRef="endevent1"></sequenceFlow>
   </process>
@@ -16,7 +29,7 @@
       <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
         <omgdc:Bounds height="35.0" width="35.0" x="40.0" y="114.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="leave_usertask1" id="BPMNShape_leave_usertask1">
+      <bpmndi:BPMNShape bpmnElement="apply" id="BPMNShape_apply">
         <omgdc:Bounds height="55.0" width="105.0" x="110.0" y="104.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="leave_usertask2" id="BPMNShape_leave_usertask2">
