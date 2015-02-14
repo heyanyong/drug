@@ -82,24 +82,6 @@
 				<label>注册地址：</label> <input type="text" size="30" />
 			</p>
 			<p>
-				<label>所属行业：</label> <input type="text" size="30" />
-			</p>
-			<p>
-				<label>组织机构代码：</label> <input type="text" size="30" />
-			</p>
-			<p>
-				<label>国税登记证号码：</label> <input type="text" size="30" />
-			</p>
-			<p>
-				<label>地税登记证号码：</label> <input type="text" size="30" />
-			</p>
-			<p>
-				<label>贷款卡编码：</label> <input type="text" size="30" />
-			</p>
-			<p>
-				<label>法人姓名：</label> <input type="text" size="30" />
-			</p>
-			<p>
 				<label>法人代表身份证号：</label> <input type="text" size="30" />
 			</p>
 			<p>
@@ -108,32 +90,48 @@
 			<p>
 				<label>其他证件及号码：</label> <input type="text" size="30" />
 			</p>
-			<p>
-				<label>曾用名称：</label> <input type="text" size="30" />
-			</p>
-				<dl class="nowrap">
-					<dt>普通文本框：</dt>
-					<dd>
-						<textarea name="textarea1" cols="88" rows="2"></textarea>
-					</dd>
-				</dl>
+			<dl class="nowrap">
+				<dt>普通文本框：</dt>
+				<dd>
+					<textarea name="textarea1" cols="88" rows="2"></textarea>
+				</dd>
+			</dl>
 			<div class="divider"></div>
-			<p>
-				<label>建档日期：</label> <input readonly="readonly" type="text"
-					size="30" />
-			</p>
-			<p>
-				<label>管户经理：</label> <input readonly="readonly" type="text"
-					size="30" />
-			</p>
-			<p>
-				<label>最新修改时间：</label> <input readonly="readonly" type="text"
-					size="30" />
-			</p>
-			<p>
-				<label>最新修改人员：</label> <input readonly="readonly" type="text"
-					size="30" />
-			</p>
+			<div class="tabs" currentIndex="0" eventType="click">
+				<div class="tabsHeader">
+					<div class="tabsHeaderContent">
+						<ul>
+							<li><a href="javascript:;"><span>标题2</span></a></li>
+							<li><a href="demo_page1.html" class="j-ajax"><span>标题3</span></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="tabsContent" style="height: 220px;">
+					<div>
+						<p>
+							<label>建档日期：</label> <input readonly="readonly" type="text"
+								size="30" />
+						</p>
+						<p>
+							<label>管户经理：</label> <input readonly="readonly" type="text"
+								size="30" />
+						</p>
+						<p>
+							<label>最新修改时间：</label> <input readonly="readonly" type="text"
+								size="30" />
+						</p>
+						<p>
+							<label>最新修改人员：</label> <input readonly="readonly" type="text"
+								size="30" />
+						</p>
+					</div>
+					<div></div>
+				</div>
+				<div class="tabsFooter">
+					<div class="tabsFooterContent"></div>
+				</div>
+			</div>
+
 		</div>
 
 	</form>

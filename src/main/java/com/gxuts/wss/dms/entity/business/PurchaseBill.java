@@ -26,6 +26,7 @@ public class PurchaseBill implements Serializable {
 	private UserInfo createUser;
 	private Date updateDate;
 	private UserInfo updateUser;
+	private String remark;
 
 	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)  
 	private List<DrugInfo> drugs;
@@ -48,6 +49,14 @@ public class PurchaseBill implements Serializable {
 
 	public Date getCreateDate() {
 		return createDate;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 	public void setCreateDate(Date createDate) {

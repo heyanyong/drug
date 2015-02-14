@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.business.DrugInfo;
 import com.gxuts.wss.dms.entity.business.PurchaseBill;
 import com.gxuts.wss.dms.entity.business.PurchaseContractBill;
@@ -46,11 +47,18 @@ public class PurchaseController {
 	}
 
 	@RequestMapping(value = "/save")
-	public String save(PurchaseContractBill contract) {
+	@ResponseBody
+	public Json save(PurchaseContractBill contract) {
 		System.out.println(contract);
 		System.out.println(contract.getCreateDate());
 		System.out.println(contract.getUpdateDate());
-		return "test";
+		Json j=new Json();
+		if("李".equals(contract.getName())){
+			j.setMessage("李");
+			j.setStatusCode("300");
+			j.setForwardUrl("test.jsp");
+		}
+		return j;
 	}
 	
 	@RequestMapping(value="toContract")
