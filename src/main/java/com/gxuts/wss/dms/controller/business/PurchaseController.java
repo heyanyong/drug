@@ -42,7 +42,7 @@ public class PurchaseController {
 	@RequestMapping(value="list")
 	public String getList(HttpServletRequest request,Integer currentPage, Integer row){
 		 
-		return "userList";
+		return "purchaseDetail";
 	}
 
 	@RequestMapping(value = "/save")
