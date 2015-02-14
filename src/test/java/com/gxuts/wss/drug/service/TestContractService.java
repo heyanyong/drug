@@ -23,11 +23,13 @@ public class TestContractService {
 	@Test
 	public void testSave() {
 		PurchaseContractBill contract = new PurchaseContractBill();
-		contract.setName("test");
+		contract.setName("合同");
 		List<DrugInfo> drugs=new ArrayList<DrugInfo>();
 		DrugInfo drug1=new DrugInfo();
-		drug1.setName("drugName1");
+		drug1.setName("药品一");
+		drug1.setContract(contract);
 		drugs.add(drug1);
+		
 		contract.setDrugs(drugs);
 		purchaseContractService.save(contract);
 
@@ -35,8 +37,9 @@ public class TestContractService {
 	
 	@Test
 	public void testGet(){
-		PurchaseContractBill contract=purchaseContractService.get(PurchaseContractBill.class, 34);
+		PurchaseContractBill contract=purchaseContractService.get(PurchaseContractBill.class, 1);
 		List<DrugInfo> drugs=contract.getDrugs();
+		System.out.println(contract);
 		for (DrugInfo d:drugs) {
 			System.out.println(d);
 		}
@@ -53,13 +56,13 @@ public class TestContractService {
 	@Test
 	public void testDelete(){
 		PurchaseContractBill contract=new PurchaseContractBill();
-		contract.setId(34);
+		contract.setId(1);
 		purchaseContractService.delete(contract);
 	}
 	
 	@Test
 	public void testGetContractByPurchase(){
-		PurchaseContractBill contract=purchaseContractService.fromPurchase(16);
+		PurchaseContractBill contract=purchaseContractService.fromPurchase(2);
 		System.out.println(contract);
 	}
 }

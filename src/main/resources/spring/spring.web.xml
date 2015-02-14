@@ -16,6 +16,14 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/"></property>
 		<property name="suffix" value=".jsp"></property>
-	</bean> 
+	</bean>
+	<mvc:resources location="/themes/" mapping="/themes/**" /> 
+	<mvc:resources location="/js/" mapping="/js/**" /> 
+	<mvc:resources location="/bin/" mapping="/bin/**" /> 
+	<mvc:resources location="/chart/" mapping="/chart/**" /> 
+	<mvc:resources location="/demo/" mapping="/demo/**" /> 
+	<mvc:resources location="/xheditor/" mapping="/xheditor/**" /> 
+	<mvc:resources location="/dwz.frag.xml" mapping="/dwz.frag.xml" /> 
+	<mvc:resources location="/" mapping="/**" /> 
 </beans>
 

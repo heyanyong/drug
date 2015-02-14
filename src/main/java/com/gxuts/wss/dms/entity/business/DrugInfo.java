@@ -3,10 +3,13 @@ package com.gxuts.wss.dms.entity.business;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 
@@ -29,7 +32,7 @@ public class DrugInfo implements Serializable{
 	private Integer requestNumber;
 	private Integer purchaseNumber;
 	private Integer exportNumber;
-	@ManyToOne
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	private PurchaseContractBill contract;
 	
 	public DrugInfo(){};

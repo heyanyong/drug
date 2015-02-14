@@ -32,7 +32,7 @@ public class TestPurchaseService {
 	@Test
 	public void testSave(){
 		 PurchaseBill purchase=new PurchaseBill();
-		 purchase.setName("采购需求5");
+		 purchase.setName("采购需求");
 		 List<DrugInfo> drugs=new ArrayList<DrugInfo>();
 		 DrugInfo drug1=new DrugInfo();
 		 DrugInfo drug2=new DrugInfo();
@@ -48,18 +48,28 @@ public class TestPurchaseService {
 	}
 	@Test
 	public void testGet(){
-		PurchaseBill contract=purchaseService.get(PurchaseBill.class, 7);
-		List<DrugInfo> drugs=contract.getDrugs();
+		PurchaseBill p=purchaseService.get(PurchaseBill.class, 1);
+		List<DrugInfo> drugs=p.getDrugs();
+		System.out.println(p);
 		for (DrugInfo d:drugs) {
 			System.out.println(d);
 		}
 	}
 	@Test
+	public void testUpdate(){
+		PurchaseBill p=purchaseService.get(PurchaseBill.class, 1);
+		DrugInfo d=p.getDrugs().get(0);
+		d.setName("updateName");
+		purchaseService.update(p);
+	}
+	
+	@Test
 	public void testDelete(){
 		 PurchaseBill purchase=new PurchaseBill();
-		 purchase.setId(9);
+		 purchase.setId(1);
 		 purchaseService.delete(purchase);
 	}
+	
 	
  
 }
