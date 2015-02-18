@@ -7,6 +7,19 @@ public class Json {
 	private String rel;
 	private String callbackType;
 	private String forwardUrl;
+	
+	public Json(){}
+	
+	public Json(String message, String statusCode, String navTabId, String rel,
+			String callbackType, String forwardUrl) {
+		super();
+		this.message = message;
+		this.statusCode = statusCode;
+		this.navTabId = navTabId;
+		this.rel = rel;
+		this.callbackType = callbackType;
+		this.forwardUrl = forwardUrl;
+	}
 	public String getMessage() {
 		return message;
 	}

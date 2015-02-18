@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="js/my.extend.js" type="text/javascript"></script>
 <style>
   .editTable{border:1px solid #ccc;}
@@ -10,7 +11,7 @@
 	<form method="get" action="purchase/save"
 		class="pageForm required-validate"
 		onsubmit="return validateCallback(this, navTabAjaxDone);">
-		<input type="hidden" value="${purchase.id}" />
+		<input type="hidden" value="${contract.id}" />
 		<div class="formBar">
 			<ul>
 				<!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
@@ -30,7 +31,7 @@
 		</div>
 		<div class="pageFormContent" layoutH="56">
 			<p>
-				<label>编号：</label> <input name="no" type="text" size="30" value="${purchase.no}"/>
+				<label>需求编号：</label> <input name="no" type="text" size="30" value="${contract.purchaseNo}"/>
 			</p>
 			<p>
 				<label>客户名称：</label> <input name="name" class="required" type="text" 
@@ -119,22 +120,23 @@
 							<tbody>
 								<tr>
 									<td><input type="checkbox" name="rowHead" /></td>
-									<td><input type="text" name="drugs[0].name" /></td>
+									<td><input type="text"  /></td>
 									<td><input type="hidden" name="orgLookup.id"
 										value="${orgLookup.id}" /> <input type="text"
-										class="required" name="orgLookup.orgName" value=""
+										name="orgLookup.orgName" value=""
 										suggestFields="orgNum,orgName"
 										suggestUrl="demo/database/db_lookupSuggest.html"
 										lookupGroup="orgLookup" /> <a class="btnLook"
 										href="demo/database/dwzOrgLookup.html" lookupGroup="orgLookup">查找带回</a></td>
-									<td><input type="text" name="drugs[0].no" /></td>
+									<td><input type="text" /></td>
 									<td><input type="text" name="completeDate"
 					class="date" size="30" /><a class="inputDateButton"
 					href="javascript:;">选择</a></td>
 								</tr>
+								<c:forEach items="${contract.drugs}" var="drug">
 								<tr>
 									<td><input type="checkbox" name="rowHead" /></td>
-									<td><input type="text"  name="drugs[1].name" /></td>
+									<td><input type="text" value="${drug.name }" /></td>
 									<td><input type="hidden" name="orgLookup.id"
 										value="${orgLookup.id}" /> <input type="text"
 										class="required" name="orgLookup.orgName" value=""
@@ -142,12 +144,13 @@
 										suggestUrl="demo/database/db_lookupSuggest.html"
 										lookupGroup="orgLookup" /> <a class="btnLook"
 										href="demo/database/dwzOrgLookup.html" lookupGroup="orgLookup">查找带回</a></td>
-									<td><input type="text" name="drugs[0].no" /></td>
+									<td><input type="text" /></td>
 									<td><input type="text" name="completeDate"
 					class="date" size="30" /><a class="inputDateButton"
 					href="javascript:;">选择</a></td>
 								</tr>
 								
+								</c:forEach>
 
 							</tbody>
 						</table>

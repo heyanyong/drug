@@ -35,6 +35,7 @@ public class PurchaseContractBill implements Serializable {
 	private Integer id;
 	private String name;
 	private String no;
+	private String purchaseNo;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createDate;
 	private UserInfo createUser;
@@ -46,6 +47,14 @@ public class PurchaseContractBill implements Serializable {
 
 	public Integer getId() {
 		return id;
+	}
+
+	public String getPurchaseNo() {
+		return purchaseNo;
+	}
+
+	public void setPurchaseNo(String purchaseNo) {
+		this.purchaseNo = purchaseNo;
 	}
 
 	public void setId(Integer id) {

@@ -35,6 +35,10 @@
 					<select class="combox" name="province">
 						<option value="">所有省市</option>
 						<option value="北京">北京</option>
+						<option value="上海">上海</option>
+						<option value="天津">天津</option>
+						<option value="重庆">重庆</option>
+						<option value="广东">广东</option>
 					</select>
 				</td>
 				<td>
@@ -54,44 +58,31 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="userDetail.jsp" target="navTab"><span>添加</span></a></li>
-			<li class="line">line</li>
-			<li><a class="delete" href="user/delete/{e_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li class="line">line</li>
-			<li><a class="edit" href="user/edit/{e_id}" target="navTab"><span>修改</span></a></li>
+			<li><a class="add" href="purchaseDetail.jsp" target="navTab"><span>添加</span></a></li>
+			<li><a class="delete" href="purchase/delete?e_id={e_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="edit" href="purchase/edit/{e_id}" target="navTab"><span>修改</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
+			<li class="line">line</li>
+			<li><a class="icon" href="contract/fromPurchase?purchaseId={e_id}" target="navTab" targetType="navTab"> <span>生成采购合同</span></a></li>
 		</ul>
 	</div>
 	<table class="table" width="100%" layoutH="138">
 		<thead>
 			<tr>
-				<th width="25"></th>
-				<th>账号</th>	<th>姓名</th>
-				<th>性别</th><th>部门</th>
-				<th>角色</th>	<th>手机</th>
-				<th>年龄</th>	<th>生日</th>
-				<th>邮箱</th>
-				<th>入职日期</th><th>创建人</th>
-				<th>创建日期</th>
+				<th width="80"></th>
+				<th width="120">客户号</th>
+				<th>客户名称</th>
+				<th width="100">客户类型</th>
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${pages.data}" var="e">
-			<tr target="e_id" rel="${e.id}">
-				<td><input type="checkbox" /></td>
-				<td>${e.no}</td>
-				<td>${e.name}</td>
-				<td>${e.sex}</td>
-				<td>${e.structure.name}</td>
-				<td>${e.roles}</td>
-				<td>${e.phone}</td>
-				<td>${e.age}</td>
-				<td>${e.birthday}</td>
-				<td>${e.email}</td>
-				<td>${e.entryDate}</td>
-				<td>${e.createUser.name}</td>
-				<td>${e.createDate}</td>
+		<c:forEach items="${pages.data}" var="pur">
+			<tr target="e_id" rel="${pur.id}">
+				<td></td>
+				<td>${pur.no}</td>
+				<td>${pur.name}</td>
+				<td>1</td>
 			</tr>
 			</c:forEach>
 		</tbody>

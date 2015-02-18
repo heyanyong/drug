@@ -12,24 +12,27 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.business.DrugInfo;
 import com.gxuts.wss.dms.entity.business.PurchaseBill;
 import com.gxuts.wss.dms.entity.business.PurchaseContractBill;
+import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.business.PurchaseContractService;
 import com.gxuts.wss.dms.service.business.PurchaseService;
 
+import org.springframework.ui.Model;
  
 @Controller
 @RequestMapping(value = "/purchase")
 public class PurchaseController {
 	@Autowired
 	private PurchaseService purchaseService;
-	@Autowired
-	private PurchaseContractService purchaseContractService;
 	
 	@RequestMapping(value="get")
 	@ResponseBody
@@ -39,21 +42,38 @@ public class PurchaseController {
 		
 		return purchase;
 	}
+	@RequestMapping(value = "/delete",method=RequestMethod.POST)
+	@ResponseBody
+	public Json delete(Integer e_id) {
+		System.out.println("p delete"+e_id);
+		purchaseService.delete(new PurchaseBill(e_id));
+		Json json=new Json();
+		json.setStatusCode("200");
+		json.setRel("purchaseList");
+		json.setNavTabId("purchaseList");
+		return json;
+	}
 	
 	@RequestMapping(value="list")
-	public String getList(HttpServletRequest request,Integer currentPage, Integer row){
-		 
-		return "purchaseDetail";
+	public String getList(HttpServletRequest request,Integer currentPage, Integer row,Model model){
+		 Page<PurchaseBill> pages=purchaseService.query(null, null, null, null);
+		 model.addAttribute("pages",pages);
+		return "purchaseList";
+	}
+	@RequestMapping(value = "/edit/{id}")
+	public String edit(@PathVariable Integer id,Model model) {
+		PurchaseBill purchase=purchaseService.get(PurchaseBill.class, id);
+		model.addAttribute("purchase", purchase);
+		return  "userDetail";
 	}
 
 	@RequestMapping(value = "/save")
 	@ResponseBody
-	public Json save(PurchaseContractBill contract) {
-		System.out.println(contract);
-		System.out.println(contract.getCreateDate());
-		System.out.println(contract.getUpdateDate());
+	public Json save(PurchaseBill purchase) {
+		System.out.println(purchase);
+		purchaseService.save(purchase);
 		Json j=new Json();
-		if("李".equals(contract.getName())){
+		if("李".equals(purchase.getName())){
 			j.setMessage("李");
 			j.setStatusCode("300");
 			j.setForwardUrl("test.jsp");
@@ -61,20 +81,4 @@ public class PurchaseController {
 		return j;
 	}
 	
-	@RequestMapping(value="toContract")
-	public void purchaseToContract(){
-		System.out.println(111);
-		PurchaseBill purchase=purchaseService.get(PurchaseBill.class, 11);
-		PurchaseContractBill contract=new PurchaseContractBill();
-		List<DrugInfo> newdrugs=new ArrayList<DrugInfo>();
-		List<DrugInfo> olddrugs=purchase.getDrugs();
-		for(DrugInfo d:olddrugs){
-			d.setId(null);
-		}
-		purchaseContractService.save(contract);
-	}
-	 
-
-
-	 
 }

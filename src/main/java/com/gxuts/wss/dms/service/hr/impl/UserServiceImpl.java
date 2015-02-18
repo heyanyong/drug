@@ -77,6 +77,11 @@ public class UserServiceImpl implements UserService {
 		return userDao.getByHql(hql);
 	}
 
+	@Override
+	public void delete(UserInfo user) {
+		userDao.delete(user);
+	}
+
 	 
 
 }

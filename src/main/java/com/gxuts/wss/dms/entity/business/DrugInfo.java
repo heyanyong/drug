@@ -32,7 +32,7 @@ public class DrugInfo implements Serializable{
 	private Integer requestNumber;
 	private Integer purchaseNumber;
 	private Integer exportNumber;
-	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	@ManyToOne
 	private PurchaseContractBill contract;
 	
 	public DrugInfo(){};

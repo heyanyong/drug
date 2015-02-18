@@ -21,18 +21,50 @@ public class PurchaseBill implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	private String no;
 	private String name;
 	private Date createDate;
 	private UserInfo createUser;
 	private Date updateDate;
 	private UserInfo updateUser;
 	private String remark;
+	private Date completeDatel;
+	private String type;
 
 	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)  
 	private List<DrugInfo> drugs;
 
+	public PurchaseBill(){};
+	public PurchaseBill(Integer id) {
+		this.id=id;
+	}
+
 	public Integer getId() {
 		return id;
+	}
+
+	public String getNo() {
+		return no;
+	}
+
+	public void setNo(String no) {
+		this.no = no;
+	}
+
+	public Date getCompleteDatel() {
+		return completeDatel;
+	}
+
+	public void setCompleteDatel(Date completeDatel) {
+		this.completeDatel = completeDatel;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public void setId(Integer id) {

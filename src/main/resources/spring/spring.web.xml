@@ -11,19 +11,44 @@
 				        http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 	<context:component-scan base-package="com.gxuts.wss.dms.controller"></context:component-scan>
-	<mvc:annotation-driven  />
-	 <bean
+	<mvc:annotation-driven />
+
+	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
-	<mvc:resources location="/themes/" mapping="/themes/**" /> 
-	<mvc:resources location="/js/" mapping="/js/**" /> 
-	<mvc:resources location="/bin/" mapping="/bin/**" /> 
-	<mvc:resources location="/chart/" mapping="/chart/**" /> 
-	<mvc:resources location="/demo/" mapping="/demo/**" /> 
-	<mvc:resources location="/xheditor/" mapping="/xheditor/**" /> 
-	<mvc:resources location="/dwz.frag.xml" mapping="/dwz.frag.xml" /> 
-	<mvc:resources location="/" mapping="/**" /> 
+	<mvc:resources location="/themes/" mapping="/themes/**" />
+	<mvc:resources location="/js/" mapping="/js/**" />
+	<mvc:resources location="/bin/" mapping="/bin/**" />
+	<mvc:resources location="/chart/" mapping="/chart/**" />
+	<mvc:resources location="/demo/" mapping="/demo/**" />
+	<mvc:resources location="/xheditor/" mapping="/xheditor/**" />
+	<mvc:resources location="/dwz.frag.xml" mapping="/dwz.frag.xml" />
+	<mvc:resources location="/" mapping="/**" />
+
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="urlMap">
+			<map>
+				<entry key="/**" value="myResourceHandler" />
+			</map>
+		</property>
+		<property name="order" value="100000" />
+	</bean>
+
+
+	<bean id="myResourceHandler" name="myResourceHandler"
+		class="org.springframework.web.servlet.resource.ResourceHttpRequestHandler">
+		<property name="locations" value="/" />
+		<property name="supportedMethods">
+			<list>
+				<value>GET</value>
+				<value>HEAD</value>
+				<value>POST</value>
+			</list>
+		</property>
+
+	</bean>
+
 </beans>
 

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -147,7 +147,7 @@ $(function(){
 							
 							<li><a>报表查询</a>
 								<ul>
-									<li><a href="purchase/list" target="navTab" rel="需求报表">需求报表</a></li>
+									<li><a href="purchase/list" target="navTab" rel="purchaseList">需求报表</a></li>
 									<li><a href="test.jsp" target="navTab" rel="w_panel">面板</a></li>
 									<li><a href="test.jsp" target="navTab" rel="w_tabs">选项卡面板</a></li>
 									<li><a href="test.jsp" target="navTab" rel="w_dialog">弹出窗口</a></li>
@@ -246,7 +246,13 @@ $(function(){
 						<h2><span>Folder</span>人力资源</h2>
 					</div>
 					<div class="accordionContent">
-						<ul class="tree treeFolder treeCheck">
+						<ul class="tree treeFolder">
+						    <li><a>报表查询</a>
+								<ul>
+									<li><a href="user/list" target="navTab" rel="userList">用户列表</a></li>
+									<li><a href="userDetail.jsp" target="navTab" rel="userDetail">新增用户</a></li>
+									</ul>
+							</li>
 							<li><a href="demo_page1.html" target="navTab" rel="demo_page1">查询我的客户</a></li>
 							<li><a href="demo_page1.html" target="navTab" rel="demo_page2">表单查询页面</a></li>
 							<li><a href="demo_page4.html" target="navTab" rel="demo_page4">表单录入页面</a></li>

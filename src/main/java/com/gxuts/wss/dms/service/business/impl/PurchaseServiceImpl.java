@@ -83,7 +83,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 	@Override
 	public Page<PurchaseBill> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows) {
-		return null;
+		return purchaseDao.query("from PurchaseBill", params, currentPage, rows);
 	}
 	
 	 
