@@ -67,7 +67,7 @@ var alertMsg = {
 	},
 	close: function(){
 		$(document).unbind("keydown", this._keydownOk).unbind("keydown", this._keydownEsc);
-		$(this._boxId).animate({top:-$(this._boxId).height()}, 500, function(){
+		$(this._boxId).animate({top:-$(this._boxId).height()}, 200, function(){
 			$(this).remove();
 		});
 		$(this._bgId).hide();

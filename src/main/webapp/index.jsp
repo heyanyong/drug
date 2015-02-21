@@ -175,6 +175,14 @@ $(function(){
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
+						<li><a>常用单据</a>
+								<ul>
+									<li><a href="leaveBillDetail.jsp" target="navTab" rel="leaveBillDetail" fresh="false">请假申请</a></li>
+									<li><a href="purchaseDetail.jsp" target="navTab" rel="purchaseDetail">采购需求</a></li>
+									<li><a href="demo_page1.html" target="navTab" rel="page3" fresh="false">采购合同</a></li>
+									<li><a href="demo_page2.html" target="navTab" rel="page2">出库查询</a></li>
+								</ul>
+							</li>
 							<li><a href="tabsPage.html" target="navTab">主框架面板</a>
 								<ul>
 									<li><a href="main.html" target="navTab" rel="main">我的主页</a></li>

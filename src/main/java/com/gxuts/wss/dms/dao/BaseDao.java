@@ -111,7 +111,13 @@ public class BaseDao<T> implements BaseDaoI<T> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Page<T> query(String hql, Map<String, Object> params, Integer currentPage, Integer rows) {
+	public Page<T> query(String hql, Map<String, Object> params, Integer currentPage, Integer numPerPage) {
+		if(currentPage==null){
+			currentPage=1;
+		}
+		if(numPerPage==null){
+			numPerPage=17;
+		}
 		Page<T> page=new Page<T>();
 		Query q =  getSession().createQuery(hql);
 		if (params != null && !params.isEmpty()) {
@@ -119,12 +125,11 @@ public class BaseDao<T> implements BaseDaoI<T> {
 				q.setParameter(key, params.get(key));
 			}
 		}
-		page.setTotal(q.list().size());
-		if(currentPage==null||rows==null){
-			page.setData(q.list());
-		}else{
-			page.setData(q.setFirstResult((currentPage - 1) * rows).setMaxResults(rows).list());
-		}
+		page.setTotalCount(q.list().size());
+		page.setData(q.setFirstResult((currentPage - 1) * numPerPage).setMaxResults(numPerPage).list());
+		page.setPageNumShown(5);
+		page.setCurrentPage(currentPage);
+		page.setNumPerPage(numPerPage);
 		return page;
 	}
 	

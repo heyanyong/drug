@@ -1,51 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<form id="pagerForm" method="post" action="demo_page1.html">
-	<input type="hidden" name="status" value="${param.status}">
-	<input type="hidden" name="keywords" value="${param.keywords}" />
+<form id="pagerForm" method="post" action="user/list">
 	<input type="hidden" name="pageNum" value="1" />
-	<input type="hidden" name="numPerPage" value="${model.numPerPage}" />
-	<input type="hidden" name="orderField" value="${param.orderField}" />
+	<input type="hidden" name="numPerPage" value="4" />
+	<input type="hidden" name="name" value="${name}" />
 </form>
 
 
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="demo_page1.html" method="post">
+	<form onsubmit="return navTabSearch(this);" action="user/list" method="post" rel=”pagerForm”>
 	<div class="searchBar">
-		<!--<ul class="searchContent">
-			<li>
-				<label>我的客户：</label>
-				<input type="text"/>
-			</li>
-			<li>
-			<select class="combox" name="province">
-				<option value="">所有省市</option>
-				<option value="北京">北京</option>
-			</select>
-			</li>
-		</ul>
-		-->
 		<table class="searchContent">
 			<tr>
 				<td>
-					我的客户：<input type="text" name="keyword" />
+					姓名：<input type="text" name="name" value="${name}" />
 				</td>
 				<td>
-					<select class="combox" name="province">
-						<option value="">所有省市</option>
-						<option value="北京">北京</option>
+					<select class="combox" name="sex">
+						<option value="">所有</option>
+						<option value="男">男</option>
+						<option value="女">女</option>
 					</select>
 				</td>
 				<td>
-					建档日期：<input type="text" class="date" readonly="true" />
+					入职日期：<input type="text" class="date" readonly="true" />
 				</td>
 			</tr>
 		</table>
 		<div class="subBar">
 			<ul>
-				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
-				<li><a class="button" href="demo_page6.html" target="dialog" mask="true" title="查询框"><span>高级检索</span></a></li>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
 			</ul>
 		</div>
 	</div>
@@ -61,6 +46,10 @@
 			<li><a class="edit" href="user/edit/{e_id}" target="navTab"><span>修改</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
+			<li class="line">line</li>
+			<li><a class="icon"   target="dwzExport" targetType="navTab"  ><span>查看流程</span></a></li>
+			<li class="line">line</li>
+			<li><a class="icon"  target="dwzExport" targetType="navTab"  ><span>刷新列表</span></a></li>
 		</ul>
 	</div>
 	<table class="table" width="100%" layoutH="138">
@@ -81,7 +70,7 @@
 			<tr target="e_id" rel="${e.id}">
 				<td><input type="checkbox" /></td>
 				<td>${e.no}</td>
-				<td>${e.name}</td>
+				<td><a href="user/edit/${e.id}" target="navTab" rel="user${e.id}" >${e.name}</a></td>
 				<td>${e.sex}</td>
 				<td>${e.structure.name}</td>
 				<td>${e.roles}</td>
@@ -98,17 +87,10 @@
 	</table>
 	<div class="panelBar">
 		<div class="pages">
-			<span>显示</span>
-			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
-				<option value="20">20</option>
-				<option value="50">50</option>
-				<option value="100">100</option>
-				<option value="200">200</option>
-			</select>
-			<span>条，共${totalCount}条</span>
+			<span>显示${pages.numPerPage}</span><span>条，共${pages.totalCount}条</span>
 		</div>
 		
-		<div class="pagination" targetType="navTab" totalCount="200" numPerPage="20" pageNumShown="10" currentPage="1"></div>
+		<div class="pagination" targetType="navTab" totalCount="${pages.totalCount}" numPerPage="${pages.numPerPage}" pageNumShown="${pages.pageNumShown}" currentPage="${pages.currentPage}"></div>
 
 	</div>
 </div>

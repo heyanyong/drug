@@ -19,4 +19,6 @@ public interface UserDao {
 	public UserInfo getByNo(Class<UserInfo> c, String no);  
 	public UserInfo getByHql(String hql);
 	public void delete(UserInfo user);
+	public void update(UserInfo user);
+	
 }

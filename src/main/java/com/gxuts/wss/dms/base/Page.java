@@ -5,11 +5,9 @@ import java.util.List;
 public class Page<T> {
 	private List<T> data;
 	private int currentPage;
-	private int rows;
-	private int total;
-	
-	
-	
+	private int pageNumShown;
+	private int numPerPage;
+	private int totalCount;
 	public List<T> getData() {
 		return data;
 	}
@@ -22,20 +20,24 @@ public class Page<T> {
 	public void setCurrentPage(int currentPage) {
 		this.currentPage = currentPage;
 	}
-	public int getRows() {
-		return rows;
+	public int getPageNumShown() {
+		return pageNumShown;
 	}
-	public void setRows(int rows) {
-		this.rows = rows;
+	public void setPageNumShown(int pageNumShown) {
+		this.pageNumShown = pageNumShown;
 	}
-	public int getTotal() {
-		return total;
+	public int getNumPerPage() {
+		return numPerPage;
 	}
-	public void setTotal(int total) {
-		this.total = total;
+	public void setNumPerPage(int numPerPage) {
+		this.numPerPage = numPerPage;
 	}
-	 
-	
+	public int getTotalCount() {
+		return totalCount;
+	}
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+	}
 	
 	
 }

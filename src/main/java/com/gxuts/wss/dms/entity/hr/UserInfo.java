@@ -37,9 +37,13 @@ public class UserInfo implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date entryDate;
 	@Temporal(TemporalType.TIMESTAMP)
+	private Date updateTime;
+	@Temporal(TemporalType.DATE)
 	private Date createDate=new Date();
 	@ManyToOne(fetch=FetchType.EAGER)
 	private UserInfo createUser;
+	@ManyToOne(fetch=FetchType.EAGER)
+	private UserInfo updateUser;
 	@ManyToOne
 	private StructureInfo structure;
 	@ManyToMany(fetch=FetchType.EAGER)
@@ -57,7 +61,20 @@ public class UserInfo implements Serializable {
 	public String getRemark() {
 		return remark;
 	}
+	
 
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+	public UserInfo getUpdateUser() {
+		return updateUser;
+	}
+	public void setUpdateUser(UserInfo updateUser) {
+		this.updateUser = updateUser;
+	}
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}

@@ -100,7 +100,7 @@
 				<div class="tabsHeader">
 					<div class="tabsHeaderContent">
 						<ul>
-							<li><a href="javascript:;"><span>药品明细</span></a><em onclick="addRow('editTable1');">添加行</em></li>
+							<li><a href="javascript:;"><span>药品明细</span></a><em onclick="addRow('editTable1');">添加行</em><em onclick="removeRow('editTable1');">删除行</em></li>
 						</ul>
 					</div>
 				</div>
@@ -120,21 +120,6 @@
 								<tr>
 									<td><input type="checkbox" name="rowHead" /></td>
 									<td><input type="text" name="drugs[0].name" /></td>
-									<td><input type="hidden" name="orgLookup.id"
-										value="${orgLookup.id}" /> <input type="text"
-										class="required" name="orgLookup.orgName" value=""
-										suggestFields="orgNum,orgName"
-										suggestUrl="demo/database/db_lookupSuggest.html"
-										lookupGroup="orgLookup" /> <a class="btnLook"
-										href="demo/database/dwzOrgLookup.html" lookupGroup="orgLookup">查找带回</a></td>
-									<td><input type="text" name="drugs[0].no" /></td>
-									<td><input type="text" name="completeDate"
-					class="date" size="30" /><a class="inputDateButton"
-					href="javascript:;">选择</a></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" name="rowHead" /></td>
-									<td><input type="text"  name="drugs[1].name" /></td>
 									<td><input type="hidden" name="orgLookup.id"
 										value="${orgLookup.id}" /> <input type="text"
 										class="required" name="orgLookup.orgName" value=""

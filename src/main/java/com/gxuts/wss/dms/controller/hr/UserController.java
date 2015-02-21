@@ -1,8 +1,10 @@
 package com.gxuts.wss.dms.controller.hr;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.activiti.engine.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,21 +30,31 @@ public class UserController {
 	@Autowired
 	private TaskService taskService;
 
-	@RequestMapping(value="list")
-	public String getList(HttpServletRequest request,Integer currentPage, Integer row){
-		Page<UserInfo> pages=userService.query("from UserInfo", null, currentPage, row);
-		request.setAttribute("pages", pages);
+//	@RequestMapping(value="list")
+//	public String getList(Model model,Integer pageNum, Integer row){
+//		Page<UserInfo> pages=userService.query("from UserInfo", null, pageNum, 3);
+//		model.addAttribute("pages", pages);
+//		return "userList";
+//	}
+	@RequestMapping(value="list",method={RequestMethod.POST,RequestMethod.GET})
+	public String query(Model model,String name,Integer pageNum){
+		Page<UserInfo> pages=userService.query("from UserInfo where name like '%"+name+"%'", null, pageNum, 17);
+		model.addAttribute("name", name);
+		model.addAttribute("pages", pages);
 		return "userList";
 	}
 
 	@RequestMapping(value = "/save",method=RequestMethod.POST)
 	@ResponseBody
-	public Json save(UserInfo user) {
+	public Json save(UserInfo user,HttpSession session) {
 		System.out.println("UserController save");
 		CommentClassTest t=new CommentClassTest();
 		t.say();
+		user.setCreateDate(new Date());
+		user.setCreateUser((UserInfo)session.getAttribute("loginUser"));
 		userService.save(user);
-		return  new Json();
+		Json json =new Json("成功","200","userList","userList",null,null);
+		return json;
 	}
 
 	@RequestMapping(value = "/get/{id}")
@@ -57,6 +69,13 @@ public class UserController {
 		userService.delete(new UserInfo(id));
 //		Json json =new Json("测试","200",null,"userList","forwardConfirm","user/edit/1");
 		Json json =new Json("成功","200","userList","userList",null,null);
+		return json;
+	}
+	@RequestMapping(value = "/update",method=RequestMethod.POST)
+	@ResponseBody
+	public Json update(UserInfo user) {
+		userService.update(user);
+		Json json =new Json("更新成功","200","userList","userList",null,null);
 		return json;
 	}
 	@RequestMapping(value = "/edit/{id}")
