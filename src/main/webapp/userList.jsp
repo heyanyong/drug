@@ -3,11 +3,8 @@
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <form id="pagerForm" method="post" action="user/list">
 	<input type="hidden" name="pageNum" value="1" />
-	<input type="hidden" name="numPerPage" value="4" />
 	<input type="hidden" name="name" value="${name}" />
 </form>
-
-
 <div class="pageHeader">
 	<form onsubmit="return navTabSearch(this);" action="user/list" method="post" rel=”pagerForm”>
 	<div class="searchBar">
@@ -89,9 +86,7 @@
 		<div class="pages">
 			<span>显示${pages.numPerPage}</span><span>条，共${pages.totalCount}条</span>
 		</div>
-		
 		<div class="pagination" targetType="navTab" totalCount="${pages.totalCount}" numPerPage="${pages.numPerPage}" pageNumShown="${pages.pageNumShown}" currentPage="${pages.currentPage}"></div>
-
 	</div>
 </div>
     

@@ -12,8 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.business.PurchaseContractBill;
+import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.business.PurchaseContractService;
 
  
@@ -23,10 +26,12 @@ public class PurchaseContractController {
 	@Autowired
 	private PurchaseContractService purchaseContractService;
 
-	@RequestMapping(value="list")
-	public String getList(HttpServletRequest request,Integer currentPage, Integer row){
-		 
-		return "userList";
+	@RequestMapping(value="list",method={RequestMethod.POST,RequestMethod.GET})
+	public String query(Model model,String name,Integer pageNum){
+		Page<PurchaseContractBill> pages=purchaseContractService.query("from PurchaseContractBill where name like '%"+name+"%'", null, pageNum, 17);
+		model.addAttribute("name", name);
+		model.addAttribute("pages", pages);
+		return "purchaseContractList";
 	}
 
 	@RequestMapping(value = "/save")

@@ -92,8 +92,7 @@ public class PurchaseContractServiceImpl implements PurchaseContractService {
 	@Override
 	public Page<PurchaseContractBill> query(String hql,
 			Map<String, Object> params, Integer currentPage, Integer rows) {
-		// TODO Auto-generated method stub
-		return null;
+		return purchaseContractDao.query(hql, params, currentPage, rows);
 	}
 	 
 	 
