@@ -22,8 +22,9 @@ public class DrugDaoImpl extends BaseDao<DrugInfo> implements DrugDao{
 		if(numPerPage==null){
 			numPerPage=17;
 		}
-		String sql="SELECT d.id,d.name,d.purchaseNumber,SUM(e.exportNum),d.unit,d.productDate "
-				+ "FROM druginfo d LEFT JOIN exportdrug e ON d.id=e.drugId   GROUP BY e.drugId";
+		String sql="SELECT d.id,d.`name`,"
+				+ "d.purchaseNumber,(SELECT SUM(exportNum)  from exportdrug e  WHERE d.id=e.drugId GROUP BY e.drugId ) as em,"
+				+ "d.unit,d.productDate,d.endDate,d.createDate,d.alertDay,d.contract_id  from druginfo d";
 		Query q =  getSession().createSQLQuery(sql);
 		List list=q.list();
 		Page<Object[]> page=new Page<Object[]>();

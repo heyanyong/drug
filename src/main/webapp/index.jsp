@@ -138,7 +138,7 @@ $(function(){
 						<ul class="tree treeFolder">
 							<li><a>常用单据</a>
 								<ul>
-									<li><a href="drugList.jsp" target="navTab" rel="drugList" >库存管理</a></li>
+									<li><a href="drug/list" target="navTab" rel="drugList" >库存管理</a></li>
 									<li><a href="purchaseAdd.jsp" target="navTab" rel="purchaseDetail">新增采购需求</a></li>
 									<li><a href="contractAdd.jsp" target="navTab" rel="contractAdd">新增采购合同</a></li>
 									<li><a href="exportDetail.jsp" target="navTab" rel="pagexportDetail">新增出库单</a></li>

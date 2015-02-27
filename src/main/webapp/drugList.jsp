@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <form id="pagerForm" method="post" action="#rel#">
 	<input type="hidden" name="pageNum" value="1" />
 	<input type="hidden" name="numPerPage" value="${model.numPerPage}" />
@@ -39,8 +40,8 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<li><a class="add" href="demo_page4.html" target="navTab"><span>添加</span></a></li>
-			<li><a title="确实要删除这些记录吗?" target="selectedTodo" rel="ids" href="demo/common/ajaxDone.html" class="delete"><span>批量删除默认方式</span></a></li>
-			<li><a title="确实要删除这些记录吗?" target="selectedTodo" rel="ids" postType="string" href="demo/common/ajaxDone.html" class="delete"><span>批量删除逗号分隔</span></a></li>
+			<li><a title="确实要删除这些记录吗?" target="selectedTodo" rel="ids" href="drug/test1" class="delete"><span>生成采购</span></a></li>
+			<li><a title="确实要删除这些记录吗?" target="selectedTodo" rel="ids" postType="string" href="drug/test2" class="delete"><span>生成出库</span></a></li>
 			<li><a class="edit" href="demo_page4.html?uid={sid_user}" target="navTab" warn="请选择一个用户"><span>修改</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
@@ -50,73 +51,36 @@
 		<thead>
 			<tr>
 				<th  ><input type="checkbox" group="ids" class="checkboxCtrl"></th>
-				<th   orderField="accountNo" class="asc">客户号</th>
-				<th orderField="accountName">客户名称</th>
-				<th  orderField="accountType">客户类型</th>
-				<th   orderField="accountCert">证件号码</th>
-				<th   align="center" orderField="accountLevel">信用等级</th>
-				<th  >所属行业</th>
-				<th  >建档日期</th>
+				<th   orderField="accountNo" class="asc">编号</th>
+				<th orderField="accountName">名称</th>
+				<th  orderField="accountType">库存</th>
+				<th   orderField="accountCert">已出库数</th>
+				<th   align="center">单位</th>
+				<th  >入库日期</th>
+				<th  >生产日期</th>
+				<th  >过期日期</th>
 				<th  >操作</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr target="sid_user" rel="1">
-				<td><input name="ids" value="xxx" type="checkbox"></td>
-				<td>A120113196309052434</td>
-				<td>天津市华建装饰工程有限公司</td>
-				<td>联社营业部</td>
-				<td>29385739203816293</td>
-				<td>5</td>
-				<td>政府机构</td>
-				<td>2009-05-21</td>
+			<c:forEach items="${pages.data}" var="drug">
+				<tr target="sid_user" rel="${drug[0]}">
+				<td><input name="ids" value="${drug[0]}" type="checkbox"></td>
+				<td>${drug[0]}</td>
+				<td>${drug[1]}</td>
+				<td>${drug[2]}</td>
+				<td>${drug[3]}</td>
+				<td>${drug[4]}</td>
+				<td>${drug[5]}</td>
+				<td>${drug[6]}</td>
+				<td>${drug[9]}</td>
 				<td>
 					<a title="删除" target="ajaxTodo" href="demo/common/ajaxDone.html?id=xxx" class="btnDel">删除</a>
 					<a title="编辑" target="navTab" href="demo_page4.html?id=xxx" class="btnEdit">编辑</a>
 				</td>
 			</tr>
-			<tr target="sid_user" rel="2">
-				<td><input name="ids" value="xxx" type="checkbox"></td>
-				<td>A120113196309052434</td>
-				<td>天津市华建装饰工程有限公司</td>
-				<td>联社营业部</td>
-				<td>29385739203816293</td>
-				<td>7</td>
-				<td>政府机构</td>
-				<td>2009-05-21</td>
-				<td>
-					<a title="删除" target="ajaxTodo" href="demo/common/ajaxDone.html?id=xxx" class="btnDel">删除</a>
-					<a title="编辑" target="navTab" href="demo_page4.html?id=xxx" class="btnEdit">编辑</a>
-				</td>
-			</tr>
-			<tr target="sid_user" rel="3">
-				<td><input name="ids" value="xxx" type="checkbox"></td>
-				<td>A120113196309052434</td>
-				<td>天津市华建装饰工程有限公司</td>
-				<td>联社营业部</td>
-				<td>29385739203816293</td>
-				<td>5级</td>
-				<td>政府机构</td>
-				<td>2009-05-21</td>
-				<td>
-					<a title="删除" target="ajaxTodo" href="demo/common/ajaxDone.html?id=xxx" class="btnDel">删除</a>
-					<a title="编辑" target="navTab" href="demo_page4.html?id=xxx" class="btnEdit">编辑</a>
-				</td>
-			</tr>
-			<tr target="sid_user" rel="4">
-				<td><input name="ids" value="xxx" type="checkbox"></td>
-				<td>A120113196309052434</td>
-				<td>天津市华建装饰工程有限公司</td>
-				<td>联社营业部</td>
-				<td>29385739203816293</td>
-				<td>2</td>
-				<td>政府机构</td>
-				<td>2009-05-21</td>
-				<td>
-					<a title="删除" target="ajaxTodo" href="demo/common/ajaxDone.html?id=xxx" class="btnDel">删除</a>
-					<a title="编辑" target="navTab" href="demo_page4.html?id=xxx" class="btnEdit">编辑</a>
-				</td>
-			</tr>
+			</c:forEach>
+			
 			 
 		</tbody>
 	</table>

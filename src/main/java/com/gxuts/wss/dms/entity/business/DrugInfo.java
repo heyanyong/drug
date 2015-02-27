@@ -26,6 +26,7 @@ public class DrugInfo implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String name;
+	@Temporal(TemporalType.DATE)
 	private Date createDate;
 	private UserInfo createUser;
 	private Date updateDate;
@@ -38,7 +39,6 @@ public class DrugInfo implements Serializable{
 	private Integer alertDay;
 	private Integer requestNumber;
 	private Integer purchaseNumber;
-	private Integer exportNumber;
 	private String unit;
 	@ManyToOne
 	private PurchaseContractBill contract;
@@ -139,14 +139,6 @@ public class DrugInfo implements Serializable{
 	public void setPurchaseNumber(Integer purchaseNumber) {
 		this.purchaseNumber = purchaseNumber;
 	}
-	public Integer getExportNumber() {
-		return exportNumber;
-	}
-	public void setExportNumber(Integer exportNumber) {
-		this.exportNumber = exportNumber;
-	}
-	
- 
 
 	@Override
 	public String toString() {
