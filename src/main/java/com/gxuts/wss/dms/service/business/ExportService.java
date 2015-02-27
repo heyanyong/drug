@@ -30,4 +30,6 @@ public interface ExportService {
 	public Page<ExportBill> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows);
 	
+	public ExportBill createExport();
+	
 }

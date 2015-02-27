@@ -109,6 +109,24 @@ public class BaseDao<T> implements BaseDaoI<T> {
 		}
 		return null;  
 	}
+	public Page<Object[]> queryField(String hql, Map<String, Object> params, Integer currentPage, Integer numPerPage) {
+		if(currentPage==null){
+			currentPage=1;
+		}
+		if(numPerPage==null){
+			numPerPage=17;
+		}
+		Query q =  getSession().createQuery(hql);
+		List list=q.list();
+		Page<Object[]> page=new Page<Object[]>();
+		page.setTotalCount(list.size());
+		page.setData(q.setFirstResult((currentPage - 1) * numPerPage).setMaxResults(numPerPage).list());
+		page.setPageNumShown(5);
+		page.setCurrentPage(currentPage);
+		page.setNumPerPage(numPerPage);
+		return page;
+	}
+	
 	
 	@SuppressWarnings("unchecked")
 	public Page<T> query(String hql, Map<String, Object> params, Integer currentPage, Integer numPerPage) {
@@ -133,6 +151,6 @@ public class BaseDao<T> implements BaseDaoI<T> {
 		return page;
 	}
 	
-
+	
 
 }

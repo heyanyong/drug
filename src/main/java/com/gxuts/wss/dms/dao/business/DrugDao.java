@@ -29,5 +29,5 @@ public interface DrugDao {
 
 	public Page<DrugInfo> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows);
-	
+	public Page<Object[]> queryDrugList(Map<String, Object> params, Integer currentPage, Integer numPerPage);
 }

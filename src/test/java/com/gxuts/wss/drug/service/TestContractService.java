@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.business.DrugInfo;
 import com.gxuts.wss.dms.entity.business.PurchaseBill;
 import com.gxuts.wss.dms.entity.business.PurchaseContractBill;
+import com.gxuts.wss.dms.service.business.DrugService;
 import com.gxuts.wss.dms.service.business.PurchaseContractService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -19,7 +21,8 @@ import com.gxuts.wss.dms.service.business.PurchaseContractService;
 public class TestContractService {
 	@Autowired
 	private PurchaseContractService purchaseContractService;
-
+	@Autowired
+	private DrugService drugService;
 	@Test
 	public void testSave() {
 		PurchaseContractBill contract = new PurchaseContractBill();
@@ -64,5 +67,18 @@ public class TestContractService {
 	public void testGetContractByPurchase(){
 		PurchaseContractBill contract=purchaseContractService.fromPurchase(2);
 		System.out.println(contract);
+	}
+	
+	@Test
+	public void drugList(){
+		Page<Object[]> obj=drugService.queryDrugList(null, null, null);
+		List<Object[]> list=obj.getData();
+		for (int i = 0; i < list.size(); i++) {
+			for (int j = 0; j < list.get(i).length; j++) {
+				System.out.print(list.get(i)[j]+"  ");
+			}
+			System.out.println();
+		}
+		
 	}
 }

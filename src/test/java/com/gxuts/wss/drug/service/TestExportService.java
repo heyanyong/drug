@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.gxuts.wss.dms.entity.business.ExportBill;
 import com.gxuts.wss.dms.entity.hr.SignInfo;
+import com.gxuts.wss.dms.service.business.ExportService;
 import com.gxuts.wss.dms.service.hr.SignService;
 
 
@@ -16,11 +18,12 @@ import com.gxuts.wss.dms.service.hr.SignService;
 @ContextConfiguration(locations={"classpath:/spring/applicationContext.xml"})
 public class TestExportService {
 	@Autowired
-	private SignService signService;
+	private ExportService exportService;
 	
 	@Test
-	public void testSave(){
-		 System.out.println(1);
-		  
+	public void testCreateBill(){
+		  ExportBill bill=exportService.createExport();
+		  System.out.println(bill);
+		  exportService.save(bill);
 	}
 }

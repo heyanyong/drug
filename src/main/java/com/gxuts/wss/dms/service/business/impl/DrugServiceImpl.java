@@ -84,6 +84,12 @@ public class DrugServiceImpl implements DrugService {
 		return null;
 	}
 
+	@Override
+	public Page<Object[]> queryDrugList(Map<String, Object> params,
+			Integer currentPage, Integer numPerPage) {
+		return drugDao.queryDrugList( params, currentPage, numPerPage);
+	}
+
 	 
 
 	 
