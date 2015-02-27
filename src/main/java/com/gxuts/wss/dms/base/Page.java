@@ -38,6 +38,12 @@ public class Page<T> {
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 	}
+	@Override
+	public String toString() {
+		return "Page [data=" + data + ", currentPage=" + currentPage
+				+ ", pageNumShown=" + pageNumShown + ", numPerPage="
+				+ numPerPage + ", totalCount=" + totalCount + "]";
+	}
 	
 	
 }

@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 
 
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 @Entity
@@ -29,9 +31,15 @@ public class DrugInfo implements Serializable{
 	private Date updateDate;
 	private UserInfo updateUser;
 	
+	@Temporal(TemporalType.DATE)
+	private Date productDate;
+	@Temporal(TemporalType.DATE)
+	private Date endDate;
+	private Integer alertDay;
 	private Integer requestNumber;
 	private Integer purchaseNumber;
 	private Integer exportNumber;
+	private String unit;
 	@ManyToOne
 	private PurchaseContractBill contract;
 	
@@ -41,12 +49,45 @@ public class DrugInfo implements Serializable{
 		this.id=id;
 	}
 	
+	
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public Date getProductDate() {
+		return productDate;
+	}
+
+	public void setProductDate(Date productDate) {
+		this.productDate = productDate;
+	}
+
+	public Integer getAlertDay() {
+		return alertDay;
+	}
+
+	public void setAlertDay(Integer alertDay) {
+		this.alertDay = alertDay;
+	}
+
 	public PurchaseContractBill getContract() {
 		return contract;
 	}
 
 	public void setContract(PurchaseContractBill contract) {
 		this.contract = contract;
+	}
+	
+	public String getUnit() {
+		return unit;
+	}
+
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
 
 	public Integer getId() {
