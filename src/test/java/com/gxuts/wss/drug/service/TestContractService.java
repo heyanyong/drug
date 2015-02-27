@@ -69,7 +69,7 @@ public class TestContractService {
 		System.out.println(contract);
 	}
 	
-	@Test
+	@Test 
 	public void drugList(){
 		Page<Object[]> obj=drugService.queryDrugList(null, null, null);
 		List<Object[]> list=obj.getData();
