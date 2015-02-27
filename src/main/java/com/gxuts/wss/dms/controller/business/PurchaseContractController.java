@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -13,8 +14,11 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.gxuts.wss.dms.base.CommentClassTest;
 import com.gxuts.wss.dms.base.Page;
+import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.business.PurchaseContractBill;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.business.PurchaseContractService;
@@ -34,12 +38,14 @@ public class PurchaseContractController {
 		return "purchaseContractList";
 	}
 
-	@RequestMapping(value = "/save")
-	public String save(PurchaseContractBill contract) {
-		System.out.println(contract);
-		System.out.println(contract.getCreateDate());
-		System.out.println(contract.getUpdateDate());
-		return "test";
+	@RequestMapping(value = "/save",method={RequestMethod.POST,RequestMethod.GET})
+	@ResponseBody
+	public Json save(PurchaseContractBill contract,HttpSession session) {
+		contract.setCreateDate(new Date());
+		contract.setCreateUser((UserInfo)session.getAttribute("loginUser"));
+		purchaseContractService.save(contract);
+		Json json =new Json("成功","200","purchaseContractList","purchaseContractList",null,null);
+		return json;
 	}
 	@RequestMapping(value="/fromPurchase")
 	public String fromPurchase(Integer purchaseId,Model model){

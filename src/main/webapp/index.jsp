@@ -138,16 +138,17 @@ $(function(){
 						<ul class="tree treeFolder">
 							<li><a>常用单据</a>
 								<ul>
-									<li><a href="demo_page1.html" target="navTab" rel="page1" fresh="false">库存管理</a></li>
-									<li><a href="purchaseDetail.jsp" target="navTab" rel="purchaseDetail">采购需求</a></li>
-									<li><a href="contract/list" target="navTab" rel="contractList" >采购合同</a></li>
-									<li><a href="demo_page2.html" target="navTab" rel="page2">出库查询</a></li>
+									<li><a href="drugList.jsp" target="navTab" rel="drugList" >库存管理</a></li>
+									<li><a href="purchaseAdd.jsp" target="navTab" rel="purchaseDetail">新增采购需求</a></li>
+									<li><a href="contractAdd.jsp" target="navTab" rel="contractAdd">新增采购合同</a></li>
+									<li><a href="exportDetail.jsp" target="navTab" rel="pagexportDetail">新增出库单</a></li>
+								    <li><a href="contract/list" target="navTab" rel="contractList" >采购合同列表</a></li>
+									<li><a href="purchase/list" target="navTab" rel="purchaseList">采购需求列表</a></li>
+									<li><a href="export/list" target="navTab" rel="exportList">出库单列表</a></li>
 								</ul>
 							</li>
-							
 							<li><a>报表查询</a>
 								<ul>
-									<li><a href="purchase/list" target="navTab" rel="purchaseList">需求报表</a></li>
 									<li><a href="test.jsp" target="navTab" rel="w_panel">面板</a></li>
 									<li><a href="test.jsp" target="navTab" rel="w_tabs">选项卡面板</a></li>
 									<li><a href="test.jsp" target="navTab" rel="w_dialog">弹出窗口</a></li>

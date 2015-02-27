@@ -64,7 +64,7 @@ public class PurchaseController {
 	public String edit(@PathVariable Integer id,Model model) {
 		PurchaseBill purchase=purchaseService.get(PurchaseBill.class, id);
 		model.addAttribute("purchase", purchase);
-		return  "userDetail";
+		return  "purchaseDetail";
 	}
 
 	@RequestMapping(value = "/save")

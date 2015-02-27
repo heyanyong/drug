@@ -10,7 +10,6 @@
 	<form method="get" action="purchase/save"
 		class="pageForm required-validate"
 		onsubmit="return validateCallback(this, navTabAjaxDone);">
-		<input type="hidden" value="${purchase.id}" />
 		<div class="formBar">
 			<ul>
 				<!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
@@ -117,7 +116,6 @@
 								</tr>
 							</thead>
 							<tbody>
-							<c:forEach items="${purchase.drugs}" var="e">
 								<tr>
 									<td><input type="checkbox" name="rowHead" /></td>
 									<td><input type="text" name="drugs[0].name" value="${e.name}" /></td>
@@ -133,7 +131,6 @@
 					class="date" size="30" /><a class="inputDateButton"
 					href="javascript:;">选择</a></td>
 								</tr>
-								</c:forEach>
 
 							</tbody>
 						</table>

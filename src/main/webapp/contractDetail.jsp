@@ -8,7 +8,7 @@
 </style>
 
 <div class="pageContent">
-	<form method="get" action="purchase/save"
+	<form method="get" action="contract/save"
 		class="pageForm required-validate"
 		onsubmit="return validateCallback(this, navTabAjaxDone);">
 		<input type="hidden" value="${contract.id}" />
