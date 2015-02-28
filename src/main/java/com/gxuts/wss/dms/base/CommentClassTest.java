@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 
 import com.gxuts.wss.dms.service.hr.UserService;
 @Controller
-public class CommentClassTest {
+public class CommentClassTest<F> {
 	@Autowired
 	private TaskService taskService;
 	@Autowired
@@ -15,5 +15,8 @@ public class CommentClassTest {
 	public void say(){
 		System.out.println("Class TEST:"+taskService);
 		System.out.println("Class TEST UserService:"+userService);
+	}
+	public F test(F f){
+		return f;
 	}
 }
