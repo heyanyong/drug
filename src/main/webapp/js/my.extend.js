@@ -19,4 +19,9 @@ function removeRow(tid){
 	}
 }
 
+function toPurchase(){
+//	$("#batForm").attr("action","drug/toPurchase");
+//	$("#batForm").submit();
+	navTab.openTab("navTab", "drug/toPurchase", { title:"test", fresh:false, data:{} });
+}
  

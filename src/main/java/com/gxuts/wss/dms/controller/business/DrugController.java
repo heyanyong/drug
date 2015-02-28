@@ -44,38 +44,25 @@ public class DrugController {
 		return "drugList";
 	}
 	
-	@RequestMapping(value = "/test1",method=RequestMethod.POST)
-	@ResponseBody
-	public Json delete(String[] ids,HttpServletRequest q) {
+	@RequestMapping(value = "/toPurchase",method={RequestMethod.POST,RequestMethod.GET})
+	public String toPurchase(String[] ids,HttpServletRequest q) {
 		String[] ids2=q.getParameterValues("ids");
-		for (String a:ids2) {
-			System.out.println(a);
+		if(ids2!=null){
+			for (String a:ids2) {
+				System.out.println(a);
+			}	
 		}
-		System.out.println(ids2);
-		Map m=q.getParameterMap();
-		System.out.println(m);
-		System.out.println(q.getParameterNames());
-		System.out.println(ids);
-		System.out.println("请求一次");;
-		Json json=new Json();
-		json.setStatusCode("200");
-		json.setRel("purchaseList");
-		json.setNavTabId("purchaseList");
-		return json;
+		return "purchaseDetail";
 	}
-	@RequestMapping(value = "/test2",method=RequestMethod.POST)
-	@ResponseBody
-	public Json delete2(HttpServletRequest q) {
+	@RequestMapping(value = "/toExport",method=RequestMethod.POST)
+	public String toExport(String[] ids,HttpServletRequest q) {
 		String[] ids2=q.getParameterValues("ids");
-		System.out.println(ids2);
-		Map m=q.getParameterMap();
-		System.out.println(m);
-		System.out.println(q.getParameterNames());
-		System.out.println("2请求一次");
-		Json json=new Json();
-		json.setStatusCode("200");
-		json.setRel("purchaseList");
-		json.setNavTabId("purchaseList");
-		return json;
+		if(ids2!=null){
+			for (String a:ids2) {
+				System.out.println(a);
+			}	
+		}
+		
+		return "purchaseDetail";
 	}
 }

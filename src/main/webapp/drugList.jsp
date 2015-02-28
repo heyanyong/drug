@@ -40,13 +40,15 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<li><a class="add" href="demo_page4.html" target="navTab"><span>添加</span></a></li>
-			<li><a title="确实要删除这些记录吗?" target="selectedTodo" rel="ids" href="drug/test1" class="delete"><span>生成采购</span></a></li>
-			<li><a title="确实要删除这些记录吗?" target="selectedTodo" rel="ids" postType="string" href="drug/test2" class="delete"><span>生成出库</span></a></li>
-			<li><a class="edit" href="demo_page4.html?uid={sid_user}" target="navTab" warn="请选择一个用户"><span>修改</span></a></li>
+			<li><a class="edit" onclick="toPurchase();" ><span>修改</span></a></li>
+			<li><a  rel="ids" onClick="toPurchase();" class="delete"><span>生成采购</span></a></li>
+			<li><a target="selectedTodo" rel="ids" href="drug/toExport" class="delete"><span>生成采购</span></a></li>
+			<li><a class="edit" href="drug/detail/{sid_user}" target="navTab" warn="请选择一个用户"><span>修改</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
 		</ul>
 	</div>
+	<form id="batForm"  target="navTab" action="drug/toPurchase">
 	<table class="table" width="1200" layoutH="138">
 		<thead>
 			<tr>
@@ -77,6 +79,7 @@
 				<td>
 					<a title="删除" target="ajaxTodo" href="demo/common/ajaxDone.html?id=xxx" class="btnDel">删除</a>
 					<a title="编辑" target="navTab" href="demo_page4.html?id=xxx" class="btnEdit">编辑</a>
+					<input type="submit" />
 				</td>
 			</tr>
 			</c:forEach>
@@ -84,6 +87,7 @@
 			 
 		</tbody>
 	</table>
+	</form>
 	<div class="panelBar">
 		<div class="pages">
 			<span>显示</span>
@@ -100,3 +104,4 @@
 
 	</div>
 </div>
+<script src="js/my.extend.js" type="text/javascript"></script>

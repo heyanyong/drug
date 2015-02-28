@@ -25,7 +25,12 @@ public class ExportBill implements Serializable{
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="exportBill")
 	private List<ExportDrug> exportDrugs;
 	
-	
+	public ExportBill(){}
+	public ExportBill(Integer id2) {
+		this.id=id2;
+	}
+
+
 	public Integer getId() {
 		return id;
 	}
@@ -62,5 +67,4 @@ public class ExportBill implements Serializable{
 				+ exportDrugs + "]";
 	}
 	
-	 
 }
