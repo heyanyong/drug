@@ -139,7 +139,7 @@ $(function(){
 							<li><a>常用单据</a>
 								<ul>
 									<li><a href="drug/list" target="navTab" rel="drugList" >库存管理</a></li>
-									<li><a href="purchaseAdd.jsp" target="navTab" rel="purchaseDetail">新增采购需求</a></li>
+									<li><a href="purchaseAdd.jsp" target="navTab" rel="purchaseAdd">新增采购需求</a></li>
 									<li><a href="contractAdd.jsp" target="navTab" rel="contractAdd">新增采购合同</a></li>
 									<li><a href="exportDetail.jsp" target="navTab" rel="pagexportDetail">新增出库单</a></li>
 								    <li><a href="contract/list" target="navTab" rel="contractList" >采购合同列表</a></li>

@@ -100,7 +100,7 @@
 				<div class="tabsHeader">
 					<div class="tabsHeaderContent">
 						<ul>
-							<li><a href="javascript:;"><span>药品明细</span></a><em onclick="addRow('editTable1');">添加行</em><em onclick="removeRow('editTable1');">删除行</em></li>
+							<li><a href="javascript:;"><span>药品明细</span></a><a onclick="addRow('editTable1');">添加 行</a><em onclick="removeRow('editTable1');">删除行</em></li>
 						</ul>
 					</div>
 				</div>

@@ -95,17 +95,10 @@
 				</dd>
 			</dl>
 			<div class="divider"></div>
-			<div class="tabs" currentIndex="0" eventType="click">
-				<div class="tabsHeader">
-					<div class="tabsHeaderContent">
-						<ul>
-							<li><a href="javascript:;"><span>药品明细</span></a><em onclick="addRow('editTable1');">添加行</em><em onclick="removeRow('editTable1');">删除行</em></li>
-						</ul>
-					</div>
-				</div>
-				<div class="tabsContent" style="height: 220px;">
-					<div>
-						<table class="editTable" id="editTable1">
+			<div class="panel collapse" minH="100" >
+				<h1>药品明细<span class="addRowt"   onclick="addRow('editTable1');">添加行<b>+</b></span><span class="delRowt" onclick="removeRow('editTable1');">删除行-</span></h1>
+				<div>
+					<table class="editTable" id="editTable1">
 							<thead>
 								<tr>
 									<th>&nbsp;</th>
@@ -134,10 +127,7 @@
 
 							</tbody>
 						</table>
-					</div>
-				</div>
-				<div class="tabsFooter">
-					<div class="tabsFooterContent"></div>
+				
 				</div>
 			</div>
 

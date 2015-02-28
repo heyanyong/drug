@@ -26,6 +26,7 @@ public class DrugInfo implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String name;
+	private String no;
 	@Temporal(TemporalType.DATE)
 	private Date createDate;
 	private UserInfo createUser;
@@ -140,10 +141,20 @@ public class DrugInfo implements Serializable{
 		this.purchaseNumber = purchaseNumber;
 	}
 
+	public String getNo() {
+		return no;
+	}
+
+	public void setNo(String no) {
+		this.no = no;
+	}
+
 	@Override
 	public String toString() {
-		return "DrugInfo [id=" + id + ", name=" + name + "]";
+		return "DrugInfo [id=" + id + ", name=" + name + ", no=" + no
+				+ ", contract=" + contract + "]";
 	}
+
 	
 	 
 }

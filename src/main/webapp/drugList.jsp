@@ -30,7 +30,6 @@
 		<div class="subBar">
 			<ul>
 				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
-				<li><a class="button" href="demo_page6.html" target="dialog" mask="true" title="查询框"><span>高级检索</span></a></li>
 			</ul>
 		</div>
 	</div>
@@ -39,8 +38,7 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="demo_page4.html" target="navTab"><span>添加</span></a></li>
-			<li><a class="edit" onclick="toPurchase();" ><span>修改</span></a></li>
+			<li><a class="edit" onclick="toPurchase();" ><span>生成采购需求</span></a></li>
 			<li><a  rel="ids" onClick="toPurchase();" class="delete"><span>生成采购</span></a></li>
 			<li><a target="selectedTodo" rel="ids" href="drug/toExport" class="delete"><span>生成采购</span></a></li>
 			<li><a class="edit" href="drug/detail/{sid_user}" target="navTab" warn="请选择一个用户"><span>修改</span></a></li>
@@ -48,7 +46,6 @@
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
 		</ul>
 	</div>
-	<form id="batForm"  target="navTab" action="drug/toPurchase">
 	<table class="table" width="1200" layoutH="138">
 		<thead>
 			<tr>
@@ -87,7 +84,6 @@
 			 
 		</tbody>
 	</table>
-	</form>
 	<div class="panelBar">
 		<div class="pages">
 			<span>显示</span>

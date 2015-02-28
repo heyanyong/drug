@@ -46,7 +46,7 @@
 			<li class="line">line</li>
 			<li><a class="icon"   target="dwzExport" targetType="navTab"  ><span>查看流程</span></a></li>
 			<li class="line">line</li>
-			<li><a class="icon"  target="dwzExport" targetType="navTab"  ><span>刷新列表</span></a></li>
+			<li><a class="icon" onclick="navTab.reload();" ><span>刷新列表</span></a></li>
 		</ul>
 	</div>
 	<table class="table" width="100%" layoutH="138">
