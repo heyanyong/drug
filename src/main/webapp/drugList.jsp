@@ -39,7 +39,9 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<li><button type="button" class="checkboxCtrl" group="ids" >全选</button></li>
+			<li class="line">line</li>
 			<li><button type="button" class="checkboxCtrl" group="ids" selectType="invert">反选</button></li>
+			<li class="line">line</li>
 			<li><a class="edit" onclick="toPurchase();" ><span>生成采购需求</span></a></li>
 			<li class="line">line</li>
 			<li><a class="edit" onClick="toExport();" ><span>生成出库单</span></a></li>
@@ -47,6 +49,8 @@
 			<li><a class="edit" href="drug/detail/{sid_user}" target="navTab" warn="请选择一个用户"><span>修改</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
+			<li class="line">line</li>
+			<li><a class="icon" onclick="navTab.reload();" ><span>刷新列表</span></a></li>
 		</ul>
 	</div>
 	<table class="table" width="1200" layoutH="138">

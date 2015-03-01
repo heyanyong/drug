@@ -147,6 +147,18 @@ $(function(){
 									<li><a href="export/list" target="navTab" rel="exportList">出库单列表</a></li>
 								</ul>
 							</li>
+							<li><a>供应商管理</a>
+								<ul>
+									<li><a href="drug/list" target="navTab" rel="drugList" >供应商</a></li>
+									<li><a href="purchaseAdd.jsp" target="navTab" rel="purchaseAdd">新增供应商</a></li>
+								</ul>
+							</li>
+							<li><a>客户管理</a>
+								<ul>
+									<li><a href="drug/list" target="navTab" rel="drugList" >客户汇总</a></li>
+									<li><a href="purchaseAdd.jsp" target="navTab" rel="purchaseAdd">新增客户</a></li>
+								</ul>
+							</li>
 							<li><a>报表查询</a>
 								<ul>
 									<li><a href="test.jsp" target="navTab" rel="w_panel">面板</a></li>
