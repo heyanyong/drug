@@ -36,4 +36,9 @@ public class TestDrugService {
 		
 	}
 	 
+	@Test
+	public void testToPurchase(){
+		String ids="1,2,3";
+		drugService.toPurchase(ids);
+	}
 } 

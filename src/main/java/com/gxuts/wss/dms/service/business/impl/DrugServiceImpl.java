@@ -1,6 +1,7 @@
 package com.gxuts.wss.dms.service.business.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.dao.business.DrugDao;
 import com.gxuts.wss.dms.entity.business.DrugInfo;
+import com.gxuts.wss.dms.entity.business.ExportBill;
+import com.gxuts.wss.dms.entity.business.ExportDrug;
+import com.gxuts.wss.dms.entity.business.PurchaseBill;
 import com.gxuts.wss.dms.service.business.DrugService;
 @Service("drugService")
 @Transactional
@@ -88,6 +92,37 @@ public class DrugServiceImpl implements DrugService {
 	public Page<Object[]> queryDrugList(Map<String, Object> params,
 			Integer currentPage, Integer numPerPage) {
 		return drugDao.queryDrugList( params, currentPage, numPerPage);
+	}
+
+	@Override
+	public PurchaseBill toPurchase(String ids) {
+		PurchaseBill p=new PurchaseBill();
+		List<DrugInfo> drugs=new ArrayList<DrugInfo>();
+		String[] idArr=ids.split(",");
+		for (int i = 0; i < idArr.length; i++) {
+			Integer id=Integer.parseInt(idArr[i]);
+			DrugInfo d=drugDao.get(DrugInfo.class, id);
+			drugs.add(d);
+		}
+		p.setDrugs(drugs);
+		return p;
+	}
+
+	@Override
+	public ExportBill toExport(String ids) {
+		ExportBill export=new ExportBill();
+		List<ExportDrug> exportDrugs=new ArrayList<ExportDrug>();
+		String[] idArr=ids.split(",");
+		for (int i = 0; i < idArr.length; i++) {
+			Integer id=Integer.parseInt(idArr[i]);
+			DrugInfo d=drugDao.get(DrugInfo.class, id);
+			ExportDrug ed=new ExportDrug();
+			ed.setName(d.getName());
+			ed.setDrugId(d.getId());
+			exportDrugs.add(ed);
+		}
+		export.setExportDrugs(exportDrugs);
+		return export;
 	}
 
 	 

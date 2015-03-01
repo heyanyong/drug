@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.business.DrugInfo;
+import com.gxuts.wss.dms.entity.business.ExportBill;
 import com.gxuts.wss.dms.entity.business.PurchaseBill;
 import com.gxuts.wss.dms.entity.business.PurchaseContractBill;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
@@ -45,24 +46,17 @@ public class DrugController {
 	}
 	
 	@RequestMapping(value = "/toPurchase",method={RequestMethod.POST,RequestMethod.GET})
-	public String toPurchase(String[] ids,HttpServletRequest q) {
-		String[] ids2=q.getParameterValues("ids");
-		if(ids2!=null){
-			for (String a:ids2) {
-				System.out.println(a);
-			}	
-		}
+	public String toPurchase(HttpServletRequest q) {
+		String ids=q.getParameter("ids");
+		PurchaseBill purchase=drugService.toPurchase(ids);
+		q.setAttribute("purchase", purchase);
 		return "purchaseDetail";
 	}
-	@RequestMapping(value = "/toExport",method=RequestMethod.POST)
-	public String toExport(String[] ids,HttpServletRequest q) {
-		String[] ids2=q.getParameterValues("ids");
-		if(ids2!=null){
-			for (String a:ids2) {
-				System.out.println(a);
-			}	
-		}
-		
-		return "purchaseDetail";
+	@RequestMapping(value = "/toExport",method={RequestMethod.POST,RequestMethod.GET})
+	public String toExport(HttpServletRequest q) {
+		String ids=q.getParameter("ids");
+		ExportBill export=drugService.toExport(ids);
+		q.setAttribute("export", export);
+		return "exportDetail";
 	}
 }

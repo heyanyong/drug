@@ -616,5 +616,6 @@ a.btnAttach{background-position: -183px 0}
 .sortDragPlaceholder {border:1px dashed #ccc;}
 #printBox {display:none}
 /*明细样式*/
-.addRowt{margin-left:5px;padding-left:19px;cursor: pointer;}
-.delRowt{margin-left:5px;padding-left:19px;cursor: pointer;}
+.addRowt{margin-left:5px;padding:3px 12px;cursor: pointer; border: 1px solid #ccc;letter-spacing:1px;}
+.delRowt{margin-left:5px;padding:3px 12px;cursor: pointer; border: 1px solid #ccc;letter-spacing:1px;}
+.addRowt:hover,.delRowt:hover {border: 2px solid #bbb;}

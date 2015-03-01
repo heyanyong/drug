@@ -19,9 +19,34 @@ function removeRow(tid){
 	}
 }
 
+function jqchk(){ //jquery获取复选框值 
+	var chk_value =[]; 
+	$('input[name="test"]:checked').each(function(){ 
+	chk_value.push($(this).val()); 
+	}); 
+	alert(chk_value.length==0 ?'你还没有选择任何内容！':chk_value); 
+	} 
+
 function toPurchase(){
-//	$("#batForm").attr("action","drug/toPurchase");
-//	$("#batForm").submit();
-	navTab.openTab("navTab", "drug/toPurchase", { title:"test", fresh:false, data:{} });
+	var chk_value =[];
+	$('input[name="ids"]:checked').each(function(){ 
+		chk_value.push($(this).val()); 
+		}); 
+	if(chk_value.length==0){
+		alert("请勾选数据");
+	}else{
+		navTab.openTab("navTab", "drug/toPurchase", { title:"生成采购需求单", fresh:false, data:{ids:chk_value.toString()} });
+	}
+}
+function toExport(){
+	var chk_value =[];
+	$('input[name="ids"]:checked').each(function(){ 
+		chk_value.push($(this).val()); 
+	}); 
+	if(chk_value.length==0){
+		alert("请勾选数据");
+	}else{
+		navTab.openTab("navTab", "drug/toExport", { title:"生成出库单", fresh:false, data:{ids:chk_value.toString()} });
+	}
 }
  

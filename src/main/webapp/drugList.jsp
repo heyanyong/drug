@@ -38,9 +38,12 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
+			<li><button type="button" class="checkboxCtrl" group="ids" >全选</button></li>
+			<li><button type="button" class="checkboxCtrl" group="ids" selectType="invert">反选</button></li>
 			<li><a class="edit" onclick="toPurchase();" ><span>生成采购需求</span></a></li>
-			<li><a  rel="ids" onClick="toPurchase();" class="delete"><span>生成采购</span></a></li>
-			<li><a target="selectedTodo" rel="ids" href="drug/toExport" class="delete"><span>生成采购</span></a></li>
+			<li class="line">line</li>
+			<li><a class="edit" onClick="toExport();" ><span>生成出库单</span></a></li>
+			<li class="line">line</li>
 			<li><a class="edit" href="drug/detail/{sid_user}" target="navTab" warn="请选择一个用户"><span>修改</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
@@ -49,7 +52,7 @@
 	<table class="table" width="1200" layoutH="138">
 		<thead>
 			<tr>
-				<th  ><input type="checkbox" group="ids" class="checkboxCtrl"></th>
+				<th  >&nbsp;</th>
 				<th   orderField="accountNo" class="asc">编号</th>
 				<th orderField="accountName">名称</th>
 				<th  orderField="accountType">库存</th>
@@ -76,7 +79,6 @@
 				<td>
 					<a title="删除" target="ajaxTodo" href="demo/common/ajaxDone.html?id=xxx" class="btnDel">删除</a>
 					<a title="编辑" target="navTab" href="demo_page4.html?id=xxx" class="btnEdit">编辑</a>
-					<input type="submit" />
 				</td>
 			</tr>
 			</c:forEach>

@@ -6,6 +6,8 @@ import java.util.Map;
 
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.business.DrugInfo;
+import com.gxuts.wss.dms.entity.business.ExportBill;
+import com.gxuts.wss.dms.entity.business.PurchaseBill;
 
 public interface DrugService {
 	public Serializable save(DrugInfo drug);
@@ -30,5 +32,9 @@ public interface DrugService {
 	public Page<DrugInfo> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows);
 	public Page<Object[]> queryDrugList(Map<String, Object> params, Integer currentPage, Integer numPerPage);
+	
+	public PurchaseBill toPurchase(String ids);
+
+	public ExportBill toExport(String ids);
 	
 }

@@ -17,6 +17,7 @@ public class ExportBill implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	private String no;
 	private String name;
 	private Date createDate;
 	private UserInfo createUser;
@@ -36,6 +37,12 @@ public class ExportBill implements Serializable{
 	}
 
 
+	public String getNo() {
+		return no;
+	}
+	public void setNo(String no) {
+		this.no = no;
+	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
