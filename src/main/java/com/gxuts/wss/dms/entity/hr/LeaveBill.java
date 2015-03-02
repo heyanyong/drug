@@ -16,6 +16,7 @@ public class LeaveBill implements Serializable{
 	private UserInfo cadidate;
 	private String reason;
 	private String status;
+	private String type;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
@@ -24,10 +25,20 @@ public class LeaveBill implements Serializable{
 	private UserInfo createUser;
 	private Date updateDate;
 	private UserInfo updateUser;
+	private int isEnd;
 	
 	public Date getStartDate() {
 		return startDate;
 	}
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
@@ -72,6 +83,19 @@ public class LeaveBill implements Serializable{
 	}
 	public void setCreateUser(UserInfo createUser) {
 		this.createUser = createUser;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public int getIsEnd() {
+		return isEnd;
+	}
+	public void setIsEnd(int isEnd) {
+		this.isEnd = isEnd;
 	}
 	public Date getUpdateDate() {
 		return updateDate;
