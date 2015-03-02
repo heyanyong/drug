@@ -69,16 +69,5 @@ public class TestContractService {
 		System.out.println(contract);
 	}
 	
-	@Test 
-	public void drugList(){
-		Page<Object[]> obj=drugService.queryDrugList(null, null, null);
-		List<Object[]> list=obj.getData();
-		for (int i = 0; i < list.size(); i++){
-			for (int j = 0; j < list.get(i).length; j++) {
-				System.out.print(list.get(i)[j]+"  ");
-			}
-			
-			System.out.println();
-		}
-	}
+	
 }

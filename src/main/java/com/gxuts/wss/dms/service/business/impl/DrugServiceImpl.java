@@ -2,6 +2,7 @@ package com.gxuts.wss.dms.service.business.impl;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import com.gxuts.wss.dms.entity.business.ExportBill;
 import com.gxuts.wss.dms.entity.business.ExportDrug;
 import com.gxuts.wss.dms.entity.business.PurchaseBill;
 import com.gxuts.wss.dms.service.business.DrugService;
+import com.gxuts.wss.dms.util.DateUtil;
 @Service("drugService")
 @Transactional
 public class DrugServiceImpl implements DrugService {
@@ -87,11 +89,29 @@ public class DrugServiceImpl implements DrugService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	//【[8]天数预警==1】;【[9]数量预警==1】
 	@Override
 	public Page<Object[]> queryDrugList(Map<String, Object> params,
 			Integer currentPage, Integer numPerPage) {
-		return drugDao.queryDrugList( params, currentPage, numPerPage);
+		Page<Object[]> page =drugDao.queryDrugList( params, currentPage, numPerPage);
+		List<Object[]> data1=page.getData();
+		List<Object[]> data2=new ArrayList<Object[]>();
+		for (int i = 0; i < data1.size(); i++) {
+			Object[] row=data1.get(i);
+			int pm=Integer.parseInt(row[2].toString());
+			int em=Integer.parseInt(row[3].toString());
+			int alertNum=Integer.parseInt(row[9].toString());
+			Date endDate=DateUtil.string2Date(row[6].toString(), "yyyy-MM-dd");
+			int remainDay=DateUtil.daysBetween(new Date(), endDate);
+			int alertDay=Integer.parseInt(row[8].toString());
+			if(pm>em){
+				row[9]=(pm-em)<=alertNum? 1:0;
+				row[8]=(remainDay<=alertDay&&alertDay>0)? 1:0;
+				data2.add(row);
+			}
+		}
+		page.setData(data2);
+		return page;
 	}
 
 	@Override

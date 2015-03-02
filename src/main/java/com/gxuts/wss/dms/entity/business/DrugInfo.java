@@ -38,6 +38,7 @@ public class DrugInfo implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
 	private Integer alertDay;
+	private Integer alertNumber;
 	private Integer requestNumber;
 	private Integer purchaseNumber;
 	private String unit;
@@ -53,6 +54,14 @@ public class DrugInfo implements Serializable{
 	
 	public Date getEndDate() {
 		return endDate;
+	}
+
+	public Integer getAlertNumber() {
+		return alertNumber;
+	}
+
+	public void setAlertNumber(Integer alertNumber) {
+		this.alertNumber = alertNumber;
 	}
 
 	public void setEndDate(Date endDate) {
