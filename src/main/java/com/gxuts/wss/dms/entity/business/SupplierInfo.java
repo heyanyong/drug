@@ -7,6 +7,8 @@ import java.util.Set;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 
 public class SupplierInfo implements Serializable{
+	
+
 	private Integer id;
 	private String name;
 	private Date createDate;
@@ -15,4 +17,9 @@ public class SupplierInfo implements Serializable{
 	private UserInfo updateUser;
 	
 	private Set<ContactInfo> contacts;
+	
+	public SupplierInfo() {};
+	public SupplierInfo(Integer id) {
+	this.id=id;
+	}
 }

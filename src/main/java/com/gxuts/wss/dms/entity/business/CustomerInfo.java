@@ -15,6 +15,12 @@ public class CustomerInfo implements Serializable{
 	private UserInfo updateUser;
 	
 	private Set<ContactInfo> contacts;
+
+	public CustomerInfo(Integer id) {
+		this.id = id;
+	}
+	public CustomerInfo() {
+	}
 	
 	
 	
