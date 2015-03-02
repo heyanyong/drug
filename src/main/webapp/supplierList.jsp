@@ -7,7 +7,7 @@
 </form>
 
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="customer/list" method="post">
+	<form onsubmit="return navTabSearch(this);" action="supplier/list" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
@@ -30,9 +30,9 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="customerAdd.jsp" target="navTab"><span>添加</span></a></li>
-			<li><a class="delete" href="customer/delete/{e_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li><a class="edit" href="customer/edit/{e_id}" target="navTab"><span>修改</span></a></li>
+			<li><a class="add" href="supplierAdd.jsp" target="navTab"><span>添加</span></a></li>
+			<li><a class="delete" href="supplier/delete/{e_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="edit" href="purchase/edit/{e_id}" target="navTab"><span>修改</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
 			<li class="line">line</li>
@@ -51,12 +51,12 @@
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${customer.data}" var="e">
-			<tr target="e_id" rel="${e.id}">
+		<c:forEach items="${pages.data}" var="pur">
+			<tr target="e_id" rel="${pur.id}">
 				<td></td>
-				<td>${e.no}</td>
-				<td>${e.name}</td>
-				<td>12</td>
+				<td>${pur.no}</td>
+				<td>${pur.name}</td>
+				<td>1</td>
 			</tr>
 			</c:forEach>
 		</tbody>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <form id="pagerForm" method="post" action="#rel#">
 	<input type="hidden" name="pageNum" value="1" />
 	<input type="hidden" name="numPerPage" value="${model.numPerPage}" />
@@ -70,7 +70,7 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${pages.data}" var="drug">
-				<tr target="sid_user" rel="${drug[0]}">
+				<tr target="sid_user" rel="${drug[0]}" <c:if test="${drug[10]=='1'}"> style="color:red;" </c:if> >
 				<td><input name="ids" value="${drug[0]}" type="checkbox"></td>
 				<td>${drug[0]}</td>
 				<td>${drug[1]}</td>
@@ -78,11 +78,12 @@
 				<td>${drug[3]}</td>
 				<td>${drug[4]}</td>
 				<td>${drug[5]}</td>
-				<td>${drug[6]}</td>
+				<td>${drug[8]}</td>
 				<td>${drug[9]}</td>
 				<td>
-					<a title="删除" target="ajaxTodo" href="demo/common/ajaxDone.html?id=xxx" class="btnDel">删除</a>
-					<a title="编辑" target="navTab" href="demo_page4.html?id=xxx" class="btnEdit">编辑</a>
+					<c:if test="${drug[8]=='1'}">天数</c:if>
+					<c:if test="${drug[9]=='1'}">数量</c:if>
+					<c:if test="${drug[10]=='1'}">已过期</c:if>
 				</td>
 			</tr>
 			</c:forEach>

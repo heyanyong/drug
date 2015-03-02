@@ -1,6 +1,9 @@
 package com.gxuts.wss.dms.controller.business;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,23 +15,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.business.ExportBill;
-import com.gxuts.wss.dms.entity.business.SupplierInfo;
+import com.gxuts.wss.dms.entity.business.CustomerInfo;
+import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.business.ExportService;
-import com.gxuts.wss.dms.service.business.SupplierService;
+import com.gxuts.wss.dms.service.business.CustomerService;
 
 import org.springframework.ui.Model;
 
 @Controller
-@RequestMapping(value = "/supplier")
+@RequestMapping(value = "/customer")
 public class CustomerController {
 	@Autowired
-	private SupplierService supplierService;
+	private CustomerService customerService;
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
 	@ResponseBody
 	public Json delete(@PathVariable Integer id) {
-		supplierService.delete(new SupplierInfo(id));
-		Json json = new Json("成功", "200", "supplierList", "supplierList", null,
+		customerService.delete(new CustomerInfo(id));
+		Json json = new Json("成功", "200", "customerList", "customerList", null,
 				null);
 		return json;
 	}
@@ -36,25 +40,42 @@ public class CustomerController {
 	@RequestMapping(value = "list")
 	public String getList(HttpServletRequest request, Integer currentPage,
 			Integer row, Model model) {
-		Page<SupplierInfo> pages = supplierService.query(null, null, null, null);
+		Page<CustomerInfo> pages = customerService.query(null, null, null, null);
 		model.addAttribute("pages", pages);
-		return "supplierList";
+		return "customerList";
 	}
 
 	@RequestMapping(value = "/edit/{id}")
 	public String edit(@PathVariable Integer id, Model model) {
-		SupplierInfo supplier = supplierService.get(SupplierInfo.class, id);
-		model.addAttribute("supplier", supplier);
-		return "supplierDetail";
+		CustomerInfo customer = customerService.get(CustomerInfo.class, id);
+		model.addAttribute("customer", customer);
+		return "customerDetail";
+	}
+	@RequestMapping(value = "/update",method=RequestMethod.POST)
+	@ResponseBody
+	public Json update(CustomerInfo info,HttpSession session) {
+		info.setUpdateDate(new Date());
+		info.setUpdateUser((UserInfo) session.getAttribute("loginUser"));
+		customerService.update(info);
+		Json json =new Json("更新成功","200","customerList","customerList",null,null);
+		return json;
 	}
 
 	@RequestMapping(value = "/save")
 	@ResponseBody
-	public Json save(SupplierInfo supplier) {
-		supplierService.save(supplier);
-		Json json = new Json("成功", "200", "supplierList", "supplierList", null,
+	public Json save(CustomerInfo customer,HttpSession session) {
+		customer.setCreateDate(new Date());
+		customer.setCreateUser((UserInfo) session.getAttribute("loginUser"));
+		customerService.save(customer);
+		Json json = new Json("成功", "200", "customerList", "customerList", null,
 				null);
 		return json;
+	}
+	@RequestMapping(value="add")
+	public String add(Model m){
+		long no=new Date().getTime();
+		m.addAttribute("no", "KH"+no);
+		return "customerAdd";
 	}
 
 }

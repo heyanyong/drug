@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import liquibase.util.MD5Util;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Serializable save(UserInfo user) {
+		user.setPassword(MD5Util.computeMD5("123"));
 		return userDao.save(user);
 	}
 
@@ -48,6 +51,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserInfo checkLogin(UserInfo user) {
+		user.setPassword(MD5Util.computeMD5(user.getPassword()));
 		return userDao.getObject("from UserInfo where no=? and password=?",new  String[]{user.getNo(),user.getPassword()} );
 	}
 

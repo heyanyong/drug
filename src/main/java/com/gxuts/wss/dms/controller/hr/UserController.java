@@ -90,6 +90,7 @@ public class UserController {
 	}
 	@RequestMapping(value="/checkLogin", method=RequestMethod.POST)
 	public String checkLogin(UserInfo user , HttpServletRequest request){
+		System.out.println(user);
 		UserInfo loginUser=userService.checkLogin(user);
 		if(loginUser==null){
 			request.setAttribute("loginMsg", "登陆失败");

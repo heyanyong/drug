@@ -179,7 +179,7 @@ public class UserInfo implements Serializable {
 	}
 
 	public void setPassword(String password) {
-		this.password = MD5Util.computeMD5(password);
+		this.password = password;
 	}
 	
 

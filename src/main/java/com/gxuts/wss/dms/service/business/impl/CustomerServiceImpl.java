@@ -20,26 +20,23 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public Serializable save(CustomerInfo customer) {
-		// TODO Auto-generated method stub
-		return null;
+		return customerDao.save(customer);
 	}
 
 	@Override
 	public void delete(CustomerInfo customer) {
-		// TODO Auto-generated method stub
-		
+		customerDao.delete(customer);
 	}
 
 	@Override
 	public void update(CustomerInfo customer) {
-		// TODO Auto-generated method stub
-		
+		customerDao.update(customer);
 	}
 
 	@Override
 	public CustomerInfo get(Class<CustomerInfo> c, Serializable id) {
 		// TODO Auto-generated method stub
-		return null;
+		return customerDao.get(c, id);
 	}
 
 	@Override
@@ -81,8 +78,8 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public Page<CustomerInfo> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows) {
-		// TODO Auto-generated method stub
-		return null;
+		hql="from CustomerInfo";
+		return customerDao.query(hql, params, currentPage, rows);
 	}
 
 	 

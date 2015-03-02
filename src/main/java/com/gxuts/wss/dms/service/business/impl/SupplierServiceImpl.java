@@ -20,26 +20,22 @@ public class SupplierServiceImpl implements SupplierService {
 
 	@Override
 	public Serializable save(SupplierInfo supplier) {
-		// TODO Auto-generated method stub
-		return null;
+		return supplierDao.save(supplier);
 	}
 
 	@Override
 	public void delete(SupplierInfo supplier) {
-		// TODO Auto-generated method stub
-		
+		supplierDao.delete(supplier);
 	}
 
 	@Override
 	public void update(SupplierInfo supplier) {
-		// TODO Auto-generated method stub
-		
+		supplierDao.update(supplier);
 	}
 
 	@Override
 	public SupplierInfo get(Class<SupplierInfo> c, Serializable id) {
-		// TODO Auto-generated method stub
-		return null;
+		return supplierDao.get(c, id);
 	}
 
 	@Override
@@ -81,8 +77,8 @@ public class SupplierServiceImpl implements SupplierService {
 	@Override
 	public Page<SupplierInfo> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows) {
-		// TODO Auto-generated method stub
-		return null;
+		hql="from SupplierInfo";
+		return supplierDao.query(hql, params, currentPage, rows);
 	}
 
 	 

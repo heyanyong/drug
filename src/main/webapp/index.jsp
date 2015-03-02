@@ -149,36 +149,17 @@ $(function(){
 							</li>
 							<li><a>供应商管理</a>
 								<ul>
-									<li><a href="drug/list" target="navTab" rel="drugList" >供应商</a></li>
-									<li><a href="purchaseAdd.jsp" target="navTab" rel="purchaseAdd">新增供应商</a></li>
+									<li><a href="supplier/list" target="navTab" rel="supplierList" >供应商</a></li>
+									<li><a href="supplier/add" target="navTab" rel="supplierAdd">新增供应商</a></li>
 								</ul>
 							</li>
 							<li><a>客户管理</a>
 								<ul>
-									<li><a href="drug/list" target="navTab" rel="drugList" >客户汇总</a></li>
-									<li><a href="purchaseAdd.jsp" target="navTab" rel="purchaseAdd">新增客户</a></li>
+									<li><a href="customer/list" target="navTab" rel="customerList" >客户汇总</a></li>
+									<li><a href="customer/add" target="navTab" rel="customerAdd">新增客户</a></li>
 								</ul>
 							</li>
-							<li><a>报表查询</a>
-								<ul>
-									<li><a href="test.jsp" target="navTab" rel="w_panel">面板</a></li>
-									<li><a href="test.jsp" target="navTab" rel="w_tabs">选项卡面板</a></li>
-									<li><a href="test.jsp" target="navTab" rel="w_dialog">弹出窗口</a></li>
-									<li><a href="test.jsp" target="navTab" rel="w_alert">提示窗口</a></li>
-									<li><a href="test.jsp" target="navTab" rel="w_list">CSS表格容器</a></li>
-									<li><a href="test.jsp" target="navTab" rel="w_table">表格容器</a></li>
-									<li><a href="test.jsp" target="navTab" rel="w_table">表格数据库排序+批量删除</a></li>
-									<li><a href="test.jsp" target="navTab" rel="w_tree">树形菜单</a></li>
-									<li><a href="test.jsp" target="navTab" rel="w_accordion">滑动菜单</a></li>
-									<li><a href="test.jsp" target="navTab" rel="w_editor">编辑器</a></li>
-									<li><a href="test.jsp" target="navTab" rel="w_datepicker">日期控件</a></li>
-									<li><a href="test.jsp" target="navTab" rel="db">suggest+lookup+主从结构</a></li>
-									<li><a href="test.jsp" target="navTab" rel="db">tree查找带回</a></li>
-									<li><a href="test.jsp" target="navTab" rel="sortDrag">单个sortDrag示例</a></li>
-									<li><a href="test.jsp" target="navTab" rel="sortDrag">多个sortDrag示例</a></li>
-									<li><a href="demo/sortDrag/form.html" target="navTab" rel="sortDrag">可拖动表单示例</a></li>
-								</ul>
-							</li>
+							
 									
 							 
 						</ul>
@@ -232,7 +213,26 @@ $(function(){
 									<li><a href="demo/sortDrag/form.html" target="navTab" rel="sortDrag">可拖动表单示例</a></li>
 								</ul>
 							</li>
-									
+									<li><a>报表查询</a>
+								<ul>
+									<li><a href="test.jsp" target="navTab" rel="w_panel">面板</a></li>
+									<li><a href="test.jsp" target="navTab" rel="w_tabs">选项卡面板</a></li>
+									<li><a href="test.jsp" target="navTab" rel="w_dialog">弹出窗口</a></li>
+									<li><a href="test.jsp" target="navTab" rel="w_alert">提示窗口</a></li>
+									<li><a href="test.jsp" target="navTab" rel="w_list">CSS表格容器</a></li>
+									<li><a href="test.jsp" target="navTab" rel="w_table">表格容器</a></li>
+									<li><a href="test.jsp" target="navTab" rel="w_table">表格数据库排序+批量删除</a></li>
+									<li><a href="test.jsp" target="navTab" rel="w_tree">树形菜单</a></li>
+									<li><a href="test.jsp" target="navTab" rel="w_accordion">滑动菜单</a></li>
+									<li><a href="test.jsp" target="navTab" rel="w_editor">编辑器</a></li>
+									<li><a href="test.jsp" target="navTab" rel="w_datepicker">日期控件</a></li>
+									<li><a href="test.jsp" target="navTab" rel="db">suggest+lookup+主从结构</a></li>
+									<li><a href="test.jsp" target="navTab" rel="db">tree查找带回</a></li>
+									<li><a href="test.jsp" target="navTab" rel="sortDrag">单个sortDrag示例</a></li>
+									<li><a href="test.jsp" target="navTab" rel="sortDrag">多个sortDrag示例</a></li>
+									<li><a href="demo/sortDrag/form.html" target="navTab" rel="sortDrag">可拖动表单示例</a></li>
+								</ul>
+							</li>
 							<li><a>表单组件</a>
 								<ul>
 									<li><a href="w_validation.html" target="navTab" rel="w_validation">表单验证</a></li>

@@ -105,8 +105,9 @@ public class DrugServiceImpl implements DrugService {
 			int remainDay=DateUtil.daysBetween(new Date(), endDate);
 			int alertDay=Integer.parseInt(row[8].toString());
 			if(pm>em){
-				row[9]=(pm-em)<=alertNum? 1:0;
 				row[8]=(remainDay<=alertDay&&alertDay>0)? 1:0;
+				row[9]=(pm-em)<=alertNum? 1:0;
+				row[10]=remainDay<0? 1:0;
 				data2.add(row);
 			}
 		}
