@@ -9,7 +9,7 @@ import org.activiti.engine.delegate.Expression;
 import org.activiti.engine.delegate.TaskListener;
 import org.springframework.stereotype.Service;
 
-import com.gxuts.wss.dms.service.process.WorkflowService;
+import com.gxuts.wss.dms.service.process.FlowService;
 
  
 @Service

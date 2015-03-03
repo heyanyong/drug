@@ -93,7 +93,7 @@ public class TestLeaveProcess {
 		张三的出库申请:leaveDetail:1001*/
 	@Test
 	public void testTask(){
-		String assignee="NF0001";
+		String assignee="NF0005";
 		List<Task> taskList=taskService.createTaskQuery().taskAssignee(assignee).list();
 		for(Task task:taskList){
 			System.out.println(task.getAssignee());
