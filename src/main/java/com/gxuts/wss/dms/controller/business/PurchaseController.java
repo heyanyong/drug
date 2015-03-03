@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -62,23 +63,29 @@ public class PurchaseController {
 	}
 	@RequestMapping(value = "/edit/{id}")
 	public String edit(@PathVariable Integer id,Model model) {
-		PurchaseBill purchase=purchaseService.get(PurchaseBill.class, id);
-		model.addAttribute("purchase", purchase);
+		PurchaseBill info=purchaseService.get(PurchaseBill.class, id);
+		model.addAttribute("info", info);
 		return  "purchaseDetail";
 	}
-
+	@RequestMapping(value="add")
+	public String add(Model m){
+		long no=new Date().getTime();
+		m.addAttribute("no", "CG"+no);
+		return "purchaseAdd";
+	}
 	@RequestMapping(value = "/save")
 	@ResponseBody
-	public Json save(PurchaseBill purchase) {
-		System.out.println(purchase);
-		purchaseService.save(purchase);
-		Json j=new Json();
-		if("李".equals(purchase.getName())){
-			j.setMessage("李");
-			j.setStatusCode("300");
-			j.setForwardUrl("test.jsp");
+	public Json save(PurchaseBill purchase,HttpSession session) {
+		Date nd=new Date();
+		purchase.setCreateUser((UserInfo)session.getAttribute("loginUser"));
+		purchase.setCreateDate(nd);
+		int size=purchase.getDrugs().size();
+		List<DrugInfo> list=purchase.getDrugs();
+		for (int i = 0; i < size; i++) {
+			list.get(i).setCreateDate(nd);
 		}
-		return j;
+		purchaseService.save(purchase);
+		return new Json("成功", "200", "customerList", "customerList", null,null);
 	}
 	
 }

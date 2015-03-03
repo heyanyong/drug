@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -34,9 +35,11 @@ public class CustomerInfo implements Serializable{
 	private String name;
 	@Temporal(TemporalType.DATE)
 	private Date createDate;
+	@ManyToOne
 	private UserInfo createUser;
 	@Temporal(TemporalType.DATE)
 	private Date updateDate;
+	@ManyToOne
 	private UserInfo updateUser;
 
 	public CustomerInfo(Integer id) {

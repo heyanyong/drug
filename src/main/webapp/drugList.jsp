@@ -81,9 +81,9 @@
 				<td>${drug[8]}</td>
 				<td>${drug[9]}</td>
 				<td>
-					<c:if test="${drug[8]=='1'}">天数</c:if>
-					<c:if test="${drug[9]=='1'}">数量</c:if>
-					<c:if test="${drug[10]=='1'}">已过期</c:if>
+					<c:if test="${drug[8]=='1'}"><img src="themes/alertDay.png" title="快要过期" alt="快要过期" /></c:if>
+					<c:if test="${drug[9]=='1'}"><img src="themes/alertNum.png" title="库存不多" alt="库存不多"/></c:if>
+					<c:if test="${drug[10]=='1'}"><img src="themes/expire.png" title="已过期" alt="已过期" /></c:if>
 				</td>
 			</tr>
 			</c:forEach>

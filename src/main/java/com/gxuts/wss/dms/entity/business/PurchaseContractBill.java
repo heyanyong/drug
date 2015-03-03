@@ -17,13 +17,17 @@ import java.util.Set;
 
 
 
+
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -38,6 +42,7 @@ public class PurchaseContractBill implements Serializable {
 	private String purchaseNo;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createDate;
+	@ManyToOne
 	private UserInfo createUser;
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")	
 	private Date updateDate;

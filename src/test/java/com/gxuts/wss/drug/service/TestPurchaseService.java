@@ -69,7 +69,10 @@ public class TestPurchaseService {
 		 purchase.setId(1);
 		 purchaseService.delete(purchase);
 	}
-	
+	@Test
+	public void  getList(){
+		purchaseService.query(null, null, null, null);
+	}
 	
  
 }

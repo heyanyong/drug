@@ -10,7 +10,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.ManyToAny;
 
 import com.gxuts.wss.dms.entity.hr.UserInfo;
  
@@ -24,12 +27,17 @@ public class PurchaseBill implements Serializable {
 	private String no;
 	private String name;
 	private Date createDate;
+	@ManyToOne
 	private UserInfo createUser;
 	private Date updateDate;
+	@ManyToOne
 	private UserInfo updateUser;
+	
 	private String remark;
+	private double budget;
 	private Date completeDatel;
 	private String type;
+	private String purchaseWay;
 
 	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)  
 	private List<DrugInfo> drugs;
@@ -47,6 +55,21 @@ public class PurchaseBill implements Serializable {
 		return no;
 	}
 
+	public double getBudget() {
+		return budget;
+	}
+	public void setBudget(double budget) {
+		this.budget = budget;
+	}
+	public String getPurchaseWay() {
+		return purchaseWay;
+	}
+	public void setPurchaseWay(String purchaseWay) {
+		this.purchaseWay = purchaseWay;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	public void setNo(String no) {
 		this.no = no;
 	}

@@ -26,7 +26,7 @@ public class DrugDaoImpl extends BaseDao<DrugInfo> implements DrugDao{
 				+ "d.purchaseNumber,(SELECT SUM(exportNum)  from exportdrug e  WHERE d.id=e.drugId GROUP BY e.drugId ) as em,"
 				+ "d.unit,d.productDate,d.endDate,d.createDate,"
 				+ "d.alertDay,d.alertNumber,0,d.contract_id  from druginfo d "
-				+ "where 1=1";
+				+ "where contract_id is not null";
 		Query q =  getSession().createSQLQuery(sql);
 		List list=q.list();
 		Page<Object[]> page=new Page<Object[]>();

@@ -29,8 +29,10 @@ public class DrugInfo implements Serializable{
 	private String no;
 	@Temporal(TemporalType.DATE)
 	private Date createDate;
+	@ManyToOne
 	private UserInfo createUser;
 	private Date updateDate;
+	@ManyToOne
 	private UserInfo updateUser;
 	
 	@Temporal(TemporalType.DATE)
@@ -42,6 +44,7 @@ public class DrugInfo implements Serializable{
 	private Integer requestNumber;
 	private Integer purchaseNumber;
 	private String unit;
+	private String looks;
 	@ManyToOne
 	private PurchaseContractBill contract;
 	
@@ -52,6 +55,14 @@ public class DrugInfo implements Serializable{
 	}
 	
 	
+	public String getLooks() {
+		return looks;
+	}
+
+	public void setLooks(String looks) {
+		this.looks = looks;
+	}
+
 	public Date getEndDate() {
 		return endDate;
 	}

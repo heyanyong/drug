@@ -13,6 +13,7 @@ import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.business.DrugInfo;
 import com.gxuts.wss.dms.entity.business.PurchaseBill;
 import com.gxuts.wss.dms.entity.business.PurchaseContractBill;
+import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.business.DrugService;
 import com.gxuts.wss.dms.service.business.PurchaseContractService;
 
@@ -26,13 +27,15 @@ public class TestContractService {
 	@Test
 	public void testSave() {
 		PurchaseContractBill contract = new PurchaseContractBill();
-		contract.setName("合同");
+		contract.setName("合1同");
 		List<DrugInfo> drugs=new ArrayList<DrugInfo>();
 		DrugInfo drug1=new DrugInfo();
 		drug1.setName("药品一");
 		drug1.setContract(contract);
 		drugs.add(drug1);
-		
+		UserInfo user=new UserInfo();
+		user.setId(122);
+		contract.setCreateUser(user);
 		contract.setDrugs(drugs);
 		purchaseContractService.save(contract);
 
