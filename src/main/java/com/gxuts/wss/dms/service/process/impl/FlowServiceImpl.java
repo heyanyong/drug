@@ -2,6 +2,7 @@ package com.gxuts.wss.dms.service.process.impl;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipInputStream;
@@ -11,6 +12,8 @@ import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.runtime.ProcessInstanceQuery;
+import org.activiti.engine.task.Comment;
 import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,15 +58,42 @@ public class FlowServiceImpl implements FlowService {
 		return processInstance;
 	}
 	@Override
-	public Page<Task> queryPersonTask(String no,Integer currentPage, Integer numPerPage) {
-		List<Task> data=taskService.createTaskQuery().taskAssignee(no).listPage(currentPage, numPerPage);
+	public Page<Object[]> queryPersonTask(String no,Integer currentPage, Integer numPerPage) {
+		List<Task> list=taskService.createTaskQuery().taskAssignee(no).orderByTaskCreateTime().asc().listPage(currentPage, numPerPage);
+		List<Object[]> data=new ArrayList<Object[]>();
+		for(Task t:list){
+			Object[] pt=new Object[11];
+			pt[0]=t.getId();
+			pt[1]=t.getName();
+			pt[2]=t.getAssignee();
+			pt[3]=t.getCreateTime();
+			pt[4]=t.getDueDate();
+			pt[5]=t.getProcessInstanceId();
+			ProcessInstance p=runtimeService.createProcessInstanceQuery().processInstanceId(t.getProcessInstanceId()).singleResult();
+			String[] bk=p.getBusinessKey().split("#");
+			pt[6]=bk[0];
+			pt[7]=bk[1];
+			pt[8]=bk[2];
+			pt[9]=bk[3];
+			pt[10]=bk[4];
+			data.add(pt);
+		}
 		int count=taskService.createTaskQuery().taskAssignee(no).list().size();
-		Page<Task> page=new Page<Task>();
+		Page<Object[]> page=new Page<Object[]>();
 		page.setCurrentPage(currentPage);
 		page.setData(data);
 		page.setTotalCount(count);
-		page.setPageNumShown(5);
 		page.setNumPerPage(numPerPage);
 		return page;
+	}
+	public void dealTask(String taskId,String processInstanceId, String outcome, String comment) {
+		taskService.addComment(taskId, processInstanceId, comment);
+		taskService.complete(taskId);
+		taskService.setVariable(taskId, "outcome", outcome);
+		taskService.setVariable(taskId, "assignee", "admin");
+	}
+	public List<Comment> getCommentByprocessInstance(String processInstanceId){
+		List<Comment> list = taskService.getProcessInstanceComments(processInstanceId);
+		return list;
 	}
 }

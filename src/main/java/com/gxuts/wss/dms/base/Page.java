@@ -5,7 +5,7 @@ import java.util.List;
 public class Page<T> {
 	private List<T> data;
 	private int currentPage;
-	private int pageNumShown;
+	private int pageNumShown=5;
 	private int numPerPage;
 	private int totalCount;
 	public List<T> getData() {

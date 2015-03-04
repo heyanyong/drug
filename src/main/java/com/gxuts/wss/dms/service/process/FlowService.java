@@ -18,6 +18,7 @@ public interface FlowService {
 	public void deployByZIP(File file, String filename);
 	public Page<ProcessDefinition> queryDeploy(Integer currentPage, Integer numPerPage);
 	public ProcessInstance startProcess(String processDefinitionKey,String businessKey,Map<String,Object> variables);
-	public Page<Task> queryPersonTask(String no,Integer currentPage, Integer numPerPage);
-	
+	public Page<Object[]> queryPersonTask(String no,Integer currentPage, Integer numPerPage);
+	public void dealTask(String taskId,String processInstanceId, String outcome, String comment) ;
+	public List<Comment> getCommentByprocessInstance(String processInstanceId);
 }

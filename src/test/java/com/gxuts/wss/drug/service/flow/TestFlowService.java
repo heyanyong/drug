@@ -3,11 +3,14 @@ package com.gxuts.wss.drug.service.flow;
 import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.task.Comment;
+import org.activiti.engine.task.Task;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,16 +43,43 @@ public class TestFlowService {
 			System.out.println(a.getName()+a.getVersion()+a.getKey()+a.getDeploymentId()+a.getDescription());
 		}
 	}
+	//b2为key=controllor b3为id
 	@Test
 	public void testStart(){
 		String processDefinitionKey="leave";
-		String businessKey="NF00012#leave#1001";
+		String businessKey="商务部#李四#请假申请#leave#1001";
 		Map<String, Object> variables=new HashMap<String, Object>();
 		variables.put("creater", "NF0001");
 		List<String> assigneeList=Arrays.asList("liyagn","cooperay","other");
 		variables.put("assigneeList", assigneeList);
 		ProcessInstance a=flowService.startProcess(processDefinitionKey, businessKey, variables);
 		System.out.println(a);
+	}
+	//个人任务测试：任务名称 任务key 表单ID
+	@Test
+	public void testQueryTest(){
+		Page<Object[]> page=flowService.queryPersonTask("NF0005", 0, 10);
+		List<Object[]> list=page.getData();
+		 for (int i = 0; i < list.size(); i++) {
+			for (int j = 0; j < list.get(i).length; j++) {
+				Object[] obj=list.get(i);
+				System.out.print(obj[j]);
+			}
+			System.out.println();
+		}
+	}
+	
+	//办理
+	@Test
+	public void testDealTask(){
+		flowService.dealTask("12508", "12501", null, "好");
+	}
+	//查批注信息
+	@Test
+	public void testComment(){
+		List<Comment> list=flowService.getCommentByprocessInstance("");
+		for (Comment c:list) {
+		}
 	}
 
 }
