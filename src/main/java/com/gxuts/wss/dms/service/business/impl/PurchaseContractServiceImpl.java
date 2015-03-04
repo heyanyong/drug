@@ -49,7 +49,6 @@ public class PurchaseContractServiceImpl implements PurchaseContractService {
 		PurchaseBill purchase=purchaseDao.get(PurchaseBill.class, purchaseId);
 		contract.setPurchaseNo(purchase.getNo());
 		contract.setDrugs(purchase.getDrugs());
-		System.out.println(contract);
 		return contract;
 	}
 	@Override

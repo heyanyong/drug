@@ -19,6 +19,7 @@ import java.util.Set;
 
 
 
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -49,6 +50,11 @@ public class PurchaseContractBill implements Serializable {
 	private UserInfo updateUser;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "contract")
 	private List<DrugInfo> drugs;
+
+	public PurchaseContractBill(){};
+	public PurchaseContractBill(Integer id) {
+		this.id=id;
+	}
 
 	public Integer getId() {
 		return id;
