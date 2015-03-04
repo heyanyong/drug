@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gxuts.wss.dms.base.Page;
+import com.gxuts.wss.dms.dao.business.DrugDao;
 import com.gxuts.wss.dms.dao.business.PurchaseContractDao;
 import com.gxuts.wss.dms.dao.business.PurchaseDao;
+import com.gxuts.wss.dms.entity.business.DrugInfo;
 import com.gxuts.wss.dms.entity.business.PurchaseBill;
 import com.gxuts.wss.dms.entity.business.PurchaseContractBill;
 import com.gxuts.wss.dms.service.business.PurchaseContractService;
@@ -23,6 +25,8 @@ public class PurchaseContractServiceImpl implements PurchaseContractService {
 	private PurchaseDao purchaseDao;
 	@Autowired
 	private PurchaseContractDao purchaseContractDao;
+	@Autowired
+	private DrugDao drugDao;
 	@Override
 	public Serializable save(PurchaseContractBill contract) {
 		return purchaseContractDao.save(contract);
@@ -30,6 +34,11 @@ public class PurchaseContractServiceImpl implements PurchaseContractService {
 
 	@Override
 	public void delete(PurchaseContractBill contract) {
+		contract=purchaseContractDao.get(PurchaseContractBill.class, contract.getId());
+		List<DrugInfo> drugs=contract.getDrugs();
+		for (DrugInfo drug:drugs) {
+			drugDao.delete(drug);
+		}
 		purchaseContractDao.delete(contract);
 	}
 

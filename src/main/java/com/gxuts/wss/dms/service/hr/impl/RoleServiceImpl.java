@@ -81,8 +81,7 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public Page<RoleInfo> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows) {
-		// TODO Auto-generated method stub
-		return null;
+		return roleDao.query(hql, params, currentPage, rows);
 	}
 
 }

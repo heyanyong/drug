@@ -268,10 +268,12 @@ $(function(){
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-						    <li><a>报表查询</a>
+						    <li><a>组织架构</a>
 								<ul>
 									<li><a href="user/list" target="navTab" rel="userList">用户列表</a></li>
 									<li><a href="userDetail.jsp" target="navTab" rel="userDetail">新增用户</a></li>
+									<li><a href="role/list" target="navTab" rel="roleList">角色管理</a></li>
+									<li><a href="structrue/list" target="navTab" rel="structrueList">部门管理</a></li>
 									</ul>
 							</li>
 							<li><a href="demo_page1.html" target="navTab" rel="demo_page1">查询我的客户</a></li>

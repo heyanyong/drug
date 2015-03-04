@@ -61,9 +61,7 @@ public class TestContractService {
 	}
 	@Test
 	public void testDelete(){
-		PurchaseContractBill contract=new PurchaseContractBill();
-		contract.setId(1);
-		purchaseContractService.delete(contract);
+		purchaseContractService.delete(new PurchaseContractBill(8));
 	}
 	
 	@Test
