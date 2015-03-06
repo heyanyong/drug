@@ -42,7 +42,7 @@ public class RoleController {
 		Page<RoleInfo> pages=roleService.query("from RoleInfo where name like '%"+name+"%'", null, pageNum, 17);
 		model.addAttribute("name", name);
 		model.addAttribute("pages", pages);
-		return "test";
+		return "sysroleList";
 	}
 
 }

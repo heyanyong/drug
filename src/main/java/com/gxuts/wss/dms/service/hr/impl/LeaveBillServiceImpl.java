@@ -30,8 +30,7 @@ public class LeaveBillServiceImpl implements LeaveBillService {
 
 	@Override
 	public void delete(LeaveBill leaveBill) {
-		// TODO Auto-generated method stub
-		
+		leaveBillDao.delete(leaveBill);
 	}
 
 	@Override
@@ -79,8 +78,7 @@ public class LeaveBillServiceImpl implements LeaveBillService {
 	@Override
 	public Page<LeaveBill> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows) {
-		// TODO Auto-generated method stub
-		return null;
+		return leaveBillDao.query(hql, params, currentPage, rows);
 	}
 
 	 

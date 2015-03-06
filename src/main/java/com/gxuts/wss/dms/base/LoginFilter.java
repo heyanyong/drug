@@ -10,6 +10,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.gxuts.wss.dms.entity.hr.UserInfo;
 public class LoginFilter implements Filter {
 
 	@Override
@@ -23,6 +25,11 @@ public class LoginFilter implements Filter {
 		 HttpServletResponse resp=(HttpServletResponse) response;
 		 String url=req.getRequestURI();
 //		 if((req.getSession(true).getAttribute("loginUser")!=null)||url.contains("ogin")||url.contains("register")){
+			 UserInfo user=new UserInfo();
+			 user.setId(2);
+			 user.setNo("admin");
+			 user.setName("admin");
+			 req.getSession(true).setAttribute("loginUser", user);
 			 chain.doFilter(request, response);
 //		 }else{
 //			 resp.sendRedirect("/drug/user/login");

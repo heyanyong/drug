@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import liquibase.util.MD5Util;
 
 @Entity
@@ -32,13 +34,13 @@ public class UserInfo implements Serializable {
 	private String phone;
 	private String email;
 	private String remark;
-	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birthday;
-	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date entryDate;
-	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
 	private Date updateTime;
-	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createDate=new Date();
 	@ManyToOne(fetch=FetchType.EAGER)
 	private UserInfo createUser;

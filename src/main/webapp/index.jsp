@@ -65,7 +65,7 @@
 <script src="js/dwz.history.js" type="text/javascript"></script>
 <script src="js/dwz.combox.js" type="text/javascript"></script>
 <script src="js/dwz.print.js" type="text/javascript"></script>
-
+<script src="js/my.extend.js" type="text/javascript"></script>
 <!-- 可以用dwz.min.js替换前面全部dwz.*.js (注意：替换是下面dwz.regional.zh.js还需要引入)
 <script src="bin/dwz.min.js" type="text/javascript"></script>
 -->
@@ -159,9 +159,6 @@ $(function(){
 									<li><a href="customer/add" target="navTab" rel="customerAdd">新增客户</a></li>
 								</ul>
 							</li>
-							
-									
-							 
 						</ul>
 					</div>
 					<div class="accordionHeader">
@@ -171,8 +168,8 @@ $(function(){
 						<ul class="tree treeFolder">
 						<li><a>常用单据</a>
 								<ul>
-									<li><a href="leaveDetail.jsp" target="navTab" rel="leaveBillDetail">请假申请</a></li>
-									<li><a href="purchaseDetail.jsp" target="navTab" rel="purchaseDetail">采购需求</a></li>
+									<li><a href="leave/add" target="navTab" rel="leaveAdd">请假申请</a></li>
+									<li><a href="leave/list" target="navTab" rel="leaveBillList">请假列表</a></li>
 									<li><a href="contract/list" target="navTab" rel="contractList" >采购合同</a></li>
 									<li><a href="demo_page2.html" target="navTab" rel="page2">出库查询</a></li>
 								</ul>
@@ -273,7 +270,7 @@ $(function(){
 									<li><a href="user/list" target="navTab" rel="userList">用户列表</a></li>
 									<li><a href="userDetail.jsp" target="navTab" rel="userDetail">新增用户</a></li>
 									<li><a href="role/list" target="navTab" rel="roleList">角色管理</a></li>
-									<li><a href="structrue/list" target="navTab" rel="structrueList">部门管理</a></li>
+									<li><a href="structure/list" target="navTab" rel="structureList">部门管理</a></li>
 									</ul>
 							</li>
 							<li><a href="demo_page1.html" target="navTab" rel="demo_page1">查询我的客户</a></li>
@@ -303,7 +300,7 @@ $(function(){
 					</div>
 					<div class="accordionContent">
 						<ul class="tree">
-							<li><a href="newPage1.html" target="dialog" rel="dlg_page">列表</a></li>
+							<li><a href="expense/add" target="navTab" rel="expenseAdd">费用报销</a></li>
 						</ul>
 					</div>
 					<div class="accordionHeader">

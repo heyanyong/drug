@@ -7,26 +7,51 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 @Entity
 public class LeaveBill implements Serializable{
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date startDate;
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date endDate;
 	private UserInfo cadidate;
 	private String reason;
 	private String status;
 	private String type;
+	private String hours;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
+	private String no;
 	private String name;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createDate;
+	@ManyToOne
 	private UserInfo createUser;
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date updateDate;
 	private UserInfo updateUser;
 	private int isEnd;
 	
+	public LeaveBill() {}
+	public LeaveBill(Integer id) {
+		this.id=id;
+	}
+	
+
+	public String getHours() {
+		return hours;
+	}
+	public void setHours(String hours) {
+		this.hours = hours;
+	}
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -50,6 +75,13 @@ public class LeaveBill implements Serializable{
 	}
 	public UserInfo getCadidate() {
 		return cadidate;
+	}
+	
+	public String getNo() {
+		return no;
+	}
+	public void setNo(String no) {
+		this.no = no;
 	}
 	public void setCadidate(UserInfo cadidate) {
 		this.cadidate = cadidate;
@@ -109,5 +141,14 @@ public class LeaveBill implements Serializable{
 	public void setUpdateUser(UserInfo updateUser) {
 		this.updateUser = updateUser;
 	}
+	@Override
+	public String toString() {
+		return "LeaveBill [startDate=" + startDate + ", endDate=" + endDate
+				+ ", cadidate=" + cadidate + ", reason=" + reason + ", status="
+				+ status + ", type=" + type + ", hours=" + hours + ", id=" + id
+				+ ", name=" + name + ", createDate=" + createDate
+				+ ", createUser=" + createUser + ", isEnd=" + isEnd + "]";
+	}
+	
 	
 }

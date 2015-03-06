@@ -43,6 +43,13 @@ public class UserController {
 		model.addAttribute("pages", pages);
 		return "userList";
 	}
+	@RequestMapping(value="lookup",method={RequestMethod.POST,RequestMethod.GET})
+	public String lookup(Model model,String name,Integer pageNum){
+		Page<UserInfo> pages=userService.query("from UserInfo where name like '%"+name+"%'", null, pageNum, 17);
+		model.addAttribute("name", name);
+		model.addAttribute("pages", pages);
+		return "userLookup";
+	}
 
 	@RequestMapping(value = "/save",method=RequestMethod.POST)
 	@ResponseBody

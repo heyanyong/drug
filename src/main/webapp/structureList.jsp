@@ -11,7 +11,10 @@
 		<table class="searchContent">
 			<tr>
 				<td>
-					名称：<input type="text" name="name" value="${name}" />
+					姓名：<input type="text" name="name" value="${name}" />
+				</td>
+				<td>
+					入职日期：<input type="text" class="date" readonly="true" />
 				</td>
 			</tr>
 		</table>
@@ -26,7 +29,7 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="roleAdd.jsp" target="dialog"><span>添加</span></a></li>
+			<li><a class="add" href="exportDetail.jsp" target="navTab"><span>添加</span></a></li>
 			<li class="line">line</li>
 			<li><a class="delete" href="export/delete/{e_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
 			<li class="line">line</li>
@@ -43,15 +46,17 @@
 		<thead>
 			<tr>
 				<th width="25"></th>
-				<th>名称</th> 
-				<th>创建时间</th> 
+				<th>账号</th> 
+				<th>性别</th> 
+				<th>创建日期</th>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${pages.data}" var="e">
 			<tr target="e_id" rel="${e.id}">
 				<td><input type="checkbox" /></td>
-				<td>${e.name}</td>
+				<td>${e.no}</td>
+				<td><a href="user/edit/${e.id}" target="navTab" rel="user${e.id}" >${e.name}</a></td>
 				<td>${e.createDate}</td>
 			</tr>
 			</c:forEach>

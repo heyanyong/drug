@@ -28,6 +28,6 @@ public class StructureController {
 		Page<StructureInfo> pages=structureService.query("from StructureInfo where name like '%"+name+"%'", null, pageNum, 17);
 		model.addAttribute("name", name);
 		model.addAttribute("pages", pages);
-		return "test";
+		return "structureList";
 	}
 }
