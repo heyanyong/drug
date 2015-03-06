@@ -91,6 +91,7 @@ public class FlowServiceImpl implements FlowService {
 		taskService.complete(taskId);
 		taskService.setVariable(taskId, "outcome", outcome);
 		taskService.setVariable(taskId, "assignee", "admin");
+		
 	}
 	public List<Comment> getCommentByprocessInstance(String processInstanceId){
 		List<Comment> list = taskService.getProcessInstanceComments(processInstanceId);
