@@ -36,9 +36,5 @@ public class AssigneeList implements  TaskListener {
 		delegateTask.setVariable("assigneeList", assigneeList);
 		System.out.println("设置会签列表");
 	}
-
-	 
- 
- 
  
 }

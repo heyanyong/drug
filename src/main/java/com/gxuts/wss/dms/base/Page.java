@@ -38,6 +38,15 @@ public class Page<T> {
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 	}
+	
+	public Page() {
+	}
+	public Page(List<T> data, int currentPage,int numPerPage, int totalCount) {
+		this.data = data;
+		this.currentPage = currentPage;
+		this.numPerPage = numPerPage;
+		this.totalCount = totalCount;
+	}
 	@Override
 	public String toString() {
 		return "Page [data=" + data + ", currentPage=" + currentPage
