@@ -77,8 +77,11 @@ public class TestFlowService {
 	//查批注信息
 	@Test
 	public void testComment(){
-		List<Comment> list=flowService.getCommentByprocessInstance("");
+		List<Comment> list=flowService.getCommentByprocessInstance("54");
 		for (Comment c:list) {
+			c.getFullMessage();
+			c.getTime();
+			c.getUserId();
 		}
 	}
 

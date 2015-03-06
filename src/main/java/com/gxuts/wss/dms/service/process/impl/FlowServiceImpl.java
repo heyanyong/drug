@@ -78,19 +78,14 @@ public class FlowServiceImpl implements FlowService {
 			pt[10]=bk[4];
 			data.add(pt);
 		}
-		int count=taskService.createTaskQuery().taskAssignee(no).list().size();
-		Page<Object[]> page=new Page<Object[]>();
-		page.setCurrentPage(currentPage);
-		page.setData(data);
-		page.setTotalCount(count);
-		page.setNumPerPage(numPerPage);
-		return page;
+		int totalCount=taskService.createTaskQuery().taskAssignee(no).list().size();
+		return new Page<Object[]>(data, currentPage, numPerPage, totalCount);
 	}
 	public void dealTask(String taskId,String processInstanceId, String outcome, String comment) {
 		taskService.addComment(taskId, processInstanceId, comment);
 		taskService.complete(taskId);
 		taskService.setVariable(taskId, "outcome", outcome);
-		taskService.setVariable(taskId, "assignee", "admin");
+		
 	}
 	public List<Comment> getCommentByprocessInstance(String processInstanceId){
 		List<Comment> list = taskService.getProcessInstanceComments(processInstanceId);
