@@ -66,9 +66,8 @@ public class LeaveBillController {
 		System.out.println(leaveBill);
 		leaveBill.setCadidate(null);
 		leaveBillService.save(leaveBill);
-		Json json = new Json("成功", "200", "leaveBillList", "leaveBillList", null,
-				null);
-		return json;
+		//return new Json("请假单录入","200",null,"userList","forwardConfirm","user/edit/1");
+		return new Json("请假单录入","200",null,"userList","forward","leave/edit/1");
 	}
 	@RequestMapping(value="add")
 	public String add(Model m){

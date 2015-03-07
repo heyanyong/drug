@@ -349,28 +349,37 @@ $(function(){
 					<div class="page unitBox">
 						<div class="accountInfo">
 							<div class="alertInfo">
-								<p><a href="https://code.csdn.net/dwzteam/dwz_jui/tree/master/doc" target="_blank" style="line-height:19px"><span>DWZ框架使用手册</span></a></p>
+								<p>
+									<a href="https://code.csdn.net/dwzteam/dwz_jui/tree/master/doc"
+										target="_blank" style="line-height: 19px"><span>DWZ框架使用手册</span></a>
+								</p>
 							</div>
 							<div class="right">
-								<p style="color:red">DWZ官方微博 <a href="http://weibo.com/dwzui" target="_blank">http://weibo.com/dwzui</a></p>
+								<p style="color: red">
+									DWZ官方微博 <a href="http://weibo.com/dwzui" target="_blank">http://weibo.com/dwzui</a>
+								</p>
 							</div>
-							<p><span>DWZ富客户端框架</span></p>
-							<p>DWZ官方:<a href="http://weibo.com/dwzui" target="_blank">http://weibo.com</a></p>
+							<p>
+								<span>DWZ富客户端框架</span>
+							</p>
+							<p>
+								DWZ官方:<a href="http://weibo.com/dwzui" target="_blank">http://weibo.com</a>
+							</p>
 						</div>
-						<div class="pageFormContent" layoutH="80" style="margin-right:230px">
-							
-
-<h2>DWZ系列开源项目:</h2>
-
-<div class="divider"></div>
-
-						</div>
-						
-						<div style="width:230px;position: absolute;top:60px;right:0" layoutH="80">
-							<iframe width="100%" height="430" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?width=0&height=430&fansRow=2&ptype=1&skin=1&isTitle=0&noborder=1&isWeibo=1&isFans=0&uid=1739071261&verifier=c683dfe7"></iframe>
+						<div class="pageFormContent" layoutH="80">
+							<h2>DWZ系列开源项目:</h2>
+							<div class="divider"></div>
+							<div class="panel collapse" minH="100" defH="150"
+								style="position:absolute; bottom:0;">
+								<h1>可折叠默认打开面板</h1>
+								<div>
+									<p>内容</p>
+									<p>内容</p>
+									<p>内容</p>
+								</div>
+							</div>
 						</div>
 					</div>
-					
 				</div>
 			</div>
 		</div>
