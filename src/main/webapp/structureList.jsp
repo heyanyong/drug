@@ -22,7 +22,8 @@
 			}
 		};
 
-		var zNodes = "";
+		var zNodesEval = [{'id':1,'name':'业务一部','pid':0},{'id':2,'name':"业务二部",'pId':1},{'id':3,"name":"业务二部",'pId':1},{"id":4,"name":"业务三部","pid":3}];
+		//var zNodesEval =null;
 		function onClick(e,treeId, treeNode) {
 			var zTree = $.fn.zTree.getZTreeObj("structrueTree");
 			zTree.expandNode(treeNode);
@@ -44,13 +45,15 @@
 				url : "structure/list",
 				async : false,
 				success : function(data) {
-					 alert(data);
+					var str = JSON.stringify(data);
+					alertr(str);
 				}
 				
 			});
+			
 			//alert(zNodes);
 			//zNodesEval=eval('(' + zNodes + ')');
-			//$.fn.zTree.init($("#structrueTree"), setting, zNodesEval);
+			$.fn.zTree.init($("#structrueTree"), setting, zNodesEval);
 		});
 	
 		
