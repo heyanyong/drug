@@ -56,14 +56,13 @@ public class StructureServiceImpl implements StructureService {
 	}
 
 	@Override
-	public List<StructureInfo> queryAll(Class<StructureInfo> c) {
-		return structureDao.queryAll(c);
+	public List<StructureInfo> queryAll() {
+		return structureDao.queryAll(StructureInfo.class);
 	}
 
 	@Override
 	public Page<StructureInfo> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows) {
-		// TODO Auto-generated method stub
 		return structureDao.query(hql, params, currentPage, rows);
 	}
 

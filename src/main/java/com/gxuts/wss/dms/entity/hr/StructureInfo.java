@@ -13,6 +13,14 @@ public class StructureInfo implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String name;
+	private Integer Pid;
+	
+	public Integer getPid() {
+		return Pid;
+	}
+	public void setPid(Integer pid) {
+		Pid = pid;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -27,7 +35,8 @@ public class StructureInfo implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "StructrueInfo [id=" + id + ", name=" + name + "]";
+		return "StructureInfo [id=" + id + ", name=" + name + ", Pid=" + Pid
+				+ "]";
 	}
-	
+	 
 }

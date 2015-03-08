@@ -14,7 +14,7 @@ import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.hr.RoleInfo;
 import com.gxuts.wss.dms.service.hr.RoleService;
 
-@RestController
+@Controller
 @RequestMapping(value = "/role")
 public class RoleController {
 	RoleInfo user = new RoleInfo();

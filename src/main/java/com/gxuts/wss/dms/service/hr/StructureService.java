@@ -14,7 +14,7 @@ public interface StructureService {
 	public StructureInfo load(Class<StructureInfo> c, Serializable id);
 	public StructureInfo getObject(String hql,  Object[] params);
 	public int executeHql(String hql);
-	public List<StructureInfo> queryAll(Class<StructureInfo> c);
+	public List<StructureInfo> queryAll();
 	public Page<StructureInfo> query(String hql, Map<String, Object> params, Integer currentPage, Integer rows) ;
 	public StructureInfo getByNo(Class<StructureInfo> c, String no);  
 	public StructureInfo getByHql(String hql);

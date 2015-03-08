@@ -1,5 +1,7 @@
 package com.gxuts.wss.dms.controller.hr;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,17 +19,22 @@ import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.hr.StructureService;
 import com.gxuts.wss.dms.service.hr.UserService;
 
-@RestController
+@Controller
 @RequestMapping(value = "/structure")
 public class StructureController {
 	@Autowired
 	private StructureService structureService;
-	@RequestMapping(value="list",method={RequestMethod.POST,RequestMethod.GET})
-	public String query(Model model,String name,Integer pageNum){
-		name=(name==null)? "%":name;
-		Page<StructureInfo> pages=structureService.query("from StructureInfo where name like '%"+name+"%'", null, pageNum, 17);
-		model.addAttribute("name", name);
-		model.addAttribute("pages", pages);
+	
+	@RequestMapping(value="show",method={RequestMethod.POST,RequestMethod.GET})
+	public String page(Model model){
 		return "structureList";
+	}
+	@RequestMapping(value="list",method={RequestMethod.POST,RequestMethod.GET})
+	@ResponseBody
+	public List<StructureInfo> query(Model model){
+		System.out.println("Structure list");
+		List<StructureInfo> list=structureService.queryAll();
+		System.out.println(list);
+		return list;
 	}
 }
