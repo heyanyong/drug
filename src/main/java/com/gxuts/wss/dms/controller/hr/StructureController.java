@@ -1,5 +1,6 @@
 package com.gxuts.wss.dms.controller.hr;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +27,8 @@ import com.gxuts.wss.dms.service.hr.UserService;
 public class StructureController {
 	@Autowired
 	private StructureService structureService;
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping(value="show",method={RequestMethod.POST,RequestMethod.GET})
 	public String page(Model model){
@@ -35,7 +38,17 @@ public class StructureController {
 	@ResponseBody
 	public List<StructureInfo> query(Model model){
 		System.out.println("Structure list");
+		List<StructureInfo> result=new ArrayList<StructureInfo>();
 		List<StructureInfo> list=structureService.queryAll();
+		List<UserInfo> users=userService.queryAll(UserInfo.class);
+//		for (int i = 0; i < users.size(); i++) {
+//			for (int j = 0; j < list.size(); j++) {
+//				int uid=users.get(i).getStructure().getId();
+//				int sid=list.get(j).getId();
+//				if(uid==sid){
+//				}
+//			}
+//		}
 		System.out.println(list);
 		return list;
 	}

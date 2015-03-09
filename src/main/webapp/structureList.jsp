@@ -7,6 +7,7 @@
   .container{padding:0;margin:0;}
   .container .col{width:30%; float: left;}
   .container .row{height:40px;}
+  .container .button {margin-right:20px;}
 </style>
 <div class="container" style="margin-top:30px;">
 	<div class="col " >
@@ -26,9 +27,9 @@
 		    <label>节点编号：<input name="name" type="text" /></label>
 		  </div>
 		  <div class="row">
-		  	<div class="button"><div class="buttonContent"><button onclick="save()">按钮</button></div></div>
-		  	<div class="button"><div class="buttonContent"><button onclick="update()">按钮</button></div></div>
-		  	<div class="button"><div class="buttonContent"><button onclick="deleteStructrue()">按钮</button></div></div>
+		  	<div class="button"><div class="buttonContent"><button onclick="save()">新增</button></div></div>
+		  	<div class="button"><div class="buttonContent"><button onclick="update()">更新</button></div></div>
+		  	<div class="button"><div class="buttonContent"><button onclick="deleteStructrue()">删除</button></div></div>
 		  </div>
 		  
 		</form>
@@ -46,15 +47,10 @@
 			}
 		},
 		callback : {
-			onClick : onClick,
 			onMouseUp : onMouseUp
 		}
 	};
 
-	function onClick(e, treeId, treeNode) {
-		var zTree = $.fn.zTree.getZTreeObj("structrueTree");
-		zTree.expandNode(treeNode);
-	}
 	function onMouseUp(event, treeId, treeNode) {
 		$("[name='name']").val(treeNode.name);
 		$("[name='id']").val(treeNode.id);

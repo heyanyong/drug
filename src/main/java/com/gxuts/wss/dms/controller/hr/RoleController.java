@@ -21,6 +21,11 @@ public class RoleController {
 	@Autowired
 	private RoleService roleService;
 
+	@RequestMapping(value = "/show")
+	public String show(RoleInfo user) {
+		System.out.println("UserController show");
+		return "roleList";
+	}
 	@RequestMapping(value = "/save")
 	public String save(RoleInfo user) {
 		System.out.println("UserController save");

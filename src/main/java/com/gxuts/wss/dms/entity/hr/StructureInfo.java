@@ -16,6 +16,12 @@ public class StructureInfo implements Serializable{
 	private Integer pId;
 	
 	 
+	public StructureInfo() {}
+	public StructureInfo(Integer id, String name, Integer pId) {
+		this.id = id;
+		this.name = name;
+		this.pId = pId;
+	}
 	public Integer getpId() {
 		return pId;
 	}

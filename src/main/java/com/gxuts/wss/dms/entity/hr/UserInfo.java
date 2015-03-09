@@ -34,14 +34,17 @@ public class UserInfo implements Serializable {
 	private String phone;
 	private String email;
 	private String remark;
+	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birthday;
+	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date entryDate;
 	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
 	private Date updateTime;
+	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date createDate=new Date();
+	private Date createDate;
 	@ManyToOne(fetch=FetchType.EAGER)
 	private UserInfo createUser;
 	@ManyToOne(fetch=FetchType.EAGER)

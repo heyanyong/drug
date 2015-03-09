@@ -51,11 +51,11 @@
 			</p>
 			 <p>
 				<label>出生日期：</label>
-				<input type="text" name="birthday" class="date" size="30" dateFmt="yyyy-MM-dd"  /><a class="inputDateButton" href="javascript:;">选择</a>
+				<input type="text" name="birthday" class="date" size="30" dateFmt="yyyy-MM-dd" value="${user.birthday}" /><a class="inputDateButton" href="javascript:;">选择</a>
 			</p>
 			 <p>
 				<label>入职日期：</label>
-				<input type="text" name="entryDate" class="date" size="30" dateFmt="yyyy-MM-dd"  /><a class="inputDateButton" href="javascript:;">选择</a>
+				<input type="text" name="entryDate" class="date" size="30" dateFmt="yyyy-MM-dd" value="${user.entryDate}"/><a class="inputDateButton" href="javascript:;">选择</a>
 			</p>
 			<dl class="nowrap">
 				<dt>备 注：</dt>
