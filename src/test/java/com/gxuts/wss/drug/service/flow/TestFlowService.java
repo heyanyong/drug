@@ -72,17 +72,18 @@ public class TestFlowService {
 	//办理
 	@Test
 	public void testDealTask(){
-		flowService.dealTask("12508", "12501", null, "好");
+		int result=flowService.dealTask("12508", "12501", null, "好");
 	}
 	//查批注信息
 	@Test
 	public void testComment(){
-		List<Comment> list=flowService.getCommentByprocessInstance("54");
+		List<Comment> list=flowService.getCommentByprocessInstance("12501");
 		for (Comment c:list) {
 			c.getFullMessage();
 			c.getTime();
 			c.getUserId();
 		}
 	}
+	
 
 }

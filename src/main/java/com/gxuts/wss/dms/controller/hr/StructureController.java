@@ -2,6 +2,8 @@ package com.gxuts.wss.dms.controller.hr;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,4 +39,26 @@ public class StructureController {
 		System.out.println(list);
 		return list;
 	}
+	@RequestMapping(value="save",method={RequestMethod.POST,RequestMethod.GET})
+	@ResponseBody
+	public String save(Model model,HttpServletRequest q){
+		String t=q.getParameter("id");
+		String t3=q.getParameter("name");
+		System.out.println(t);
+		System.out.println(t3);
+		return "structureList";
+	}
+	@RequestMapping(value="update",method={RequestMethod.POST,RequestMethod.GET})
+	@ResponseBody
+	public String update(Model model){
+		System.out.println("update");
+		return "structureList";
+	}
+	@RequestMapping(value="delete",method={RequestMethod.POST,RequestMethod.GET})
+	@ResponseBody
+	public String delete(Model model){
+		System.out.println("delete");
+		return "structureList";
+	}
+	
 }

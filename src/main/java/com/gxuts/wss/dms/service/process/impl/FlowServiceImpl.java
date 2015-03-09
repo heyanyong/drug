@@ -81,14 +81,24 @@ public class FlowServiceImpl implements FlowService {
 		int totalCount=taskService.createTaskQuery().taskAssignee(no).list().size();
 		return new Page<Object[]>(data, currentPage, numPerPage, totalCount);
 	}
-	public void dealTask(String taskId,String processInstanceId, String outcome, String comment) {
+	
+	//0没结束 1结束
+	public int dealTask(String taskId,String processInstanceId, String outcome, String comment) {
 		taskService.addComment(taskId, processInstanceId, comment);
-		taskService.complete(taskId);
+//		taskService.complete(taskId);
 		taskService.setVariable(taskId, "outcome", outcome);
-		
+		ProcessInstance pi = runtimeService.createProcessInstanceQuery()//
+				.processInstanceId(processInstanceId)//使用流程实例ID查询
+				.singleResult();
+		if(pi==null){
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 	public List<Comment> getCommentByprocessInstance(String processInstanceId){
 		List<Comment> list = taskService.getProcessInstanceComments(processInstanceId);
 		return list;
 	}
+	
 }
