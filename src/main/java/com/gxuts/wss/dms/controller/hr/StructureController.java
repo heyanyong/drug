@@ -54,23 +54,23 @@ public class StructureController {
 	}
 	@RequestMapping(value="save",method={RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
-	public String save(Model model,HttpServletRequest q){
-		String t=q.getParameter("id");
-		String t3=q.getParameter("name");
-		System.out.println(t);
-		System.out.println(t3);
+	public String save(Model model,StructureInfo structure){
+		System.out.println(structure);
+		structureService.save(structure);
 		return "structureList";
 	}
 	@RequestMapping(value="update",method={RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
-	public String update(Model model){
-		System.out.println("update");
+	public String update(Model model,StructureInfo structure){
+		System.out.println(structure);
+		structureService.update(structure);
 		return "structureList";
 	}
 	@RequestMapping(value="delete",method={RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
-	public String delete(Model model){
-		System.out.println("delete");
+	public String delete(Model model,StructureInfo structure){
+		System.out.println(structure);
+		structureService.delete(structure);
 		return "structureList";
 	}
 	

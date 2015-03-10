@@ -27,31 +27,26 @@ public class StructureServiceImpl implements StructureService {
 
 	@Override
 	public StructureInfo get(Class<StructureInfo> c, Serializable id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public StructureInfo get(String hql, Map<String, Object> params) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public StructureInfo load(Class<StructureInfo> c, Serializable id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public StructureInfo getObject(String hql, Object[] params) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public int executeHql(String hql) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -80,14 +75,12 @@ public class StructureServiceImpl implements StructureService {
 
 	@Override
 	public void delete(StructureInfo structure) {
-		// TODO Auto-generated method stub
-		
+		structureDao.delete(structure);
 	}
 
 	@Override
 	public void update(StructureInfo structure) {
-		// TODO Auto-generated method stub
-		
+		structureDao.update(structure);
 	}
 
 }

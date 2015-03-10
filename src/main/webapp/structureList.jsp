@@ -16,7 +16,6 @@
 		</div>
 	</div>
 	<div class="col ">
-		<form>
 		  <div class="row">
 		    <label>当前节点：<input name="id" type="text" readonly="readonly" /></label>
 		  </div>
@@ -24,15 +23,11 @@
 		    <label>节点名称：<input name="name" type="text" /></label>
 		  </div>
 		  <div class="row">
-		    <label>节点编号：<input name="name" type="text" /></label>
-		  </div>
-		  <div class="row">
 		  	<div class="button"><div class="buttonContent"><button onclick="save()">新增</button></div></div>
 		  	<div class="button"><div class="buttonContent"><button onclick="update()">更新</button></div></div>
-		  	<div class="button"><div class="buttonContent"><button onclick="deleteStructrue()">删除</button></div></div>
+		  	<div class="button"><div class="buttonContent"><button onclick="deleteNode()">删除</button></div></div>
 		  </div>
 		  
-		</form>
 	</div>
 </div>
 
@@ -40,6 +35,8 @@
 
 
 <script type="text/javascript">
+	var nodeName="";
+	var nodeId="";
 	var setting = {
 		data : {
 			simpleData : {
@@ -54,26 +51,40 @@
 	function onMouseUp(event, treeId, treeNode) {
 		$("[name='name']").val(treeNode.name);
 		$("[name='id']").val(treeNode.id);
-		$("[name='no']").val(treeNode.no);
+		nodeName=treeNode.name;
+		nodeId=treeNode.id;
+		nodePid=treeNode.pId;
 	}
 	
 	function save() {
-		if (confirm("确定要新增当前用户")) {
-			var data={'id':"id",'name':"name",};
-			$.post("structure/save",data,null);
-		}
+		var pId=$("[name='id']").val();
+		var name=$("[name='name']").val();
+		alertMsg.confirm("确定要在\""+nodeName+"\"节点下面新增\""+name+"\"节点吗？", {
+			okCall: function(){
+				var data={'pId':pId,'name':name};
+				$.post("structure/save", data, DWZ.ajaxDone, "json");
+				setTimeout(function(){navTab.reload();},500); 
+			}
+		});
 	}
 	function update() {
-		if (confirm("确定要修改当前用户")) {
-			$("#structrueForm").attr("action", "update");
-			$("#structrueForm").submit();
-		}
+		var name=$("[name='name']").val();
+		alertMsg.confirm("确定要更新\""+nodeName+"\"节点为\""+name+"\"吗？", {
+			okCall: function(){
+				var data={'id':nodeId,'name':name,'pId':nodePid};
+				$.post("structure/update", data, DWZ.ajaxDone, "json");
+				navTab.reload();
+			}
+		});
 	}
-	function deleteStructrue() {
-		if (confirm("确定要修改当前用户")) {
-			$("#structrueForm").attr("action", "delete");
-			$("#structrueForm").submit();
-		}
+	function deleteNode() {
+		alertMsg.confirm("确定要删除\""+nodeName+"\"节点吗？", {
+			okCall: function(){
+				var data={'id':nodeId};
+				$.post("structure/delete", data, DWZ.ajaxDone, "json");
+				setTimeout(function(){navTab.reload();},500);
+			}
+		});
 	}
 	$.ajax({
 		type : "post",
