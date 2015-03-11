@@ -6,7 +6,7 @@ import com.gxuts.wss.dms.dao.BaseDao;
 import com.gxuts.wss.dms.dao.hr.StructureDao;
 import com.gxuts.wss.dms.entity.hr.StructureInfo;
 @Repository("structureDao")
-public class StructureUserDaoImpl extends BaseDao<StructureInfo> implements StructureDao{
+public class StructureDaoImpl extends BaseDao<StructureInfo> implements StructureDao{
 
  
 

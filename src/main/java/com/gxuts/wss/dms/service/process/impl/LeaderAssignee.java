@@ -14,8 +14,6 @@ public class LeaderAssignee implements  TaskListener {
 
 	@Override
 	public void notify(DelegateTask delegateTask) {
-		delegateTask.setVariable("assignee", "test1");
-		delegateTask.setAssignee("主管一");
 		System.out.println("设置上级领导");
 	}
 

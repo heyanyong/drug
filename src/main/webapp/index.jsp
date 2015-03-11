@@ -324,7 +324,7 @@ $(function(){
 					</div>
 					<div class="accordionContent">
 						<ul class="tree">
-							<li><a href="newPage1.html" target="dialog" rel="dlg_page">列表</a></li>
+							<li><a href="menu/show" target="navTab" rel="menuList">菜单设置</a></li>
 						</ul>
 					</div>
 				</div>
