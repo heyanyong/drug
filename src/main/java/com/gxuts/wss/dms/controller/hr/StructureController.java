@@ -34,6 +34,16 @@ public class StructureController {
 	public String page(Model model){
 		return "structureList";
 	}
+	@RequestMapping(value="lookup",method={RequestMethod.POST,RequestMethod.GET})
+	public String lookup(Model model){
+		System.out.println("Structure lookup");
+		List<StructureInfo> result=new ArrayList<StructureInfo>();
+		List<StructureInfo> list=structureService.queryAll();
+		Page<StructureInfo> page=new  Page<StructureInfo>();
+		page.setData(list);
+		model.addAttribute("pages", page);
+		return "structureLookup";
+	}
 	@RequestMapping(value="list",method={RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
 	public List<StructureInfo> query(Model model){
@@ -41,14 +51,6 @@ public class StructureController {
 		List<StructureInfo> result=new ArrayList<StructureInfo>();
 		List<StructureInfo> list=structureService.queryAll();
 		List<UserInfo> users=userService.queryAll(UserInfo.class);
-//		for (int i = 0; i < users.size(); i++) {
-//			for (int j = 0; j < list.size(); j++) {
-//				int uid=users.get(i).getStructure().getId();
-//				int sid=list.get(j).getId();
-//				if(uid==sid){
-//				}
-//			}
-//		}
 		System.out.println(list);
 		return list;
 	}

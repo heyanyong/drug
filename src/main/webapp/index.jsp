@@ -268,14 +268,15 @@ $(function(){
 						    <li><a>组织架构</a>
 								<ul>
 									<li><a href="user/list" target="navTab" rel="userList">用户列表</a></li>
-									<li><a href="userDetail.jsp" target="navTab" rel="userDetail">新增用户</a></li>
-									<li><a href="role/show" target="navTab" rel="roleList">角色管理</a></li>
+									<li><a href="userAdd.jsp" target="navTab" rel="userAdd">新增用户</a></li>
+									<li><a href="role/list" target="navTab" rel="roleList">角色管理</a></li>
 									<li><a href="structure/show" target="navTab" rel="structureList">部门管理</a></li>
 									</ul>
 							</li>
 							<li><a href="demo_page1.html" target="navTab" rel="demo_page1">查询我的客户</a></li>
 							<li><a href="demo_page1.html" target="navTab" rel="demo_page2">表单查询页面</a></li>
 							<li><a href="demo_page4.html" target="navTab" rel="demo_page4">表单录入页面</a></li>
+							<li><a href="demo_page42.html" target="navTab" rel="demo_page42">表单录入页面test</a></li>
 							<li><a href="demo_page5.html" target="navTab" rel="demo_page5">有文本输入的表单</a></li>
 							<li><a href="javascript:;">有提示的表单输入页面</a>
 								<ul>

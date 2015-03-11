@@ -47,7 +47,15 @@ public class RoleController {
 		Page<RoleInfo> pages=roleService.query("from RoleInfo where name like '%"+name+"%'", null, pageNum, 17);
 		model.addAttribute("name", name);
 		model.addAttribute("pages", pages);
-		return "sysroleList";
+		return "roleList";
+	}
+	@RequestMapping(value="lookup",method={RequestMethod.POST,RequestMethod.GET})
+	public String lookup(Model model,String name,Integer pageNum){
+		name=(name==null)? "%":name;
+		Page<RoleInfo> pages=roleService.query("from RoleInfo where name like '%"+name+"%'", null, pageNum, 17);
+		model.addAttribute("name", name);
+		model.addAttribute("pages", pages);
+		return "roleLookup";
 	}
 
 }

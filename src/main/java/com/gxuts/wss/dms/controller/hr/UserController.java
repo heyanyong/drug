@@ -38,6 +38,7 @@ public class UserController {
 //	}
 	@RequestMapping(value="list",method={RequestMethod.POST,RequestMethod.GET})
 	public String query(Model model,String name,Integer pageNum){
+		name=(name==null)? "%":name;
 		Page<UserInfo> pages=userService.query("from UserInfo where name like '%"+name+"%'", null, pageNum, 17);
 		model.addAttribute("name", name);
 		model.addAttribute("pages", pages);
@@ -54,9 +55,7 @@ public class UserController {
 	@RequestMapping(value = "/save",method=RequestMethod.POST)
 	@ResponseBody
 	public Json save(UserInfo user,HttpSession session) {
-		System.out.println("UserController save");
-		CommentClassTest t=new CommentClassTest();
-		t.say();
+		System.out.println("UserController save"+user);
 		user.setCreateDate(new Date());
 		user.setCreateUser((UserInfo)session.getAttribute("loginUser"));
 		userService.save(user);

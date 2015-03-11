@@ -70,8 +70,9 @@ public class MenuInfo implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "StructureInfo [id=" + id + ", name=" + name + ", Pid=" + pId
-				+ "]";
+		return "MenuInfo [id=" + id + ", name=" + name + ", pId=" + pId
+				+ ", isParent=" + isParent + ", open=" + open + ", urlStr="
+				+ urlStr + "]";
 	}
 	 
 }

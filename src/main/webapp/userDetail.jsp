@@ -34,10 +34,10 @@
 				</select>
 			</p>
 			<p>
-				<label>部门：</label> <input type="text"  size="30" value="${user.phone}" />
+				<label>部门：</label> <input type="text"  size="30" name="structure.id" value="${user.structure.name}" />
 			</p>
 			<p>
-				<label>角色：</label> <input type="text"  size="30" value="${user.phone}" />
+				<label>角色：</label> <input type="text"  size="30" value="${user.roles}" />
 			</p>
 			<p>
 				<label>手机：</label> <input type="text" name="phone" size="30" value="${user.phone}" />

@@ -6,7 +6,7 @@
 	<input type="hidden" name="name" value="${name}" />
 </form>
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="user/list" method="post" rel=”pagerForm”>
+	<form onsubmit="return navTabSearch(this);" action="role/list" method="post" rel=”pagerForm”>
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
@@ -47,7 +47,6 @@
 			<tr>
 				<th width="25"></th>
 				<th>账号</th> 
-				<th>性别</th> 
 				<th>创建日期</th>
 			</tr>
 		</thead>
@@ -55,9 +54,8 @@
 		<c:forEach items="${pages.data}" var="e">
 			<tr target="e_id" rel="${e.id}">
 				<td><input type="checkbox" /></td>
-				<td>${e.no}</td>
-				<td><a href="user/edit/${e.id}" target="navTab" rel="user${e.id}" >${e.name}</a></td>
-				<td>${e.createDate}</td>
+				<td>${e.name}</td>
+				<td>${e.id}</td>
 			</tr>
 			</c:forEach>
 		</tbody>
