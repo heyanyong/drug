@@ -2,6 +2,7 @@ package com.gxuts.wss.dms.entity.hr;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -52,7 +53,7 @@ public class UserInfo implements Serializable {
 	@ManyToOne
 	private StructureInfo structure;
 	@ManyToMany(fetch=FetchType.EAGER)
-	private Set<RoleInfo> roles;
+	private List<RoleInfo> roles;
 
 	public UserInfo(){}
 	public UserInfo(Integer id) {
@@ -138,14 +139,14 @@ public class UserInfo implements Serializable {
 		this.structure = structure;
 	}
 
-	public Set<RoleInfo> getRoles() {
+	 
+
+	public List<RoleInfo> getRoles() {
 		return roles;
 	}
-
-	public void setRoles(Set<RoleInfo> roles) {
+	public void setRoles(List<RoleInfo> roles) {
 		this.roles = roles;
 	}
-
 	public String getNo() {
 		return no;
 	}

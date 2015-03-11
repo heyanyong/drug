@@ -23,6 +23,9 @@
 		    <label>节点名称：<input name="name" type="text" /></label>
 		  </div>
 		  <div class="row">
+		    <label>节点URL：<input name="urlStr" type="text" /></label>
+		  </div>
+		  <div class="row">
 		  	<div class="button"><div class="buttonContent"><button onclick="save()">新增</button></div></div>
 		  	<div class="button"><div class="buttonContent"><button onclick="update()">更新</button></div></div>
 		  	<div class="button"><div class="buttonContent"><button onclick="deleteNode()">删除</button></div></div>
@@ -30,9 +33,6 @@
 		  
 	</div>
 </div>
-
-
-
 
 <script type="text/javascript">
 	var nodeName="";
@@ -50,7 +50,8 @@
 
 	function onMouseUp(event, treeId, treeNode) {
 		$("[name='name']").val(treeNode.name);
-		$("[name='id']").val(treeNode.id);
+		$("[name='id']").val(treeNode.id); 
+		$("[name='urlStr']").val(treeNode.urlStr); 
 		nodeName=treeNode.name;
 		nodeId=treeNode.id;
 		nodePid=treeNode.pId;
@@ -59,9 +60,10 @@
 	function save() {
 		var pId=$("[name='id']").val();
 		var name=$("[name='name']").val();
+		var urlStr=$("[name='urlStr']").val();
 		alertMsg.confirm("确定要在\""+nodeName+"\"节点下面新增\""+name+"\"节点吗？", {
 			okCall: function(){
-				var data={'pId':pId,'name':name};
+				var data={'pId':pId,'name':name,'urlStr':urlStr};
 				$.post("menu/save", data, DWZ.ajaxDone, "json");
 				setTimeout(function(){navTab.reload();},500); 
 			}
@@ -69,9 +71,10 @@
 	}
 	function update() {
 		var name=$("[name='name']").val();
+		var urlStr=$("[name='urlStr']").val();
 		alertMsg.confirm("确定要更新\""+nodeName+"\"节点为\""+name+"\"吗？", {
 			okCall: function(){
-				var data={'id':nodeId,'name':name,'pId':nodePid};
+				var data={'id':nodeId,'name':name,'pId':nodePid,'urlStr':urlStr};
 				$.post("menu/update", data, DWZ.ajaxDone, "json");
 				navTab.reload();
 			}

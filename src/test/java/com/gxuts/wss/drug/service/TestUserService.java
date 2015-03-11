@@ -1,8 +1,10 @@
 package com.gxuts.wss.drug.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -25,28 +27,26 @@ public class TestUserService {
 	@Test
 	public void testSaveUser(){
 		UserInfo user=new UserInfo();
-		UserInfo createUser=new UserInfo();
-		createUser.setId(10);
-		user.setName("管理员");
-		user.setNo("NF002");
-		user.setPassword("123");
-		user.setBirthday(new Date());
-//		user.setCreateUser(createUser);
+		user.setName("员工一");
+		user.setNo("NF001");
 		
 		RoleInfo role=new RoleInfo();
-		role.setId(2);
-		Set<RoleInfo> roles=new HashSet();
+		role.setId(1);
+		RoleInfo role2=new RoleInfo();
+		role2.setId(6);
+		List<RoleInfo> roles=new ArrayList<RoleInfo>();
 		roles.add(role);
-//		user.setRoles(roles);
+		roles.add(role2);
+		user.setRoles(roles);
 		userService.save(user);
 	}
 	@Test
 	public void testGet(){
 		Map<String,Object> params=new HashMap<String,Object>();
-		params.put("name", "管理员");
+		params.put("name", "员工一");
 //		params.put("age", "1");
 		UserInfo user=userService.get("from UserInfo u where 1=1 and  u.name=:name ",params);
-		System.out.println(user.getId());
+		System.out.println(user);
 //		System.out.println(user.getRoles());
 	}
 	@Test
@@ -75,5 +75,10 @@ public class TestUserService {
 	public void testGetByNo(){
 		UserInfo user=userService.getByNo(UserInfo.class, "NF007");
 		System.out.println(user.getName());
+	}
+	//查领导
+	@Test
+	public void getLeader(){
+		
 	}
 }
