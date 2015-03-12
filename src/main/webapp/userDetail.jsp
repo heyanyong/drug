@@ -2,13 +2,12 @@
 	pageEncoding="UTF-8"%>
 <script src="js/my.extend.js" type="text/javascript"></script>
 <div class="pageContent">
-	<form id="detailForm" method="post" action="user/save" 
+	<form id="detailForm" method="post" action="user/update" 
 		class="pageForm required-validate"
 		onsubmit="return validateCallback(this, navTabAjaxDone);">
 		<input name="id" value="${user.id}" type="hidden" />
 		<div class="formBar">
 			<ul>
-				<!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
 				<li><div class="buttonActive">
 						<div class="buttonContent">
 							<button type="submit" id="detailSubmit">保存</button>
@@ -34,10 +33,16 @@
 				</select>
 			</p>
 			<p>
-				<label>部门：</label> <input type="text"  size="30" name="structure.id" value="${user.structure.name}" />
+				<label>部门名称：</label>
+				<input type="hidden" name="structure.id" value="${user.structure.id}"/>
+				<input type="text" class="required" name="structure.name" value="${user.structure.name}" />
+				<a class="btnLook"  href="structure/lookup" lookupGroup="orgLookup"  width="300" >查找带回</a>		
 			</p>
 			<p>
-				<label>角色：</label> <input type="text"  size="30" value="${user.roles}" />
+				<label>角色：</label>
+				<input type="hidden" name="userAdd_roleLK.id" value="${roleIds}"/>
+				<input type="text" class="required" name="userAdd_roleLK.orgName" value="${roleNames}"  lookupGroup="userAdd_roleLK" />
+				<a class="btnLook" href="role/lookup" lookupGroup="userAdd_roleLK">查找带回</a>		
 			</p>
 			<p>
 				<label>手机：</label> <input type="text" name="phone" size="30" value="${user.phone}" />
@@ -47,7 +52,7 @@
 			</p>
 			 
 			<p>
-				<label>年龄：</label> <input type="text" name="age" size="30" value="${user.age}"/>
+				<label>年龄：</label> <input type="text" name="age" value="${user.age}"/>
 			</p>
 			 <p>
 				<label>出生日期：</label>
@@ -85,13 +90,3 @@
 			</div>
 	</form>
 </div>
-<script>
-  if("${user.id}"){
-	  $("#detailForm").attr("action","user/update");
-	  $("#detailSubmit").text("更新");
-	  $(".information input").attr("readonly","readonly");
-  }else{
-	  $(".information").remove();
-  }
-
-</script>

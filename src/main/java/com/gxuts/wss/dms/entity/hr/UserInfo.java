@@ -41,6 +41,7 @@ public class UserInfo implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date entryDate;
+	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
 	private Date updateTime;
 	@Temporal(TemporalType.DATE)

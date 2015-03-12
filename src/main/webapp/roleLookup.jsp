@@ -29,8 +29,8 @@
 		<thead>
 			<tr>
 				<th width="30"><input type="checkbox" class="checkboxCtrl" group="orgId" /></th>
-				<th orderfield="orgName">名称</th>
-				<th orderfield="leader">id</th>
+				<th >名称</th>
+				<th >id</th>
 			</tr>
 		</thead>
 		<tbody>

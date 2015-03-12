@@ -49,4 +49,4 @@ function toExport(){
 		navTab.openTab("navTab", "drug/toExport", { title:"生成出库单", fresh:false, data:{ids:chk_value.toString()} });
 	}
 }
- 
+$(".information input").attr("readonly","readonly");

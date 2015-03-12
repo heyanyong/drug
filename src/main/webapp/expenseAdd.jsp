@@ -1,37 +1,127 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<style type="text/css" media="screen">
+.my-uploadify-button {
+	background:none;
+	border: none;
+	text-shadow: none;
+	border-radius:0;
+}
+
+.uploadify:hover .my-uploadify-button {
+	background:none;
+	border: none;
+}
+
+.fileQueue {
+	height: 57px;
+	overflow: auto;
+	border: 1px solid #E5E5E5;
+	margin-bottom: 10px;
+}
+</style>
 <div class="pageContent">
 	<form id="detailForm" method="post" action="expense/save" 
 		class="pageForm required-validate"
 		onsubmit="return validateCallback(this, navTabAjaxDone);">
+		<div class="pageFormContent" layoutH="56">
+			<fieldset>
+				<legend>基本信息</legend>
+			<p>
+				<label>单据编号：</label>
+				<input name="no" type="text"   value="${no}" readonly="readonly" name="no" size="30"/>
+			</p>
+			<p>
+				<label>提交人：</label>
+				<input name="name" class="required" type="text" size="30" readonly="readonly" value="${loginUser.name}"/>
+			</p>
+			<p>
+				<label>提交部门：</label>
+				<input name="structureName" type="text" size="30" readonly="readonly" value="${loginUser.structure.name}"/>
+			</p>
+			<p>
+			<label>付款方式：</label>
+				<select name="type" class="required combox">
+					<option value="">请选择</option>
+					<option value="个人">现金付款</option>
+					<option value="个人">支票付款</option>
+					<option value="公司" selected>银行存款</option>
+				</select>
+			</p>
+			</fieldset>
+			<fieldset>
+				<legend>相关信息</legend>
+			<p>
+				<label>开发人员：</label>
+				<input name="devUser"  type="text" size="30" value="${loginUser.name }"/>
+			</p>
+			<p>
+				<label>开发部门：</label>
+				<input name="devDepartment" value="${loginUser.name }"  type="text" size="30"/>
+			</p>
+			</fieldset>
+			<fieldset>
+				<legend>其它信息</legend>
+			<p>
+				<label>营业执照号：</label>
+				<input type="text" name="certificationNo" size="30" />
+			</p>
+			<p>
+				<label>公司成立日期：</label>
+				<input type="text" name="foundDate" class="date" size="30" /><a class="inputDateButton" href="javascript:;">选择</a>
+			</p>
+			<p>
+				<label>所属行业：</label>
+				<input type="text" name="industry"  size="30" />
+			</p>
+			<p>
+				<label>法人姓名：</label>
+				<input type="text" size="30" name="legalPerson" />
+			</p>
+			<dl class="nowrap">
+				<dt>主要经营产品：</dt>
+				<dd>
+					<textarea name="textarea1" cols="88" rows="2" name="mainBusiness"></textarea>
+				</dd>
+			</dl>
+			<dl class="nowrap">
+				<dt>备注：</dt>
+				<dd>
+					<textarea name="textarea1" cols="88" rows="2" name="remark"></textarea>
+				</dd>
+			</dl>
+			</fieldset>
+			 <fieldset>
+				<legend>附件信息</legend>
+					 <input id="testFileInput2" type="file" name="image2" 
+		uploaderOption="{
+			swf:'uploadify/scripts/uploadify.swf',
+			uploader:'demo/common/ajaxDone.html',
+			formData:{PHPSESSID:'xxx', ajax:1},
+			queueID:'fileQueue',
+			buttonImage:'uploadify/img/add.jpg',
+			buttonClass:'my-uploadify-button',
+			removeCompleted:false, 
+			width:102,
+			auto:true
+		}"
+	/>
+	
+	<div id="fileQueue" class="fileQueue"></div>
+	<!-- 
+	<input type="image" src="uploadify/img/upload.jpg" onclick="$('#testFileInput2').uploadify('upload', '*');"/>
+	<input type="image" src="uploadify/img/cancel.jpg" onclick="$('#testFileInput2').uploadify('cancel', '*');"/>
+ -->
+				
+			</fieldset>
+		</div>
 		<div class="formBar">
 			<ul>
-				<li><div class="buttonActive">
-						<div class="buttonContent">
-							<button type="submit" id="detailSubmit">保存</button>
-						</div>
-					</div></li>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
 			</ul>
-		</div>
-		<div class="pageFormContent" layoutH="56">
-			<p>
-				<label>编号：</label> <input name="no" type="text" value="${no}" size="30"/>
-			</p>
-			<p>
-				<label>姓名：</label> <input name="name" type="text"	size="30"   />
-			</p>
-			 <p>
-				<label>开始日期：</label>
-				<input type="text" name="createDate" class="date" size="30" dateFmt="yyyy-MM-dd"  /><a class="inputDateButton" href="javascript:;">选择</a>
-			</p>
-			<!-- <p>
-				<label>开始日期：</label>
-				<input type="text" name="udateDate" class="date" size="30" dateFmt="yyyy-MM-dd HH:mm:ss"  /><a class="inputDateButton" href="javascript:;">选择</a>
-			</p> -->
-			</div>
+		</div>		
 	</form>
 </div>
-<script>
- 
-
-</script>

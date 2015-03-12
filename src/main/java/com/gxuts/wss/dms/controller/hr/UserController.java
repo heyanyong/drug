@@ -1,5 +1,6 @@
 package com.gxuts.wss.dms.controller.hr;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.gxuts.wss.dms.base.CommentClassTest;
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.Json;
+import com.gxuts.wss.dms.entity.hr.RoleInfo;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.hr.UserService;
 
@@ -54,10 +55,17 @@ public class UserController {
 
 	@RequestMapping(value = "/save",method=RequestMethod.POST)
 	@ResponseBody
-	public Json save(UserInfo user,HttpSession session) {
-		System.out.println("UserController save"+user);
+	public Json save(UserInfo user,HttpSession session,HttpServletRequest q) {
+		String ids=q.getParameter("userAdd_roleLK.id");
+		String[] rids=ids.split(",");
+		List<RoleInfo> roles=new ArrayList<RoleInfo>();
+		for(String i:rids){
+			roles.add(new RoleInfo(Integer.parseInt(i)));
+		}
+		user.setRoles(roles);
 		user.setCreateDate(new Date());
 		user.setCreateUser((UserInfo)session.getAttribute("loginUser"));
+		System.out.println("UserController save"+user);
 		userService.save(user);
 		Json json =new Json("成功","200","userList","userList",null,null);
 		return json;
@@ -85,7 +93,16 @@ public class UserController {
 	}
 	@RequestMapping(value = "/update",method=RequestMethod.POST)
 	@ResponseBody
-	public Json update(UserInfo user) {
+	public Json update(UserInfo user,HttpSession session,HttpServletRequest q) {
+		String ids=q.getParameter("userAdd_roleLK.id");
+		String[] rids=ids.split(",");
+		List<RoleInfo> roles=new ArrayList<RoleInfo>();
+		for(String i:rids){
+			roles.add(new RoleInfo(Integer.parseInt(i)));
+		}
+		user.setRoles(roles);
+		user.setUpdateUser((UserInfo)session.getAttribute("loginUser"));
+		user.setUpdateTime(new Date());
 		userService.update(user);
 		Json json =new Json("更新成功","200","userList","userList",null,null);
 		return json;
@@ -93,6 +110,15 @@ public class UserController {
 	@RequestMapping(value = "/edit/{id}")
 	public String edit(@PathVariable Integer id,Model model) {
 		UserInfo user=userService.get(UserInfo.class, id);
+		List<RoleInfo> roles=user.getRoles();
+		StringBuffer ids = new StringBuffer();
+		StringBuffer roleNames = new StringBuffer();
+		for (RoleInfo r:roles) {
+			ids.append(r.getId()+",");
+			roleNames.append(r.getName()+",");
+		}
+		model.addAttribute("roleIds", ids.substring(0, ids.length()-1));
+		model.addAttribute("roleNames", roleNames.substring(0, roleNames.length()-1));
 		model.addAttribute("user", user);
 		return  "userDetail";
 	}

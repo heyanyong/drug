@@ -40,9 +40,9 @@
 			</p>
 			<p>
 				<label>角色：</label>
-				<input type="hidden" name="orgLookup.id" value="${orgLookup.id}"/>
-				<input type="text" class="required" name="orgLookup.orgName" value=""  lookupGroup="orgLookup" />
-				<a class="btnLook" href="role/lookup" lookupGroup="orgLookup">查找带回</a>		
+				<input type="hidden" name="userAdd_roleLK.id"/>
+				<input type="text" class="required" name="userAdd_roleLK.orgName" value=""  lookupGroup="userAdd_roleLK" />
+				<a class="btnLook" href="role/lookup" lookupGroup="userAdd_roleLK">查找带回</a>		
 			</p>
 			<p>
 				<label>手机：</label> <input type="text" name="phone" size="30" />
@@ -52,7 +52,7 @@
 			</p>
 
 			<p>
-				<label>年龄：</label> <input type="text" name="age" size="30" />
+				<label>年龄：</label> <input type="text" name="age"  />
 			</p>
 			<p>
 				<label>出生日期：</label> <input type="text" name="birthday" class="date"

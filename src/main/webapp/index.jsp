@@ -239,6 +239,7 @@ $(function(){
 									<li><a href="w_checkbox.html" target="navTab" rel="w_checkbox">多选框/单选框</a></li>
 									<li><a href="demo_upload.html" target="navTab" rel="demo_upload">iframeCallback表单提交</a></li>
 									<li><a href="w_uploadify.html" target="navTab" rel="w_uploadify">uploadify多文件上传</a></li>
+									<li><a href="w_uploadify2.html" target="navTab" rel="w_uploadify">uploadify多文件上传</a></li>
 								</ul>
 							</li>
 							<li><a>组合应用</a>

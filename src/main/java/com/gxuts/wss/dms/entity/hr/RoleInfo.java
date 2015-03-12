@@ -13,6 +13,11 @@ public class RoleInfo implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	private String name;
+	
+	public RoleInfo(){}
+	public RoleInfo(Integer id){
+		this.id=id;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -27,7 +32,7 @@ public class RoleInfo implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "RoleInfo [id=" + id + ", name=" + name + "]";
+		return this.name;
 	}
 	
 }
