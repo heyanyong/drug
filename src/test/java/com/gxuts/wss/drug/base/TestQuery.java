@@ -53,8 +53,8 @@ public class TestQuery {
 	@Transactional
 	public void testQueryRelation(){
 		Session session=sessionFactory.getCurrentSession();
-		Criteria criteria =session.createCriteria(UserInfo.class);
-		 criteria.createCriteria("roles").add(Restrictions.like("name", "角色一"));
+		Criteria criteria =session.createCriteria(UserInfo.class).add( Restrictions.eq("structure.id", 4 ) ) ;
+		criteria.createCriteria("roles").add(Restrictions.like("name", "经理"));
 		System.out.println(criteria.list());
 		System.out.println(criteria.list().size());
 	}
@@ -63,12 +63,9 @@ public class TestQuery {
 	@Transactional
 	public void testQueryRelationInfo(){
 		Session session=sessionFactory.getCurrentSession();
-		Query q=session.createQuery("from UserInfo where name like ?");
-		RoleInfo role=new RoleInfo();
-		role.setId(2);
-		q.setParameter(0, "admin");
-		System.out.println(q.list());
-		System.out.println(q.list().size());
+		Query q=session.createQuery("from UserInfo where 1=1");
+		UserInfo user=(UserInfo) q.list().get(0);
+		System.out.println(user);
 	}
 	//分组
 	@Test

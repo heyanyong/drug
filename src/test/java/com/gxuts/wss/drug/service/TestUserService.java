@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.hr.RoleInfo;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.hr.UserService;
@@ -79,6 +80,9 @@ public class TestUserService {
 	//查领导
 	@Test
 	public void getLeader(){
+		int userId=100;
 		
+		UserInfo user=userService.getByHql("from UserInfo where name=:name");
+		System.out.println(user);
 	}
 }
