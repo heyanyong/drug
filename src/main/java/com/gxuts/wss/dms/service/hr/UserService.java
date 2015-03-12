@@ -23,4 +23,5 @@ public interface UserService {
 	public UserInfo getByHql(String hql);
 	public void delete(UserInfo user);
 	public void update(UserInfo user);
+	public void reset(Integer id);
 }

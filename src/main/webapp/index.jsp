@@ -273,6 +273,14 @@ $(function(){
 									<li><a href="structure/show" target="navTab" rel="structureList">部门管理</a></li>
 									</ul>
 							</li>
+						    <li><a>考勤管理</a>
+								<ul>
+									<li><a href="user/list" target="navTab" rel="userList">个人考勤记录</a></li>
+									<li><a href="userAdd.jsp" target="navTab" rel="userAdd">新增用户</a></li>
+									<li><a href="role/list" target="navTab" rel="roleList">角色管理</a></li>
+									<li><a href="structure/show" target="navTab" rel="structureList">部门管理</a></li>
+									</ul>
+							</li>
 							<li><a href="demo_page1.html" target="navTab" rel="demo_page1">查询我的客户</a></li>
 							<li><a href="demo_page1.html" target="navTab" rel="demo_page2">表单查询页面</a></li>
 							<li><a href="demo_page4.html" target="navTab" rel="demo_page4">表单录入页面</a></li>
@@ -302,6 +310,7 @@ $(function(){
 					<div class="accordionContent">
 						<ul class="tree">
 							<li><a href="expense/add" target="navTab" rel="expenseAdd">费用报销</a></li>
+							<li><a href="budget/list" target="navTab" rel="budgetList">部门预算维护</a></li>
 						</ul>
 					</div>
 					<div class="accordionHeader">
@@ -321,11 +330,12 @@ $(function(){
 						</ul>
 					</div>
 					<div class="accordionHeader">
-						<h2><span>Folder</span>系统设置</h2>
+						<h2><span>Folder</span>系统管理</h2>
 					</div>
 					<div class="accordionContent">
 						<ul class="tree">
 							<li><a href="menu/show" target="navTab" rel="menuList">菜单设置</a></li>
+							<li><a href="flow/allTask" target="navTab" rel="allTask">流程跟踪</a></li>
 						</ul>
 					</div>
 				</div>

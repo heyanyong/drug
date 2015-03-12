@@ -44,6 +44,8 @@
 			<li class="line">line</li>
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
 			<li class="line">line</li>
+			<li><a class="icon" href="user/reset/{e_id}" target="navTab"  title="实要导出这些记录吗?"><span>重置</span></a></li>
+			<li class="line">line</li>
 			<li><a class="icon"   target="dwzExport" targetType="navTab"  ><span>查看流程</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon" onclick="navTab.reload();" ><span>刷新列表</span></a></li>

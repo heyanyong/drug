@@ -1,5 +1,6 @@
 package com.gxuts.wss.drug.base;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -92,6 +93,16 @@ public class TestQuery {
 			String hql="from UserInfo where name=? and no=?";
 			String[] params={"李大嘴","NF0001"};
 			UserInfo user=userService.getObject(hql, params);
+			System.out.println(user);
+		}
+		//日期查询
+		@Test
+		@Transactional
+		public void queryByDate(){
+			Session session=sessionFactory.getCurrentSession();
+			Query q=session.createQuery("from UserInfo where updateTime<?");
+			q.setDate(0, new Date());
+			UserInfo user=(UserInfo) q.list().get(0);
 			System.out.println(user);
 		}
 		

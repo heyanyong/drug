@@ -69,6 +69,12 @@ public class UserController {
 		user=userService.get(UserInfo.class, id);
 		return user;
 	}
+	@RequestMapping(value = "/reset/{id}")
+	@ResponseBody
+	public Json reset(@PathVariable Integer id) {
+		userService.reset(id);
+		return new Json("成功","200","userList","userList",null,null);
+	}
 	@RequestMapping(value = "/delete/{id}",method=RequestMethod.POST)
 	@ResponseBody
 	public Json delete(@PathVariable Integer id) {

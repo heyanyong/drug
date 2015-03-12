@@ -91,6 +91,11 @@ public class UserServiceImpl implements UserService {
 		userDao.update(user);
 	}
 
+	@Override
+	public void reset(Integer id) {
+		userDao.executeHql("update UserInfo set password='202cb962ac59075b964b07152d234b70' where id="+id);
+	}
+
 	 
 
 }
