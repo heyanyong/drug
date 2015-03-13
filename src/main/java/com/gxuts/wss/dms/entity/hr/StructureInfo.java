@@ -1,6 +1,7 @@
 package com.gxuts.wss.dms.entity.hr;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +18,7 @@ public class StructureInfo implements Serializable{
 	private Boolean isParent=true;
 	private String icon="images/diy/department.png";
 	private boolean open=true;
+//	private List<String> fileName;
 	
 	 
 	public StructureInfo() {}
@@ -26,6 +28,12 @@ public class StructureInfo implements Serializable{
 		this.pId = pId;
 	}
 	
+//	public List<String> getFileName() {
+//		return fileName;
+//	}
+//	public void setFileName(List<String> fileName) {
+//		this.fileName = fileName;
+//	}
 	public boolean isOpen() {
 		return open;
 	}

@@ -15,14 +15,19 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.gxuts.wss.dms.entity.Json;
 
 @Controller
 @RequestMapping(value = "/upload")
+@ResponseBody
 public class UploadController {
 	@RequestMapping(value="/some",method={RequestMethod.POST,RequestMethod.GET})
-	public void some(HttpServletRequest req,HttpServletResponse response){
+	public Json some(HttpServletRequest req,HttpServletResponse response){
+		System.out.println("file upload++++++++++++");
 		String savePath = req.getSession().getServletContext().getRealPath("");
-	       savePath = savePath + "\\data\\";
+	       savePath = savePath + "\\files\\";
 	       //把文件上传到服务器指定位置，并向前台返回文件名
 	       if(req.getParameter("up")!=null){
 	     	DiskFileItemFactory fac = new DiskFileItemFactory();
@@ -51,10 +56,10 @@ public class UploadController {
 	          	 //将文件存入本地服务器
 	          item.write(file); 
 	          //向前台返回文件名
-	          PrintWriter pw = response.getWriter();
-	          pw.print(name);
-	          pw.close();
-	          pw.flush();
+//	          PrintWriter pw = response.getWriter();
+//	          pw.print(new Json());
+//	          pw.close();
+//	          pw.flush();
 	        } catch (Exception e) {
 	          // TODO Auto-generated catch block
 	          e.printStackTrace();
@@ -64,4 +69,7 @@ public class UploadController {
 		
 		
 	}
-}}
+	       return new Json();
+}
+	
+}

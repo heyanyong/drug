@@ -1,5 +1,8 @@
 package com.gxuts.wss.drug.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,10 @@ public class TestStructureService {
 	@Test
 	public void testSave(){
 		StructureInfo structure=new StructureInfo();
+		List<String> list=new ArrayList<String>();
+		list.add("23");
+		list.add("24");
+		//structure.setFileName(list);
 		structure.setName("业务三部");
 		structureService.save(structure);
 	}

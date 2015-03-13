@@ -14,7 +14,7 @@
 }
 
 .fileQueue {
-	height: 57px;
+	min-height: 58px;
 	overflow: auto;
 	border: 1px solid #E5E5E5;
 	margin-bottom: 10px;
@@ -96,14 +96,17 @@
 					 <input id="testFileInput2" type="file" name="image2" 
 		uploaderOption="{
 			swf:'uploadify/scripts/uploadify.swf',
-			uploader:'demo/common/ajaxDone.html',
-			formData:{PHPSESSID:'xxx', ajax:1},
+			uploader:'upload/some?up=1',
+			formData:{up:'test', ajax:1},
 			queueID:'fileQueue',
 			buttonImage:'uploadify/img/add.jpg',
 			buttonClass:'my-uploadify-button',
 			removeCompleted:false, 
 			width:102,
-			auto:true
+			auto:true,
+			onUploadSuccess:function(file, data, response){
+			  oneFileUp(file, data, response);
+			} 
 		}"
 	/>
 	
@@ -125,3 +128,9 @@
 		</div>		
 	</form>
 </div>
+<script>
+ function oneFileUp(file, data, response) {
+	 f=eval('(' + data + ')');
+	 alert('文件[' + file.name + ']上传成功了,' + response + '返回值:' + f.message);  
+ }
+</script>
