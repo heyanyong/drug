@@ -106,7 +106,8 @@
 			auto:true,
 			onUploadSuccess:function(file, data, response){
 			  oneFileUp(file, data, response);
-			} 
+			},
+			onCancel:function(file){alert(1);} 
 		}"
 	/>
 	
@@ -125,12 +126,18 @@
 					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
 				</li>
 			</ul>
-		</div>		
+		</div>
+				
 	</form>
 </div>
 <script>
+ var row=0;
  function oneFileUp(file, data, response) {
 	 f=eval('(' + data + ')');
-	 alert('文件[' + file.name + ']上传成功了,' + response + '返回值:' + f.message);  
+	 //alert('路径' + f.webPath+ '名字' + f.fileName+ '类型' + f.fileType);  
+	 $("#detailForm").append("<input type='hidden' name='files["+row+"].webPath' value='"+f.webPath+"' />");
+	 $("#detailForm").append("<input type='hidden' name='files["+row+"].fileName' value='"+f.fileName+"' />");
+	 $("#detailForm").append("<input type='hidden' name='files["+row+"].fileType' value='"+f.fileType+"' />");
+	 row++;
  }
 </script>

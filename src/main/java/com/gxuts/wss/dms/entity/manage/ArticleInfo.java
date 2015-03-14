@@ -1,13 +1,20 @@
 
-package com.gxuts.wss.dms.entity.article;
+package com.gxuts.wss.dms.entity.manage;
 
 import java.util.Date;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 @Entity
@@ -15,12 +22,18 @@ public class ArticleInfo{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
+	private String no;
 	private String name;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createDate;
+	@ManyToOne(fetch=FetchType.EAGER)
 	private UserInfo createUser;
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
 	private Date updateDate;
+	@ManyToOne(fetch=FetchType.EAGER)
 	private UserInfo updateUser;
-	@Lob
 	private String content;
 	private String type;
 	
@@ -32,6 +45,13 @@ public class ArticleInfo{
 	}
 	public String getName() {
 		return name;
+	}
+	
+	public String getNo() {
+		return no;
+	}
+	public void setNo(String no) {
+		this.no = no;
 	}
 	public void setName(String name) {
 		this.name = name;
@@ -71,6 +91,11 @@ public class ArticleInfo{
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	@Override
+	public String toString() {
+		return "ArticleInfo [id=" + id + ", name=" + name + ", content="
+				+ content + ", type=" + type + "]";
 	}
 	
 	

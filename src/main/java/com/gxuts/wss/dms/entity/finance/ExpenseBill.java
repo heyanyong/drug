@@ -1,17 +1,21 @@
 package com.gxuts.wss.dms.entity.finance;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.gxuts.wss.dms.entity.hr.UserInfo;
+import com.gxuts.wss.dms.entity.sys.AttaFile;
 @Entity
 public class ExpenseBill {
 	@Id
@@ -24,6 +28,16 @@ public class ExpenseBill {
 	private UserInfo createUser;
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date updateDate;
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<AttaFile> files;
+	
+	
+	public List<AttaFile> getFiles() {
+		return files;
+	}
+	public void setFiles(List<AttaFile> files) {
+		this.files = files;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -62,10 +76,11 @@ public class ExpenseBill {
 	}
 	@Override
 	public String toString() {
-		return "ExpenseBill [id=" + id + ", no=" + no + ", name=" + name
-				+ ", createDate=" + createDate + ", createUser=" + createUser
-				+ ", updateDate=" + updateDate + "]";
+		return "ExpenseBill [id=" + id + ", no=" + no + ", createDate="
+				+ createDate + ", createUser=" + createUser + ", files="
+				+ files + "]";
 	}
+	 
 	
 	
 	

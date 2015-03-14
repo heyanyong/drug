@@ -8,6 +8,7 @@
 
 <link href="themes/default/style.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="themes/css/core.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="themes/css/extend.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="themes/css/print.css" rel="stylesheet" type="text/css" media="print"/>
 <link href="uploadify/css/uploadify.css" rel="stylesheet" type="text/css" media="screen"/>
 <!--[if IE]>
@@ -95,7 +96,7 @@ $(function(){
 	<div id="layout">
 		<div id="header">
 			<div class="headerNav">
-				<a class="logo" href="http://j-ui.com">标志</a>
+				<a class="logo" href="/">标志</a>
 				<ul class="nav">
 					<li id="switchEnvBox"><a href="javascript:">（<span>北京</span>）切换城市</a>
 						<ul>
@@ -172,6 +173,12 @@ $(function(){
 									<li><a href="leave/list" target="navTab" rel="leaveBillList">请假列表</a></li>
 									<li><a href="contract/list" target="navTab" rel="contractList" >采购合同</a></li>
 									<li><a href="demo_page2.html" target="navTab" rel="page2">出库查询</a></li>
+								</ul>
+							</li>
+						<li><a>资讯管理</a>
+								<ul>
+									<li><a href="article/add" target="navTab" rel="articleAdd">新增文章</a></li>
+									<li><a href="article/list" target="navTab" rel="articleList">文章列表</a></li>
 								</ul>
 							</li>
 							<li><a href="tabsPage.html" target="navTab">主框架面板</a>
@@ -359,38 +366,82 @@ $(function(){
 				</ul>
 				<div class="navTab-panel tabsPageContent layoutBox">
 					<div class="page unitBox">
-						<div class="accountInfo">
-							<div class="alertInfo">
-								<p>
-									<a href="https://code.csdn.net/dwzteam/dwz_jui/tree/master/doc"
-										target="_blank" style="line-height: 19px"><span>DWZ框架使用手册</span></a>
-								</p>
+						<div class="pageFormContent" layoutH="60" >
+							<div class="oftenFunction" >
+							  <p><img src="themes/clock.png"  /><span>考勤查询</span></p>
+							  <p><img src="themes/ico06.png" /><span>通讯录查询</span></p>
+							  <p><img src="themes/mail.png" /><span>个人消息</span></p>
+							  <p><img src="themes/ico02.png" /><span>考勤查询</span></p>
+							  <p><img src="themes/d01.png" /><span>考勤查询</span></p>
 							</div>
-							<div class="right">
-								<p style="color: red">
-									DWZ官方微博 <a href="http://weibo.com/dwzui" target="_blank">http://weibo.com/dwzui</a>
-								</p>
+							<div class="lastNews" >
+								<ul>
+								 <li>关于8号文件的通知及各部门工作安排<span>2015-12-01</span></li>
+								 <li>国庆放假通知及各部门工作安排<span>2015-12-01</span></li>
+								 <li>关于8号文件的通知及各部门工作安排<span>2015-12-01</span></li>
+								 <li>关于8号文件的通知及各部门工作安排<span>2015-12-01</span></li>
+								 <li>关于8号文件的通知及各部门工作安排<span>2015-12-01</span></li>
+								</ul>
 							</div>
-							<p>
-								<span>DWZ富客户端框架</span>
-							</p>
-							<p>
-								DWZ官方:<a href="http://weibo.com/dwzui" target="_blank">http://weibo.com</a>
-							</p>
-						</div>
-						<div class="pageFormContent" layoutH="80">
-							<h2>DWZ系列开源项目:</h2>
-							<div class="divider"></div>
-							<div class="panel collapse" minH="100" defH="150"
-								style="position:absolute; bottom:0;">
-								<h1>可折叠默认打开面板</h1>
-								<div>
-									<p>内容</p>
-									<p>内容</p>
-									<p>内容</p>
-								</div>
-							</div>
-						</div>
+							<div class="clear"></div>
+							<div class="taskCenter" >
+							 <div class="pageHeader" style="border:1px #B8D0D6 solid">
+	<form id="pagerForm" onsubmit="return divSearch(this, 'jbsxBox');" action="demo/pagination/list1.html" method="post">
+	<input type="hidden" name="pageNum" value="1" />
+	<input type="hidden" name="numPerPage" value="${model.numPerPage}" />
+	<input type="hidden" name="orderField" value="${param.orderField}" />
+	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
+	<div class="searchBar">
+		<table class="searchContent">
+			<tr>
+				<td>
+					尿检结果：
+					<input type="radio" name="njjg" value="" checked="checked" />全部
+					<input type="radio" name="njjg" value="1"/>阴性
+					<input type="radio" name="njjg" value="2"/>阳性
+				</td>
+				<td>
+					<label>标题：<input type="text" name="keyword" /></label>
+				</td>
+				<td><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></td>
+			</tr>
+		</table>
+	</div>
+	</form>
+</div>
+
+<div class="pageContent" style="border-left:1px #B8D0D6 solid;border-right:1px #B8D0D6 solid">
+<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="demo/pagination/dialog2.html" target="dialog" mask="true"><span>添加尿检检测</span></a></li>
+			<li><a class="delete" href="demo/pagination/ajaxDone3.html?uid={sid_obj}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+		</ul>
+	</div>
+	<table class="table" width="99%"   rel="jbsxBox">
+		<thead>
+			<tr>
+				<th width="80">序号</th>
+				<th width="80">检验次数</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr target="sid_obj" rel="1">
+				<td>1</td>
+				<td>bj0001</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="panelBar">
+		<div class="pages">
+			<span>共50条</span>
+		</div>
+		
+		<div class="pagination" rel="jbsxBox" totalCount="${pages.totalCount}" numPerPage="${pages.numPerPage}" pageNumShown="${pages.pageNumShown}" currentPage="${pages.currentPage}"></div>
+	</div>
+</div>
+</div>
+ <div class="static"><div id="chartHolder"></div></div>
+						</div><!--main-->
 					</div>
 				</div>
 			</div>
@@ -399,4 +450,55 @@ $(function(){
 	</div>
 	<div id="footer">Copyright &copy; 2010 <a href="demo_page2.html" target="dialog">DWZ团队</a> 京ICP备05019125号-10</div>
 </body>
+
+<script type="text/javascript" charset="utf-8">
+/* Title settings */		
+title = "October Browser Statistics";
+titleXpos = 120;
+titleYpos = 22;
+
+/* Pie Data */
+pieRadius = 90;
+pieXpos = 97;
+pieYpos = 150;
+pieData = [1149422, 551315, 172095, 166565, 53329, 18060, 8074, 1941, 1393, 1104, 2110];
+pieLegend = [
+"%%.%% – Firefox", 
+"%%.%% – IExplorer", 
+"%%.%% – Chrome", 
+"%%.%% – Safari", 
+"%%.%% – Opera", 
+"%%.%% – Mozilla", 
+"%%.%% – Mozilla", 
+"%%.%% – Opera Mini", 
+"%%.%% – SeaMonkey", 
+"%%.%% – Camino", 
+"%%.%% – Other"];
+
+pieLegendPos = "east";
+
+$(function () {
+	var r = Raphael("chartHolder");
+	 
+	r.text(titleXpos, titleYpos, title).attr({"font-size": 20});
+	
+	var pie = r.piechart(pieXpos, pieYpos, pieRadius, pieData, {legend: pieLegend, legendpos: pieLegendPos});
+	pie.hover(function () {
+		this.sector.stop();
+		this.sector.scale(1.1, 1.1, this.cx, this.cy);
+		if (this.label) {
+			this.label[0].stop();
+			this.label[0].attr({ r: 7.5 });
+			this.label[1].attr({"font-weight": 800});
+		}
+	}, function () {
+		this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "bounce");
+		if (this.label) {
+			this.label[0].animate({ r: 5 }, 500, "bounce");
+			this.label[1].attr({"font-weight": 400});
+		}
+	});
+	
+});
+</script>
 </html>

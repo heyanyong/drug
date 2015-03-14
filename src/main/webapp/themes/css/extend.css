@@ -1,0 +1,24 @@
+@charset "utf-8";
+/*主页*/
+.oftenFunction,.lastNews,.static,.taskCenter{float: left;border: 1px solid #ccc; margin-left:13px;margin-top:10px;margin-right:4px}
+.oftenFunction{width:60%; height:150px; }
+.oftenFunction img{ display: inline-block;}
+.oftenFunction span{display: block;text-align: center;margin-top:15px;}
+.oftenFunction p{float: left;padding-top:35px;padding-left: 26px;text-align: center; width:100px; height:100px;}
+.lastNews{width:318px;height:118px;line-height:24px; padding: 16px;min-height: 110px;}
+.lastNews li{height:24px;}
+.lastNews span{float: right;font-size: 10px;}
+.clear{clear: both;width:100%;height:1px;}
+.taskCenter{width:60%; height:300px; overflow: atuo;margin-top:15px;}
+.static{width:350px;height:300px;margin-top:15px;}
+
+/*明细样式*/
+.addRowt{margin-left:5px;padding:3px 12px;cursor: pointer; border: 1px solid #ccc;letter-spacing:1px;}
+.delRowt{margin-left:5px;padding:3px 12px;cursor: pointer; border: 1px solid #ccc;letter-spacing:1px;}
+.addRowt:hover,.delRowt:hover {border: 2px solid #bbb;}
+
+/*文章*/
+.article h2{text-align: center;margin:10px;font-size: 18px;}
+.article .base{margin:auto auto;text-align: center;}
+.article .base span{margin:5px; padding-right:10px}
+.article .content{padding-top:20px;overflow:auto;margin-left:80px;}

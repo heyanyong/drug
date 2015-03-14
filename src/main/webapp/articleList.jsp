@@ -7,7 +7,7 @@
 </form>
 
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="supplier/list" method="post">
+	<form onsubmit="return navTabSearch(this);" action="article/list" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
@@ -30,33 +30,39 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="supplierAdd.jsp" target="navTab"><span>添加</span></a></li>
-			<li><a class="delete" href="supplier/delete/{e_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="add" href="articleAdd.jsp" target="navTab"><span>添加</span></a></li>
+			<li><a class="delete" href="article/delete/{e_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
 			<li><a class="edit" href="echase/edit/{e_id}" target="navTab"><span>修改</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
 			<li class="line">line</li>
-			<li><a class="icon" href="contract/fromPurchase?echaseId={e_id}" target="navTab" targetType="navTab"> <span>生成采购合同</span></a></li>
+			<li><a class="icon" href="article/fromPurchase?echaseId={e_id}" target="navTab" targetType="navTab"> <span>生成采购合同</span></a></li>
 			<li class="line">line</li>
-			<li><a class="icon" href="contract/fromPurchase?echaseId={e_id}" target="navTab" targetType="navTab"> <span>查看流程</span></a></li>
+			<li><a class="icon" href="article/fromPurchase?echaseId={e_id}" target="navTab" targetType="navTab"> <span>查看流程</span></a></li>
+			<li class="line">line</li>
+			<li><a class="icon" href="article/view/{e_id}" target="navTab" > <span>查看</span></a></li>
 		</ul>
 	</div>
 	<table class="table" width="100%" layoutH="138">
 		<thead>
 			<tr>
-				<th width="80"></th>
-				<th width="120">客户号</th>
-				<th>客户名称</th>
-				<th width="100">客户类型</th>
+				<th ></th>
+				<th >分类</th>
+				<th>标题</th>
+				<th>编号</th>
+				<th width="100">创建日期</th>
+				<th width="100">创建者</th>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${pages.data}" var="e">
 			<tr target="e_id" rel="${e.id}">
 				<td></td>
-				<td>${e.no}</td>
+				<td>${e.type}</td>
 				<td>${e.name}</td>
-				<td>1</td>
+				<td>${e.no}</td>
+				<td>${e.createDate}</td>
+				<td>${e.createUser.name}</td>
 			</tr>
 			</c:forEach>
 		</tbody>
