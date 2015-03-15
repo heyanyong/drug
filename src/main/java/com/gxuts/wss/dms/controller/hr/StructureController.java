@@ -46,12 +46,14 @@ public class StructureController {
 	}
 	@RequestMapping(value="list",method={RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
-	public List<StructureInfo> query(Model model){
-		System.out.println("Structure list");
-		List<StructureInfo> result=new ArrayList<StructureInfo>();
+	public List<StructureInfo> query(String all){
 		List<StructureInfo> list=structureService.queryAll();
-		List<UserInfo> users=userService.queryAll(UserInfo.class);
-		System.out.println(list);
+		if(all!=null){
+			List<UserInfo> users=userService.queryAll(UserInfo.class);
+			for(UserInfo u:users){
+				list.add(new StructureInfo(u.getId()+100, u.getName(), u.getStructure().getId(),false));
+			}
+		}
 		return list;
 	}
 	@RequestMapping(value="save",method={RequestMethod.POST,RequestMethod.GET})

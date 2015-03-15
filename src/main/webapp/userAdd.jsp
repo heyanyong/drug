@@ -35,13 +35,13 @@
 			<p>
 				<label>部门名称：</label>
 				<input type="hidden" name="structure.id"/>
-				<input type="text" class="required" name="structure.name" />
+				<input type="text" class="required" name="structure.name" size="30"/>
 				<a class="btnLook"  href="structure/lookup" lookupGroup="structure"  width="300" >查找带回</a>		
 			</p>
 			<p>
 				<label>角色：</label>
 				<input type="hidden" name="userAdd_roleLK.id"/>
-				<input type="text" class="required" name="userAdd_roleLK.orgName" value=""  lookupGroup="userAdd_roleLK" />
+				<input type="text" class="required" name="userAdd_roleLK.orgName" value="" size="30"  lookupGroup="userAdd_roleLK" />
 				<a class="btnLook" href="role/lookup" title="角色" lookupGroup="userAdd_roleLK">查找带回</a>		
 			</p>
 			<p>
@@ -52,7 +52,7 @@
 			</p>
 
 			<p>
-				<label>年龄：</label> <input type="text" name="age"  />
+				<label>年龄：</label> <input type="text" name="age" size="30" />
 			</p>
 			<p>
 				<label>出生日期：</label> <input type="text" name="birthday" class="date"

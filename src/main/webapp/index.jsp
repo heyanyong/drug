@@ -5,12 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>DMS</title>
-
+ <link rel="stylesheet" href="themes/zTreeStyle.css" type="text/css" />
 <link href="themes/default/style.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="themes/css/core.css" rel="stylesheet" type="text/css" media="screen"/>
-<link href="themes/css/extend.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="themes/css/print.css" rel="stylesheet" type="text/css" media="print"/>
 <link href="uploadify/css/uploadify.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="themes/css/extend.css" rel="stylesheet" type="text/css" media="screen"/>
 <!--[if IE]>
 <link href="themes/css/ieHack.css" rel="stylesheet" type="text/css" media="screen"/>
 <![endif]-->
@@ -71,7 +71,7 @@
 <script src="bin/dwz.min.js" type="text/javascript"></script>
 -->
 <script src="js/dwz.regional.zh.js" type="text/javascript"></script>
-
+<script src="themes/jquery.ztree.core-3.5.js"></script>
 <script type="text/javascript">
 $(function(){
 	DWZ.init("dwz.frag.xml", {

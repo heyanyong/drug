@@ -1,15 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- <link rel="stylesheet" href="themes/zTreeStyle.css" type="text/css">
-<script src="themes/jquery.ztree.core-3.5.js"></script>
 <div class="pageContent">
 	<div class="pageFormContent" layoutH="58">
 		<div>
 			<ul id="structrueULKTree" class="ztree"></ul>
 		</div>
-
-
 	</div>
 	<div class="formBar">
 		<ul>

@@ -15,17 +15,18 @@ public class StructureInfo implements Serializable{
 	private Integer id;
 	private String name;
 	private Integer pId;
-	private Boolean isParent=true;
+	private Boolean isParent;
 	private String icon="images/diy/department.png";
 	private boolean open=true;
 //	private List<String> fileName;
 	
 	 
 	public StructureInfo() {}
-	public StructureInfo(Integer id, String name, Integer pId) {
+	public StructureInfo(Integer id, String name, Integer pId,Boolean isParent) {
 		this.id = id;
 		this.name = name;
 		this.pId = pId;
+		this.isParent=isParent;
 	}
 	
 //	public List<String> getFileName() {
