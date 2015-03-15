@@ -175,6 +175,14 @@ $(function(){
 									<li><a href="demo_page2.html" target="navTab" rel="page2">出库查询</a></li>
 								</ul>
 							</li>
+							<li><a>考勤管理</a>
+								<ul>
+									<li><a href="sign/list" target="navTab" rel="signList">个人考勤记录</a></li>
+									<li><a href="userAdd.jsp" target="navTab" rel="userAdd">新增用户</a></li>
+									<li><a href="role/list" target="navTab" rel="roleList">角色管理</a></li>
+									<li><a href="structure/show" target="navTab" rel="structureList">部门管理</a></li>
+									</ul>
+							</li>
 						<li><a>资讯管理</a>
 								<ul>
 									<li><a href="article/add" target="navTab" rel="articleAdd">新增文章</a></li>
@@ -211,6 +219,7 @@ $(function(){
 									<li><a href="w_editor.html" target="navTab" rel="w_editor">编辑器</a></li>
 									<li><a href="w_datepicker.html" target="navTab" rel="w_datepicker">日期控件</a></li>
 									<li><a href="demo/database/db_widget.html" target="navTab" rel="db">suggest+lookup+主从结构</a></li>
+									<li><a href="demo/database/treeBringBack.html" target="navTab" rel="db">tree查找带回</a></li>
 									<li><a href="demo/database/treeBringBack.html" target="navTab" rel="db">tree查找带回</a></li>
 									<li><a href="demo/sortDrag/1.html" target="navTab" rel="sortDrag">单个sortDrag示例</a></li>
 									<li><a href="demo/sortDrag/2.html" target="navTab" rel="sortDrag">多个sortDrag示例</a></li>
@@ -281,14 +290,19 @@ $(function(){
 									<li><a href="structure/show" target="navTab" rel="structureList">部门管理</a></li>
 									</ul>
 							</li>
-						    <li><a>考勤管理</a>
+						    <li><a>用人需求</a>
 								<ul>
-									<li><a href="user/list" target="navTab" rel="userList">个人考勤记录</a></li>
-									<li><a href="userAdd.jsp" target="navTab" rel="userAdd">新增用户</a></li>
-									<li><a href="role/list" target="navTab" rel="roleList">角色管理</a></li>
-									<li><a href="structure/show" target="navTab" rel="structureList">部门管理</a></li>
+									<li><a href="user/list" target="navTab" rel="userList">用人需求</a></li>
+									<li><a href="userAdd.jsp" target="navTab" rel="userAdd">需求报表</a></li>
 									</ul>
 							</li>
+						    <li><a>离职申请</a>
+								<ul>
+									<li><a href="user/list" target="navTab" rel="userList">离职申请</a></li>
+									<li><a href="userAdd.jsp" target="navTab" rel="userAdd">离职报表</a></li>
+									</ul>
+							</li>
+						    
 							<li><a href="demo_page1.html" target="navTab" rel="demo_page1">查询我的客户</a></li>
 							<li><a href="demo_page1.html" target="navTab" rel="demo_page2">表单查询页面</a></li>
 							<li><a href="demo_page4.html" target="navTab" rel="demo_page4">表单录入页面</a></li>
@@ -368,79 +382,62 @@ $(function(){
 					<div class="page unitBox">
 						<div class="pageFormContent" layoutH="60" >
 							<div class="oftenFunction" >
-							  <p><img src="themes/clock.png"  /><span>考勤查询</span></p>
-							  <p><img src="themes/ico06.png" /><span>通讯录查询</span></p>
-							  <p><img src="themes/mail.png" /><span>个人消息</span></p>
-							  <p><img src="themes/ico02.png" /><span>考勤查询</span></p>
-							  <p><img src="themes/d01.png" /><span>考勤查询</span></p>
+							  <p><a href="sign/list?show=dialog" target="dialog" height="300" rel="signListDialog" title="考勤查询"><img src="themes/clock.png"  /></a><span>考勤查询</span></p>
+							  <p><a href="user/list?show=dialog" target="dialog" height="300" rel="userListDialog" title="通讯录查询"><img src="themes/ico06.png" /></a><span>通讯录查询</span></p>
+							  <p><a href="user/list?show=dialog" target="dialog" height="300" rel="userListDialog1" title="个人消息"><img src="themes/mail.png" /></a><span>个人消息</span></p>
+							  <p><a href="user/list?show=dialog" target="dialog" height="300" rel="userListDialog2" title="工作日历"><img src="themes/ico02.png" /></a><span>工作日历</span></p>
+							  <p><a href="user/list?show=dialog" target="dialog" height="300" rel="userListDialog3" title="文档记录"><img src="themes/d01.png" /></a><span>文档记录</span></p>
 							</div>
 							<div class="lastNews" >
 								<ul>
-								 <li>关于8号文件的通知及各部门工作安排<span>2015-12-01</span></li>
-								 <li>国庆放假通知及各部门工作安排<span>2015-12-01</span></li>
-								 <li>关于8号文件的通知及各部门工作安排<span>2015-12-01</span></li>
-								 <li>关于8号文件的通知及各部门工作安排<span>2015-12-01</span></li>
-								 <li>关于8号文件的通知及各部门工作安排<span>2015-12-01</span></li>
+								 <li><a href="">关于8号文件的通知及各部门工作安排</a><span>2015-12-01</span></li>
+								 <li><a href="">国庆放假通知及各部门工作安排</a><span>2015-12-01</span></li>
+								 <li><a href="">关于8号文件的通知及各部门工作安排</a><span>2015-12-01</span></li>
+								 <li><a href="">关于8号文件的通知及各部门工作安排</a><span>2015-12-01</span></li>
+								 <li><a href="">关于8号文件的通知及各部门工作安排</a><span>2015-12-01</span></li>
 								</ul>
 							</div>
 							<div class="clear"></div>
-							<div class="taskCenter" >
-							 <div class="pageHeader" style="border:1px #B8D0D6 solid">
-	<form id="pagerForm" onsubmit="return divSearch(this, 'jbsxBox');" action="demo/pagination/list1.html" method="post">
-	<input type="hidden" name="pageNum" value="1" />
-	<input type="hidden" name="numPerPage" value="${model.numPerPage}" />
-	<input type="hidden" name="orderField" value="${param.orderField}" />
-	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
-	<div class="searchBar">
-		<table class="searchContent">
-			<tr>
-				<td>
-					尿检结果：
-					<input type="radio" name="njjg" value="" checked="checked" />全部
-					<input type="radio" name="njjg" value="1"/>阴性
-					<input type="radio" name="njjg" value="2"/>阳性
-				</td>
-				<td>
-					<label>标题：<input type="text" name="keyword" /></label>
-				</td>
-				<td><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></td>
-			</tr>
-		</table>
-	</div>
-	</form>
-</div>
+							<div class="taskCenter">
+								<form id="pagerForm"
+									onsubmit="return divSearch(this, 'jbsxBox');"
+									action="demo/pagination/list1.html" method="post">
+									<div class="pageContent" >
+										<input type="hidden" name="pageNum" value="1" /> 
+										<input	type="hidden" name="numPerPage" value="${model.numPerPage}" />
+										<div class="panelBar" style="height:30px;">
+											<ul class="toolBar">
+												<li><a class="icon" href=""><span>待办</span></a></li>
+												<li class="line">line</li>
+												<li><a class="icon" href=""><span>已办</span></a></li>
+												<li class="line">line</li>
+												<li><input type="text" name="name" /></li>
+												<li><div class="buttonActive"><div class="buttonContent">	<button type="submit">查 询</button></div></div></li>
+											</ul>
+										</div>
 
-<div class="pageContent" style="border-left:1px #B8D0D6 solid;border-right:1px #B8D0D6 solid">
-<div class="panelBar">
-		<ul class="toolBar">
-			<li><a class="add" href="demo/pagination/dialog2.html" target="dialog" mask="true"><span>添加尿检检测</span></a></li>
-			<li><a class="delete" href="demo/pagination/ajaxDone3.html?uid={sid_obj}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-		</ul>
-	</div>
-	<table class="table" width="99%"   rel="jbsxBox">
-		<thead>
-			<tr>
-				<th width="80">序号</th>
-				<th width="80">检验次数</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr target="sid_obj" rel="1">
-				<td>1</td>
-				<td>bj0001</td>
-			</tr>
-		</tbody>
-	</table>
-	<div class="panelBar">
-		<div class="pages">
-			<span>共50条</span>
-		</div>
-		
-		<div class="pagination" rel="jbsxBox" totalCount="${pages.totalCount}" numPerPage="${pages.numPerPage}" pageNumShown="${pages.pageNumShown}" currentPage="${pages.currentPage}"></div>
-	</div>
-</div>
-</div>
- <div class="static"><div id="chartHolder"></div></div>
+										<table class="table" width="100%"   rel="jbsxBox">
+											<thead>
+											</thead>
+											<tbody>
+												<tr target="sid_obj" rel="1">
+													<td width="20">1</td>
+													<td>bj0001</td>
+												</tr>
+											</tbody>
+										</table>
+										<div class="panelBar">
+											<div class="pages">
+												<span>共50条</span>
+											</div>
+
+		<div class="pagination" rel="jbsxBox"	totalCount="${pages.totalCount}"	numPerPage="${pages.numPerPage}"
+		pageNumShown="${pages.pageNumShown}"	currentPage="${pages.currentPage}"></div>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="static"><div id="chartHolder"></div></div>
 						</div><!--main-->
 					</div>
 				</div>
@@ -448,18 +445,17 @@ $(function(){
 		</div>
 
 	</div>
-	<div id="footer">Copyright &copy; 2010 <a href="demo_page2.html" target="dialog">DWZ团队</a> 京ICP备05019125号-10</div>
+	<div id="footer">Copyright &copy; 2010 <a href="demo_page2.html" target="dialog">XX科技有限公司版权所有</a></div>
 </body>
 
 <script type="text/javascript" charset="utf-8">
-/* Title settings */		
 title = "October Browser Statistics";
-titleXpos = 120;
+titleXpos = 180;
 titleYpos = 22;
 
 /* Pie Data */
-pieRadius = 90;
-pieXpos = 97;
+pieRadius = 85;
+pieXpos = 94;
 pieYpos = 150;
 pieData = [1149422, 551315, 172095, 166565, 53329, 18060, 8074, 1941, 1393, 1104, 2110];
 pieLegend = [

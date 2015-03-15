@@ -36,13 +36,13 @@
 				<label>部门名称：</label>
 				<input type="hidden" name="structure.id"/>
 				<input type="text" class="required" name="structure.name" />
-				<a class="btnLook"  href="structure/lookup" lookupGroup="orgLookup"  width="300" >查找带回</a>		
+				<a class="btnLook"  href="structure/lookup" lookupGroup="structure"  width="300" >查找带回</a>		
 			</p>
 			<p>
 				<label>角色：</label>
 				<input type="hidden" name="userAdd_roleLK.id"/>
 				<input type="text" class="required" name="userAdd_roleLK.orgName" value=""  lookupGroup="userAdd_roleLK" />
-				<a class="btnLook" href="role/lookup" lookupGroup="userAdd_roleLK">查找带回</a>		
+				<a class="btnLook" href="role/lookup" title="角色" lookupGroup="userAdd_roleLK">查找带回</a>		
 			</p>
 			<p>
 				<label>手机：</label> <input type="text" name="phone" size="30" />

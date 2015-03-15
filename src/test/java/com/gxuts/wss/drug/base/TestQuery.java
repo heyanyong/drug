@@ -101,7 +101,7 @@ public class TestQuery {
 		public void queryByDate(){
 			Session session=sessionFactory.getCurrentSession();
 			Query q=session.createQuery("from UserInfo where updateTime<?");
-			q.setDate(0, new Date());
+//			q.setDate(0, new Date());
 			UserInfo user=(UserInfo) q.list().get(0);
 			System.out.println(user);
 		}

@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.gxuts.wss.dms.entity.hr.UserInfo;
+import com.gxuts.wss.dms.util.DateUtil;
 
 
 public class TestGrammar {
@@ -53,13 +54,6 @@ public class TestGrammar {
 		}
 	}
 	 public static void main(String[] args) {
-			
-			try {
-				System.out.println(Class.forName("UserInfo").newInstance());
-			} catch (InstantiationException | IllegalAccessException
-					| ClassNotFoundException e) {
-				e.printStackTrace();
-			}
 			
 			
 		}

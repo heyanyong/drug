@@ -38,11 +38,15 @@ public class UserController {
 //		return "userList";
 //	}
 	@RequestMapping(value="list",method={RequestMethod.POST,RequestMethod.GET})
-	public String query(Model model,String name,Integer pageNum){
+	public String query(Model model,String name,Integer pageNum,HttpServletRequest request){
+		String target=request.getParameter("show");
 		name=(name==null)? "%":name;
 		Page<UserInfo> pages=userService.query("from UserInfo where name like '%"+name+"%'", null, pageNum, 17);
 		model.addAttribute("name", name);
 		model.addAttribute("pages", pages);
+		if("dialog".equals(target)){
+			return "userListDialog";
+		}
 		return "userList";
 	}
 	@RequestMapping(value="lookup",method={RequestMethod.POST,RequestMethod.GET})

@@ -8,18 +8,19 @@
 <div class="pageHeader">
 	<form rel="pagerForm" method="post" action="role/lookup" onsubmit="return dwzSearch(this, 'dialog');">
 	<div class="searchBar">
-		<ul class="searchContent">
-			<li>
-				<label>名称:</label>
-				<input class="textInput" name="name" value="" type="text">
-			</li>	  
-		</ul>
-		<div class="subBar">
-			<ul>
-				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
-				<li><div class="button"><div class="buttonContent"><button type="button" multLookup="orgId" warn="请选择部门">选择带回</button></div></div></li>
-			</ul>
-		</div>
+	<table class="searchContent">
+			<tr>
+				<td>
+					角色名：<input type="text"   name="name" />
+				</td>
+				<td>
+					<div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div>
+				</td>
+				<td>
+					<div class="button"><div class="buttonContent"><button type="button" multLookup="orgId" warn="请勾选角色">选择带回</button></div></div>
+				</td>
+			</tr>
+		</table>
 	</div>
 	</form>
 </div>
@@ -29,8 +30,7 @@
 		<thead>
 			<tr>
 				<th width="30"><input type="checkbox" class="checkboxCtrl" group="orgId" /></th>
-				<th >名称</th>
-				<th >id</th>
+				<th >角色名</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -38,7 +38,6 @@
 			<tr>
 				<td><input type="checkbox" name="orgId" value="{id:'${e.id}', orgName:'${e.name}'}"/></td>
 				<td>${e.name}</td>
-				<td>${e.id}</td>
 			</tr>
 			</c:forEach>
 		</tbody>

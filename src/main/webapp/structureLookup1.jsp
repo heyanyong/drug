@@ -3,21 +3,20 @@
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  <link rel="stylesheet" href="themes/zTreeStyle.css" type="text/css">
 <script src="themes/jquery.ztree.core-3.5.js"></script>
-<div class="pageContent">
-	<div class="pageFormContent" layoutH="58">
-		<div>
-			<ul id="structrueULKTree" class="ztree"></ul>
-		</div>
-
-
+<div class="pageContent" style="background: #eef4f5;">
+	<div >
+		<ul id="structrueULKTree" class="ztree"></ul>
 	</div>
 	<div class="formBar">
-		<ul>
-			<li><div class="button"><div class="buttonContent"><button class="close" type="button">关闭</button></div></div></li>
-		</ul>
-	</div>
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button class="close">确认</button></div></div></li>
+			</ul>
+		</div>
+
 </div>
 <script type="text/javascript">
+	var nodeName="";
+	var nodeId="";
 	var setting = {
 		data : {
 			simpleData : {
@@ -26,12 +25,15 @@
 		},
 		callback : {
 			onMouseUp : onMouseUp
-		} 
+		}
 	};
+
 	function onMouseUp(event, treeId, treeNode) {
-		$.bringBack({id:treeNode.id, name:treeNode.name});
+		$("[name='structure.id']").val(treeNode.id);
+		$("[name='structure.name']").val(treeNode.name);
 	}
 	
+	 
 	$.ajax({
 		type : "post",
 		url : "structure/list",
@@ -40,4 +42,7 @@
 			$.fn.zTree.init($("#structrueULKTree"), setting, data);
 		}
 	});
+	var outh =$(".dialogContent").height();
+	$("#structrueULKTree").height(outh-50);
+	
 </script>

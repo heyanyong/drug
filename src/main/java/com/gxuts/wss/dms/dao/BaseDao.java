@@ -130,12 +130,8 @@ public class BaseDao<T> implements BaseDaoI<T> {
 	
 	@SuppressWarnings("unchecked")
 	public Page<T> query(String hql, Map<String, Object> params, Integer currentPage, Integer numPerPage) {
-		if(currentPage==null){
-			currentPage=1;
-		}
-		if(numPerPage==null){
-			numPerPage=17;
-		}
+		currentPage=currentPage==null? 1:currentPage; 
+		numPerPage=numPerPage==null? 17:numPerPage;
 		Page<T> page=new Page<T>();
 		Query q =  getSession().createQuery(hql);
 		if (params != null && !params.isEmpty()) {

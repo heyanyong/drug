@@ -1,5 +1,7 @@
 package com.gxuts.wss.dms.controller.business;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +58,12 @@ public class SupplierController {
 		Json json = new Json("成功", "200", "supplierList", "supplierList", null,
 				null);
 		return json;
+	}
+	@RequestMapping(value="add")
+	public String add(Model m){
+		long no=new Date().getTime();
+		m.addAttribute("no", "GYS"+no);
+		return "supplierAdd";
 	}
 
 }

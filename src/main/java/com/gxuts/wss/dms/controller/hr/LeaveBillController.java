@@ -1,6 +1,7 @@
 package com.gxuts.wss.dms.controller.hr;
 
 import java.util.Date;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,6 +19,7 @@ import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.hr.LeaveBill;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.hr.LeaveBillService;
+import com.gxuts.wss.dms.util.DateUtil;
 
 @Controller
 @RequestMapping(value = "/leave")
@@ -71,8 +73,8 @@ public class LeaveBillController {
 	}
 	@RequestMapping(value="add")
 	public String add(Model m){
-		long no=new Date().getTime();
-		m.addAttribute("no", "QJ"+no);
+		
+		m.addAttribute("no", "QJ"+DateUtil.date2String(new Date(), "yyMMddHHmmss")+new Random().nextInt(100));
 		return "leaveBillAdd";
 	}
 }

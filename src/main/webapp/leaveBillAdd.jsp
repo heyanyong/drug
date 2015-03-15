@@ -4,7 +4,6 @@
 	<form id="detailForm" method="post" action="leave/save" 
 		class="pageForm required-validate"
 		onsubmit="return validateCallback(this, navTabAjaxDone);">
-		<input name="id" value="${user.id}" type="hidden" />
 		<div class="formBar">
 			<ul>
 				<li><a class="buttonActive" href="javascript:saveBill('detailForm');"><span>暂存</span></a></li>
@@ -30,10 +29,10 @@
 			</p>
 			<p>
 				<label>结束日期：</label>
-				<input type="text" name="endDate" class="date required" size="30" dateFmt="yyyy-MM-dd HH:mm:ss"  /><a class="inputDateButton" href="javascript:;">选择</a>
+				<input type="text" name="endDate"  class="date required" size="30" dateFmt="yyyy-MM-dd HH:mm:ss"  /><a class="inputDateButton" href="javascript:;">选择</a>
 			</p>
 			<p>
-				<label>总小时数：</label> <input type="text"   size="30" name="hours"  />
+				<label>总小时数：</label> <input type="text" oninput="calculateHour()"   size="30" name="structure.name"  />
 			</p>
 			<p>
 				<label>请假类型：</label> <select name="type" class="combox">
@@ -86,6 +85,10 @@
  function dealBill(form){
 	 $("#"+form).attr("action","leave/deal");
 	 $("#"+form).submit();
+ }
+ function calculateHour(){
+	 alert(2);
+	 
  }
 
 </script>

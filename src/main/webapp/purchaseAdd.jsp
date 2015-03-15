@@ -1,18 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<style>
-  .editTable{}
-  .editTable th{text-align: center; font-size: 12px;}
-</style>
-
 <div class="pageContent">
 	<form method="get" action="purchase/save"
 		class="pageForm required-validate"
 		onsubmit="return validateCallback(this, navTabAjaxDone);">
 		<div class="formBar">
 			<ul>
-				<!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
 				<li><div class="buttonActive">
 						<div class="buttonContent">
 							<button type="submit">保存</button>
@@ -76,39 +70,40 @@
 				</select> 
 			</p>
 			<dl class="nowrap">
+			<dt>附件：</dt>
+			<dd>
+				<input name="attachment.id" value="" type="hidden">
+				<input class="readonly" name="attachment.fileName" value="" readonly="readonly" type="text"/>
+				<a class="btnAttach" href="demo/database/db_attachmentLookup.html" lookupGroup="attachment" width="560" height="300" title="附件">附件</a>
+				<span class="info">(点击上传文件)</span>
+			</dd>
+		</dl>
+			<dl class="nowrap">
 				<dt>备注：</dt>
 				<dd>
 					<textarea name="remark" cols="95" rows="2"></textarea>
 				</dd>
 			</dl>
 			<div class="divider"></div>
-			<div class="panel collapse" minH="100" >
-				<h1>药品明细 <span class="addRowt"   onclick="addRow('purchaseAddsub');">添加行<b>+</b></span><span class="delRowt" onclick="removeRow('purchaseAddsub');">删除行-</span></h1>
+			<div class="panel collapse" minH="180" >
+				<h1>药品明细 </h1>
 				<div>
-					<table class="editTable" id="purchaseAddsub">
-							<thead>
-								<tr>
-									<th>&nbsp;</th>
-									<th>编号</th>
-									<th>名称</th>
-									<th>需求数量</th>
-									<th>单位</th>
-									<th>规格</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td><input type="checkbox" name="rowHead" /></td>
-									<td><input type="text" name="drugs[0].no"  /></td>
-									<td><input type="text" name="drugs[0].name"  /></td>
-									<td><input type="text" name="drugs[0].requestNumber"  /></td>
-									<td><input type="text" name="unit"  size="10"/></td>
-									<td><input type="text" name="looks"  size="30"/></td>
-								</tr>
-
-							</tbody>
-						</table>
-				
+					<table class="list nowrap itemDetail" addButton="新建从表1条目" width="100%">
+						<thead>
+							<tr>
+								<th type="del" width="28">删除</th>
+								<th type="text" name="items[#index#].itemString" size="12" fieldClass="required" fieldAttrs="{remote:'validate_remote.html', maxlength:10}">从字符串</th>
+								<th type="text" name="items[#index#].itemInt" defaultVal="#index#" size="12" fieldClass="digits">从整数</th>
+								<th type="text" name="items[#index#].itemFloat" defaultVal="0.8" size="12" fieldClass="number">从浮点</th>
+								<th type="date" name="items[#index#].itemDate" defaultVal="2011-12-28" size="12">从日期</th>
+								<th type="date" format="yyyy-MM-dd HH:mm:ss" name="items[#index#].itemDataTime" size="16">从日期时间</th>
+								<th type="lookup" name="items[#index#].org.orgName" lookupGroup="items[#index#].org" lookupUrl="demo/database/dwzOrgLookup.html" suggestUrl="demo/database/db_lookupSuggest.html" suggestFields="orgName" postField="keywords" size="12" fieldClass="required">部门名称</th>
+								<th type="enum" name="items[#index#].itemEnum" enumUrl="demo/database/db_select.html" size="12">从枚举</th>
+								<th type="attach" name="items[#index#].attachment.fileName" lookupGroup="items[#index#].attachment" lookupUrl="demo/database/db_attachmentLookup.html" size="12">从附件</th>
+							</tr>
+						</thead>
+						<tbody>	</tbody>
+					</table>
 				</div>
 			</div>
 
