@@ -10,7 +10,7 @@
 				<li><a class="buttonActive" href="javascript:dealBill('detailForm');"><span>办理</span></a></li>
 			</ul>
 		</div>
-		<div class="pageFormContent" layoutH="56">
+		<div class="pageFormContent leaveBill" layoutH="56">
 			<p>
 				<label>编号：</label> <input name="no" type="text" readonly="readonly" value="${no}" size="30"/>
 			</p>
@@ -29,10 +29,10 @@
 			</p>
 			<p>
 				<label>结束日期：</label>
-				<input type="text" name="endDate"  class="date required" size="30" dateFmt="yyyy-MM-dd HH:mm:ss"  /><a class="inputDateButton" href="javascript:;">选择</a>
+				<input type="text" name="endDate"  class="date required" size="30" dateFmt="yyyy-MM-dd HH:mm:ss"   /><a class="inputDateButton" href="javascript:;">选择</a>
 			</p>
 			<p>
-				<label>总小时数：</label> <input type="text" oninput="calculateHour()"   size="30" name="structure.name"  />
+				<label>总小时数：</label> <input type="text"    size="30" name="hours" onclick="calculateHours()" />
 			</p>
 			<p>
 				<label>请假类型：</label> <select name="type" class="combox">
@@ -86,9 +86,22 @@
 	 $("#"+form).attr("action","leave/deal");
 	 $("#"+form).submit();
  }
- function calculateHour(){
-	 alert(2);
-	 
+ function getDate(strDate) {
+     var st = strDate;
+     var a = st.split(" ");
+     var b = a[0].split("-");
+     var c = a[1].split(":");
+     var date = new Date(b[0], b[1], b[2], c[0], c[1], c[2])
+     return date;
  }
+ function calculateHours(){
+	    var startDate=$(".leaveBill input[name='startDate']").val();
+	    var endDate=$(".leaveBill input[name='endDate']").val();
+	    if(startDate!="" && endDate!=""){
+		    var hours=getDate(endDate).getTime()-getDate(startDate).getTime();
+		    $(".leaveBill input[name='hours']").val(Math.ceil(hours/(1000*3600)));
+	    }
+ }
+
 
 </script>

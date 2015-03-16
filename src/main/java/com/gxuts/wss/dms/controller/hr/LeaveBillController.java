@@ -69,7 +69,7 @@ public class LeaveBillController {
 		leaveBill.setCadidate(null);
 		leaveBillService.save(leaveBill);
 		//return new Json("请假单录入","200",null,"userList","forwardConfirm","user/edit/1");
-		return new Json("请假单录入","200",null,"userList","forward","leave/edit/1");
+		return new Json("请假单保存成功","200",null,"leaveList","forward","leave/edit/1");
 	}
 	@RequestMapping(value="add")
 	public String add(Model m){
