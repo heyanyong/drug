@@ -51,7 +51,7 @@ public class StructureController {
 		if(all!=null){
 			List<UserInfo> users=userService.queryAll(UserInfo.class);
 			for(UserInfo u:users){
-				list.add(new StructureInfo(u.getId()+100, u.getName(), u.getStructure().getId(),false));
+				list.add(new StructureInfo(u.getId()+100, u.getName(), u.getStructure().getId(),false,"images/diy/user.png"));
 			}
 		}
 		return list;

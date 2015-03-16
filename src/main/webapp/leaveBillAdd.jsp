@@ -45,8 +45,8 @@
 			</p>
 			<p>
 				<label>工作交接人：</label>
-				<input type="hidden" name="888cadidate.id" value="${orgLookup.id}"/>
-				<input type="text"  name="cadidate.orgName" size="30" value="" suggestFields="orgNum,orgName" suggestUrl="user/lookup" lookupGroup="cadidate" />
+				<input type="hidden" name="cadidate.id" />
+				<input type="text"  name="cadidate.name" size="30" value=""  readonly="readonly" lookupGroup="cadidate" />
 				<a class="btnLook" href="user/lookup" lookupGroup="cadidate">查找带回</a>		
 			</p>
 			<dl class="nowrap">

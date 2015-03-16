@@ -5,7 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>DMS</title>
- <link rel="stylesheet" href="themes/zTreeStyle.css" type="text/css" />
 <link href="themes/default/style.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="themes/css/core.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="themes/css/print.css" rel="stylesheet" type="text/css" media="print"/>
