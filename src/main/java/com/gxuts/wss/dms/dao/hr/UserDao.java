@@ -20,5 +20,7 @@ public interface UserDao {
 	public UserInfo getByHql(String hql);
 	public void delete(UserInfo user);
 	public void update(UserInfo user);
-	
+	//flow
+	public UserInfo departmentOneRole(int departmentId,String roleName);
+	public List<UserInfo> manyByRole(String roleName);
 }

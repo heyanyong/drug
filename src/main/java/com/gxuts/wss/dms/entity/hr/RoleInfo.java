@@ -13,6 +13,7 @@ public class RoleInfo implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	private String name;
+	private int grade;
 	
 	public RoleInfo(){}
 	public RoleInfo(Integer id){
@@ -29,6 +30,13 @@ public class RoleInfo implements Serializable{
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
 	@Override
 	public String toString() {
