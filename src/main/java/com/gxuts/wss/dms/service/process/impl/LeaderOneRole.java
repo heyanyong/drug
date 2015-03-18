@@ -11,7 +11,7 @@ import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.process.FlowUserService;
 
 @SuppressWarnings("serial")
-public class DepartmentOneRole implements TaskListener, Serializable {
+public class LeaderOneRole implements TaskListener, Serializable {
 	@Autowired
 	private FlowUserService flowUserService;
 	private Expression roleName;
@@ -27,9 +27,9 @@ public class DepartmentOneRole implements TaskListener, Serializable {
 	public void notify(DelegateTask delegateTask) {
 		String role = roleName.getExpressionText();
 		int departmentId=(int) delegateTask.getVariable("departmentId");
-		UserInfo user=flowUserService.departmentOneRole(departmentId, role);
+		UserInfo user=flowUserService.leaderOneRole(departmentId, role);
 		delegateTask.setAssignee(user.getNo());
-		System.out.println("DepartmentOneRole Listener");
+		System.out.println("LeaderOneRole Listener");
 		
 	}
 

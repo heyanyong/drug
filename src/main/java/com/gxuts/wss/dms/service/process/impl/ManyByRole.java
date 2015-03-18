@@ -1,6 +1,7 @@
 package com.gxuts.wss.dms.service.process.impl;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.activiti.engine.delegate.DelegateTask;
 import org.activiti.engine.delegate.Expression;
@@ -11,7 +12,7 @@ import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.process.FlowUserService;
 
 @SuppressWarnings("serial")
-public class DepartmentOneRole implements TaskListener, Serializable {
+public class ManyByRole implements TaskListener, Serializable {
 	@Autowired
 	private FlowUserService flowUserService;
 	private Expression roleName;
@@ -26,11 +27,9 @@ public class DepartmentOneRole implements TaskListener, Serializable {
 	@Override
 	public void notify(DelegateTask delegateTask) {
 		String role = roleName.getExpressionText();
-		int departmentId=(int) delegateTask.getVariable("departmentId");
-		UserInfo user=flowUserService.departmentOneRole(departmentId, role);
-		delegateTask.setAssignee(user.getNo());
-		System.out.println("DepartmentOneRole Listener");
-		
+		List<UserInfo> users=flowUserService.manyByRole(role);
+		delegateTask.setVariable("assignList", users);
+		System.out.println("ManyByRole Listener");
 	}
 
 }

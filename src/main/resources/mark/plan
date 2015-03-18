@@ -15,7 +15,12 @@
  在列表点击办理（取ID，Obj，业务名称）启动流程实例并赋值实例id给表单
  
  流程基本变量：
- 创建人 ：${creater}
+ 创建人工号 ：creater
+ 创建人部门ID：departmentId
+业务单据ID：billId;
+业务单据mapping: mapping
+会签列表：assigneeList
+会签变量：assignee
  
       
 子表方案：

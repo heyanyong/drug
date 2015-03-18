@@ -3,7 +3,15 @@
   <process id="leave" name="请假申请流程" isExecutable="true">
     <startEvent id="startevent1" name="Start"></startEvent>
     <userTask id="apply" name="提交申请" activiti:assignee="${creater}"></userTask>
-    <userTask id="leave_usertask2" name="主管审批"></userTask>
+    <userTask id="leave_usertask2" name="主管审批">
+      <extensionElements>
+        <activiti:taskListener event="create" class="com.gxuts.wss.dms.service.process.impl.DepartmentOneRole">
+          <activiti:field name="roleName">
+            <activiti:string><![CDATA[主管]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+      </extensionElements>
+    </userTask>
     <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="apply"></sequenceFlow>
     <sequenceFlow id="flow2" sourceRef="apply" targetRef="leave_usertask2"></sequenceFlow>
@@ -14,11 +22,40 @@
     </userTask>
     <sequenceFlow id="flow3" sourceRef="usertask3" targetRef="leave_usertask3"></sequenceFlow>
     <sequenceFlow id="flow4" sourceRef="leave_usertask3" targetRef="endevent1"></sequenceFlow>
-    <userTask id="usertask1" name="经理审批"></userTask>
+    <userTask id="usertask1" name="经理审批">
+      <extensionElements>
+        <activiti:taskListener event="create" class="com.gxuts.wss.dms.service.process.impl.LeaderOneRole">
+          <activiti:field name="roleName">
+            <activiti:string><![CDATA[经理]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+      </extensionElements>
+    </userTask>
     <sequenceFlow id="flow5" sourceRef="leave_usertask2" targetRef="usertask1"></sequenceFlow>
-    <userTask id="usertask2" name="总监审批"></userTask>
+    <userTask id="usertask2" name="总监审批">
+      <extensionElements>
+        <activiti:taskListener event="create" class="com.gxuts.wss.dms.service.process.impl.LeaderOneRole">
+          <activiti:field name="roleName">
+            <activiti:string><![CDATA[总监]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+      </extensionElements>
+    </userTask>
     <sequenceFlow id="flow6" sourceRef="usertask1" targetRef="usertask2"></sequenceFlow>
-    <userTask id="usertask3" name="总裁审批"></userTask>
+    <userTask id="usertask3" name="总裁审批">
+      <extensionElements>
+        <activiti:taskListener event="create" class="com.gxuts.wss.dms.service.process.impl.LeaderOneRole">
+          <activiti:field name="roleName">
+            <activiti:string><![CDATA[总裁]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+        <activiti:taskListener event="create" class="com.gxuts.wss.dms.service.process.impl.ManyByRole">
+          <activiti:field name="roleName">
+            <activiti:string><![CDATA[人力专员]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+      </extensionElements>
+    </userTask>
     <sequenceFlow id="flow7" sourceRef="usertask2" targetRef="usertask3"></sequenceFlow>
     <sequenceFlow id="flow8" sourceRef="apply" targetRef="usertask1"></sequenceFlow>
     <sequenceFlow id="flow9" sourceRef="apply" targetRef="usertask2"></sequenceFlow>

@@ -44,7 +44,7 @@ public class TestLeaveProcess {
 	private TaskService taskService;
 	@Autowired
 	private HistoryService historyService;
-	@Test//52501-出库流程-部署完成
+	@Test//7501-出库流程-部署完成
 	public void testDeploy(){
 		String fileName="leave";
 		String deployName="请假流程";
@@ -57,12 +57,16 @@ public class TestLeaveProcess {
 	}
 
  
-	@Test
+	@Test//15001
 	public void testStart(){
 		String processDefinitionKey="leave";
 		String businessKey="请假流程";
 		Map<String, Object> variables=new HashMap<String, Object>();
-		variables.put("assignee", "NF0005");
+		variables.put("creater", "admin");
+		variables.put("departmentId", 10);
+		variables.put("billId", 1);
+		variables.put("mapping", "leave");
+		variables.put("assignee", null);
 //		List<String> assigneeList=null;
 		variables.put("assigneeList", null);
 		ProcessInstance processInstance=runtimeService.startProcessInstanceByKey(processDefinitionKey, businessKey,variables);
@@ -71,7 +75,7 @@ public class TestLeaveProcess {
 
 	@Test
 	public void complete(){
-		String taskId = "242513";
+		String taskId = "15010";
 //		String processInstanceId = "177501";
 //		taskService.addComment(taskId, processInstanceId, "提交");
 		taskService.complete(taskId);
