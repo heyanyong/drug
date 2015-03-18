@@ -5,17 +5,17 @@
 <script src="themes/jquery.ztree.core-3.5.js"></script>
 <style>
   .container{padding:0;margin:0;}
-  .container .col{width:30%; float: left;}
-  .container .row{height:40px;}
+  .container .col{width:40%; float: left;}
+  .container .row{height:50px;}
   .container .button {margin-right:20px;}
 </style>
-<div class="container" style="margin-top:30px;">
+<div class="container" style="margin-top:40px;">
 	<div class="col " >
 		<div class="zTreeDemoBackground" style="margin-left:40%;">
 			<ul id="structrueTree" class="ztree"></ul>
 		</div>
 	</div>
-	<div class="col " id="structureForm">
+	<div class="col " id="structureForm" style="padding-top:50px;">
 		  <div class="row">
 		    <label>当前节点：<input name="id" type="text" readonly="readonly" /></label>
 		  </div>
@@ -49,11 +49,13 @@
 	};
 
 	function onMouseUp(event, treeId, treeNode) {
+		if(treeNode.isParent==true){
 		$("[name='name']").val(treeNode.name);
 		$("[name='id']").val(treeNode.id);
 		nodeName=treeNode.name;
 		nodeId=treeNode.id;
 		nodePid=treeNode.pId;
+		}
 	}
 	
 	function save() {
@@ -88,7 +90,7 @@
 	}
 	$.ajax({
 		type : "post",
-		url : "structure/list",
+		url : "structure/list?all=1",
 		async : false,
 		success : function(data) {
 			$.fn.zTree.init($("#structrueTree"), setting, data);

@@ -35,6 +35,8 @@
 			<li class="line">line</li>
 			<li><a class="edit" href="leave/edit/{e_id}" target="navTab"><span>修改</span></a></li>
 			<li class="line">line</li>
+			<li><a class="edit" href="leave/deal/{e_id}" target="ajaxTodo"><span>办理</span></a></li>
+			<li class="line">line</li>
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon"   target="dwzExport" targetType="navTab"  ><span>查看流程</span></a></li>
@@ -45,19 +47,25 @@
 	<table class="table" width="100%" layoutH="138">
 		<thead>
 			<tr>
-				<th width="25"></th>
-				<th>账号</th> 
-				<th>性别</th> 
+				<th>编号</th> 
 				<th>创建日期</th>
+				<th>申请人</th> 
+				<th>部门</th> 
+				<th>请假小时数</th> 
+				<th>交接人</th> 
+				<th>状态</th> 
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${pages.data}" var="e">
 			<tr target="e_id" rel="${e.id}">
-				<td><input type="checkbox" /></td>
 				<td>${e.no}</td>
-				<td><a href="user/edit/${e.id}" target="navTab" rel="user${e.id}" >${e.name}</a></td>
 				<td>${e.createDate}</td>
+				<td>${e.createUser.name}</td>
+				<td>${e.createUser.structure.name}</td>
+				<td>${e.hours}</td>
+				<td>${e.no}</td>
+				<td>${e.status}</td>
 			</tr>
 			</c:forEach>
 		</tbody>

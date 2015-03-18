@@ -105,5 +105,12 @@ public class TestQuery {
 			UserInfo user=(UserInfo) q.list().get(0);
 			System.out.println(user);
 		}
+		//本部门角色
+		public void getByRole(){
+			Session session=sessionFactory.getCurrentSession();
+			Criteria criteria =session.createCriteria(UserInfo.class).add( Restrictions.eq("structure.id", 4 ) ) ;
+			criteria.createCriteria("roles").add(Restrictions.like("name", "经理"));
+			
+		}
 		
 }

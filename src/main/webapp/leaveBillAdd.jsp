@@ -6,8 +6,7 @@
 		onsubmit="return validateCallback(this, navTabAjaxDone);">
 		<div class="formBar">
 			<ul>
-				<li><a class="buttonActive" href="javascript:saveBill('detailForm');"><span>暂存</span></a></li>
-				<li><a class="buttonActive" href="javascript:dealBill('detailForm');"><span>办理</span></a></li>
+				<li><a class="buttonActive" href="javascript:saveBill('detailForm');"><span>保存</span></a></li>
 			</ul>
 		</div>
 		<div class="pageFormContent leaveBill" layoutH="56">

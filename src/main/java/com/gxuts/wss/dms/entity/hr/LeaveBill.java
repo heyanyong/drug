@@ -23,7 +23,7 @@ public class LeaveBill implements Serializable{
 	private Date endDate;
 	private UserInfo cadidate;
 	private String reason;
-	private String status;
+	private Integer status=0;
 	private String type;
 	private String hours;
 	@Id
@@ -38,7 +38,6 @@ public class LeaveBill implements Serializable{
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date updateDate;
 	private UserInfo updateUser;
-	private int isEnd;
 	
 	public LeaveBill() {}
 	public LeaveBill(Integer id) {
@@ -117,17 +116,11 @@ public class LeaveBill implements Serializable{
 		this.createUser = createUser;
 	}
 	
-	public String getStatus() {
+	public int getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(int status) {
 		this.status = status;
-	}
-	public int getIsEnd() {
-		return isEnd;
-	}
-	public void setIsEnd(int isEnd) {
-		this.isEnd = isEnd;
 	}
 	public Date getUpdateDate() {
 		return updateDate;
@@ -147,7 +140,7 @@ public class LeaveBill implements Serializable{
 				+ ", cadidate=" + cadidate + ", reason=" + reason + ", status="
 				+ status + ", type=" + type + ", hours=" + hours + ", id=" + id
 				+ ", name=" + name + ", createDate=" + createDate
-				+ ", createUser=" + createUser + ", isEnd=" + isEnd + "]";
+				+ ", createUser=" + createUser + "]";
 	}
 	
 	

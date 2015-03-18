@@ -26,7 +26,7 @@ public class LoginFilter implements Filter {
 		 String url=req.getRequestURI();
 //		 if((req.getSession(true).getAttribute("loginUser")!=null)||url.contains("ogin")||url.contains("register")){
 			 UserInfo user=new UserInfo();
-			 user.setId(1);
+			 user.setId(100);
 			 user.setNo("admin");
 			 user.setName("admin");
 			 req.getSession(true).setAttribute("loginUser", user);

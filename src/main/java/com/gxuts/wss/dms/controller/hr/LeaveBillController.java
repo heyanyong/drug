@@ -19,6 +19,7 @@ import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.hr.LeaveBill;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.hr.LeaveBillService;
+import com.gxuts.wss.dms.service.process.FlowService;
 import com.gxuts.wss.dms.util.DateUtil;
 
 @Controller
@@ -26,13 +27,14 @@ import com.gxuts.wss.dms.util.DateUtil;
 public class LeaveBillController {
 	@Autowired
 	private LeaveBillService leaveBillService;
+	@Autowired
+	private FlowService flowService;
 	
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
 	@ResponseBody
 	public Json delete(@PathVariable Integer id) {
 		leaveBillService.delete(new LeaveBill(id));
-		Json json = new Json("成功", "200", "leaveBillList", "leaveBillList", null,
-				null);
+		Json json = new Json("成功", "200", "leaveList", "leaveList", null,null);
 		return json;
 	}
 
@@ -56,7 +58,7 @@ public class LeaveBillController {
 		info.setUpdateDate(new Date());
 		info.setUpdateUser((UserInfo) session.getAttribute("loginUser"));
 		leaveBillService.update(info);
-		Json json =new Json("更新成功","200","leaveBillList","leaveBillList",null,null);
+		Json json =new Json("更新成功","200","leaveList","leaveList",null,null);
 		return json;
 	}
 
@@ -69,12 +71,19 @@ public class LeaveBillController {
 		leaveBill.setCadidate(null);
 		leaveBillService.save(leaveBill);
 		//return new Json("请假单录入","200",null,"userList","forwardConfirm","user/edit/1");
-		return new Json("请假单保存成功","200",null,"leaveList","forward","leave/edit/1");
+		return new Json("请假单保存成功","200","leaveList","leaveList","closeCurrent","leave/list");
 	}
 	@RequestMapping(value="add")
 	public String add(Model m){
 		
 		m.addAttribute("no", "QJ"+DateUtil.date2String(new Date(), "yyMMddHHmmss")+new Random().nextInt(100));
 		return "leaveBillAdd";
+	}
+	@RequestMapping(value="/deal/{id}", method = RequestMethod.POST)
+	@ResponseBody
+	public Json deal(@PathVariable Integer id){
+		System.out.println(id+"----");
+		System.out.println(flowService);
+		return new Json("提交办理成功","200","leaveList","leaveList",null,null);
 	}
 }

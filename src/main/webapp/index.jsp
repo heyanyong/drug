@@ -169,7 +169,7 @@ $(function(){
 						<li><a>常用单据</a>
 								<ul>
 									<li><a href="leave/add" target="navTab" rel="leaveAdd">请假申请</a></li>
-									<li><a href="leave/list" target="navTab" rel="leaveBillList">请假列表</a></li>
+									<li><a href="leave/list"   target="navTab" rel="leaveList">请假列表</a></li>
 									<li><a href="contract/list" target="navTab" rel="contractList" >采购合同</a></li>
 									<li><a href="demo_page2.html" target="navTab" rel="page2">出库查询</a></li>
 								</ul>
@@ -179,7 +179,7 @@ $(function(){
 									<li><a href="sign/list" target="navTab" rel="signList">个人考勤记录</a></li>
 									<li><a href="userAdd.jsp" target="navTab" rel="userAdd">新增用户</a></li>
 									<li><a href="role/list" target="navTab" rel="roleList">角色管理</a></li>
-									<li><a href="structure/show" target="navTab" rel="structureList">部门管理</a></li>
+									<li><a href="structure/show?all=1" target="navTab" rel="structureList">部门管理</a></li>
 									</ul>
 							</li>
 						<li><a>资讯管理</a>
@@ -292,7 +292,7 @@ $(function(){
 						    <li><a>用人需求</a>
 								<ul>
 									<li><a href="user/list" target="navTab" rel="userList">用人需求</a></li>
-									<li><a href="userAdd.jsp" target="navTab" rel="userAdd">需求报表</a></li>
+									<li><a href="userAd d.jsp" target="navTab" rel="userAdd">需求报表</a></li>
 									</ul>
 							</li>
 						    <li><a>离职申请</a>
