@@ -2,7 +2,9 @@ package com.gxuts.wss.dms.controller;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +21,7 @@ import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -33,6 +36,31 @@ public class WorkFlowController {
 	private TaskService taskService;
 	@Autowired
 	private HistoryService historyService;
+	
+	
+	@RequestMapping(value="start")
+	public void  start(){
+		String processDefinitionKey="export";
+		String businessKey="NF0001张三的出库申请2:leaveDetail:1001";
+		Map<String, Object> variables=new HashMap<String, Object>();
+		variables.put("createUser", "NF0002");
+		List<String> assigneeList=Arrays.asList("liyagn","cooperay","other");
+		variables.put("assigneeList", assigneeList);
+		ProcessInstance processInstance=runtimeService.startProcessInstanceByKey(processDefinitionKey, businessKey,variables);
+		System.out.println(processInstance.getId()); //
+		System.out.println(processInstance.getBusinessKey());//
+		Map<String, Object> vars2=processInstance.getProcessVariables();
+		for(Object o:vars2.values()){
+			System.out.println("*"+o);
+		}
+	}
+	
+	@RequestMapping(value="/complete/{taskId}")
+	public void complete(@PathVariable String taskId){
+		taskService.complete(taskId);
+		
+	}
+	
 	/**
 	 * 查看流程图
 	 * @throws Exception 

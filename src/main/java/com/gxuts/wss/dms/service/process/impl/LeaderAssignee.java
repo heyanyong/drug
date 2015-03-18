@@ -1,23 +1,38 @@
 package com.gxuts.wss.dms.service.process.impl;
 
-import java.util.Map;
 
 import org.activiti.engine.delegate.DelegateTask;
+import org.activiti.engine.delegate.Expression;
 import org.activiti.engine.delegate.TaskListener;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gxuts.wss.dms.service.process.FlowService;
+import com.gxuts.wss.dms.entity.hr.UserInfo;
+import com.gxuts.wss.dms.service.process.FlowUserService;
 
  
 @Service
 public class LeaderAssignee implements  TaskListener {
+	@Autowired
+	private FlowUserService flowUserService;
+	private Expression roleName;
+
+	public Expression getRoleName() {
+		return roleName;
+	}
+	public void setRoleName(Expression roleName) {
+		this.roleName = roleName;
+	}
 
 	@Override
 	public void notify(DelegateTask delegateTask) {
-		System.out.println("设置上级领导");
+		String role = roleName.getExpressionText();
+		int departmentId=(int) delegateTask.getVariable("departmentId");
+		UserInfo user=flowUserService.leaderOneRole(departmentId, role);
+		delegateTask.setAssignee(user.getNo());
+		System.out.println("DepartmentOneRole Listener");
+		
 	}
-
-	 
  
  
  

@@ -1,11 +1,15 @@
 package com.gxuts.wss.dms.controller.hr;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.activiti.engine.RuntimeService;
+import org.activiti.engine.runtime.ProcessInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +33,8 @@ public class LeaveBillController {
 	private LeaveBillService leaveBillService;
 	@Autowired
 	private FlowService flowService;
+	@Autowired
+	private RuntimeService runtimeService;
 	
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
 	@ResponseBody
@@ -82,8 +88,18 @@ public class LeaveBillController {
 	@RequestMapping(value="/deal/{id}", method = RequestMethod.POST)
 	@ResponseBody
 	public Json deal(@PathVariable Integer id){
-		System.out.println(id+"----");
-		System.out.println(flowService);
+		String processDefinitionKey="leave";
+		String businessKey="请假流程";
+		Map<String, Object> variables=new HashMap<String, Object>();
+		variables.put("creater", "admin");
+		variables.put("departmentId", 10);
+		variables.put("billId", id);
+		variables.put("mapping", "leave");
+		variables.put("assignee", null);
+//		List<String> assigneeList=null;
+		variables.put("assigneeList", null);
+		ProcessInstance processInstance=runtimeService.startProcessInstanceByKey(processDefinitionKey, businessKey,variables);
+		System.out.println("实例ID："+processInstance.getId());
 		return new Json("提交办理成功","200","leaveList","leaveList",null,null);
 	}
 }

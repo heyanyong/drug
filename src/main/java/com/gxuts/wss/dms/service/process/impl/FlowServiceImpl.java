@@ -17,10 +17,12 @@ import org.activiti.engine.task.Comment;
 import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.service.process.FlowService;
 @Service("flowService")
+@Transactional
 public class FlowServiceImpl implements FlowService {
 	/**部署流程定义*/
 	@Autowired

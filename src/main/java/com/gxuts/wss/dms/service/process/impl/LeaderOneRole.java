@@ -6,11 +6,13 @@ import org.activiti.engine.delegate.DelegateTask;
 import org.activiti.engine.delegate.Expression;
 import org.activiti.engine.delegate.TaskListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.process.FlowUserService;
 
 @SuppressWarnings("serial")
+@Service
 public class LeaderOneRole implements TaskListener, Serializable {
 	@Autowired
 	private FlowUserService flowUserService;

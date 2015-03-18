@@ -7,10 +7,11 @@ import org.activiti.engine.delegate.DelegateTask;
 import org.activiti.engine.delegate.Expression;
 import org.activiti.engine.delegate.TaskListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.process.FlowUserService;
-
+@Component
 @SuppressWarnings("serial")
 public class ManyByRole implements TaskListener, Serializable {
 	@Autowired
