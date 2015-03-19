@@ -1,6 +1,7 @@
 package com.gxuts.wss.dms.service.process.impl;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import org.activiti.engine.delegate.DelegateTask;
@@ -28,8 +29,8 @@ public class ManyByRole implements TaskListener, Serializable {
 	@Override
 	public void notify(DelegateTask delegateTask) {
 		String role = roleName.getExpressionText();
-		List<UserInfo> users=flowUserService.manyByRole(role);
-		delegateTask.setVariable("assignList", users);
+		//List<UserInfo> users=flowUserService.manyByRole(role);
+		delegateTask.setVariable("assignList",Arrays.asList(role+1,role+2,role+3));
 		System.out.println("ManyByRole Listener");
 	}
 

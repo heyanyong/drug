@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gxuts.wss.dms.service.hr.UserService;
+import com.gxuts.wss.dms.service.process.FlowUserService;
 
 @Service("flowSetRoleService")
 @Transactional
@@ -32,7 +33,8 @@ public class FlowSetRoleImpl implements TaskListener {
 		System.out.println("us:"+userService);
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring/applicationContext.xml");
-		System.out.println(context.getBean("identityService")+"3243675897654567854");
+		FlowUserService flowUserService=(FlowUserService) context.getBean("flowUserService");
+		System.out.println(flowUserService);
 		
 	}
 	 

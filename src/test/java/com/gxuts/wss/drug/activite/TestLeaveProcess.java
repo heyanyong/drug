@@ -66,16 +66,16 @@ public class TestLeaveProcess {
 		variables.put("departmentId", 10);
 		variables.put("billId", 1);
 		variables.put("mapping", "leave");
-		variables.put("assignee", null);
+		variables.put("assignee", "assignee1");
 //		List<String> assigneeList=null;
-		variables.put("assigneeList", null);
+		variables.put("assigneeList", Arrays.asList("r3","r2","r1"));
 		ProcessInstance processInstance=runtimeService.startProcessInstanceByKey(processDefinitionKey, businessKey,variables);
 		System.out.println("实例ID："+processInstance.getId()); //
 	}
 
 	@Test
 	public void complete(){
-		String taskId = "15010";
+		String taskId = "2512";
 //		String processInstanceId = "177501";
 //		taskService.addComment(taskId, processInstanceId, "提交");
 		taskService.complete(taskId);
