@@ -5,11 +5,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import org.junit.Test;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MysqlUtil {
-
 	public  Connection getConnection() {
 		Connection conn=null;
 		String url="jdbc:mysql://localhost:3306/drug?useUnicode=true&characterEncoding=UTF-8";
@@ -103,5 +102,29 @@ public class MysqlUtil {
 			}
 		}
 		return userNo;
+	}
+	public List<String> manyByRole(String roleName){
+		Connection conn=this.getConnection();
+		List<String> users=new ArrayList<String>();
+		String sql="SELECT uu.`no` from userinfo uu,roleinfo rr,userinfo_roleinfo ur where uu.id=ur.UserInfo_id and rr.id=ur.roles_id "
+				+ "and rr.`name`='"+roleName+"'";
+		try {
+			Statement sta=conn.createStatement();
+			ResultSet result=sta.executeQuery(sql);
+			while  (result.next()){
+				users.add(result.getString(1));
+			}
+			result.close();
+			sta.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return users;
 	}
 }

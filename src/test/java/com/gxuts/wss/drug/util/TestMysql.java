@@ -1,5 +1,7 @@
 package com.gxuts.wss.drug.util;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import com.gxuts.wss.dms.util.MysqlUtil;
@@ -27,5 +29,11 @@ public class TestMysql {
 		MysqlUtil mu=new MysqlUtil();
 		String no=mu.getLeaderOndRole(11, "经理");
 		System.out.println(no);
+	}
+	@Test
+	public void getManyByRole(){
+		MysqlUtil mu=new MysqlUtil();
+		List<String> nos=mu.manyByRole("经理");
+		System.out.println(nos);
 	}
 }

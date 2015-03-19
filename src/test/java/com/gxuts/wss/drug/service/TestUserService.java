@@ -81,11 +81,10 @@ public class TestUserService {
 	}
 	//查领导
 	@Test
-	public void getLeader(){
-		int userId=100;
-		
-		UserInfo user=userService.getByHql("from UserInfo where name=:name");
-		System.out.println(user);
+	public void getMaxRoleGrade(){
+		List<RoleInfo> roles=null;
+		RoleInfo grade= userService.getMaxRole(roles);
 	}
+	
 	
 }
