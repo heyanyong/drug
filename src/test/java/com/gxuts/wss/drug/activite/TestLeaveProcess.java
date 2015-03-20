@@ -65,6 +65,7 @@ public class TestLeaveProcess {
 		variables.put("creater", "admin");
 		variables.put("departmentId", 10);
 		variables.put("billId", 1);
+		variables.put("roleGrade", 1);
 		variables.put("mapping", "leave");
 		variables.put("assignee", "assignee1");
 //		List<String> assigneeList=null;
@@ -75,7 +76,7 @@ public class TestLeaveProcess {
 
 	@Test
 	public void complete(){
-		String taskId = "2512";
+		String taskId = "25004";
 //		String processInstanceId = "177501";
 //		taskService.addComment(taskId, processInstanceId, "提交");
 		taskService.complete(taskId);

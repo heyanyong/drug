@@ -1,10 +1,12 @@
 package com.gxuts.wss.dms.util;
 
+import java.util.List;
+
 import org.activiti.engine.delegate.DelegateTask;
 import org.activiti.engine.delegate.Expression;
 import org.activiti.engine.delegate.TaskListener;
 
-public class DepartmentOneRole implements TaskListener {
+public class ManyByRole implements TaskListener {
 	private Expression roleName;
 
 	public Expression getRoleName() {
@@ -17,10 +19,9 @@ public class DepartmentOneRole implements TaskListener {
 	@Override
 	public void notify(DelegateTask delegateTask) {
 		String role = roleName.getExpressionText();
-		int departmentId=(int) delegateTask.getVariable("departmentId");
-		String userNo=new MysqlUtil().getDepartmentAndRole(departmentId, role);
-		delegateTask.setAssignee(userNo);
-		System.out.println("DepartmentOneRole Listener");
+		List<String> users=new MysqlUtil().manyByRole(role);
+		delegateTask.setVariable("assigneeList", users);
+		System.out.println("users Listener");
 		
 	}
 

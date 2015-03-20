@@ -4,7 +4,7 @@ import org.activiti.engine.delegate.DelegateTask;
 import org.activiti.engine.delegate.Expression;
 import org.activiti.engine.delegate.TaskListener;
 
-public class DepartmentOneRole implements TaskListener {
+public class LeaderOneRole implements TaskListener {
 	private Expression roleName;
 
 	public Expression getRoleName() {
@@ -18,9 +18,9 @@ public class DepartmentOneRole implements TaskListener {
 	public void notify(DelegateTask delegateTask) {
 		String role = roleName.getExpressionText();
 		int departmentId=(int) delegateTask.getVariable("departmentId");
-		String userNo=new MysqlUtil().getDepartmentAndRole(departmentId, role);
+		String userNo=new MysqlUtil().getLeaderOndRole(departmentId, role);
 		delegateTask.setAssignee(userNo);
-		System.out.println("DepartmentOneRole Listener");
+		System.out.println("LeaderOneRole Listener");
 		
 	}
 
