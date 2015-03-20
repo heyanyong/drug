@@ -57,8 +57,8 @@ public class TestFlowService {
 	}
 	//个人任务测试：任务名称 任务key 表单ID
 	@Test
-	public void testQueryTest(){
-		Page<Object[]> page=flowService.queryPersonTask("NF0005", 0, 10);
+	public void testQueryTask(){
+		Page<Object[]> page=flowService.queryPersonTask("111", 0, 10);
 		List<Object[]> list=page.getData();
 		 for (int i = 0; i < list.size(); i++) {
 			for (int j = 0; j < list.get(i).length; j++) {
@@ -72,16 +72,15 @@ public class TestFlowService {
 	//办理
 	@Test
 	public void testDealTask(){
-		int result=flowService.dealTask("12508", "12501", null, "好");
+		int result=flowService.dealTask("40013", "40001", "同意", "好");
 	}
-	//查批注信息
+	//查批注信息 1节点名称 2办理时间-3完成时间 4办理人5 批注
 	@Test
 	public void testComment(){
-		List<Comment> list=flowService.getCommentByprocessInstance("12501");
+		List<Comment> list=flowService.getCommentByprocessInstance("30001");
 		for (Comment c:list) {
-			c.getFullMessage();
-			c.getTime();
-			c.getUserId();
+			System.out.println(c.getId());
+			System.out.println(c.getFullMessage());
 		}
 	}
 	

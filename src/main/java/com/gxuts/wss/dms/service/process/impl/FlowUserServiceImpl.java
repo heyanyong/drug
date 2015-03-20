@@ -15,7 +15,7 @@ import com.gxuts.wss.dms.service.process.FlowUserService;
  
 @Service("flowUserService")
 @Transactional
-public class UserServiceImpl implements FlowUserService {
+public class FlowUserServiceImpl implements FlowUserService {
 	@Autowired
 	private UserDao userDao;
 	@Autowired
