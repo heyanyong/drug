@@ -34,7 +34,7 @@
 			<tr target="sid_obj" rel="${e[0]}">
 				<td width="20">${e[1]}</td>
 				<td>${e[1]}</td>
-				<td>${e[0]}</td>
+				<td>${e[0]}   </td>
 			</tr>
 			</c:forEach>
 		</tbody>
