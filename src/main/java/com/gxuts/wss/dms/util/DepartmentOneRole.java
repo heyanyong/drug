@@ -1,20 +1,10 @@
-package com.gxuts.wss.dms.service.process.impl;
-
+package com.gxuts.wss.dms.util;
 
 import org.activiti.engine.delegate.DelegateTask;
 import org.activiti.engine.delegate.Expression;
 import org.activiti.engine.delegate.TaskListener;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import com.gxuts.wss.dms.entity.hr.UserInfo;
-import com.gxuts.wss.dms.service.process.FlowUserService;
-
- 
-@Service
-public class LeaderAssignee implements  TaskListener {
-	@Autowired
-	private FlowUserService flowUserService;
+public class DepartmentOneRole implements TaskListener {
 	private Expression roleName;
 
 	public Expression getRoleName() {
@@ -28,12 +18,10 @@ public class LeaderAssignee implements  TaskListener {
 	public void notify(DelegateTask delegateTask) {
 		String role = roleName.getExpressionText();
 		int departmentId=(int) delegateTask.getVariable("departmentId");
-		UserInfo user=flowUserService.leaderOneRole(departmentId, role);
-		delegateTask.setAssignee(user.getNo());
+		String userNo=new MysqlUtil().getDepartmentAndRole(departmentId, role);
+		delegateTask.setAssignee(userNo);
 		System.out.println("DepartmentOneRole Listener");
 		
 	}
- 
- 
- 
+
 }

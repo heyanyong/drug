@@ -7,9 +7,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipInputStream;
 
+import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.runtime.ProcessInstanceQuery;
@@ -31,6 +33,8 @@ public class FlowServiceImpl implements FlowService {
 	private RuntimeService runtimeService ;
 	@Autowired
 	private TaskService taskService ;
+	@Autowired
+	private HistoryService historyService;
 	public void deployByZIP(File file, String filename) {
 		try {
 			ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(file));
@@ -87,20 +91,34 @@ public class FlowServiceImpl implements FlowService {
 	//0没结束 1结束
 	public int dealTask(String taskId,String processInstanceId, String outcome, String comment) {
 		taskService.addComment(taskId, processInstanceId, comment);
-//		taskService.complete(taskId);
-		taskService.setVariable(taskId, "outcome", outcome);
-		ProcessInstance pi = runtimeService.createProcessInstanceQuery()//
-				.processInstanceId(processInstanceId)//使用流程实例ID查询
-				.singleResult();
-		if(pi==null){
-			return 1;
-		}else{
+		taskService.complete(taskId);
+//		taskService.setVariable(taskId, "outcome", outcome);
+//		ProcessInstance pi = runtimeService.createProcessInstanceQuery()//
+//				.processInstanceId(processInstanceId)//使用流程实例ID查询
+//				.singleResult();
+//		if(pi==null){
+//			return 1;
+//		}else{
 			return 0;
-		}
+//		}
 	}
+	//
 	public List<Comment> getCommentByprocessInstance(String processInstanceId){
-		List<Comment> list = taskService.getProcessInstanceComments(processInstanceId);
-		return list;
+		List<HistoricTaskInstance> tasks=historyService.createHistoricTaskInstanceQuery().processInstanceId(processInstanceId)
+				.finished()
+				.list();
+		for (HistoricTaskInstance t:tasks) {
+			System.out.print(t.getAssignee());
+			System.out.print(t.getName());
+			System.out.print(t.getCreateTime());
+			System.out.print(t.getEndTime());
+			System.out.println();
+		}
+		List<Comment> comments = taskService.getProcessInstanceComments(processInstanceId);
+		for(Comment c:comments){
+			
+		}
+		return comments;
 	}
 	
 }

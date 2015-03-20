@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.gxuts.wss.dms.base.Page;
+import com.gxuts.wss.dms.entity.hr.RoleInfo;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 
  
@@ -24,4 +25,5 @@ public interface UserService {
 	public void delete(UserInfo user);
 	public void update(UserInfo user);
 	public void reset(Integer id);
+	public RoleInfo getMaxRole(List<RoleInfo> roles);
 }

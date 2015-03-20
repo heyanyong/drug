@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.dao.hr.UserDao;
+import com.gxuts.wss.dms.entity.hr.RoleInfo;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.hr.UserService;
 
@@ -94,6 +95,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void reset(Integer id) {
 		userDao.executeHql("update UserInfo set password='202cb962ac59075b964b07152d234b70' where id="+id);
+	}
+
+	@Override
+	public RoleInfo getMaxRole(List<RoleInfo> roles) {
+		RoleInfo role=roles.get(0);
+		for (int i = 0; i < roles.size(); i++) {
+			RoleInfo role1=roles.get(i);
+			role=(role.getGrade()<role1.getGrade())? role1:role;
+		}
+		return role;
 	}
 
 	 
