@@ -1,138 +1,103 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<style>
-  .editTable{border:1px solid #ccc;}
-  .editTable th{text-align: center;}
-</style>
-
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <div class="pageContent">
-	<form method="get" action="purchase/save"
+	<form id="detailForm" method="post" action="leave/update" 
 		class="pageForm required-validate"
 		onsubmit="return validateCallback(this, navTabAjaxDone);">
 		<div class="formBar">
 			<ul>
-				<!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
-				<li><div class="buttonActive">
-						<div class="buttonContent">
-							<button type="submit">保存</button>
-						</div>
-					</div></li>
-				<li>
-					<div class="button">
-						<div class="buttonContent">
-							<button type="button" class="close">取消</button>
-						</div>
-					</div>
-				</li>
+				<li><a class="buttonActive" href="javascript:saveBill('detailForm');"><span>保存</span></a></li>
 			</ul>
 		</div>
-		<div class="pageFormContent" layoutH="56">
+		<div class="pageFormContent leaveBill" layoutH="56">
 			<p>
-				<label>编号：</label> <input name="no" type="text" size="30" value="${purchase.no}"/>
+				<label>编号：</label> <input name="no" type="text" readonly="readonly" value="${info.no}" size="30"/>
 			</p>
 			<p>
-				<label>客户名称：</label> <input name="name" class="required" type="text" 
-					size="30"   alt="请输入客户名称" />
+				<label>申请人：</label> <input   value="${info.createUser.name}" readonly="readonly" type="text"	size="30"/>
 			</p>
 			<p>
-				<label>部门名称：</label> <input type="hidden" name="orgLookup.id"
-					value="${orgLookup.id}" /> <input type="text" class="required"
-					name="orgLookup.orgName" value="" suggestFields="orgNum,orgName"
-					suggestUrl="demo/database/db_lookupSuggest.html"
-					lookupGroup="orgLookup" /> <a class="btnLook"
-					href="demo/database/dwzOrgLookup.html" lookupGroup="orgLookup">查找带回</a>
+				<label>申请工号：</label> <input   value="${info.createUser.no}" readonly="readonly" type="text"	size="30"/>
 			</p>
 			<p>
-				<label>部门编号：</label> <input type="text" readonly="readonly" value=""
-					name="dwz_orgLookup.orgNum" class="textInput">
+				<label>部门：</label> <input type="text"  size="30" readonly="readonly" value="${info.createUser.structure.name}" />
 			</p>
 			<p>
-				<label>识 别 码：</label> <input name="code" class="digits" type="text"
-					size="30" alt="请输入数字" />
+				<label>开始日期：</label>
+				<input type="text" name="startDate" class="date required" value="${info.startDate}"    size="30" dateFmt="yyyy-MM-dd HH:mm:ss"  /><a class="inputDateButton" href="javascript:;">选择</a>
 			</p>
 			<p>
-				<label>需求类型：</label> <select name="type" class="required combox">
+				<label>结束日期：</label>
+				<input type="text" name="endDate"  class="date required" value="${info.endDate}"  size="30" dateFmt="yyyy-MM-dd HH:mm:ss"   /><a class="inputDateButton" href="javascript:;">选择</a>
+			</p>
+			<p>
+				<label>总小时数：</label> <input type="text"    size="30" name="hours" value="${info.hours }" onclick="calculateHours()" />
+			</p>
+			<p>
+				<label>请假类型：</label> <select name="type" class="combox">
 					<option value="">请选择</option>
-					<option value="补仓" selected>补仓</option>
-					<option value="新增" selected>新增</option>
-					<option value="混合" selected>混合</option>
+					<option value="事假" selected="selected">事假</option>
+					<option value="补休假">补休假</option>
+					<option value="年假">年假</option>
+					<option value="产假">产假</option>
 				</select>
 			</p>
 			<p>
-				<label>营业执照号：</label> <input type="text" size="30" />
-			</p>
-			<p>
-				<label>完成日期：</label> <input type="text" name="completeDate"
-					class="date" size="30" /><a class="inputDateButton"
-					href="javascript:;">选择</a>
-			</p>
-			<p>
-				<label>创建日期：</label> <input type="text" name="endDate"
-					class="date" size="30" /><a class="inputDateButton"
-					href="javascript:;">选择</a>
-			</p>
-			<p>
-				<label>修改日期：</label> <input type="text" name="endDate"
-					class="date" size="30" /><a class="inputDateButton"
-					href="javascript:;">选择</a>
-			</p>
-			<p>
-				<label>注册资金：</label> <select name="capital" class="required combox">
-					<option value="">请选择</option>
-					<option value="10">10</option>
-					<option value="50" selected>50</option>
-					<option value="100">100</option>
-				</select> <span class="unit">万元</span>
-			</p>
-			<p>
-				<label>注册类型：</label> <input type="text" size="30" />
+				<label>工作交接人：</label>
+				<input type="hidden" name="cadidate.id" value="${info.cadidate.id }" />
+				<input type="text"  name="cadidate.name" size="30" value="${info.cadidate.name }"  readonly="readonly" lookupGroup="cadidate" />
+				<a class="btnLook" href="user/lookup" lookupGroup="cadidate">查找带回</a>		
 			</p>
 			<dl class="nowrap">
-				<dt>普通文本框：</dt>
+				<dt>请假说明：</dt>
 				<dd>
-					<textarea name="textarea1" cols="88" rows="2"></textarea>
+					<textarea name="reason" cols="95" rows="6" >${info.reason }</textarea>
 				</dd>
 			</dl>
-			<div class="divider"></div>
-			<div class="panel collapse" minH="100" >
-				<h1>药品明细 <span class="addRowt"   onclick="addRow('editTable1');">添加行<b>+</b></span><span class="delRowt" onclick="removeRow('editTable1');">删除行-</span></h1>
-				<div>
-					<table class="editTable" id="editTable1">
-							<thead>
-								<tr>
-									<th>&nbsp;</th>
-									<th>编号</th>
-									<th>名称</th>
-									<th>需求数量</th>
-									<th>日期</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td><input type="checkbox" name="rowHead" /></td>
-									<td><input type="text" name="drugs[0].name" value="${e.name}" /></td>
-									<td><input type="hidden" name="orgLookup.id"
-										value="${orgLookup.id}" /> <input type="text"
-										class="required" name="orgLookup.orgName" value=""
-										suggestFields="orgNum,orgName"
-										suggestUrl="demo/database/db_lookupSuggest.html"
-										lookupGroup="orgLookup" /> <a class="btnLook"
-										href="demo/database/dwzOrgLookup.html" lookupGroup="orgLookup">查找带回</a></td>
-									<td><input type="text" name="drugs[0].no" /></td>
-									<td><input type="text" name="completeDate"
-					class="date" size="30" /><a class="inputDateButton"
-					href="javascript:;">选择</a></td>
-								</tr>
-
-							</tbody>
-						</table>
-				
-				</div>
+		
+<div class="divider"></div>
+<div class="information">
+			 <p>
+				<label>创建人：</label> <input  type="text" readonly="readonly" value="${info.createUser.name}" />
+			</p>
+			 <p>
+				<label>创建人账号：</label> <input  type="text" readonly="readonly" value="${info.createUser.no}" />
+			</p>
+			 <p>
+				<label>最后更新人：</label> <input  type="text" readonly="readonly" value="${info.updateUser.name}" />
+			</p>
+			 <p>
+				<label>更新人账号：</label> <input  type="text" readonly="readonly" value="${info.updateUser.no}" />
+			</p>
+			 <p>
+				<label>最后更新时间：</label> <input  type="text" readonly="readonly" value="${info.updateDate}" />
+			</p>
 			</div>
-
-		</div>
-
+			</div>
 	</form>
 </div>
-<script src="js/my.extend.js" type="text/javascript"></script>
+<script>
+ function saveBill(form){
+	 $("#"+form).attr("action","leave/update");
+	 $("#"+form).submit();
+ }
+ function getDate(strDate) {
+     var st = strDate;
+     var a = st.split(" ");
+     var b = a[0].split("-");
+     var c = a[1].split(":");
+     var date = new Date(b[0], b[1], b[2], c[0], c[1], c[2])
+     return date;
+ }
+ function calculateHours(){
+	    var startDate=$(".leaveBill input[name='startDate']").val();
+	    var endDate=$(".leaveBill input[name='endDate']").val();
+	    if(startDate!="" && endDate!=""){
+		    var hours=getDate(endDate).getTime()-getDate(startDate).getTime();
+		    $(".leaveBill input[name='hours']").val(Math.ceil(hours/(1000*3600)));
+	    }
+ }
+
+
+</script>

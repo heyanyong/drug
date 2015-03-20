@@ -389,7 +389,7 @@ $(function(){
 							</div>
 							<div class="lastNews" >
 								<ul>
-								 <li><a href="">关于8号文件的通知及各部门工作安排</a><span>2015-12-01</span></li>
+								 <li><a href="flow/taskList" target="ajax" rel="personTaskList">关于8号文件的通知及各部门工作安排</a><span>2015-12-01</span></li>
 								 <li><a href="">国庆放假通知及各部门工作安排</a><span>2015-12-01</span></li>
 								 <li><a href="">关于8号文件的通知及各部门工作安排</a><span>2015-12-01</span></li>
 								 <li><a href="">关于8号文件的通知及各部门工作安排</a><span>2015-12-01</span></li>
@@ -397,45 +397,7 @@ $(function(){
 								</ul>
 							</div>
 							<div class="clear"></div>
-							<div class="taskCenter">
-								<form id="pagerForm"
-									onsubmit="return divSearch(this, 'jbsxBox');"
-									action="demo/pagination/list1.html" method="post">
-									<div class="pageContent" >
-										<input type="hidden" name="pageNum" value="1" /> 
-										<input	type="hidden" name="numPerPage" value="${model.numPerPage}" />
-										<div class="panelBar" style="height:30px;">
-											<ul class="toolBar">
-												<li><a class="icon" href=""><span>待办</span></a></li>
-												<li class="line">line</li>
-												<li><a class="icon" href=""><span>已办</span></a></li>
-												<li class="line">line</li>
-												<li><input type="text" name="name" /></li>
-												<li><div class="buttonActive"><div class="buttonContent">	<button type="submit">查 询</button></div></div></li>
-											</ul>
-										</div>
-
-										<table class="table" width="100%"   rel="jbsxBox">
-											<thead>
-											</thead>
-											<tbody>
-												<tr target="sid_obj" rel="1">
-													<td width="20">1</td>
-													<td>bj0001</td>
-												</tr>
-											</tbody>
-										</table>
-										<div class="panelBar">
-											<div class="pages">
-												<span>共50条</span>
-											</div>
-
-		<div class="pagination" rel="jbsxBox"	totalCount="${pages.totalCount}"	numPerPage="${pages.numPerPage}"
-		pageNumShown="${pages.pageNumShown}"	currentPage="${pages.currentPage}"></div>
-										</div>
-									</div>
-								</form>
-							</div>
+							<div class="taskCenter" id="personTaskList"></div>
 							<div class="static"><div id="chartHolder"></div></div>
 						</div><!--main-->
 					</div>

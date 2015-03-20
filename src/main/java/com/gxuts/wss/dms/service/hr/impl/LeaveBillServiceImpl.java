@@ -25,7 +25,7 @@ public class LeaveBillServiceImpl implements LeaveBillService {
 
 	@Override
 	public LeaveBill get(Class<LeaveBill> c, Serializable id) {
-		return null;
+		return leaveBillDao.get(c, id);
 	}
 
 	@Override
@@ -35,8 +35,7 @@ public class LeaveBillServiceImpl implements LeaveBillService {
 
 	@Override
 	public void update(LeaveBill leaveBill) {
-		// TODO Auto-generated method stub
-		
+		leaveBillDao.update(leaveBill);
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
@@ -21,13 +22,22 @@ import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.gxuts.wss.dms.base.Page;
+import com.gxuts.wss.dms.entity.Json;
+import com.gxuts.wss.dms.entity.hr.UserInfo;
+import com.gxuts.wss.dms.service.process.FlowService;
 
 
 @Controller
 @RequestMapping(value="/flow")
-public class WorkFlowController {
+public class FlowController {
+	@Autowired
+	private FlowService flowService;
 	@Autowired
 	private RepositoryService repositoryService;
 	@Autowired
@@ -59,6 +69,15 @@ public class WorkFlowController {
 	public void complete(@PathVariable String taskId){
 		taskService.complete(taskId);
 		
+	}
+	@RequestMapping(value="/taskList")
+	public String taskList(Model m,HttpSession session,String  pageNum){
+		pageNum=pageNum==null? "1":pageNum;
+		UserInfo user=(UserInfo) session.getAttribute("loginUser");
+		Page<Object[]> page=flowService.queryPersonTask(user.getNo(), Integer.parseInt(pageNum), 10);
+//		Json j=new Json();
+		m.addAttribute("taskList", page.getData());
+		return "taskCenter";
 	}
 	
 	/**

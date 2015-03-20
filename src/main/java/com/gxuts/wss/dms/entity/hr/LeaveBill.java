@@ -21,6 +21,7 @@ public class LeaveBill implements Serializable{
 	private Date startDate;
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date endDate;
+	@ManyToOne
 	private UserInfo cadidate;
 	private String reason;
 	private Integer status=0;

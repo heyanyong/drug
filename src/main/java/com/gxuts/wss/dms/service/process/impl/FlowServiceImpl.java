@@ -74,10 +74,10 @@ public class FlowServiceImpl implements FlowService {
 			ProcessInstance p=runtimeService.createProcessInstanceQuery().processInstanceId(t.getProcessInstanceId()).singleResult();
 			String[] bk=p.getBusinessKey().split("#");
 			pt[6]=bk[0];
-			pt[7]=bk[1];
-			pt[8]=bk[2];
-			pt[9]=bk[3];
-			pt[10]=bk[4];
+//			pt[7]=bk[1];
+//			pt[8]=bk[2];
+//			pt[9]=bk[3];
+//			pt[10]=bk[4];
 			data.add(pt);
 		}
 		int totalCount=taskService.createTaskQuery().taskAssignee(no).list().size();

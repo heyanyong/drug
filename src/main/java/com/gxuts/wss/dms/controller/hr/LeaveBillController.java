@@ -56,7 +56,7 @@ public class LeaveBillController {
 	public String edit(@PathVariable Integer id, Model model) {
 		LeaveBill info = leaveBillService.get(LeaveBill.class, id);
 		model.addAttribute("info", info);
-		return "leaveBillDetail";
+		return "leaveDetail";
 	}
 	@RequestMapping(value = "/update",method=RequestMethod.POST)
 	@ResponseBody
@@ -93,6 +93,7 @@ public class LeaveBillController {
 		Map<String, Object> variables=new HashMap<String, Object>();
 		variables.put("creater", "admin");
 		variables.put("departmentId", 10);
+		variables.put("grade", 1);
 		variables.put("billId", id);
 		variables.put("mapping", "leave");
 		variables.put("assignee", null);
