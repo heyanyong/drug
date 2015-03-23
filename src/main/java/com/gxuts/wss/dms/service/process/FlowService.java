@@ -19,6 +19,7 @@ public interface FlowService {
 	public Page<ProcessDefinition> queryDeploy(Integer currentPage, Integer numPerPage);
 	public ProcessInstance startProcess(String processDefinitionKey,String businessKey,Map<String,Object> variables);
 	public Page<Object[]> queryPersonTask(String no,Integer currentPage, Integer numPerPage);
+	public Page<Object[]> queryPersonTaskHistory(String no, Integer currentPage,Integer numPerPage);
 	public String dealTask(String taskId,String processInstanceId, int outcome, String comment) ;
 	public List<Object[]> getCommentByprocessInstance(String processInstanceId);
 }

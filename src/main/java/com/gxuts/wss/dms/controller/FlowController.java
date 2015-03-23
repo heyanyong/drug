@@ -43,10 +43,6 @@ public class FlowController {
 	private RepositoryService repositoryService;
 	@Autowired
 	private RuntimeService runtimeService;
-	@Autowired
-	private TaskService taskService;
-	@Autowired
-	private HistoryService historyService;
 	
 	
 	
@@ -64,6 +60,14 @@ public class FlowController {
 		pageNum=pageNum==null? "0":pageNum;
 		UserInfo user=(UserInfo) session.getAttribute("loginUser");
 		Page<Object[]> page=flowService.queryPersonTask(user.getNo(), Integer.parseInt(pageNum), 10);
+		m.addAttribute("taskList", page.getData());
+		return "taskCenter";
+	}
+	@RequestMapping(value="/historyTaskList")
+	public String historyTaskList(Model m,HttpSession session,String  pageNum){
+		pageNum=pageNum==null? "0":pageNum;
+		UserInfo user=(UserInfo) session.getAttribute("loginUser");
+		Page<Object[]> page=flowService.queryPersonTaskHistory(user.getNo(), Integer.parseInt(pageNum), 10);
 		m.addAttribute("taskList", page.getData());
 		return "taskCenter";
 	}

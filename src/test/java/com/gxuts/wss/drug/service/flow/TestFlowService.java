@@ -64,7 +64,7 @@ public class TestFlowService {
 	@Test
 	public void testStart(){
 		String processDefinitionKey="leave";
-		String businessKey="商务部#李四#CY001#请假申请#leave#1001";
+		String businessKey="商务部#李四#CY001#请假申请#leave#1#LeaveBill";
 		Map<String, Object> variables=new HashMap<String, Object>();
 		variables.put("creater", "admin");
 		variables.put("departmentId", 10);
@@ -76,8 +76,6 @@ public class TestFlowService {
 //		List<String> assigneeList=null;
 		variables.put("assigneeList",null);
 		ProcessInstance pi=flowService.startProcess(processDefinitionKey, businessKey, variables);
-		Task t=taskService.createTaskQuery().processInstanceId(pi.getId()).singleResult();
-		taskService.complete(t.getId());
 	}
 	//个人任务测试：任务名称 任务key 表单ID
 	@Test
@@ -88,6 +86,18 @@ public class TestFlowService {
 			for (int j = 0; j < list.get(i).length; j++) {
 				Object[] obj=list.get(i);
 				System.out.print(obj[j]);
+			}
+			System.out.println();
+		}
+	}
+	@Test
+	public void testQueryTaskHistory(){
+		Page<Object[]> page=flowService.queryPersonTaskHistory("admin", 0, 10);
+		List<Object[]> list=page.getData();
+		for (int i = 0; i < list.size(); i++) {
+			for (int j = 0; j < list.get(i).length; j++) {
+				Object[] obj=list.get(i);
+				System.out.print(obj[j]+"-");
 			}
 			System.out.println();
 		}
@@ -106,7 +116,7 @@ public class TestFlowService {
 	//查批注信息 1节点名称 2办理时间-3完成时间 4办理人5 批注
 	@Test
 	public void testComment(){
-		List<Object[]> list=flowService.getCommentByprocessInstance("30001");
+		List<Object[]> list=flowService.getCommentByprocessInstance("40001");
 		 for (int i = 0; i < list.size(); i++) {
 				for (int j = 0; j < list.get(i).length; j++) {
 					Object[] obj=list.get(i);

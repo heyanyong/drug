@@ -3,6 +3,7 @@ package com.gxuts.wss.dms.service.process.impl;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipInputStream;
@@ -95,10 +96,35 @@ public class FlowServiceImpl implements FlowService {
 		int totalCount=taskService.createTaskQuery().taskAssignee(no).list().size();
 		return new Page<Object[]>(data, currentPage, numPerPage, totalCount);
 	}
+	@Override
+	public Page<Object[]> queryPersonTaskHistory(String no,Integer currentPage, Integer numPerPage) {
+		List<HistoricTaskInstance> list= historyService.createHistoricTaskInstanceQuery()
+				.taskAssignee(no).finished().orderByDueDateNullsLast().desc().listPage(currentPage, numPerPage);
+		List<Object[]> data=new ArrayList<Object[]>();
+		for(HistoricTaskInstance t:list){
+			Object[] pt=new Object[12];
+			pt[0]=t.getId();
+			pt[1]=t.getName();
+			pt[2]=t.getAssignee();
+			pt[3]=t.getCreateTime();
+			pt[4]=t.getEndTime();
+			pt[5]=t.getProcessInstanceId();
+			ProcessInstance p=runtimeService.createProcessInstanceQuery().processInstanceId(t.getProcessInstanceId()).singleResult();
+			String[] bk=p.getBusinessKey().split("#");
+			pt[6]=bk[0];  //部门
+			pt[7]=bk[1];  //姓名
+			pt[8]=bk[2];  //工号
+			pt[9]=bk[3];  //任务名
+			pt[10]=bk[4]; //url
+			pt[11]=bk[5]; //Billid
+			data.add(pt);
+		}
+		return new Page<Object[]>(data, currentPage, numPerPage, 0);
+	}
 	
-	//0没结束 1结束
-	public String dealTask(String taskId,String processInstanceId, int outcome, String comment) {
-		taskService.addComment(taskId, processInstanceId, comment);
+	//
+	public String dealTask(String taskId,String processInstanceId, int outcome, String message) {
+		taskService.addComment(taskId, processInstanceId, outcome==1? "同意":"不同意", message);
 		taskService.setVariable(taskId, "outcome", outcome);
 		ProcessInstance p=runtimeService.createProcessInstanceQuery().processInstanceId(processInstanceId).singleResult();
 		taskService.complete(taskId);
@@ -120,17 +146,17 @@ public class FlowServiceImpl implements FlowService {
 		List<HistoricTaskInstance> tasks=historyService.createHistoricTaskInstanceQuery().processInstanceId(processInstanceId)
 				.finished()
 				.list();
+		List<Comment> comments = taskService.getProcessInstanceComments(processInstanceId);
 		for (HistoricTaskInstance t:tasks) {
 			Object[] pt=new Object[5];
 			pt[0]=t.getName();
 			pt[1]=t.getAssignee();
 			pt[2]=t.getCreateTime();
 			pt[3]=t.getEndTime();
-			List<Comment> comments = taskService.getProcessInstanceComments(processInstanceId);
 			for(Comment c:comments){
-				if(c.getTaskId()==t.getId()){
-					pt[4]=c.getFullMessage();
-				}
+				 if(t.getId().equals(c.getTaskId())){
+					 pt[4]=c.getFullMessage();
+				 } 
 			}
 			data.add(pt);
 		}
