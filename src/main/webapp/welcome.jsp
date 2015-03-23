@@ -486,13 +486,9 @@
 							</div>
 							<div class="lastNews">
 								<ul>
-									<li><a href="flow/taskList" target="ajax" id="mytasklist"
-										rel="personTaskList">关于8号文件的通知及各部门工作安排</a><span>2015-12-01</span></li>
-									<li><a href="">国庆放假通知及各部门工作安排</a><span>2015-12-01</span></li>
-									<li><a href="">关于8号文件的通知及各部门工作安排</a><span>2015-12-01</span></li>
-									<li><a href="">关于8号文件的通知及各部门工作安排</a><span>2015-12-01</span></li>
-									<c:forEach items="news" var="e">
-									<li><a href="">${1}</a><span>2015-12-01</span></li>
+									<li><a href="flow/taskList" target="ajax" id="mytasklist" 	rel="personTaskList">关于8号文件的通知及各部门工作安排</a><span>2015-12-01</span></li>
+									<c:forEach items="${news}" var="e">
+									<li><a href="">${e.name}</a><span>${e.createDate}</span></li>
 									</c:forEach>
 								</ul>
 							</div>

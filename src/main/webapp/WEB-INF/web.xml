@@ -50,6 +50,10 @@
 		<servlet-name>springMVC</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>springMVC</servlet-name>
+		<url-pattern>/index</url-pattern>
+	</servlet-mapping>
 	<!-- Spring 配置 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -66,7 +70,6 @@
 		<session-timeout>50</session-timeout>
 	</session-config>
 	<welcome-file-list>
-	 <welcome-file>index</welcome-file>
+		<welcome-file>index</welcome-file>
 	</welcome-file-list>
-
 </web-app>

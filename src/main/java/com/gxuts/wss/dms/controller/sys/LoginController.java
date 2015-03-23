@@ -26,23 +26,19 @@ public class LoginController {
 	private UserService userService;
 	@Autowired
 	private FlowService flowService;
+	@RequestMapping(value="index")
+	public String index(Model m){
+		System.out.println("++++request index++++ ");
+		Page<ArticleInfo> pages = articleService.query(null, null, null, null);
+		List<ArticleInfo> news=pages.getData();
+		m.addAttribute("news", news);
+		return "welcome";
+	}
 	@RequestMapping(value="login")
 	public String LoginPage(){
 		return "login";
 	}
 	
-	@RequestMapping(value="index")
-	public String wecome(Model m,HttpSession session,String  pageNum){
-		System.out.println(111111234);
-		pageNum=pageNum==null? "0":pageNum;
-		UserInfo user=(UserInfo) session.getAttribute("loginUser");
-		Page<Object[]> page=flowService.queryPersonTask(user.getNo(), Integer.parseInt(pageNum), 10);
-		m.addAttribute("taskList", page.getData());
-		
-		List<ArticleInfo> news = articleService.query(null, null, null, null).getData();
-		m.addAttribute("news", news);
-		return "index";
-	}
 	@RequestMapping(value="logout")
 	public String LoginPage(HttpSession session){
 		session.setAttribute("loginUser", null);
@@ -54,13 +50,9 @@ public class LoginController {
 		if(loginUser==null){
 			return "redirect:/login.jsp?loginMsg='用户名或密码错误'";
 		}else{
+			
 			request.getSession().setAttribute("loginUser", loginUser);
-			return "redirect:/index.jsp";
+			return "redirect:/index";
 		}
-	}
-	@RequestMapping(value="register",method=RequestMethod.POST)
-	public String register( ){
-	 
-		return "redirect:/index.jsp";
 	}
 }
