@@ -20,6 +20,7 @@ import org.activiti.engine.impl.pvm.process.ActivityImpl;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
+import org.apache.xmlbeans.impl.jam.mutable.MElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,34 +49,21 @@ public class FlowController {
 	private HistoryService historyService;
 	
 	
-	@RequestMapping(value="start")
-	public void  start(){
-		String processDefinitionKey="export";
-		String businessKey="NF0001张三的出库申请2:leaveDetail:1001";
-		Map<String, Object> variables=new HashMap<String, Object>();
-		variables.put("createUser", "NF0002");
-		List<String> assigneeList=Arrays.asList("liyagn","cooperay","other");
-		variables.put("assigneeList", assigneeList);
-		ProcessInstance processInstance=runtimeService.startProcessInstanceByKey(processDefinitionKey, businessKey,variables);
-		System.out.println(processInstance.getId()); //
-		System.out.println(processInstance.getBusinessKey());//
-		Map<String, Object> vars2=processInstance.getProcessVariables();
-		for(Object o:vars2.values()){
-			System.out.println("*"+o);
-		}
-	}
 	
-	@RequestMapping(value="/complete/{taskId}")
-	public void complete(@PathVariable String taskId){
-		taskService.complete(taskId);
+	@RequestMapping(value="/complete")
+	@ResponseBody
+	public Json completeByDeal(String taskId,String processInstanceId, int outcome, String comment){
+		String userNo=flowService.dealTask(taskId, processInstanceId, outcome, comment);
+		String msg=userNo==null? "任务结束":"任务到达:"+userNo+"办理";
+		return new Json(msg,"200","leaveList","leaveList","closeCurrent","leave/list");
 		
 	}
+	 
 	@RequestMapping(value="/taskList")
 	public String taskList(Model m,HttpSession session,String  pageNum){
-		pageNum=pageNum==null? "1":pageNum;
+		pageNum=pageNum==null? "0":pageNum;
 		UserInfo user=(UserInfo) session.getAttribute("loginUser");
 		Page<Object[]> page=flowService.queryPersonTask(user.getNo(), Integer.parseInt(pageNum), 10);
-//		Json j=new Json();
 		m.addAttribute("taskList", page.getData());
 		return "taskCenter";
 	}
@@ -84,13 +72,30 @@ public class FlowController {
 	 * 查看流程图
 	 * @throws Exception 
 	 */
+	@RequestMapping(value="/image/{flowId}")
+	public String viewDeal(@PathVariable String flowId ,Model m){
+		ProcessInstance pi = runtimeService.createProcessInstanceQuery().processInstanceId(flowId).singleResult();
+		ProcessDefinition pd = repositoryService.createProcessDefinitionQuery().processDefinitionId(pi.getProcessDefinitionId()).singleResult();
+		m.addAttribute("deploymentId", pd.getDeploymentId());
+		m.addAttribute("imageName", pd.getDiagramResourceName());
+		String activityId = pi.getActivityId();
+		// 获取当前活动对象
+		if(activityId!=null){
+			Map<String, Object> map = new HashMap<String, Object>();
+			ProcessDefinitionEntity processDefinitionEntity = (ProcessDefinitionEntity) repositoryService
+					.getProcessDefinition(pd.getId());
+			ActivityImpl activityImpl = processDefinitionEntity.findActivity(activityId);// 活动ID
+			map.put("x", activityImpl.getX());
+			map.put("y", activityImpl.getY());
+			map.put("width", activityImpl.getWidth());
+			map.put("height", activityImpl.getHeight());
+			m.addAttribute("acs", map);
+		}
+		return "flowImg";
+	}
+	
 	@RequestMapping(value="/img")
 	public String viewImage(String deploymentId,String imageName,HttpServletResponse response) throws Exception{
-		//1：获取页面传递的部署对象ID和资源图片名称
-		//部署对象ID
-		//String deploymentId = workflowBean.getDeploymentId();
-		//资源图片名称
-		//String imageName = workflowBean.getImageName();
 		//2：获取资源文件表（act_ge_bytearray）中资源图片输入流InputStream
 		InputStream in = repositoryService.getResourceAsStream(deploymentId,imageName);
 		//3：从response对象获取输出流
@@ -101,56 +106,7 @@ public class FlowController {
 		}
 		out.close();
 		in.close();
-		//将图写到页面上，用输出流写
 		return null;
 	}
-	@RequestMapping(value="/currentImage")
-	public String viewCurrentImage(HttpServletRequest req){
-		//任务ID
-		String taskId = "60004";
-		String processDefinitionId="leave:3:27504";
-		/**一：查看流程图*/
-		//1：获取任务ID，获取任务对象，使用任务对象获取流程定义ID，查询流程定义对象
-		ProcessDefinition pd = repositoryService.createProcessDefinitionQuery()//创建流程定义查询对象，对应表act_re_procdef 
-				.processDefinitionId(processDefinitionId)//使用流程定义ID查询
-				.singleResult();
-		//workflowAction_viewImage?deploymentId=<s:property value='#deploymentId'/>&imageName=<s:property value='#imageName'/>
-		req.setAttribute("deploymentId", pd.getDeploymentId());
-		req.setAttribute("imageName", pd.getDiagramResourceName());
-		//ValueContext.putValueContext("deploymentId", pd.getDeploymentId());
-		//ValueContext.putValueContext("imageName", pd.getDiagramResourceName());
-		/**二：查看当前活动，获取当期活动对应的坐标x,y,width,height，将4个值存放到Map<String,Object>中*/
-		Map<String, Object> map = findCoordingByTask(taskId);
-		req.setAttribute("acs", map);
-		return "flowImg";
-	}
-	
-	public Map<String, Object> findCoordingByTask(String taskId) {
-		//存放坐标
-		Map<String, Object> map = new HashMap<String,Object>();
-		//使用任务ID，查询任务对象
-		Task task = taskService.createTaskQuery()//
-					.taskId(taskId)//使用任务ID查询
-					.singleResult();
-		//获取流程定义的ID
-		String processDefinitionId = task.getProcessDefinitionId();
-		//获取流程定义的实体对象（对应.bpmn文件中的数据）
-		ProcessDefinitionEntity processDefinitionEntity = (ProcessDefinitionEntity)repositoryService.getProcessDefinition(processDefinitionId);
-		//流程实例ID
-		String processInstanceId = task.getProcessInstanceId();
-		//使用流程实例ID，查询正在执行的执行对象表，获取当前活动对应的流程实例对象
-		ProcessInstance pi = runtimeService.createProcessInstanceQuery()//创建流程实例查询
-					.processInstanceId(processInstanceId)//使用流程实例ID查询
-					.singleResult();
-		//获取当前活动的ID
-		String activityId = pi.getActivityId();
-		//获取当前活动对象
-		ActivityImpl activityImpl = processDefinitionEntity.findActivity(activityId);//活动ID
-		//获取坐标
-		map.put("x", activityImpl.getX());
-		map.put("y", activityImpl.getY());
-		map.put("width", activityImpl.getWidth());
-		map.put("height", activityImpl.getHeight());
-		return map;
-	}
+	 
 }

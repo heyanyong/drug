@@ -81,6 +81,18 @@
 			</div>
 			</div>
 	</form>
+	<div class="divider"></div>
+	<fieldset>
+				<legend>相关信息</legend>
+			<p>
+				<label>开发人员：</label>
+				<input name="devUser"  type="text" size="30" value="${loginUser.name }"/>
+			</p>
+			<p>
+				<label>开发部门：</label>
+				<input name="devDepartment" value="${loginUser.name }"  type="text" size="30"/>
+			</p>
+			</fieldset>
 </div>
 <script>
 

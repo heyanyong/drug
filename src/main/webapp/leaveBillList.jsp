@@ -14,7 +14,7 @@
 					编号：<input type="text" name="name" value="${no}" />
 				</td>
 				<td>
-					入职日期：<input type="text" class="date" readonly="true" />
+					日期：<input type="text" class="date" readonly="true" />
 				</td>
 			</tr>
 		</table>
@@ -39,7 +39,7 @@
 			<li class="line">line</li>
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
 			<li class="line">line</li>
-			<li><a class="icon"   target="dwzExport" targetType="navTab"  ><span>查看流程</span></a></li>
+			<li><a class="icon" href="flow/image/{e_id}"   targetType="navTab"  ><span>查看流程</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon"  target="dwzExport" targetType="navTab"  ><span>刷新列表</span></a></li>
 		</ul>
@@ -54,6 +54,7 @@
 				<th>请假小时数</th> 
 				<th>交接人</th> 
 				<th>状态</th> 
+				<th>操作</th> 
 			</tr>
 		</thead>
 		<tbody>
@@ -66,6 +67,7 @@
 				<td>${e.hours}</td>
 				<td>${e.no}</td>
 				<td>${e.status}</td>
+				<td><a href="flow/image/${e.flowId}" target="navTab">查看办理进度</a></td>
 			</tr>
 			</c:forEach>
 		</tbody>

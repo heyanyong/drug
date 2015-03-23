@@ -2,6 +2,7 @@ package com.gxuts.wss.dms.controller.hr;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -23,8 +24,10 @@ import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.hr.LeaveBill;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.hr.LeaveBillService;
+import com.gxuts.wss.dms.service.hr.UserService;
 import com.gxuts.wss.dms.service.process.FlowService;
 import com.gxuts.wss.dms.util.DateUtil;
+import com.gxuts.wss.dms.util.MysqlUtil;
 
 @Controller
 @RequestMapping(value = "/leave")
@@ -34,7 +37,7 @@ public class LeaveBillController {
 	@Autowired
 	private FlowService flowService;
 	@Autowired
-	private RuntimeService runtimeService;
+	private UserService userService;
 	
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
 	@ResponseBody
@@ -55,7 +58,14 @@ public class LeaveBillController {
 	@RequestMapping(value = "/edit/{id}")
 	public String edit(@PathVariable Integer id, Model model) {
 		LeaveBill info = leaveBillService.get(LeaveBill.class, id);
+		String pid=info.getFlowId();
+		List<Object[]> comments=null;
+		if(pid!=null){
+			comments=flowService.getCommentByprocessInstance(pid);
+		}
 		model.addAttribute("info", info);
+		Object a;
+		model.addAttribute("comments", comments);
 		return "leaveDetail";
 	}
 	@RequestMapping(value = "/update",method=RequestMethod.POST)
@@ -87,20 +97,20 @@ public class LeaveBillController {
 	}
 	@RequestMapping(value="/deal/{id}", method = RequestMethod.POST)
 	@ResponseBody
-	public Json deal(@PathVariable Integer id){
+	public Json deal(@PathVariable Integer id,HttpSession s){
+		UserInfo user=(UserInfo) s.getAttribute("loginUser");
 		String processDefinitionKey="leave";
-		String businessKey="请假流程";
+		int roleGrade=userService.getMaxRole(user.getRoles()).getGrade();
+		String businessKey=user.getStructure().getName()+"#"+user.getName()+"#"+
+		user.getNo()+"#请假申请#leave#"+id+"#"+"LeaveBill";
 		Map<String, Object> variables=new HashMap<String, Object>();
-		variables.put("creater", "admin");
-		variables.put("departmentId", 10);
-		variables.put("grade", 1);
-		variables.put("billId", id);
-		variables.put("mapping", "leave");
+		variables.put("creater", user.getNo());
+		variables.put("departmentId", user.getStructure().getId());
+		variables.put("roleGrade", roleGrade);
 		variables.put("assignee", null);
-//		List<String> assigneeList=null;
-		variables.put("assigneeList", null);
-		ProcessInstance processInstance=runtimeService.startProcessInstanceByKey(processDefinitionKey, businessKey,variables);
-		System.out.println("实例ID："+processInstance.getId());
+		variables.put("assigneeList", null);	
+		ProcessInstance pi= flowService.startProcess(processDefinitionKey, businessKey, variables);
+		userService.executeHql("update LeaveBill set status=2,flowId="+pi.getId()+" where id="+id);
 		return new Json("提交办理成功","200","leaveList","leaveList",null,null);
 	}
 }

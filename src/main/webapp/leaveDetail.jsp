@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="pageContent">
 	<form id="detailForm" method="post" action="leave/update" 
 		class="pageForm required-validate"
@@ -8,6 +9,7 @@
 		<div class="formBar">
 			<ul>
 				<li><a class="buttonActive" href="javascript:saveBill('detailForm');"><span>保存</span></a></li>
+				<li><a class="buttonActive" href="dealTask.jsp?processInstanceId=${param.processInstanceId}&taskId=${param.taskId}" target="dialog" ><span>办理任务</span></a></li>
 			</ul>
 		</div>
 		<div class="pageFormContent leaveBill" layoutH="56">
@@ -74,9 +76,35 @@
 				<label>最后更新时间：</label> <input  type="text" readonly="readonly" value="${info.updateDate}" />
 			</p>
 			</div>
+			<div class="divider"></div>
+			<div class="comments" >
+			<table class="table"  >
+			<thead>
+			  <tr>
+			    <th width="200">审批</th>
+			    <th width="200">办理人</th>
+			    <th width="400">办理时间</th>
+			    <th>批注</th>
+			  </tr>
+			</thead>
+			<tbody>
+			<c:forEach items="${comments}" var="e">
+			  <tr>
+			    <td>${e[0]}</td>
+			    <td>${e[1]}</td>
+			    <td><fmt:formatDate value="${e[2]}" type="date"/>--<fmt:formatDate value="${e[3]}" type="date"/></td>
+			    <td>${e[4]}</td>
+			  </tr>
+			  </c:forEach>
+			  </tbody>
+			</table>
 			</div>
+		</div>
+			
 	</form>
+		
 </div>
+
 <script>
  function saveBill(form){
 	 $("#"+form).attr("action","leave/update");
@@ -97,6 +125,9 @@
 		    var hours=getDate(endDate).getTime()-getDate(startDate).getTime();
 		    $(".leaveBill input[name='hours']").val(Math.ceil(hours/(1000*3600)));
 	    }
+ }
+ if("${param.show}"=="deal"){
+	 $("#detailForm input").attr("readonly","readonly");
  }
 
 

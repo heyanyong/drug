@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gxuts.wss.dms.base.Page;
+import com.gxuts.wss.dms.service.hr.UserService;
 import com.gxuts.wss.dms.service.process.FlowService;
 @Service("flowService")
 @Transactional
@@ -35,6 +36,10 @@ public class FlowServiceImpl implements FlowService {
 	private TaskService taskService ;
 	@Autowired
 	private HistoryService historyService;
+	@Autowired
+	private UserService userService;
+	
+	
 	public void deployByZIP(File file, String filename) {
 		try {
 			ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(file));
@@ -60,15 +65,17 @@ public class FlowServiceImpl implements FlowService {
 		return page;
 	}
 	public ProcessInstance startProcess(String processDefinitionKey,String businessKey,Map<String,Object> variables){
-		ProcessInstance processInstance=runtimeService.startProcessInstanceByKey(processDefinitionKey, businessKey,variables);
-		return processInstance;
+		ProcessInstance pi=runtimeService.startProcessInstanceByKey(processDefinitionKey, businessKey,variables);
+		Task t=taskService.createTaskQuery().processInstanceId(pi.getId()).singleResult();
+		taskService.complete(t.getId());
+		return pi;
 	}
 	@Override
 	public Page<Object[]> queryPersonTask(String no,Integer currentPage, Integer numPerPage) {
 		List<Task> list=taskService.createTaskQuery().taskAssignee(no).orderByTaskCreateTime().asc().listPage(currentPage, numPerPage);
 		List<Object[]> data=new ArrayList<Object[]>();
 		for(Task t:list){
-			Object[] pt=new Object[11];
+			Object[] pt=new Object[12];
 			pt[0]=t.getId();
 			pt[1]=t.getName();
 			pt[2]=t.getAssignee();
@@ -77,11 +84,12 @@ public class FlowServiceImpl implements FlowService {
 			pt[5]=t.getProcessInstanceId();
 			ProcessInstance p=runtimeService.createProcessInstanceQuery().processInstanceId(t.getProcessInstanceId()).singleResult();
 			String[] bk=p.getBusinessKey().split("#");
-			pt[6]=bk[0];
-//			pt[7]=bk[1];
-//			pt[8]=bk[2];
-//			pt[9]=bk[3];
-//			pt[10]=bk[4];
+			pt[6]=bk[0];  //部门
+			pt[7]=bk[1];  //姓名
+			pt[8]=bk[2];  //工号
+			pt[9]=bk[3];  //任务名
+			pt[10]=bk[4]; //url
+			pt[11]=bk[5]; //Billid
 			data.add(pt);
 		}
 		int totalCount=taskService.createTaskQuery().taskAssignee(no).list().size();
@@ -89,36 +97,44 @@ public class FlowServiceImpl implements FlowService {
 	}
 	
 	//0没结束 1结束
-	public int dealTask(String taskId,String processInstanceId, String outcome, String comment) {
+	public String dealTask(String taskId,String processInstanceId, int outcome, String comment) {
 		taskService.addComment(taskId, processInstanceId, comment);
+		taskService.setVariable(taskId, "outcome", outcome);
+		ProcessInstance p=runtimeService.createProcessInstanceQuery().processInstanceId(processInstanceId).singleResult();
 		taskService.complete(taskId);
-//		taskService.setVariable(taskId, "outcome", outcome);
-//		ProcessInstance pi = runtimeService.createProcessInstanceQuery()//
-//				.processInstanceId(processInstanceId)//使用流程实例ID查询
-//				.singleResult();
-//		if(pi==null){
-//			return 1;
-//		}else{
-			return 0;
-//		}
+		List<Task> tasks= taskService.createTaskQuery().processInstanceId(processInstanceId).active().list();
+		String result = "";
+		for(Task t:tasks){
+			result+=t.getName()+":"+t.getAssignee()+" ";
+		}
+		if(result.equals("")){
+			String[] bk=p.getBusinessKey().split("#");
+			userService.executeHql("update "+bk[6]+" set status=3 where flowId="+processInstanceId);
+		}
+		return result;
+		
 	}
 	//
-	public List<Comment> getCommentByprocessInstance(String processInstanceId){
+	public List<Object[]> getCommentByprocessInstance(String processInstanceId){
+		List<Object[]> data=new ArrayList<Object[]>();
 		List<HistoricTaskInstance> tasks=historyService.createHistoricTaskInstanceQuery().processInstanceId(processInstanceId)
 				.finished()
 				.list();
 		for (HistoricTaskInstance t:tasks) {
-			System.out.print(t.getAssignee());
-			System.out.print(t.getName());
-			System.out.print(t.getCreateTime());
-			System.out.print(t.getEndTime());
-			System.out.println();
+			Object[] pt=new Object[5];
+			pt[0]=t.getName();
+			pt[1]=t.getAssignee();
+			pt[2]=t.getCreateTime();
+			pt[3]=t.getEndTime();
+			List<Comment> comments = taskService.getProcessInstanceComments(processInstanceId);
+			for(Comment c:comments){
+				if(c.getTaskId()==t.getId()){
+					pt[4]=c.getFullMessage();
+				}
+			}
+			data.add(pt);
 		}
-		List<Comment> comments = taskService.getProcessInstanceComments(processInstanceId);
-		for(Comment c:comments){
-			
-		}
-		return comments;
+		return data;
 	}
 	
 }

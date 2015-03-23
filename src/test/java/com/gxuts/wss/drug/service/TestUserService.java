@@ -62,7 +62,7 @@ public class TestUserService {
 	
 	@Test
 	public void testUpdateByHql(){
-		userService.executeHql("update UserInfo set no='NF000' where age<10");
+		userService.executeHql("update LeaveBill set status=2,flowId=2 where id="+5);
 	}
 	
 	@Test

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 	<form id="pagerForm"
 		onsubmit="return divSearch(this, 'personTaskList');"
 		action="flow/taskList" method="post">
@@ -21,27 +23,23 @@
 				</div></li>
 		</ul>
 	</div>
-	<table class="table" width="99%" layoutH="315" rel="personTaskList">
+	<table class="table" width="99%" layoutH="290" rel="personTaskList">
 		<thead>
-			<tr>
-				<th width="80">序号</th>
-				<th >诊所编号</th>
-				<th >诊所编号</th>
-			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${taskList}" var="e">
 			<tr target="sid_obj" rel="${e[0]}">
-				<td width="20">${e[1]}</td>
-				<td>${e[1]}</td>
-				<td>${e[0]}   </td>
+				<td width="130"><a href="${e[10]}/edit/${e[11]}?show=deal&processInstanceId=${e[5]}&taskId=${e[0]}"  target="navTab"><fmt:formatDate value="${e[3]}" type="date"/> <fmt:formatDate value="${e[3]}" type="time"/></a></td>
+				<td width="100"><a href="${e[10]}/edit/${e[11]}?show=deal&processInstanceId=${e[5]}&taskId=${e[0]}"  target="navTab">${e[6]}</a></td>
+				<td width="80"><a href="${e[10]}/edit/${e[11]}?show=deal&processInstanceId=${e[5]}&taskId=${e[0]}"  target="navTab">${e[7]}</a></td>
+				<td><a href="${e[10]}/edit/${e[11]}?show=deal&processInstanceId=${e[5]}&taskId=${e[0]}" target="navTab">${e[9]}</a></td>
 			</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	<div class="panelBar">
 		<div class="pages">
-			<span> 共50条</span>
+			<span> 共${pages.totalCount}条</span>
 		</div>
 		<div class="pagination" rel="jbsxBox"	totalCount="${pages.totalCount}"	numPerPage="${pages.numPerPage}"
 		pageNumShown="${pages.pageNumShown}"	currentPage="${pages.currentPage}"></div>

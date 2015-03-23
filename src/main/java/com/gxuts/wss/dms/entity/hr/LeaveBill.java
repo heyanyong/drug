@@ -39,6 +39,7 @@ public class LeaveBill implements Serializable{
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date updateDate;
 	private UserInfo updateUser;
+	private String flowId;
 	
 	public LeaveBill() {}
 	public LeaveBill(Integer id) {
@@ -112,6 +113,16 @@ public class LeaveBill implements Serializable{
 	}
 	public UserInfo getCreateUser() {
 		return createUser;
+	}
+	
+	public String getFlowId() {
+		return flowId;
+	}
+	public void setFlowId(String flowId) {
+		this.flowId = flowId;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 	public void setCreateUser(UserInfo createUser) {
 		this.createUser = createUser;

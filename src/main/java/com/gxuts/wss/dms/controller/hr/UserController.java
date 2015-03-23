@@ -7,6 +7,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import liquibase.util.MD5Util;
+
 import org.activiti.engine.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,12 +33,6 @@ public class UserController {
 	@Autowired
 	private TaskService taskService;
 
-//	@RequestMapping(value="list")
-//	public String getList(Model model,Integer pageNum, Integer row){
-//		Page<UserInfo> pages=userService.query("from UserInfo", null, pageNum, 3);
-//		model.addAttribute("pages", pages);
-//		return "userList";
-//	}
 	@RequestMapping(value="list",method={RequestMethod.POST,RequestMethod.GET})
 	public String query(Model model,String name,Integer pageNum,HttpServletRequest request){
 		String target=request.getParameter("show");
@@ -123,26 +119,6 @@ public class UserController {
 		model.addAttribute("user", user);
 		return  "userDetail";
 	}
-	@RequestMapping(value="login")
-	public String LoginPage(){
-		return "login";
-	}
-	@RequestMapping(value="/checkLogin", method=RequestMethod.POST)
-	public String checkLogin(UserInfo user , HttpServletRequest request){
-		System.out.println(user);
-		UserInfo loginUser=userService.checkLogin(user);
-		if(loginUser==null){
-			request.setAttribute("loginMsg", "登陆失败");
-			return "login";
-		}else{
-			request.getSession().setAttribute("loginUser", loginUser);
-			return "redirect:/index.jsp";
-		}
-	}
-	@RequestMapping(value="register",method=RequestMethod.POST)
-	public String register( ){
-	 
-		return "redirect:/index.jsp";
-	}
+	
 
 }

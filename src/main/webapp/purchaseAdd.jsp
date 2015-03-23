@@ -39,7 +39,7 @@
 			</p>
 			<p>
 				<label>采购主体：</label> <input name="name" class="required" type="text" 
-					size="30" value="广西科技大学卫生所" />
+					size="30" value="XX科技有限公司" />
 			</p>
 			<p>
 				<label>部门编号：</label> <input type="text" readonly="readonly" value=""
@@ -85,21 +85,16 @@
 				</dd>
 			</dl>
 			<div class="divider"></div>
-			<div class="panel collapse" minH="180" >
+			<div class="panel collapse" minH="180" width=61% style="width:63%;">
 				<h1>药品明细 </h1>
 				<div>
 					<table class="list nowrap itemDetail" addButton="新建从表1条目" width="100%">
 						<thead>
 							<tr>
 								<th type="del" width="28">删除</th>
-								<th type="text" name="items[#index#].itemString" size="12" fieldClass="required" fieldAttrs="{remote:'validate_remote.html', maxlength:10}">从字符串</th>
-								<th type="text" name="items[#index#].itemInt" defaultVal="#index#" size="12" fieldClass="digits">从整数</th>
-								<th type="text" name="items[#index#].itemFloat" defaultVal="0.8" size="12" fieldClass="number">从浮点</th>
-								<th type="date" name="items[#index#].itemDate" defaultVal="2011-12-28" size="12">从日期</th>
-								<th type="date" format="yyyy-MM-dd HH:mm:ss" name="items[#index#].itemDataTime" size="16">从日期时间</th>
-								<th type="lookup" name="items[#index#].org.orgName" lookupGroup="items[#index#].org" lookupUrl="demo/database/dwzOrgLookup.html" suggestUrl="demo/database/db_lookupSuggest.html" suggestFields="orgName" postField="keywords" size="12" fieldClass="required">部门名称</th>
-								<th type="enum" name="items[#index#].itemEnum" enumUrl="demo/database/db_select.html" size="12">从枚举</th>
-								<th type="attach" name="items[#index#].attachment.fileName" lookupGroup="items[#index#].attachment" lookupUrl="demo/database/db_attachmentLookup.html" size="12">从附件</th>
+								<th type="text" defaultVal="#index#" size="12"  >序号</th>
+								<th type="text" name="drugs[#index#].name" >名称</th>
+								<th type="text" name="drugs[#index#].requestNumber"  size="12" fieldClass="digits">需求数量</th>
 							</tr>
 						</thead>
 						<tbody>	</tbody>

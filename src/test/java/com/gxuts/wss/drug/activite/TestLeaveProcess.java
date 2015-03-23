@@ -65,7 +65,8 @@ public class TestLeaveProcess {
 		variables.put("creater", "admin");
 		variables.put("departmentId", 10);
 		variables.put("billId", 1);
-		variables.put("roleGrade", 1);
+		variables.put("outcome", 1);
+		variables.put("roleGrade", 500);
 		variables.put("mapping", "leave");
 		variables.put("assignee", "assignee1");
 //		List<String> assigneeList=null;

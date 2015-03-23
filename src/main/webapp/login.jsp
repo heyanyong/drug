@@ -27,7 +27,7 @@
 		</div>
 		<div id="login_content">
 			<div class="loginForm">
-				<form action="user/checkLogin" method="post">
+				<form action="checkLogin" method="post">
 					<p>
 						<label>用户名：</label>
 						<input type="text" name="no" size="20" class="login_input" />
