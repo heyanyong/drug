@@ -486,41 +486,14 @@
 							</div>
 							<div class="lastNews">
 								<ul>
-									<li><a href="flow/taskList" target="ajax" id="mytasklist" 	rel="personTaskList">关于8号文件的通知及各部门工作安排</a><span>2015-12-01</span></li>
 									<c:forEach items="${news}" var="e">
-									<li><a href="">${e.name}</a><span>${e.createDate}</span></li>
+									<li><a href="article/view/${e.id}" target="navTab" rel="article${e.id}">${e.name}</a><span>${e.createDate}</span></li>
 									</c:forEach>
 								</ul>
 							</div>
 							<div class="clear"></div>
 							<div class="taskCenter" id="personTaskList">
-								 
-										<table class="table" width="99%" layoutH="290"
-											rel="personTaskList">
-											<thead>
-											</thead>
-											<tbody>
-												<c:forEach items="${taskList}" var="e">
-													<tr target="sid_obj" rel="${e[0]}">
-														<td width="130"><a
-															href="${e[10]}/edit/${e[11]}?show=deal&processInstanceId=${e[5]}&taskId=${e[0]}"
-															target="navTab"><fmt:formatDate value="${e[3]}"
-																	type="date" /> <fmt:formatDate value="${e[3]}"
-																	type="time" /></a></td>
-														<td width="100"><a
-															href="${e[10]}/edit/${e[11]}?show=deal&processInstanceId=${e[5]}&taskId=${e[0]}"
-															target="navTab">${e[6]}</a></td>
-														<td width="80"><a
-															href="${e[10]}/edit/${e[11]}?show=deal&processInstanceId=${e[5]}&taskId=${e[0]}"
-															target="navTab">${e[7]}</a></td>
-														<td><a
-															href="${e[10]}/edit/${e[11]}?show=deal&processInstanceId=${e[5]}&taskId=${e[0]}"
-															target="navTab">${e[9]}</a></td>
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-										 
+									 
 							</div>
 							<div class="static">
 								<div id="chartHolder"></div>
@@ -539,20 +512,23 @@
 </body>
 
 <script>
+	var taskTimer;
+	//function loadTask()
+	// {
+	   $("#personTaskList").loadUrl("flow/taskList",null, null);
+	// }
+	//taskTimer= window.setInterval("loadTask()",10000); 
+	
 	title = "October Browser Statistics";
 	titleXpos = 180;
 	titleYpos = 22;
 
 	/* Pie Data */
 	pieRadius = 85;
-	pieXpos = 94;
+	pieXpos = 98;
 	pieYpos = 150;
-	pieData = [ 1149422, 551315, 172095, 166565, 53329, 18060, 8074, 1941,
-			1393, 1104, 2110 ];
-	pieLegend = [ "%%.%% – Firefox", "%%.%% – IExplorer", "%%.%% – Chrome",
-			"%%.%% – Safari", "%%.%% – Opera", "%%.%% – Mozilla",
-			"%%.%% – Mozilla", "%%.%% – Opera Mini", "%%.%% – SeaMonkey",
-			"%%.%% – Camino", "%%.%% – Other" ];
+	pieData = ${countData};
+	pieLegend = ${countItem};
 
 	pieLegendPos = "east";
 

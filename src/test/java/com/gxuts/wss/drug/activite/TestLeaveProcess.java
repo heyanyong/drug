@@ -56,24 +56,6 @@ public class TestLeaveProcess {
 		System.out.println(deploy.getId()+"-"+deploy.getName()+"-部署完成");
 	}
 
- 
-	@Test//15001
-	public void testStart(){
-		String processDefinitionKey="leave";
-		String businessKey="请假流程";
-		Map<String, Object> variables=new HashMap<String, Object>();
-		variables.put("creater", "admin");
-		variables.put("departmentId", 10);
-		variables.put("billId", 1);
-		variables.put("outcome", 1);
-		variables.put("roleGrade", 500);
-		variables.put("mapping", "leave");
-		variables.put("assignee", "assignee1");
-//		List<String> assigneeList=null;
-		variables.put("assigneeList", Arrays.asList("r3","r2","r1"));
-		ProcessInstance processInstance=runtimeService.startProcessInstanceByKey(processDefinitionKey, businessKey,variables);
-		System.out.println("实例ID："+processInstance.getId()); //
-	}
 
 	@Test
 	public void complete(){

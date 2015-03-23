@@ -27,11 +27,20 @@ public class LoginController {
 	@Autowired
 	private FlowService flowService;
 	@RequestMapping(value="index")
-	public String index(Model m){
+	public String index(Model m,HttpSession session,String  pageNum){
+		//news
 		System.out.println("++++request index++++ ");
 		Page<ArticleInfo> pages = articleService.query(null, null, null, null);
 		List<ArticleInfo> news=pages.getData();
 		m.addAttribute("news", news);
+		
+		//static
+		String countData="[ 1149422, 551315, 172095, 166565, 53329, 18060, 8074, 1941,1393, 1104, 2110 ]";
+		String countItem="[ \"%%.%% – Firefox\", \"%%.%% – IExplorer\", \"%%.%% – Chrome\","
+				+ "\"%%.%% – Safari\", \"%%.%% – Opera\", \"%%.%% – Mozilla\",\"%%.%% – Mozilla\", "
+				+ "\"%%.%% – Opera Mini\", \"%%.%% – SeaMonkey\",\"%%.%% – Camino\", \"%%.%% – Other\" ]";
+		m.addAttribute("countData", countData);
+		m.addAttribute("countItem", countItem);
 		return "welcome";
 	}
 	@RequestMapping(value="login")

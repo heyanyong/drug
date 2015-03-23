@@ -70,7 +70,7 @@ public class TestFlowService {
 		variables.put("departmentId", 10);
 		variables.put("billId", 1);
 		variables.put("outcome", 1);
-		variables.put("roleGrade", 700);
+		variables.put("roleGrade", 300);
 		variables.put("mapping", "leave");
 		variables.put("assignee", "assignee1");
 //		List<String> assigneeList=null;
