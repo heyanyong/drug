@@ -100,11 +100,8 @@ public class FlowController {
 	
 	@RequestMapping(value="/img")
 	public String viewImage(String deploymentId,String imageName,HttpServletResponse response) throws Exception{
-		//2：获取资源文件表（act_ge_bytearray）中资源图片输入流InputStream
 		InputStream in = repositoryService.getResourceAsStream(deploymentId,imageName);
-		//3：从response对象获取输出流
 		OutputStream out = response.getOutputStream();
-		//4：将输入流中的数据读取出来，写到输出流中
 		for(int b=-1;(b=in.read())!=-1;){
 			out.write(b);
 		}
