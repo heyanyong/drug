@@ -22,4 +22,5 @@ public interface FlowService {
 	public Page<Object[]> queryPersonTaskHistory(String no, Integer currentPage,Integer numPerPage);
 	public String dealTask(String taskId,String processInstanceId, int outcome, String comment) ;
 	public List<Object[]> getCommentByprocessInstance(String processInstanceId);
+	public String transfer(String taskId, String assignee);
 }

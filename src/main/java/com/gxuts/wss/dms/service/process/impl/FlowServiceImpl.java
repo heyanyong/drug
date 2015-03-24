@@ -162,5 +162,10 @@ public class FlowServiceImpl implements FlowService {
 		}
 		return data;
 	}
+	@Override
+	public String transfer(String taskId, String assignee) {
+		taskService.setAssignee(taskId, assignee);
+		return assignee;
+	}
 	
 }

@@ -32,8 +32,6 @@ import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.process.FlowService;
-
-
 @Controller
 @RequestMapping(value="/flow")
 public class FlowController {
@@ -51,6 +49,14 @@ public class FlowController {
 	public Json completeByDeal(String taskId,String processInstanceId, int outcome, String comment){
 		String userNo=flowService.dealTask(taskId, processInstanceId, outcome, comment);
 		String msg=userNo==null? "任务结束":"任务到达:"+userNo+"办理";
+		return new Json(msg,"200","leaveList","leaveList","closeCurrent","leave/list");
+		
+	}
+	@RequestMapping(value="/transfer")
+	@ResponseBody
+	public Json transfer(String taskId,String assignee){
+		flowService.transfer(taskId,assignee);
+		String msg= "任务到达:"+assignee+"办理";
 		return new Json(msg,"200","leaveList","leaveList","closeCurrent","leave/list");
 		
 	}
