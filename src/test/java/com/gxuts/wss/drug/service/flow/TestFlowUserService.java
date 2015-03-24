@@ -23,8 +23,8 @@ public class TestFlowUserService {
 	
 	@Test
 	public void testDdepartmentOneRole(){
-		UserInfo user=flowUserService.departmentOneRole(10,"主管");
-		System.out.println(user);
+		//UserInfo user=flowUserService.departmentOneRole(10,"主管");
+		//System.out.println(user);
 	}
 	@Test
 	public void testManyByRole(){

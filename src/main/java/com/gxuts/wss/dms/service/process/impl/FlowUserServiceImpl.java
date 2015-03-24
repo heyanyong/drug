@@ -23,9 +23,10 @@ public class FlowUserServiceImpl implements FlowUserService {
 
 	
 	@Override
-	public UserInfo departmentOneRole(int departmentId,String roleName) {
+	public String departmentOneRole(int departmentId,String roleName) {
+		System.out.println("departmentOneRole");
 		UserInfo user=userDao.departmentOneRole(departmentId,roleName);
-		return user;
+		return user.getNo();
 	}
 
 
@@ -38,15 +39,15 @@ public class FlowUserServiceImpl implements FlowUserService {
 	@Override
 	public UserInfo leaderOneRole(int departmentId, String roleName) {
 		UserInfo user=null;
-		StructureInfo dept=structureDao.get(StructureInfo.class, departmentId);
-		if(dept==null){
-			return null;
-		}else {
-			  user=departmentOneRole(departmentId, roleName);
-			if(user==null){
-			  user= leaderOneRole(dept.getpId(), roleName);
-			}
-		}
+//		StructureInfo dept=structureDao.get(StructureInfo.class, departmentId);
+//		if(dept==null){
+//			return null;
+//		}else {
+//			  user=departmentOneRole(departmentId, roleName);
+//			if(user==null){
+//			  user= leaderOneRole(dept.getpId(), roleName);
+//			}
+//		}
 		return user;
 	}
 
