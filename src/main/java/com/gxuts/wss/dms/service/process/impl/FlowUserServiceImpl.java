@@ -28,6 +28,10 @@ public class FlowUserServiceImpl implements FlowUserService {
 		UserInfo user=userDao.departmentOneRole(departmentId,roleName);
 		return user.getNo();
 	}
+	@Override
+	public String setAssign(int departmentId,String roleName) {
+		return userDao.getClass().getName()+departmentId+"pp"+roleName;
+	}
 
 
 	@Override

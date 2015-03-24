@@ -8,4 +8,5 @@ public interface FlowUserService {
 	public String departmentOneRole(int departmentId,String roleName);
 	public List<UserInfo> manyByRole(String roleName);
 	public UserInfo leaderOneRole(int departmentId, String roleName);
+	public String setAssign(int departmentId,String roleName);
 }

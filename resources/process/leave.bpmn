@@ -2,72 +2,84 @@
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
   <process id="leave" name="请假申请流程" isExecutable="true">
     <startEvent id="startevent1" name="Start"></startEvent>
-    <userTask id="apply" name="提交申请" activiti:assignee="${creater}">
-      <extensionElements>
-        <activiti:taskListener event="create" class="com.gxuts.wss.dms.service.hr.impl.FlowSetRoleImpl"></activiti:taskListener>
-      </extensionElements>
-    </userTask>
-    <userTask id="leave_usertask2" name="主管审批">
-      <extensionElements>
-        <activiti:taskListener event="create" class="com.gxuts.wss.dms.service.process.impl.DepartmentOneRole">
-          <activiti:field name="roleName">
-            <activiti:string><![CDATA[主管]]></activiti:string>
-          </activiti:field>
-        </activiti:taskListener>
-      </extensionElements>
-    </userTask>
+    <userTask id="apply" name="提交申请" activiti:assignee="${creater}"></userTask>
+    <userTask id="leave_usertask2" name="主管审批" activiti:assignee="${flowUserService.setAssign(12,&quot;myrole&quot;)}"></userTask>
     <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="apply"></sequenceFlow>
-    <sequenceFlow id="flow2" sourceRef="apply" targetRef="leave_usertask2"></sequenceFlow>
+    <sequenceFlow id="flow2" sourceRef="apply" targetRef="leave_usertask2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${roleGrade<200}]]></conditionExpression>
+    </sequenceFlow>
     <userTask id="leave_usertask3" name="人力备案" activiti:assignee="${assignee}">
       <multiInstanceLoopCharacteristics isSequential="false" activiti:collection="assigneeList" activiti:elementVariable="assignee">
         <completionCondition>${nrOfCompletedInstances/nrOfInstances &gt;= 0}</completionCondition>
       </multiInstanceLoopCharacteristics>
     </userTask>
-    <sequenceFlow id="flow3" sourceRef="usertask3" targetRef="leave_usertask3"></sequenceFlow>
+    <sequenceFlow id="flow3" sourceRef="usertask3" targetRef="leave_usertask3">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${outcome==1}]]></conditionExpression>
+    </sequenceFlow>
     <sequenceFlow id="flow4" sourceRef="leave_usertask3" targetRef="endevent1"></sequenceFlow>
     <userTask id="usertask1" name="经理审批">
       <extensionElements>
-        <activiti:taskListener event="create" class="com.gxuts.wss.dms.service.process.impl.LeaderOneRole">
+        <activiti:taskListener event="create" class="com.gxuts.wss.dms.util.LeaderOneRole">
           <activiti:field name="roleName">
             <activiti:string><![CDATA[经理]]></activiti:string>
           </activiti:field>
         </activiti:taskListener>
       </extensionElements>
     </userTask>
-    <sequenceFlow id="flow5" sourceRef="leave_usertask2" targetRef="usertask1"></sequenceFlow>
+    <sequenceFlow id="flow5" sourceRef="leave_usertask2" targetRef="usertask1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${outcome==1}]]></conditionExpression>
+    </sequenceFlow>
     <userTask id="usertask2" name="总监审批">
       <extensionElements>
-        <activiti:taskListener event="create" class="com.gxuts.wss.dms.service.process.impl.LeaderOneRole">
+        <activiti:taskListener event="create" class="com.gxuts.wss.dms.util.LeaderOneRole">
           <activiti:field name="roleName">
             <activiti:string><![CDATA[总监]]></activiti:string>
           </activiti:field>
         </activiti:taskListener>
       </extensionElements>
     </userTask>
-    <sequenceFlow id="flow6" sourceRef="usertask1" targetRef="usertask2"></sequenceFlow>
+    <sequenceFlow id="flow6" sourceRef="usertask1" targetRef="usertask2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${outcome==1}]]></conditionExpression>
+    </sequenceFlow>
     <userTask id="usertask3" name="总裁审批">
       <extensionElements>
-        <activiti:taskListener event="create" class="com.gxuts.wss.dms.service.process.impl.LeaderOneRole">
+        <activiti:taskListener event="create" class="com.gxuts.wss.dms.util.LeaderOneRole">
           <activiti:field name="roleName">
             <activiti:string><![CDATA[总裁]]></activiti:string>
           </activiti:field>
         </activiti:taskListener>
-        <activiti:taskListener event="create" class="com.gxuts.wss.dms.service.process.impl.ManyByRole">
+        <activiti:taskListener event="create" class="com.gxuts.wss.dms.util.ManyByRole">
           <activiti:field name="roleName">
             <activiti:string><![CDATA[人力专员]]></activiti:string>
           </activiti:field>
         </activiti:taskListener>
       </extensionElements>
     </userTask>
-    <sequenceFlow id="flow7" sourceRef="usertask2" targetRef="usertask3"></sequenceFlow>
-    <sequenceFlow id="flow8" sourceRef="apply" targetRef="usertask1"></sequenceFlow>
-    <sequenceFlow id="flow9" sourceRef="apply" targetRef="usertask2"></sequenceFlow>
-    <sequenceFlow id="flow10" sourceRef="apply" targetRef="usertask3"></sequenceFlow>
-    <sequenceFlow id="flow11" sourceRef="leave_usertask2" targetRef="apply"></sequenceFlow>
-    <sequenceFlow id="flow12" sourceRef="usertask1" targetRef="apply"></sequenceFlow>
-    <sequenceFlow id="flow13" sourceRef="usertask2" targetRef="apply"></sequenceFlow>
-    <sequenceFlow id="flow14" sourceRef="usertask3" targetRef="apply"></sequenceFlow>
+    <sequenceFlow id="flow7" sourceRef="usertask2" targetRef="usertask3">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${outcome==1}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow8" sourceRef="apply" targetRef="usertask1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${roleGrade>200&&roleGrade<400}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow9" sourceRef="apply" targetRef="usertask2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${roleGrade>300&&roleGrade<700}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow10" sourceRef="apply" targetRef="usertask3">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${roleGrade>500}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow11" sourceRef="leave_usertask2" targetRef="apply">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${outcome==0||outcome==3}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow12" sourceRef="usertask1" targetRef="apply">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${outcome==0}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow13" sourceRef="usertask2" targetRef="apply">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${outcome==0}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow14" sourceRef="usertask3" targetRef="apply">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${outcome==0}]]></conditionExpression>
+    </sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_leave">
     <bpmndi:BPMNPlane bpmnElement="leave" id="BPMNPlane_leave">
@@ -81,10 +93,10 @@
         <omgdc:Bounds height="55.0" width="105.0" x="120.0" y="112.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
-        <omgdc:Bounds height="35.0" width="35.0" x="900.0" y="160.0"></omgdc:Bounds>
+        <omgdc:Bounds height="35.0" width="35.0" x="654.0" y="350.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="leave_usertask3" id="BPMNShape_leave_usertask3">
-        <omgdc:Bounds height="55.0" width="105.0" x="750.0" y="150.0"></omgdc:Bounds>
+        <omgdc:Bounds height="55.0" width="105.0" x="619.0" y="250.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
         <omgdc:Bounds height="55.0" width="105.0" x="289.0" y="150.0"></omgdc:Bounds>
@@ -104,12 +116,12 @@
         <omgdi:waypoint x="172.0" y="112.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
-        <omgdi:waypoint x="715.0" y="177.0"></omgdi:waypoint>
-        <omgdi:waypoint x="750.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="662.0" y="205.0"></omgdi:waypoint>
+        <omgdi:waypoint x="671.0" y="250.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
-        <omgdi:waypoint x="855.0" y="177.0"></omgdi:waypoint>
-        <omgdi:waypoint x="900.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="671.0" y="305.0"></omgdi:waypoint>
+        <omgdi:waypoint x="671.0" y="350.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
         <omgdi:waypoint x="225.0" y="139.0"></omgdi:waypoint>

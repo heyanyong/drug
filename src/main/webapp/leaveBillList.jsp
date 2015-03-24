@@ -66,8 +66,10 @@
 				<td>${e.createUser.structure.name}</td>
 				<td>${e.hours}</td>
 				<td>${e.no}</td>
-				<td>${e.status}</td>
-				<td><a href="flow/image/${e.flowId}" target="navTab">查看办理进度</a></td>
+				<td><img src="images/status${e.status}.png" /></td>
+				<td><c:if test="${e.status>1}"> <a href="flow/image/${e.flowId}" target="navTab">查看办理进度</a></c:if>
+					<c:if test="${e.status==1}"> <a href="leave/deal/${e.id}" target="ajaxTodo">办理</a></c:if>
+				</td>
 			</tr>
 			</c:forEach>
 		</tbody>

@@ -24,7 +24,7 @@ public class LeaveBill implements Serializable{
 	@ManyToOne
 	private UserInfo cadidate;
 	private String reason;
-	private Integer status=0;
+	private Integer status=1;
 	private String type;
 	private String hours;
 	@Id

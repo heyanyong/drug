@@ -6,7 +6,7 @@
 		onsubmit="return divSearch(this, 'personTaskList');"
 		action="flow/taskList" method="post">
 		<input type="hidden" name="pageNum" value="1" />
-								 <div class="panelBar" style="height: 28px;">
+								 <div class="panelBar">
 		<ul class="toolBar">
 		<li class="line">line</li>
 			<li><a class="icon"><span>待办任务</span></a></li>
