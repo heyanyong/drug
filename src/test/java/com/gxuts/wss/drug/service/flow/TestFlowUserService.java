@@ -22,18 +22,18 @@ public class TestFlowUserService {
 	private FlowUserService flowUserService;
 	
 	@Test
-	public void testDdepartmentOneRole(){
-		//UserInfo user=flowUserService.departmentOneRole(10,"主管");
-		//System.out.println(user);
+	public void testOneByRole(){
+		String user=flowUserService.oneByRole("主管");
+		System.out.println(user);
 	}
 	@Test
 	public void testManyByRole(){
-		List<UserInfo> users=flowUserService.manyByRole("经理");
+		List<String> users=flowUserService.manyByRole("经理");
 		System.out.println(users);
 	}
 	@Test
 	public void testLeaderOneRole(){
-		UserInfo user=flowUserService.leaderOneRole(5,"经2理");
+		String user=flowUserService.leaderByRole(5,"经理");
 		System.out.println(user);
 	}
 }
