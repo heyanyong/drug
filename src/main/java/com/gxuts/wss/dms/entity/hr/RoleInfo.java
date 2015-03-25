@@ -1,6 +1,7 @@
 package com.gxuts.wss.dms.entity.hr;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,12 +10,23 @@ import javax.persistence.Id;
 
 @Entity
 public class RoleInfo implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	private String name;
 	private int grade;
+	private Date createDate;
 	
+	public Date getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
 	public RoleInfo(){}
 	public RoleInfo(Integer id){
 		this.id=id;

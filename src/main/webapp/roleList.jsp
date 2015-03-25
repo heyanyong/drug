@@ -46,8 +46,8 @@
 		<thead>
 			<tr>
 				<th width="25"></th>
-				<th>账号</th> 
-				<th>创建日期</th>
+				<th>角色名</th> 
+				<th>流程级别</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -55,7 +55,7 @@
 			<tr target="e_id" rel="${e.id}">
 				<td><input type="checkbox" /></td>
 				<td>${e.name}</td>
-				<td>${e.id}</td>
+				<td>${e.grade}</td>
 			</tr>
 			</c:forEach>
 		</tbody>

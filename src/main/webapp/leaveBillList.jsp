@@ -33,7 +33,7 @@
 			<li class="line">line</li>
 			<li><a class="delete" href="leave/delete/{e_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
 			<li class="line">line</li>
-			<li><a class="edit" href="leave/edit/{e_id}" target="navTab"><span>修改</span></a></li>
+			<li><a class="edit" href="leave/edit/{e_id}" target="navTab"><span>查看表单</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
 			<li class="line">line</li>
@@ -63,8 +63,12 @@
 				<td>${e.hours}</td>
 				<td>${e.no}</td>
 				<td><img src="images/status${e.status}.png" /></td>
-				<td><c:if test="${e.status>1}"> <a href="flow/image/${e.flowId}" target="navTab">查看办理进度</a></c:if>
-					<c:if test="${e.status==1}"> <a href="leave/deal/${e.id}" target="ajaxTodo">办理</a></c:if>
+				<td><c:if test="${e.status==2}"> <a href="flow/image/${e.flowId}" target="navTab">查看办理进度</a></c:if>
+					<c:if test="${e.status==1}"> 
+					<a href="leave/deal/${e.id}" target="ajaxTodo">办理</a> &nbsp;|&nbsp;
+					<a href="leave/edit/${e.id}" target="ajaxTodo">修改</a> &nbsp;|&nbsp;
+					<a href="leave/delete/${e.id}" target="ajaxTodo">作废</a>
+					</c:if>
 				</td>
 			</tr>
 			</c:forEach>
