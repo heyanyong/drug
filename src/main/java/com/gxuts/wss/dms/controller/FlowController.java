@@ -41,6 +41,8 @@ public class FlowController {
 	private RepositoryService repositoryService;
 	@Autowired
 	private RuntimeService runtimeService;
+	@Autowired
+	private TaskService taskService;
 	
 	
 	
@@ -88,6 +90,12 @@ public class FlowController {
 		ProcessDefinition pd = repositoryService.createProcessDefinitionQuery().processDefinitionId(pi.getProcessDefinitionId()).singleResult();
 		m.addAttribute("deploymentId", pd.getDeploymentId());
 		m.addAttribute("imageName", pd.getDiagramResourceName());
+		List<Task> tasks= taskService.createTaskQuery().processInstanceId(flowId).active().list();
+		String current = "";
+		for(Task t:tasks){
+			current+=t.getName()+":"+t.getAssignee()+" ";
+		}
+		m.addAttribute("current", current);
 		String activityId = pi.getActivityId();
 		// 获取当前活动对象
 		if(activityId!=null){

@@ -133,7 +133,7 @@ public class BaseDao<T> implements BaseDaoI<T> {
 		currentPage=currentPage==null? 1:currentPage; 
 		numPerPage=numPerPage==null? 17:numPerPage;
 		Page<T> page=new Page<T>();
-		Query q =  getSession().createQuery(hql);
+		Query q =  getSession().createQuery(hql+" order by createDate desc");
 		if (params != null && !params.isEmpty()) {
 			for (String key : params.keySet()) {
 				q.setParameter(key, params.get(key));

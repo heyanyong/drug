@@ -35,11 +35,7 @@
 			<li class="line">line</li>
 			<li><a class="edit" href="leave/edit/{e_id}" target="navTab"><span>修改</span></a></li>
 			<li class="line">line</li>
-			<li><a class="edit" href="leave/deal/{e_id}" target="ajaxTodo"><span>办理</span></a></li>
-			<li class="line">line</li>
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
-			<li class="line">line</li>
-			<li><a class="icon" href="flow/image/{e_id}"   targetType="navTab"  ><span>查看流程</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon"  target="dwzExport" targetType="navTab"  ><span>刷新列表</span></a></li>
 		</ul>
@@ -53,7 +49,7 @@
 				<th>部门</th> 
 				<th>请假小时数</th> 
 				<th>交接人</th> 
-				<th>状态</th> 
+				<th width="65">状态</th> 
 				<th>操作</th> 
 			</tr>
 		</thead>
