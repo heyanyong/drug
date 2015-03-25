@@ -15,8 +15,10 @@ import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.impl.persistence.entity.DeploymentEntity;
 import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
 import org.activiti.engine.impl.pvm.process.ActivityImpl;
+import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
@@ -76,6 +78,24 @@ public class FlowController {
 		Page<Object[]> page=flowService.queryPersonTaskHistory(user.getNo(), Integer.parseInt(pageNum), 10);
 		m.addAttribute("taskList", page.getData());
 		return "taskCenter";
+	}
+	
+	@RequestMapping(value="deployList")
+	public String flowDeployList(Integer pageNum,Model m){
+		pageNum=pageNum==null? 0 :pageNum;
+		List<Deployment> deploys=repositoryService.createDeploymentQuery().orderByDeploymenTime().desc().listPage(pageNum, 1);
+		Page<Deployment> pages=new Page<Deployment>(deploys, pageNum, 1, deploys.size());
+		m.addAttribute("pages", pages);
+		return "flowDeployList";
+	}
+	@RequestMapping(value="flowList")
+	public String flowList(Integer pageNum,Model m){
+		pageNum=pageNum==null? 0 :pageNum;
+		List<ProcessDefinition> flows=repositoryService.createProcessDefinitionQuery().orderByDeploymentId().desc().orderByProcessDefinitionVersion().desc()
+				.listPage(pageNum, 2);
+		Page<ProcessDefinition> pages=new Page<ProcessDefinition>(flows, pageNum, 1, flows.size());
+		m.addAttribute("pages", pages);
+		return "flowList";
 	}
 	
 	/**
