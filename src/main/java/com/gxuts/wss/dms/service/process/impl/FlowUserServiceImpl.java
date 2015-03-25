@@ -1,5 +1,6 @@
 package com.gxuts.wss.dms.service.process.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,43 +22,41 @@ public class FlowUserServiceImpl implements FlowUserService {
 	@Autowired
 	private StructureDao structureDao;
 
-	
-	@Override
-	public String departmentOneRole(int departmentId,String roleName) {
-		System.out.println("departmentOneRole");
-		UserInfo user=userDao.departmentOneRole(departmentId,roleName);
-		return user.getNo();
-	}
-	@Override
-	public String setAssign(int departmentId,String roleName) {
-		return userDao.getClass().getName()+departmentId+"pp"+roleName;
-	}
-
 
 	@Override
-	public List<UserInfo> manyByRole(String roleName) {
-		return userDao.manyByRole(roleName);
+	public List<String> manyByRole(String roleName) {
+		List<UserInfo> users=userDao.manyByRole(roleName);
+		List<String> nos=new ArrayList<String>(users.size());
+		for (UserInfo user:users) {
+			nos.add(user.getNo());
+		}
+		return nos;
 	}
 
 
 	@Override
-	public UserInfo leaderOneRole(int departmentId, String roleName) {
+	public String leaderByRole(int departmentId, String roleName) {
 		UserInfo user=null;
-//		StructureInfo dept=structureDao.get(StructureInfo.class, departmentId);
-//		if(dept==null){
-//			return null;
-//		}else {
-//			  user=departmentOneRole(departmentId, roleName);
-//			if(user==null){
-//			  user= leaderOneRole(dept.getpId(), roleName);
-//			}
-//		}
-		return user;
+		String no=null;
+		StructureInfo dept=structureDao.get(StructureInfo.class, departmentId);
+		if(dept==null){
+			return null;
+		}else {
+			  user=userDao.departmentOneRole(departmentId, roleName);
+			if(user!=null){
+				no=user.getNo();
+			}else{
+				no= leaderByRole(dept.getpId(), roleName);
+			}
+		}
+		return no;
 	}
 
- 
- 
 
-	 
+	@Override
+	public  String  oneByRole(String roleName) {
+		List<UserInfo> users=userDao.manyByRole(roleName);
+		return users==null? null:users.get(0).getNo();
+	}
 
 }

@@ -15,11 +15,10 @@ public class UserDaoImpl extends BaseDao<UserInfo> implements UserDao{
 
 	@Override
 	public UserInfo departmentOneRole(int departmentId,String roleName) {
-//		Criteria criteria =this.getSession().createCriteria(UserInfo.class).add( Restrictions.eq("structure.id", departmentId)) ;
-//		criteria.createCriteria("roles").add(Restrictions.like("name", roleName));
-//		List<UserInfo> list=criteria.list();
-//		return (list.size()>0)? list.get(0):null;  
-		return   (UserInfo) this.getSession().get(UserInfo.class, 102);  
+		Criteria criteria =this.getSession().createCriteria(UserInfo.class).add( Restrictions.eq("structure.id", departmentId)) ;
+		criteria.createCriteria("roles").add(Restrictions.like("name", roleName));
+		List<UserInfo> list=criteria.list();
+		return (list!=null&&list.size()>0)? list.get(0):null;  
 	}
 
 	@Override

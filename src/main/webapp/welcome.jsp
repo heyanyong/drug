@@ -429,6 +429,8 @@
 					<div class="accordionContent">
 						<ul class="tree">
 							<li><a href="menu/show" target="navTab" rel="menuList">菜单设置</a></li>
+							<li><a href="flow/flowList" target="navTab" rel="flowList">系统流程</a></li>
+							<li><a href="flow/deployList" target="navTab" rel="flowDeployList">流程部署记录</a></li>
 							<li><a href="flow/allTask" target="navTab" rel="allTask">流程跟踪</a></li>
 						</ul>
 					</div>

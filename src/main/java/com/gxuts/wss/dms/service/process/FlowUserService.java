@@ -5,8 +5,7 @@ import java.util.List;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 
 public interface FlowUserService {
-	public String departmentOneRole(int departmentId,String roleName);
-	public List<UserInfo> manyByRole(String roleName);
-	public UserInfo leaderOneRole(int departmentId, String roleName);
-	public String setAssign(int departmentId,String roleName);
+	public List<String> manyByRole(String roleName);
+	public String oneByRole(String roleName);
+	public String leaderByRole(int departmentId, String roleName);
 }
