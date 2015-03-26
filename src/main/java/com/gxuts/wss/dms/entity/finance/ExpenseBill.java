@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,8 +31,22 @@ public class ExpenseBill {
 	private Date updateDate;
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<AttaFile> files;
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="expense",fetch=FetchType.EAGER)
+	private List<ExpenseItem> items;
 	
 	
+	
+	public ExpenseBill(Integer id) {
+		this.id = id;
+	}
+	public ExpenseBill() {
+	}
+	public List<ExpenseItem> getItems() {
+		return items;
+	}
+	public void setItems(List<ExpenseItem> items) {
+		this.items = items;
+	}
 	public List<AttaFile> getFiles() {
 		return files;
 	}
