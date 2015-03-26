@@ -30,7 +30,7 @@ public class LoginController {
 	public String index(Model m,HttpSession session,String  pageNum){
 		//news
 		System.out.println("++++request index++++ ");
-		Page<ArticleInfo> pages = articleService.query(null, null, null, null);
+		Page<ArticleInfo> pages = articleService.query(null, null, null, 5);
 		List<ArticleInfo> news=pages.getData();
 		m.addAttribute("news", news);
 		

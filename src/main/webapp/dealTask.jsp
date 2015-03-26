@@ -8,7 +8,7 @@
 		<div class="pageFormContent" layoutH="58">
 			<div class="unit">
 				<label></label>
-				<input type="radio" name="outcome" value="1" /> 同意
+				<input type="radio" name="outcome" value="1" class="required" /> 同意
 				<input type="radio" name="outcome" value="0" /> 不同意
 			</div>
 			<div class="unit">
