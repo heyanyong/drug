@@ -65,7 +65,6 @@
 	</tx:advice>
 	<aop:aspectj-autoproxy />
 
-
 	<!-- mail -->
 	<bean id="simpMail" class="org.springframework.mail.SimpleMailMessage">
 		<property name="from" value="heyanyong163@163.com" />
