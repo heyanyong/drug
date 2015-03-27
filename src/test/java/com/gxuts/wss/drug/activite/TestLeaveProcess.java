@@ -47,6 +47,7 @@ public class TestLeaveProcess {
 	@Test//7501-出库流程-部署完成
 	public void testDeploy(){
 		String fileName="leave";
+//		String fileName="expense";
 		String deployName="请假流程";
 		Deployment deploy=repositoryService.createDeployment()//
 				.addClasspathResource("process/"+fileName+".bpmn")//

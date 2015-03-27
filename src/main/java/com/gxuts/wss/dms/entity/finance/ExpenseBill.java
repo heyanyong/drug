@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,11 +25,15 @@ public class ExpenseBill {
 	private Integer id;
 	private String no;
 	private String name;
+	private String flowId;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createDate;
+	@ManyToOne
 	private UserInfo createUser;
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date updateDate;
+	private UserInfo updateUser;
+	private Integer status=1;
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<AttaFile> files;
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="expense",fetch=FetchType.EAGER)
@@ -36,6 +41,24 @@ public class ExpenseBill {
 	
 	
 	
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	public UserInfo getUpdateUser() {
+		return updateUser;
+	}
+	public void setUpdateUser(UserInfo updateUser) {
+		this.updateUser = updateUser;
+	}
+	public String getFlowId() {
+		return flowId;
+	}
+	public void setFlowId(String flowId) {
+		this.flowId = flowId;
+	}
 	public ExpenseBill(Integer id) {
 		this.id = id;
 	}

@@ -9,8 +9,9 @@
 								 <div class="panelBar">
 		<ul class="toolBar">
 		<li class="line">line</li>
-			<li><a class="icon"><span>待办任务</span></a></li>
+			<li><a href="flow/taskList" target="ajax" rel="personTaskList"  class="icon"><span>待办任务</span></a></li>
 			<li class="line">line</li>
+			<li><a href="flow/historyTaskList" target="ajax" rel="personTaskList" class="icon"><span>已办任务</span></a></li>
 		</ul>
 	</div>
 										<table class="table" width="99%" layoutH="314"

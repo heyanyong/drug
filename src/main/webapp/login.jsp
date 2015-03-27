@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>风险管理平台</title>
+<title>XX科技有限公司办公系统</title>
 <link href="themes/css/login.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -36,13 +36,8 @@
 						<label>密码：</label>
 						<input type="password" name="password" size="20" class="login_input" />
 					</p>
-					<p>
-						<label>验证码：</label>
-						<input class="code" type="text" size="5" />
-						<span><img src="themes/default/images/header_bg.png" alt="" width="75" height="24" /></span>
-					</p>
-					<div class="login_bar">
-						<input class="sub" type="submit" value=" " />
+					<div>
+						<input class="sub buttom" type="submit" value=" 登&nbsp;&nbsp;陆 " />
 					</div>
 				</form>
 			</div>

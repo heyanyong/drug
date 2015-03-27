@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<style type="text/css" media="screen">
 .my-uploadify-button {
 	background:none;
@@ -21,9 +23,15 @@
 }
 </style>
 <div class="pageContent">
-	<form id="detailForm" method="post" action="expense/save" 
+	<form id="detailForm" method="post" action="expense/update" 
 		class="pageForm required-validate"
 		onsubmit="return validateCallback(this, navTabAjaxDone);">
+		<div class="formBar">
+			<ul>
+				<li><a class="buttonActive" href="javascript:saveBill('detailForm');"><span>保存</span></a></li>
+				<li><a class="buttonActive" href="dealTask.jsp?processInstanceId=${param.processInstanceId}&taskId=${param.taskId}" target="dialog" ><span>办理任务</span></a></li>
+			</ul>
+		</div>
 		<div class="pageFormContent" layoutH="56">
 			<fieldset>
 				<legend>基本信息</legend>
@@ -61,21 +69,35 @@
 			</p>
 			</fieldset>
 			<fieldset>
-				<legend>报销明细</legend>
-			 	<div>
-					<table class="list nowrap itemDetail" addButton="新建从表1条目" width="60%">
-						<thead>
-							<tr>
-								<th type="del" width="28">删除</th>
-								<th type="text" defaultVal="#index#" size="12"  >序号</th>
-								<th type="text" name="items[#index#].name" >费用名称</th>
-								<th type="text" name="items[#index#].money" >金额</th>
-								<th type="text" name="items[#index#].page"  size="12" fieldClass="digits">发票张数</th>
-							</tr>
-						</thead>
-						<tbody>	</tbody>
-					</table>
-				</div>
+				<legend>其它信息</legend>
+			<p>
+				<label>营业执照号：</label>
+				<input type="text" name="certificationNo" size="30" />
+			</p>
+			<p>
+				<label>公司成立日期：</label>
+				<input type="text" name="foundDate" class="date" size="30" /><a class="inputDateButton" href="javascript:;">选择</a>
+			</p>
+			<p>
+				<label>所属行业：</label>
+				<input type="text" name="industry"  size="30" />
+			</p>
+			<p>
+				<label>法人姓名：</label>
+				<input type="text" size="30" name="legalPerson" />
+			</p>
+			<dl class="nowrap">
+				<dt>主要经营产品：</dt>
+				<dd>
+					<textarea name="textarea1" cols="88" rows="2" name="mainBusiness"></textarea>
+				</dd>
+			</dl>
+			<dl class="nowrap">
+				<dt>备注：</dt>
+				<dd>
+					<textarea name="textarea1" cols="88" rows="2" name="remark"></textarea>
+				</dd>
+			</dl>
 			</fieldset>
 			 <fieldset>
 				<legend>附件信息</legend>
@@ -104,14 +126,28 @@
  -->
 				
 			</fieldset>
-		</div>
-		<div class="formBar">
-			<ul>
-				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
-				<li>
-					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
-				</li>
-			</ul>
+			<div class="comments" >
+			<table class="table"  >
+			<thead>
+			  <tr>
+			    <th width="200">审批</th>
+			    <th width="200">办理人</th>
+			    <th width="400">办理时间</th>
+			    <th>批注</th>
+			  </tr>
+			</thead>
+			<tbody>
+			<c:forEach items="${comments}" var="e">
+			  <tr>
+			    <td>${e[0]}</td>
+			    <td>${e[1]}</td>
+			    <td><fmt:formatDate value="${e[2]}" type="date"/>--<fmt:formatDate value="${e[3]}" type="date"/></td>
+			    <td>${e[4]}</td>
+			  </tr>
+			  </c:forEach>
+			  </tbody>
+			</table>
+			</div>
 		</div>
 				
 	</form>
