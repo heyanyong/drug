@@ -25,6 +25,7 @@ import com.gxuts.wss.dms.service.finance.BudgetService;
 import com.gxuts.wss.dms.service.hr.UserService;
 import com.gxuts.wss.dms.service.process.FlowService;
 import com.gxuts.wss.dms.util.DateUtil;
+import com.gxuts.wss.dms.util.annotation.MethodName;
 
 import org.springframework.ui.Model;
 
@@ -45,7 +46,7 @@ public class BudgetController {
 		Json json = new Json("成功", "200", "budgetList", "budgetList", null,null);
 		return json;
 	}
-
+	@MethodName(name="列表")
 	@RequestMapping(value = "list")
 	public String getList(HttpServletRequest request, Integer currentPage,
 			Integer row, Model model) {

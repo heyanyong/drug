@@ -15,17 +15,21 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.gxuts.wss.dms.entity.hr.StructureInfo;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
+import com.gxuts.wss.dms.util.annotation.FieldName;
 @Entity
 public class BudgetInfo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	@FieldName(name="费用科目")
 	private String name;
+	@FieldName(name="费用科目编码")
 	private String no;
 	private int year;
 	private boolean isAvailable;
 	@ManyToOne
 	private StructureInfo structure;
+	@FieldName(name="一月")
 	private double january ; 
 	private double february ; 
 	private double march ; 

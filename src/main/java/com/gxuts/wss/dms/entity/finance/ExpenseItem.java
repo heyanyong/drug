@@ -12,12 +12,16 @@ import javax.persistence.OneToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.gxuts.wss.dms.util.annotation.FieldName;
+
 @Entity
 public class ExpenseItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	@FieldName(name="费用科目编码")
 	private String no;
+	@FieldName(name="费用科目")
 	private String name;
 	private int page;
 	private double money;
