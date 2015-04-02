@@ -49,6 +49,50 @@
 		</property>
 
 	</bean>
-
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.gxuts.wss.dms.aop.SecurityInterceptor">
+				<!-- 需要权限验证的地址，正则表达式 -->
+				<property name="includeRegExp">
+					<list>
+						<!-- 拦截所有Controller的所有方法 -->
+						<value>
+							<![CDATA[
+								/*/list
+							]]>
+						</value>
+						<!-- 你也可以单独拦截xxxController的xxx方法 -->
+						<value>
+							<![CDATA[
+								/xxxController/xxxFun
+							]]>
+						</value>
+					</list>
+				</property>
+				<!-- 不需要拦截的地址，也可以写正则 -->
+				<property name="excludeRegExp">
+					<list>
+						<value>
+							<![CDATA[
+								/login
+							]]>
+						</value>
+						<value>
+							<![CDATA[
+								/index
+							]]>
+						</value>
+						<value>
+							<![CDATA[
+								/*\.*
+							]]>
+						</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>
 

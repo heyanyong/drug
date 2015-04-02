@@ -43,7 +43,7 @@
 			</div>
 			<div class="login_banner"><img src="themes/default/images/login_banner.jpg" /></div>
 			<div class="login_main">
-			${loginMsg}
+			${param.loginMsg}
 				<ul class="helpList">
 					<li><a href="#">下载驱动程序</a></li>
 					<li><a href="#">如何安装密钥驱动程序？</a></li>

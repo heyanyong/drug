@@ -1,5 +1,6 @@
 package com.gxuts.wss.dms.controller.sys;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.gxuts.wss.dms.base.Page;
+import com.gxuts.wss.dms.entity.hr.RoleInfo;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.entity.manage.ArticleInfo;
+import com.gxuts.wss.dms.entity.sys.UrlInfo;
 import com.gxuts.wss.dms.service.hr.UserService;
 import com.gxuts.wss.dms.service.manage.ArticleService;
 import com.gxuts.wss.dms.service.process.FlowService;
@@ -59,8 +62,14 @@ public class LoginController {
 		if(loginUser==null){
 			return "redirect:/login.jsp?loginMsg='用户名或密码错误'";
 		}else{
-			
-			request.getSession().setAttribute("loginUser", loginUser);
+			HttpSession session=request.getSession();
+			session.setAttribute("loginUser", loginUser);
+			List<RoleInfo> roles=loginUser.getRoles();
+			List<UrlInfo> permisions=new ArrayList<UrlInfo>();
+			for(RoleInfo role:roles){
+				permisions.addAll(role.getUrls());
+			}
+			session.setAttribute("permisions", permisions);
 			return "redirect:/index";
 		}
 	}

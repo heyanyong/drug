@@ -2,11 +2,16 @@ package com.gxuts.wss.dms.entity.hr;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+import com.gxuts.wss.dms.entity.sys.UrlInfo;
 
 @Entity
 public class RoleInfo implements Serializable{
@@ -20,7 +25,17 @@ public class RoleInfo implements Serializable{
 	private String name;
 	private int grade;
 	private Date createDate;
+	@ManyToMany
+	private List<UrlInfo> urls;
 	
+	
+	
+	public List<UrlInfo> getUrls() {
+		return urls;
+	}
+	public void setUrls(List<UrlInfo> urls) {
+		this.urls = urls;
+	}
 	public Date getCreateDate() {
 		return createDate;
 	}
