@@ -12,6 +12,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gxuts.wss.dms.entity.Json;
+import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.entity.sys.UrlInfo;
 
 /**
@@ -63,6 +64,9 @@ public class SecurityInterceptor implements HandlerInterceptor {
 		String requestUri = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String url = requestUri.substring(contextPath.length());
+		if(url.contains(".")){
+			return true;
+		}
 		
 		for (String urlReg : excludeRegExp) {
 			if (Pattern.compile(urlReg.trim()).matcher(url).find()) {
@@ -78,7 +82,7 @@ public class SecurityInterceptor implements HandlerInterceptor {
 			}
 		}
 		if (useCheck) {// 看看session中的用户信息里面有没有包含这个url，如果没有就踢出去，没权限
-			System.out.println("---------the url is :"+url);
+			
 			List<UrlInfo> permisions = (List<UrlInfo>) request.getSession(false).getAttribute("permisions");
 			String msg = "您没有权限访问【" + url + "】";
 			if (permisions == null || permisions== null || permisions.size() < 1) {// 还可以加入其它条件
@@ -104,14 +108,15 @@ public class SecurityInterceptor implements HandlerInterceptor {
 	 * @throws IOException
 	 */
 	private boolean noAccess(HttpServletRequest request, HttpServletResponse response, String msg) throws ServletException, IOException {
+		UserInfo lu=(UserInfo) request.getSession().getAttribute("loginUser");
+		System.out.println(lu.getName()+","+msg);
 		if (request.getHeader("X-Requested-With") == null) {// 如果不是ajax请求，就返回一个页面
 			request.setAttribute("msg", msg);
 			request.getRequestDispatcher("/error/noAccess.jsp").forward(request, response);
 			return false;
 		} else {// 是ajax请求，返回json格式的信息
-			Json json = new Json("没有权限", "300", null, null, null, null);
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write("没有权限");
+			response.getWriter().write("{\"message\":\"没有权限\",\"statusCode\":\"300\"}");
 			response.getWriter().flush();
 			response.getWriter().close();
 			return false;
