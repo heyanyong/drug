@@ -19,7 +19,7 @@ public class TestArticleService {
 	public void testSave(){
 		ArticleInfo article =new ArticleInfo();
 		article.setName("df");
-		article.setContent("dddd");
+		article.setContent("dddddd");
 		articleService.save(article);
 	}
 }
