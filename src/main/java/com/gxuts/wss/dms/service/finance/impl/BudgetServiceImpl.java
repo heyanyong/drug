@@ -19,9 +19,15 @@ public class BudgetServiceImpl implements BudgetService {
 	private BudgetDao budgetDao;
 
 	@Override
-	public Serializable save(BudgetInfo budget) {
-		return budgetDao.save(budget);
-		
+	public Serializable saveUpdate(BudgetInfo budget) {
+		BudgetInfo info=budgetDao.getObject("from BudgetInfo where no=? and name=? and year=? and structrue=? ", null);
+		if(info==null){
+			budgetDao.save(budget);
+		}else{
+			budget.setId(info.getId());
+			budgetDao.update(budget);
+		}
+		return null;
 	}
 
 	@Override

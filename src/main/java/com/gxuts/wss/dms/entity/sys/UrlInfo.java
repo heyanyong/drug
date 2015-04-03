@@ -1,6 +1,7 @@
 package com.gxuts.wss.dms.entity.sys;
 
 import java.io.Serializable;
+import java.util.regex.Pattern;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,7 +40,8 @@ public class UrlInfo implements Serializable{
 	}
 	@Override
 	public boolean equals(Object obj) {
-		return  this.url.equals(((UrlInfo)obj).getUrl());
+		return Pattern.compile(((UrlInfo)obj).getUrl()).matcher(this.url).find();
+		//return  this.url.equals(((UrlInfo)obj).getUrl());
 	}
 	
 	

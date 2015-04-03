@@ -7,8 +7,8 @@ import org.junit.Test;
 public class TestRegular {
 	@Test
 	public  void textUrl() {
-		String str="/userdfas/t/y";
-		boolean b=Pattern.compile("/.*/.*").matcher(str).find();
+		String str="/userf/df/123";
+		boolean b=Pattern.compile("/u/df/").matcher(str).find();
 		System.out.println(b);
 	}
 }

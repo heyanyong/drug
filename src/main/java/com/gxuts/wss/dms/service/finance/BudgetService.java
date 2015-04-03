@@ -8,7 +8,7 @@ import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.finance.BudgetInfo;
 
 public interface BudgetService {
-	public Serializable save(BudgetInfo budget);
+	public Serializable saveUpdate(BudgetInfo budget);
 	public BudgetInfo get(Class<BudgetInfo> c, Serializable id);
 
 	public void delete(BudgetInfo budget);

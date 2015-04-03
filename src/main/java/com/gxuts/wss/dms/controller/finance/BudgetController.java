@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.finance.BudgetInfo;
+import com.gxuts.wss.dms.entity.finance.BudgetUpdateBill;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.finance.BudgetService;
 import com.gxuts.wss.dms.service.hr.UserService;
@@ -55,31 +56,19 @@ public class BudgetController {
 		return "budgetList";
 	}
 
-	@RequestMapping(value = "/edit/{id}")
+	@RequestMapping(value = "/detail/{id}")
 	public String edit(@PathVariable Integer id, Model model) {
-		BudgetInfo info = budgetService.get(BudgetInfo.class, id);
-		model.addAttribute("info", info);
+		System.out.println("budgetDetail");
 		return "budgetDetail";
 	}
-	@RequestMapping(value = "/update",method=RequestMethod.POST)
+	@RequestMapping(value = "/saveUpdate")
 	@ResponseBody
-	public Json update(BudgetInfo info,HttpSession session) {
-		info.setUpdateTime(new Date());
-		info.setCreateUser((UserInfo) session.getAttribute("loginUser"));
-		budgetService.update(info);
-		Json json =new Json("更新成功","200","budgetList","budgetList",null,null);
-		return json;
+	public Json saveUpdate(BudgetUpdateBill bill,HttpSession session) {
+		System.out.println(bill.getBudgets());
+		//Json json =new Json("更新成功","200","budgetList","budgetList",null,null);
+		return null;
 	}
 
-	@RequestMapping(value = "/save")
-	@ResponseBody
-	public Json save(BudgetInfo info,HttpSession session) {
-		info.setUpdateTime(new Date());
-		info.setCreateUser((UserInfo) session.getAttribute("loginUser"));
-		budgetService.save(info);
-		//return new Json("请假单录入","200",null,"userList","forwardConfirm","user/edit/1");
-		return new Json("报销单保存成功","200","budgetList","budgetList","closeCurrent","budget/list");
-	}
 	@RequestMapping(value="add")
 	public String add(Model m){
 		

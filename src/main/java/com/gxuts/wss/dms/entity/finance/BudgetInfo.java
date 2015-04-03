@@ -48,6 +48,10 @@ public class BudgetInfo {
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
 	private Date updateTime;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date createDate;
+	
 	
 	public BudgetInfo() {}
 	public BudgetInfo(Integer id) {
@@ -65,9 +69,17 @@ public class BudgetInfo {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public Date getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
 	public String getNo() {
 		return no;
 	}
+	
 	public void setNo(String no) {
 		this.no = no;
 	}
@@ -172,6 +184,12 @@ public class BudgetInfo {
 	}
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
+	}
+	@Override
+	public String toString() {
+		return "[id=" + id + ", name=" + name + ", no=" + no
+				+ ", year=" + year + ", isAvailable=" + isAvailable
+				+ ", jan=" + january + "]";
 	}
 	
 }

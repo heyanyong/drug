@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gxuts.wss.dms.base.Page;
+import com.gxuts.wss.dms.entity.hr.RoleInfo;
 import com.gxuts.wss.dms.entity.hr.SignInfo;
 import com.gxuts.wss.dms.service.hr.SignService;
 import com.gxuts.wss.dms.util.DateUtil;
@@ -20,6 +21,12 @@ import com.gxuts.wss.dms.util.DateUtil;
 public class SignController {
 	@Autowired
 	private SignService signService;
+	
+	@RequestMapping(value = "/save")
+	public String save(SignInfo sign) {
+		signService.save(null);
+		return null;
+	}
 	
 	@RequestMapping(value="list")
 	public String queryList(HttpServletRequest request,Integer currentPage, Integer row){
