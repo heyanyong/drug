@@ -1,9 +1,8 @@
 package com.gxuts.wss.dms.service.sys.impl;
 
-import javax.annotation.Resource;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.gxuts.wss.dms.dao.sys.ControllerLogDao;
 import com.gxuts.wss.dms.entity.sys.ControllerLog;
 import com.gxuts.wss.dms.service.sys.ControllerLogService;
 
@@ -13,17 +12,16 @@ import com.gxuts.wss.dms.service.sys.ControllerLogService;
  * 
  * http://git.oschina.net/sphsyv/sypro
  *
- * 由代码生成器生成
- *
  * @author 孙宇
  *
  */
 @Service("controllerLogService")
 public class ControllerLogServiceImpl  implements ControllerLogService {
-
+	@Autowired
+	private ControllerLogDao controllerLogDao;
 	@Override
 	public void save(ControllerLog controllerLog) {
-		
+		controllerLogDao.save(controllerLog);
 	}
 
 

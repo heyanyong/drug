@@ -56,7 +56,26 @@
 				<th type="del" width="60">操作</th>
 			</tr>
 		</thead>
-		<tbody></tbody>
+		<tbody>
+		<c:forEach items="${pages.data}" var="e">
+			<tr target="e_id" rel="${e.id}">
+				<td>${e.no}</td>
+				<td>${e.no}</td>
+				<td>${e.no}</td>
+				<td>${e.no}</td>
+				<td>${e.no}</td>
+				<td>${e.no}</td>
+				<td>${e.no}</td>
+				<td>${e.no}</td>
+				<td>${e.no}</td>
+				<td>${e.no}</td>
+				<td>${e.no}</td>
+				<td>${e.no}</td>
+				<td>${e.no}</td>
+				<td>${e.no}</td>
+			</tr>
+			</c:forEach>
+		</tbody>
 	</table>
 	</div>
 	<div class="panelBar">

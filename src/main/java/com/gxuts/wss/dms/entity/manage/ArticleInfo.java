@@ -34,6 +34,8 @@ public class ArticleInfo{
 	private Date updateDate;
 	@ManyToOne(fetch=FetchType.EAGER)
 	private UserInfo updateUser;
+	@Lob
+	@Basic(fetch = FetchType.LAZY)
 	private String content;
 	private String type;
 	

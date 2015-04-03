@@ -49,16 +49,14 @@ public class BudgetController {
 	}
 	@MethodName(name="列表")
 	@RequestMapping(value = "list")
-	public String getList(HttpServletRequest request, Integer currentPage,
-			Integer row, Model model) {
-		Page<BudgetInfo> pages = budgetService.query("from BudgetInfo", null, null, null);
-		model.addAttribute("pages", pages);
+	public String getList() {
 		return "budgetList";
 	}
-
+	@MethodName(name="部门预算明细")
 	@RequestMapping(value = "/detail/{id}")
 	public String edit(@PathVariable Integer id, Model model) {
-		System.out.println("budgetDetail");
+		Page<BudgetInfo> pages = budgetService.query("from BudgetInfo", null, null, null);
+		model.addAttribute("pages", pages);
 		return "budgetDetail";
 	}
 	@RequestMapping(value = "/saveUpdate")

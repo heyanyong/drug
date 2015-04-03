@@ -24,8 +24,10 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 
 
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.entity.sys.ControllerLog;
 import com.gxuts.wss.dms.service.sys.ControllerLogService;
 import com.gxuts.wss.dms.util.IpUtil;
@@ -37,7 +39,7 @@ import com.gxuts.wss.dms.util.annotation.MethodName;
  * 
  * 将方法名称、传递的参数、返回值、IP等等信息存放在数据库表中
  * 
- * @author 孙宇
+ * @author  
  *
  */
 @Aspect
@@ -51,14 +53,19 @@ public class ControllerAop {
 	public void afterInsertMethod(JoinPoint joinPoint, Object returnValue) {
 		Signature signature = joinPoint.getSignature();
 
-		if (signature.getDeclaringTypeName().equals("sy.controller.aop.ControllerLogController")) {// 这个类的方法不需要记录日志
+		if (signature.getDeclaringTypeName().equals("com.gxuts.wss.dms.aop.ControllerLogController")) {// 这个类的方法不需要记录日志
 			return;
 		}
 
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 		// HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
-
+		UserInfo user= (UserInfo) request.getSession().getAttribute("loginUser");
+		
 		ControllerLog controllerLog = new ControllerLog();
+		if(user!=null){
+			controllerLog.setUserName(user.getName());
+			controllerLog.setUserNo(user.getNo());
+		}
 		controllerLog.setIp(IpUtil.getIp(request));// 哪个IP访问的方法
 
 		// System.out.println("类型：" + signature.getDeclaringType());
@@ -79,7 +86,7 @@ public class ControllerAop {
 			// System.out.println("中文方法名：" + methodNameAnnotation.name());
 			controllerLog.setMethodCnName(methodNameAnnotation.name());
 		} else {
-			controllerLog.setMethodCnName("方法上并没有添加@MethodName(name = '中文方法名')的注解");
+			controllerLog.setMethodCnName("未命名方法");
 		}
 
 		List<Object> argsList = new ArrayList<Object>();
@@ -101,7 +108,6 @@ public class ControllerAop {
 		}
 		// System.out.println("参数：" + JSON.toJSONString(argsList, filter, SerializerFeature.WriteDateUseDateFormat, SerializerFeature.DisableCircularReferenceDetect));
 		controllerLog.setArgsContent(JSON.toJSONString(argsList, filter, SerializerFeature.WriteDateUseDateFormat, SerializerFeature.DisableCircularReferenceDetect));
-
 		// System.out.println("返回值：" + JSON.toJSONString(returnValue, filter, SerializerFeature.WriteDateUseDateFormat, SerializerFeature.DisableCircularReferenceDetect));
 		controllerLog.setReturnValue(JSON.toJSONString(returnValue, filter, SerializerFeature.WriteDateUseDateFormat, SerializerFeature.DisableCircularReferenceDetect));
 		controllerLogService.save(controllerLog);

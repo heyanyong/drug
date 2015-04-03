@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
@@ -26,40 +27,39 @@ import org.hibernate.annotations.DynamicUpdate;
  *
  */
 @Entity
-@Table(name = "tlog")
 @DynamicInsert(true)
 @DynamicUpdate(true)
 public class ControllerLog implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	private String className;// 类名
-
 	private String methodName;// 方法名
-
 	private String methodFullName;// 方法全名
-
 	private String methodCnName;// 中文方法名
-
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
 	private String argsContent;// 参数内容
-
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
 	private String returnValue;// 返回值
-
 	private String ip;
-
 	private String userName;// 操作用户
-
+	private String userNo;// 操作用户
 	private Date created = new Date();
 
 	public String getUserName() {
 		return userName;
+	}
+
+	public String getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(String userNo) {
+		this.userNo = userNo;
 	}
 
 	public void setUserName(String userName) {
