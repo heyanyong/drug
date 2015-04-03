@@ -39,7 +39,6 @@
 		<property name="order" value="100000" />
 	</bean>
 
-
 	<bean id="myResourceHandler" name="myResourceHandler"
 		class="org.springframework.web.servlet.resource.ResourceHttpRequestHandler">
 		<property name="locations" value="/" />
