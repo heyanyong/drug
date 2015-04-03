@@ -20,6 +20,7 @@ import com.gxuts.wss.dms.entity.sys.UrlInfo;
 import com.gxuts.wss.dms.service.hr.UserService;
 import com.gxuts.wss.dms.service.manage.ArticleService;
 import com.gxuts.wss.dms.service.process.FlowService;
+import com.gxuts.wss.dms.util.annotation.MethodName;
 
 @Controller
 public class LoginController {
@@ -29,6 +30,7 @@ public class LoginController {
 	private UserService userService;
 	@Autowired
 	private FlowService flowService;
+	@MethodName(name="访问主页")
 	@RequestMapping(value="index")
 	public String index(Model m,HttpSession session,String  pageNum){
 		//news
@@ -52,10 +54,11 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="logout")
-	public String LoginPage(HttpSession session){
+	public String Logout(HttpSession session){
 		session.setAttribute("loginUser", null);
 		return "redirect:/login.jsp";
 	}
+	@MethodName(name="登录验证")
 	@RequestMapping(value="/checkLogin", method=RequestMethod.POST)
 	public String checkLogin(UserInfo user , HttpServletRequest request){
 		UserInfo loginUser=userService.checkLogin(user);

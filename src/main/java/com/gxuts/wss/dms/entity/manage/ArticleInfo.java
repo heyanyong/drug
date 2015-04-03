@@ -27,7 +27,7 @@ public class ArticleInfo{
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createDate;
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	private UserInfo createUser;
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
@@ -96,8 +96,7 @@ public class ArticleInfo{
 	}
 	@Override
 	public String toString() {
-		return "ArticleInfo [id=" + id + ", name=" + name + ", content="
-				+ content + ", type=" + type + "]";
+		return "ArticleInfo [id=" + id + ", name=" + name + "type=" + type + "]";
 	}
 	
 	

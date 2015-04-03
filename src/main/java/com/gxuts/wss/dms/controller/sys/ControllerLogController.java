@@ -4,9 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.sys.ControllerLog;
 import com.gxuts.wss.dms.service.sys.ControllerLogService;
 
@@ -16,36 +19,24 @@ import com.gxuts.wss.dms.service.sys.ControllerLogService;
  *
  */
 @Controller
-@RequestMapping("/LogController")
+@RequestMapping("/controllerLog")
 public class ControllerLogController {
 
 	 @Autowired
 	 private ControllerLogService controllerLogService ;
 
-	@RequestMapping("/save")
-	@ResponseBody
-	public void  save(ControllerLog controllerLog) {
-		controllerLogService.save(controllerLog);
+	@RequestMapping("/get/{id}")
+	public String  get(@PathVariable Long id, HttpServletRequest request) {
+		ControllerLog info=controllerLogService.get(ControllerLog.class, id);
+		request.setAttribute("info", info);
+		return "sys/controllerLogDetail";
 	}
 
-	@RequestMapping("/delete")
-	@ResponseBody
-	public void delete(Long id, HttpServletRequest request) {
-	}
-
-	@RequestMapping("/update")
-	@ResponseBody
-	public void update(ControllerLog controllerLog) {
-	}
-
-	@RequestMapping("/get")
-	@ResponseBody
-	public void get(Long id, HttpServletRequest request) {
-	}
-
-	@RequestMapping("/find")
-	@ResponseBody
-	public void find(HttpServletRequest request) {
+	@RequestMapping("/list")
+	public String  logList(Model m,Integer pageNum) {
+		Page<ControllerLog> pages= controllerLogService.query("", null, pageNum, 17);
+		m.addAttribute("pages", pages);
+		return "sys/controllerLogList";
 	}
 
 }

@@ -14,9 +14,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 记录所有Controller访问日志
@@ -48,7 +51,9 @@ public class ControllerLog implements Serializable {
 	private String ip;
 	private String userName;// 操作用户
 	private String userNo;// 操作用户
-	private Date created = new Date();
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
+	private Date createDate = new Date();
 
 	public String getUserName() {
 		return userName;
@@ -130,12 +135,14 @@ public class ControllerLog implements Serializable {
 		this.ip = ip;
 	}
 
-	public Date getCreated() {
-		return created;
+	public Date getCreateDate() {
+		return createDate;
 	}
 
-	public void setCreated(Date created) {
-		this.created = created;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
+
+	 
 
 }

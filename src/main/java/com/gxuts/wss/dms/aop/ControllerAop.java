@@ -53,7 +53,7 @@ public class ControllerAop {
 	public void afterInsertMethod(JoinPoint joinPoint, Object returnValue) {
 		Signature signature = joinPoint.getSignature();
 
-		if (signature.getDeclaringTypeName().equals("com.gxuts.wss.dms.aop.ControllerLogController")) {// 这个类的方法不需要记录日志
+		if (signature.getDeclaringTypeName().equals("com.gxuts.wss.dms.controller.sys.ControllerLogController")) {// 这个类的方法不需要记录日志
 			return;
 		}
 
@@ -65,6 +65,9 @@ public class ControllerAop {
 		if(user!=null){
 			controllerLog.setUserName(user.getName());
 			controllerLog.setUserNo(user.getNo());
+		}else{
+			controllerLog.setUserName("未登录用户");
+			controllerLog.setUserNo("未登录用户");
 		}
 		controllerLog.setIp(IpUtil.getIp(request));// 哪个IP访问的方法
 
@@ -76,7 +79,7 @@ public class ControllerAop {
 		// System.out.println("方法名称:" + signature.getName());
 		controllerLog.setMethodName(signature.getName());
 		// System.out.println("方法全名：" + signature.toLongString());
-		controllerLog.setMethodFullName(signature.toLongString());
+		controllerLog.setMethodFullName(signature.toLongString().replaceFirst("\\(.*\\)", ""));
 		// System.out.println("方法短名：" + signature.toShortString());
 
 		MethodSignature methodSignature = (MethodSignature) signature;
@@ -96,7 +99,7 @@ public class ControllerAop {
 			if (null != arg) {
 				// String argClassName = arg.getClass().getSimpleName();
 				if (arg instanceof HttpServletResponse) {
-					argsList.add("HttpServletResponse");
+					argsList.add("HttpServletResponse"); 
 				} else if (arg instanceof HttpServletRequest) {
 					argsList.add("HttpServletRequest");
 				} else if (arg instanceof HttpSession) {
