@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.hr.RoleInfo;
+import com.gxuts.wss.dms.entity.sys.UrlInfo;
 
 public interface RoleService {
 	public Serializable save(RoleInfo role);
@@ -20,6 +21,7 @@ public interface RoleService {
 	public int executeHql(String hql, Map<String, Object> params);
 
 	public List<RoleInfo> queryAll(Class<RoleInfo> c);
+	public List<UrlInfo> queryUrlAll(Class<UrlInfo> c);
 
 	public RoleInfo load(Class<RoleInfo> c, Serializable id);
 

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.dao.hr.RoleDao;
 import com.gxuts.wss.dms.entity.hr.RoleInfo;
+import com.gxuts.wss.dms.entity.sys.UrlInfo;
 import com.gxuts.wss.dms.service.hr.RoleService;
 @Service("roleService")
 @Transactional
@@ -27,7 +28,7 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public RoleInfo get(Class<RoleInfo> c, Serializable id) {
 		 
-		return null;
+		return roleDao.get(c, id);
 	}
 
 	@Override
@@ -56,8 +57,7 @@ public class RoleServiceImpl implements RoleService {
 
 	@Override
 	public List<RoleInfo> queryAll(Class<RoleInfo> c) {
-		// TODO Auto-generated method stub
-		return null;
+		return roleDao.queryAll(c);
 	}
 
 	@Override
@@ -82,6 +82,11 @@ public class RoleServiceImpl implements RoleService {
 	public Page<RoleInfo> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows) {
 		return roleDao.query(hql, params, currentPage, rows);
+	}
+
+	@Override
+	public List<UrlInfo> queryUrlAll(Class<UrlInfo> c) {
+		return roleDao.queryUrlAll(c);
 	}
 
 }

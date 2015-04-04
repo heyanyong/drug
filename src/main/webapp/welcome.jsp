@@ -434,6 +434,7 @@
 							<li><a href="flow/deployList" target="navTab" rel="flowDeployList">流程部署记录</a></li>
 							<li><a href="flow/allTask" target="navTab" rel="allTask">流程跟踪</a></li>
 							<li><a href="controllerLog/list" target="navTab" rel="controllerLogList">操作记录</a></li>
+							<li><a href="role/list" target="navTab" rel="roleList">权限管理</a></li>
 						</ul>
 					</div>
 				</div>

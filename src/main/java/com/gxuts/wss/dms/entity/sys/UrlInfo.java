@@ -43,6 +43,11 @@ public class UrlInfo implements Serializable{
 		return Pattern.compile(((UrlInfo)obj).getUrl()).matcher(this.url).find();
 		//return  this.url.equals(((UrlInfo)obj).getUrl());
 	}
+	@Override
+	public String toString() {
+		return "[" + id + ":" + name + "]";
+	}
+	
 	
 	
 	

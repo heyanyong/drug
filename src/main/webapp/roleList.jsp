@@ -33,7 +33,7 @@
 			<li class="line">line</li>
 			<li><a class="delete" href="export/delete/{e_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
 			<li class="line">line</li>
-			<li><a class="edit" href="export/edit/{e_id}" target="navTab"><span>修改</span></a></li>
+			<li><a class="edit" href="role/edit/{e_id}" target="navTab" title="权限管理" rel="roleDeatil"><span>设置角色权限</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
 			<li class="line">line</li>
