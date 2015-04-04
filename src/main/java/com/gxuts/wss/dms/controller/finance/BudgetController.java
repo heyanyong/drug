@@ -40,6 +40,7 @@ public class BudgetController {
 	@Autowired
 	private UserService userService;
 	
+	@MethodName(name="删减一条部门预算科目")
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
 	@ResponseBody
 	public Json delete(@PathVariable Integer id) {
@@ -47,12 +48,12 @@ public class BudgetController {
 		Json json = new Json("成功", "200", "budgetList", "budgetList", null,null);
 		return json;
 	}
-	@MethodName(name="列表")
+	@MethodName(name="进入预算维护列表")
 	@RequestMapping(value = "list")
 	public String getList() {
 		return "budgetList";
 	}
-	@MethodName(name="部门预算明细")
+	@MethodName(name="打开部门预算明细")
 	@RequestMapping(value = "/detail/{id}")
 	public String edit(@PathVariable Integer id, Model model) {
 		Page<BudgetInfo> pages = budgetService.query("from BudgetInfo", null, null, null);
@@ -64,7 +65,8 @@ public class BudgetController {
 	public Json saveUpdate(BudgetUpdateBill bill,HttpSession session) {
 		System.out.println(bill.getBudgets());
 		//Json json =new Json("更新成功","200","budgetList","budgetList",null,null);
-		return null;
+		return new Json("更新成功","200","budgetList","budgetList",null,null);
+		
 	}
 
 	@RequestMapping(value="add")

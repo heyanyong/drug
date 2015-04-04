@@ -6,6 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>XX科技有限公司办公系统</title>
 <link href="themes/css/login.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.7.2.js" type="text/javascript"></script>
+<script src="js/jquery.cookie.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -27,17 +29,19 @@
 		</div>
 		<div id="login_content">
 			<div class="loginForm">
-				<form action="checkLogin" method="post">
+				<form action="checkLogin" method="post" id="loginForm">
 					<p>
 						<label>用户名：</label>
-						<input type="text" name="no" size="20" class="login_input" />
+						<input type="text" name="no" id="userNo" size="20" class="login_input" />
 					</p>
 					<p>
 						<label>密码：</label>
-						<input type="password" name="password" size="20" class="login_input" />
+						<input type="password" name="password"  size="20" class="login_input" />
 					</p>
+					
 					<div>
-						<input class="sub buttom" type="submit" value=" 登&nbsp;&nbsp;陆 " />
+						<input type="checkbox" id="isRemember" />记住我 &nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="submit" />
 					</div>
 				</form>
 			</div>
@@ -62,4 +66,5 @@
 		</div>
 	</div>
 </body>
+ 
 </html>
