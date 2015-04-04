@@ -6,7 +6,6 @@ import java.util.Map;
 
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.hr.StructureInfo;
-import com.gxuts.wss.dms.entity.hr.StructureInfo;
 
 public interface StructureDao {
 

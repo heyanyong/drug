@@ -83,6 +83,7 @@ public class SecurityInterceptor implements HandlerInterceptor {
 		}
 		if (useCheck) {// 看看session中的用户信息里面有没有包含这个url，如果没有就踢出去，没权限
 			
+			@SuppressWarnings("unchecked")
 			List<UrlInfo> permisions = (List<UrlInfo>) request.getSession(false).getAttribute("permisions");
 			String msg = "您没有权限访问【" + url + "】";
 			if (permisions == null || permisions== null || permisions.size() < 1) {// 还可以加入其它条件

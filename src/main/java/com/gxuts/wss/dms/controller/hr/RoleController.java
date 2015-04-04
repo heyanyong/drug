@@ -1,6 +1,9 @@
 package com.gxuts.wss.dms.controller.hr;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.hr.RoleInfo;
-import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.entity.sys.UrlInfo;
 import com.gxuts.wss.dms.service.hr.RoleService;
 import com.gxuts.wss.dms.service.hr.UserService;
@@ -47,8 +49,20 @@ public class RoleController {
 	@MethodName(name="更新一个角色")
 	@RequestMapping(value = "/update",method={RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
-	public Json update(RoleInfo role) {
-		System.out.println(role);
+	public Json update(RoleInfo role,String roleUrls) {
+		if(roleUrls!=null){
+			List<UrlInfo> urls=new ArrayList<UrlInfo>();
+			String ids[]=roleUrls.split(",");
+			Set<String> set=new HashSet<String>();
+			for(String id:ids){
+				set.add(id);
+			}
+			for(String id:set){
+				urls.add(new UrlInfo(Integer.parseInt(id)));
+			}
+			role.setUrls(urls);
+		} 
+		roleService.update(role);
 		return new Json();
 	}
 	@MethodName(name="查看一个角色")

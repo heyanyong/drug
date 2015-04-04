@@ -24,10 +24,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 /**
  * 记录所有Controller访问日志
  * 
- * http://git.oschina.net/sphsyv/sypro
- * 
- * @author 孙宇
- *
  */
 @Entity
 @DynamicInsert(true)

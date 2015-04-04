@@ -13,21 +13,15 @@
 </style>
 
 <div class="roleEditPage">
-<form action="role/update" onsubmit="return validateCallback(this, navTabAjaxDone);" method="post">
-	<div class="formBar">
-		<ul>
-			<li><div class="buttonActive">
-					<div class="buttonContent">
-						<button type="submit" id="detailSubmit">保存</button>
-					</div>
-				</div></li>
-		</ul>
+<form action="role/update" onsubmit="return validateCallback(this, navTabAjaxDone);" method="post" id="roleDetailForm">
+	<div class="formBar" >
+	 <a class="button" href="javascript:formSubmit();" id="detailSubmit" style="float: right;"><span>更 新</span></a>
 	</div>
 	<div class="col">
 	  <h3>角色列表</h3>
 	  <ul>
 	    <c:forEach items="${roleList}" var="role">
-	      <li><a href="role/edit/${role.id}" target="navTab" rel="roleDeatil" title="权限管理">${role.name}</a></li>
+	      <li><a href="role/edit/${role.id}" target="navTab" rel="roleDeatil" >${role.name}</a></li>
 	    </c:forEach>
 	  </ul>
 	</div>
@@ -44,11 +38,11 @@
  		<span id="removeUrl">移除权限</span><br /> 
  		<span id="remove_allUrl">移除所有</span><br /> 
 	</div>
-	<div class="col">
+	<div class="col" id="col3role">
       <h3>角色权限</h3>
        <input type="hidden" name="id" value="${info.id}" />
        <input type="hidden" name="name" value="${info.name}" />
-		<select multiple="multiple" id="roleUrl" name="roleUrls">
+		<select multiple="multiple" id="roleUrl" >
 			<c:forEach items="${info.urls}" var="ru">
 				<option value="${ru.id}">${ru.name}</option>
 			</c:forEach>
@@ -58,7 +52,14 @@
 </div>
 
 <script>
-$(document).ready(function() {
+$(document).ready(function(){
+	$("#detailSubmit").click(function() {
+		var all=$("#roleUrl option");
+		$("#roleUrl option").each(function(i){
+			$("#col3role").append("<input type='hidden' name='roleUrls' value='"+this.value+"' />");
+		});
+		$("#roleDetailForm").submit();
+	});
 	$("#addUrl").click(function() {
 		$("#sysUrl option:selected").appendTo("#roleUrl");
 	});

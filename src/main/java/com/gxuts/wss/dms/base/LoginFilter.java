@@ -11,7 +11,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.gxuts.wss.dms.entity.hr.UserInfo;
 public class LoginFilter implements Filter {
 
 	@Override

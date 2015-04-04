@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.dao.BaseDao;
@@ -19,6 +18,7 @@ public class SignDaoImpl extends BaseDao<SignInfo> implements SignDao{
 		Query q=this.getSession().createQuery("from SignInfo where userNo=? and recordDate=?");
 		q.setParameter(0, userNo);
 		q.setDate(1, recordDate);
+		@SuppressWarnings("unchecked")
 		List<SignInfo> l=q.list();
 		if (l != null && l.size() > 0) {
 			return (SignInfo) l.get(0);

@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<form id="pagerForm" method="post" action="user/list">
+<form id="pagerForm" method="post" action="sysurl/list">
 	<input type="hidden" name="pageNum" value="1" />
 	<input type="hidden" name="name" value="${name}" />
 </form>
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="role/list" method="post" rel=”pagerForm”>
+	<form onsubmit="return navTabSearch(this);" action="sysurl/list" method="post" rel=”pagerForm”>
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
@@ -29,25 +29,19 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="roleAdd.jsp" target="dialog"><span>添加</span></a></li>
+			<li><a class="add" href="sys/urlAdd.jsp" target="dialog"><span>添加</span></a></li>
 			<li class="line">line</li>
-			<li><a class="delete" href="export/delete/{e_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="delete" href="sysurl/delete/{e_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
 			<li class="line">line</li>
-			<li><a class="edit" href="role/edit/{e_id}" target="navTab"  rel="roleDeatil"><span>设置角色权限</span></a></li>
-			<li class="line">line</li>
-			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
-			<li class="line">line</li>
-			<li><a class="icon"   target="dwzExport" targetType="navTab"  ><span>查看流程</span></a></li>
-			<li class="line">line</li>
-			<li><a class="icon"  target="dwzExport" targetType="navTab"  ><span>刷新列表</span></a></li>
+			<li><a class="edit" href="sysurl/edit/{e_id}" target="navTab"  rel="roleDeatil"><span>修改</span></a></li>
 		</ul>
 	</div>
-	<table class="table" width="100%" layoutH="138">
+	<table class="table" width="50%" layoutH="138">
 		<thead>
 			<tr>
 				<th width="25"></th>
-				<th>角色名</th> 
-				<th>流程级别</th>
+				<th>name</th> 
+				<th>url</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -55,7 +49,7 @@
 			<tr target="e_id" rel="${e.id}">
 				<td><input type="checkbox" /></td>
 				<td>${e.name}</td>
-				<td>${e.grade}</td>
+				<td>${e.url}</td>
 			</tr>
 			</c:forEach>
 		</tbody>

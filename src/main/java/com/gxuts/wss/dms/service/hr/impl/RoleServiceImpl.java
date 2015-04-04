@@ -39,8 +39,7 @@ public class RoleServiceImpl implements RoleService {
 
 	@Override
 	public void update(RoleInfo role) {
-		// TODO Auto-generated method stub
-		
+		roleDao.update(role);
 	}
 
 	@Override

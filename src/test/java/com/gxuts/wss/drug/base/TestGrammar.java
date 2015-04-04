@@ -32,29 +32,15 @@ public class TestGrammar {
 	
 
 
-	private static void mysqlJdbc() {
-		List<String> list=new ArrayList<String>(1);
-		Set set=new HashSet();
-		Map map=new HashMap();
-		map.put(null, "1");
-		say();
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection c=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/drug","root", "admin");
-			Statement s=c.createStatement();
-			ResultSet r=s.executeQuery("select * from druginfo");
-			while (r.next()) {
-				int a=r.getInt(1);
-				System.out.println(a);
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+		 
 	 public static void main(String[] args) {
-			
+			Set<String> set=new HashSet<String>();
+			set.add("11");
+			set.add("12");
+			set.add("11");
+			for(String id:set){
+				System.out.println(id);
+			}
 			
 		}
 
