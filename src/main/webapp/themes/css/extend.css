@@ -9,7 +9,7 @@
 .lastNews li{height:23px; width:300px;}
 .lastNews span{float: right;font-size: 10px;}
 .clear{clear: both;width:100%;height:1px;}
-.taskCenter{width:56%; height:300px; overflow: atuo;margin-top:15px;}
+.taskCenter{width:56%;  overflow: atuo;margin-top:15px;}
 .static{width:35%;height:300px;margin-top:15px; overflow: auto;overflow-y:hidden; }
 
 

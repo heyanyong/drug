@@ -29,6 +29,7 @@ table.list td{padding:0; border:none;}
 	</form>
 </div>
 <form action="budget/saveUpdate" id="budgetForm" onsubmit="return validateCallback(this)">
+<input type="hidden" name="structrueId" value="${structrueId}" />
 <div class="pageContent" style="height:400px;  overflow: auto;">
 <div class="panelBar">
 		<ul class="toolBar">

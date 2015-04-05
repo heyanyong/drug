@@ -21,6 +21,7 @@ import com.gxuts.wss.dms.entity.hr.StructureInfo;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.hr.StructureService;
 import com.gxuts.wss.dms.service.hr.UserService;
+import com.gxuts.wss.dms.util.annotation.MethodName;
 
 @Controller
 @RequestMapping(value = "/structure")
@@ -29,11 +30,12 @@ public class StructureController {
 	private StructureService structureService;
 	@Autowired
 	private UserService userService;
-	
+	@MethodName(name="组织架构管理页面")
 	@RequestMapping(value="show",method={RequestMethod.POST,RequestMethod.GET})
 	public String page(Model model){
 		return "structureList";
 	}
+	@MethodName(name="使用组织架构")
 	@RequestMapping(value="lookup",method={RequestMethod.POST,RequestMethod.GET})
 	public String lookup(Model model){
 		System.out.println("Structure lookup");

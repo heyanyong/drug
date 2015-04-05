@@ -21,6 +21,7 @@ import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.finance.BudgetInfo;
 import com.gxuts.wss.dms.entity.finance.BudgetUpdateBill;
+import com.gxuts.wss.dms.entity.hr.StructureInfo;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.finance.BudgetService;
 import com.gxuts.wss.dms.service.hr.UserService;
@@ -54,19 +55,23 @@ public class BudgetController {
 		return "budgetList";
 	}
 	@MethodName(name="打开部门预算明细")
-	@RequestMapping(value = "/detail/{id}")
-	public String edit(@PathVariable Integer id, Model model) {
-		Page<BudgetInfo> pages = budgetService.query("from BudgetInfo", null, null, null);
+	@RequestMapping(value = "/detail/{sid}")
+	public String edit(@PathVariable Integer sid, Model model) {
+		Page<BudgetInfo> pages = budgetService.query("from BudgetInfo where structure.id="+sid, null, null, null);
+		model.addAttribute("structrueId", sid);
 		model.addAttribute("pages", pages);
 		return "budgetDetail";
 	}
 	@RequestMapping(value = "/saveUpdate")
 	@ResponseBody
 	public Json saveUpdate(BudgetUpdateBill bill,HttpSession session) {
-		System.out.println(bill.getBudgets());
-		//Json json =new Json("更新成功","200","budgetList","budgetList",null,null);
+		List<BudgetInfo> budgets=bill.getBudgets();
+		int sid=bill.getStructrueId();
+		for(BudgetInfo b:budgets){
+			b.setStructure(new StructureInfo(sid));
+			budgetService.saveUpdate(b);
+		}
 		return new Json("更新成功","200","budgetList","budgetList",null,null);
-		
 	}
 
 	@RequestMapping(value="add")

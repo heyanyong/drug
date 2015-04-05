@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -34,14 +35,13 @@ public class TestGrammar {
 
 		 
 	 public static void main(String[] args) {
-			Set<String> set=new HashSet<String>();
-			set.add("11");
-			set.add("12");
-			set.add("11");
-			for(String id:set){
-				System.out.println(id);
-			}
-			
-		}
+		 Calendar cal=Calendar.getInstance();//使用日历类
+		  int year=cal.get(Calendar.YEAR);//得到年
+		  System.out.println(year);
+		 
+		 
+		 
+	 }
+			 
 
 }

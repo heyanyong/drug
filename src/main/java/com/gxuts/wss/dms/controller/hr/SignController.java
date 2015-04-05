@@ -15,19 +15,20 @@ import com.gxuts.wss.dms.entity.hr.RoleInfo;
 import com.gxuts.wss.dms.entity.hr.SignInfo;
 import com.gxuts.wss.dms.service.hr.SignService;
 import com.gxuts.wss.dms.util.DateUtil;
+import com.gxuts.wss.dms.util.annotation.MethodName;
 
 @Controller
 @RequestMapping(value="sign")
 public class SignController {
 	@Autowired
 	private SignService signService;
-	
+	@MethodName(name="保存考勤记录")
 	@RequestMapping(value = "/save")
 	public String save(SignInfo sign) {
 		signService.save(null);
 		return null;
 	}
-	
+	@MethodName(name="考勤记录列表")
 	@RequestMapping(value="list")
 	public String queryList(HttpServletRequest request,Integer currentPage, Integer row){
 		String target=request.getParameter("show");

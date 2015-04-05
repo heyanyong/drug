@@ -1,6 +1,8 @@
 package com.gxuts.wss.dms.service.finance.impl;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -20,11 +22,15 @@ public class BudgetServiceImpl implements BudgetService {
 
 	@Override
 	public Serializable saveUpdate(BudgetInfo budget) {
-		BudgetInfo info=budgetDao.getObject("from BudgetInfo where no=? and name=? and year=? and structrue=? ", null);
-		if(info==null){
+		 Calendar cal=Calendar.getInstance();//使用日历类
+		  int year=cal.get(Calendar.YEAR);//得到年
+		  int sid=budget.getStructure().getId();
+		  String id=budgetDao.queryOneField("select id from BudgetInfo where no="+budget.getNo()+"  and year="+year+" and structure_id="+sid);
+		if(id==null){
+			budget.setYear(year);
 			budgetDao.save(budget);
 		}else{
-			budget.setId(info.getId());
+			budget.setId(Integer.parseInt(id));
 			budgetDao.update(budget);
 		}
 		return null;
@@ -78,8 +84,7 @@ public class BudgetServiceImpl implements BudgetService {
 
 	@Override
 	public BudgetInfo getObject(String hql, Object[] params) {
-		// TODO Auto-generated method stub
-		return null;
+		return budgetDao.getObject(hql, params);
 	}
 
 	@Override

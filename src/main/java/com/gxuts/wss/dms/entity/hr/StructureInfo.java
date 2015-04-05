@@ -21,6 +21,9 @@ public class StructureInfo implements Serializable{
 	
 	 
 	public StructureInfo() {}
+	public StructureInfo(int id) {
+		this.id=id;
+	}
 	public StructureInfo(Integer id, String name, Integer pId,Boolean isParent,String icon) {
 		this.id = id;
 		this.name = name;

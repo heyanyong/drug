@@ -187,9 +187,8 @@ public class BudgetInfo {
 	}
 	@Override
 	public String toString() {
-		return "[id=" + id + ", name=" + name + ", no=" + no
-				+ ", year=" + year + ", isAvailable=" + isAvailable
-				+ ", jan=" + january + "]";
+		return "BudgetInfo [name=" + name + ", year=" + year + ", structure="
+				+ structure + ", january=" + january + "]";
 	}
 	
 }

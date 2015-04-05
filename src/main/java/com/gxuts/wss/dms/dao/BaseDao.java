@@ -147,6 +147,15 @@ public class BaseDao<T> implements BaseDaoI<T> {
 		return page;
 	}
 	
+	public String queryOneField(String hql){
+		Query q =  getSession().createQuery(hql);
+		List<Object> list=q.list();
+		if(list!=null&&list.size()>0){
+			return  list.get(0)+"";
+		}else{
+			return null;
+		}
+	}
 	
 
 }
