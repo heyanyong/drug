@@ -97,7 +97,7 @@ public class LeaveBillController {
 		// return new
 		// Json("请假单录入","200",null,"userList","forwardConfirm","user/edit/1");
 		return new Json("请假单保存成功", "200", "leaveList", "leaveList",
-				"closeCurrent", "leave/list");
+				"forward", "leave/list");
 	}
 
 	@MethodName(name = "添加请假单")

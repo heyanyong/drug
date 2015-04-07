@@ -66,7 +66,7 @@
 				<td><c:if test="${e.status==2}"> <a href="flow/image/${e.flowId}" target="navTab">查看办理进度</a></c:if>
 					<c:if test="${e.status==1}"> 
 					<a href="leave/deal/${e.id}" target="ajaxTodo">办理</a> &nbsp;|&nbsp;
-					<a href="leave/edit/${e.id}" target="ajaxTodo">修改</a> &nbsp;|&nbsp;
+					<a href="leave/edit/${e.id}" target="navTab">修改</a> &nbsp;|&nbsp;
 					<a href="leave/delete/${e.id}" target="ajaxTodo">作废</a>
 					</c:if>
 				</td>

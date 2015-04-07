@@ -42,12 +42,13 @@
 			<li><a class="icon"  target="dwzExport" targetType="navTab"  ><span>刷新列表</span></a></li>
 		</ul>
 	</div>
-	<table class="table" width="100%" layoutH="138">
+	<table class="table" width="40%" layoutH="138">
 		<thead>
 			<tr>
 				<th width="25"></th>
 				<th>角色名</th> 
 				<th>流程级别</th>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -56,6 +57,7 @@
 				<td><input type="checkbox" /></td>
 				<td>${e.name}</td>
 				<td>${e.grade}</td>
+				<td><a class="edit" href="role/edit/${e.id}" target="navTab"  rel="roleDeatil"><span>设置权限</span></a></td>
 			</tr>
 			</c:forEach>
 		</tbody>
