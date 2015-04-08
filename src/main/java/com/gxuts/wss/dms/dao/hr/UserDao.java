@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
+import com.gxuts.wss.dms.util.QueryFilter;
 
 public interface UserDao {
 	public Serializable save(UserInfo user);
@@ -23,4 +24,5 @@ public interface UserDao {
 	//flow
 	public UserInfo departmentOneRole(int departmentId,String roleName);
 	public List<UserInfo> manyByRole(String roleName);
+	public Page<UserInfo> find(QueryFilter filter);
 }

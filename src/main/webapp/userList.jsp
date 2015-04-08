@@ -6,30 +6,34 @@
 	<input type="hidden" name="name" value="${name}" />
 </form>
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="user/list" method="post" rel=”pagerForm”>
+	<form onsubmit="return navTabSearch(this);" action="user/find" method="post" rel=”pagerForm”>
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
 				<td>
-					姓名：<input type="text" name="name" value="${name}" />
+					姓名：<input type="text" name="Q_t.name_like" value="" />
 				</td>
 				<td>
-					<select class="combox" name="sex">
+					工号：<input type="text" name="Q_t.no_like" value="" />
+				</td>
+				<td>
+					<select class="combox" name="Q_t.sex_like">
 						<option value="">所有</option>
 						<option value="男">男</option>
 						<option value="女">女</option>
 					</select>
 				</td>
 				<td>
-					入职日期：<input type="text" class="date" readonly="true" />
+					入职日期从：<input type="text" class="date" name="Q_t.entryDate_>=_date" readonly="true" />
+				</td>
+				<td>
+					到入职日期：<input type="text" class="date" name="Q_t.entryDate_>=_date" readonly="true" />
+				</td>
+				<td>
+					<div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div>
 				</td>
 			</tr>
 		</table>
-		<div class="subBar">
-			<ul>
-				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
-			</ul>
-		</div>
 	</div>
 	</form>
 </div>

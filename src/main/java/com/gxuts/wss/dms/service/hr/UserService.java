@@ -7,6 +7,7 @@ import java.util.Map;
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.hr.RoleInfo;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
+import com.gxuts.wss.dms.util.QueryFilter;
 
  
 
@@ -26,4 +27,5 @@ public interface UserService {
 	public void update(UserInfo user);
 	public void reset(Integer id);
 	public RoleInfo getMaxRole(List<RoleInfo> roles);
+	public Page<UserInfo> find(QueryFilter filter);
 }

@@ -8,11 +8,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -20,6 +23,7 @@ import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.hr.RoleInfo;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.hr.UserService;
+import com.gxuts.wss.dms.util.QueryFilter;
 
 
 @RunWith(SpringJUnit4ClassRunner.class) 
@@ -85,6 +89,16 @@ public class TestUserService {
 		List<RoleInfo> roles=null;
 		RoleInfo grade= userService.getMaxRole(roles);
 	}
+	//查领导
+	@Test
+	public void testFind(){
+		HttpServletRequest q=new MockHttpServletRequest();
+		q.setAttribute("Q_t.name_like", "admin");
+		QueryFilter filter=new QueryFilter(q);
+		Page<UserInfo> p=userService.find(filter);
+		System.out.println(p);
+	}
+	
 	
 	
 }

@@ -15,6 +15,7 @@ import com.gxuts.wss.dms.dao.hr.UserDao;
 import com.gxuts.wss.dms.entity.hr.RoleInfo;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.hr.UserService;
+import com.gxuts.wss.dms.util.QueryFilter;
 
  
 @Service("userService")
@@ -105,6 +106,11 @@ public class UserServiceImpl implements UserService {
 			role=(role.getGrade()<role1.getGrade())? role1:role;
 		}
 		return role;
+	}
+
+	@Override
+	public Page<UserInfo> find(QueryFilter filter) {
+		return userDao.find(filter);
 	}
 
 	 

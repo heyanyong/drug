@@ -18,11 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
+
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.hr.RoleInfo;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.service.hr.UserService;
+import com.gxuts.wss.dms.util.QueryFilter;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -33,6 +36,17 @@ public class UserController {
 	@Autowired
 	private TaskService taskService;
 
+	@RequestMapping(value="find",method={RequestMethod.POST,RequestMethod.GET})
+	public String find(Model model,Integer pageNum,HttpServletRequest request){
+		String target=request.getParameter("show");
+		QueryFilter filter = new QueryFilter(request);
+		Page<UserInfo> pages=userService.find(filter);
+		model.addAttribute("pages", pages);
+		if("dialog".equals(target)){
+			return "userListDialog";
+		}
+		return "userList";
+	}
 	@RequestMapping(value="list",method={RequestMethod.POST,RequestMethod.GET})
 	public String query(Model model,String name,Integer pageNum,HttpServletRequest request){
 		String target=request.getParameter("show");
