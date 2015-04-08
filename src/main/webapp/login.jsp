@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -20,8 +21,8 @@
 				<div class="navList">
 					<ul>
 						<li><a href="#">设为首页</a></li>
-						<li><a href="http://bbs.dwzjs.com">反馈</a></li>
-						<li><a href="doc/dwz-user-guide.pdf" target="_blank">帮助</a></li>
+						<li><a href=" ">反馈</a></li>
+						<li><a href=" " target="_blank">帮助</a></li>
 					</ul>
 				</div>
 				<h2 class="login_title"><img src="themes/default/images/login_title.png" /></h2>
@@ -30,6 +31,7 @@
 		<div id="login_content">
 			<div class="loginForm">
 				<form action="checkLogin" method="post" id="loginForm">
+				
 					<p>
 						<label>用户名：</label>
 						<input type="text" name="no" id="userNo" size="20" class="login_input" />
@@ -41,19 +43,16 @@
 					
 					<div>
 						<input type="checkbox" id="isRemember" />记住我 &nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="submit" />
 					</div>
+					<div class="login_bar">
+						<input class="sub" type="submit" value=" ">
+					</div>
+					<p style="color:red;"><br /><c:if test="${param.loginMsg==1}">用户名或密码错误</c:if></p>
 				</form>
 			</div>
 			<div class="login_banner"><img src="themes/default/images/login_banner.jpg" /></div>
 			<div class="login_main">
-			${param.loginMsg}
-				<ul class="helpList">
-					<li><a href="#">下载驱动程序</a></li>
-					<li><a href="#">如何安装密钥驱动程序？</a></li>
-					<li><a href="#">忘记密码怎么办？</a></li>
-					<li><a href="#">为什么登录失败？</a></li>
-				</ul>
+			 
 				<div class="login_inner">
 					<p>您可以使用 网易网盘 ，随时存，随地取</p>
 					<p>您还可以使用 闪电邮 在桌面随时提醒邮件到达，快速收发邮件。</p>
@@ -62,7 +61,7 @@
 			</div>
 		</div>
 		<div id="login_footer">
-			Copyright &copy; 2009 www.dwzjs.com Inc. All Rights Reserved.
+			Copyright &copy; 2009 3232323 Inc. All Rights Reserved.
 		</div>
 	</div>
 </body>

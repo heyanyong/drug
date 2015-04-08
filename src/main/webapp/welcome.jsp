@@ -436,6 +436,7 @@
 							<li><a href="controllerLog/list" target="navTab" rel="controllerLogList">操作记录</a></li>
 							<li><a href="role/list" target="navTab" rel="roleList">权限管理</a></li>
 							<li><a href="sysurl/list" target="navTab" rel="urlList">URL维护</a></li>
+							<li><a href="monitoring" target="_blank" rel="monitoring">服务器运行监控</a></li>
 						</ul>
 					</div>
 				</div>

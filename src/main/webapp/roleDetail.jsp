@@ -53,7 +53,7 @@
 
 <script>
 $(document).ready(function(){
-	$("#detailSubmit").click(function() {
+	$(".roleEditPage #detailSubmit").click(function() {
 		var all=$("#roleUrl option");
 		$("#roleUrl option").each(function(i){
 			$("#col3role").append("<input type='hidden' name='roleUrls' value='"+this.value+"' />");

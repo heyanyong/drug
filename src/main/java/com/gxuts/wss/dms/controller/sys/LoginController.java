@@ -63,7 +63,7 @@ public class LoginController {
 	public String checkLogin(UserInfo user , HttpServletRequest request){
 		UserInfo loginUser=userService.checkLogin(user);
 		if(loginUser==null){
-			return "redirect:/login.jsp?loginMsg='用户名或密码错误'";
+			return "redirect:/login.jsp?loginMsg=1";
 		}else{
 			HttpSession session=request.getSession();
 			session.setAttribute("loginUser", loginUser);
