@@ -11,18 +11,13 @@
 		<table class="searchContent">
 			<tr>
 				<td>
-					姓名：<input type="text" name="name" value="${name}" />
+					名称：<input type="text" name="name"  />
 				</td>
 				<td>
-					入职日期：<input type="text" class="date" readonly="true" />
+					<div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div>
 				</td>
 			</tr>
 		</table>
-		<div class="subBar">
-			<ul>
-				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
-			</ul>
-		</div>
 	</div>
 	</form>
 </div>
@@ -42,7 +37,7 @@
 			<li><a class="icon"  target="dwzExport" targetType="navTab"  ><span>刷新列表</span></a></li>
 		</ul>
 	</div>
-	<table class="table" width="40%" layoutH="138">
+	<table class="table" width="40%" layoutH="113">
 		<thead>
 			<tr>
 				<th width="25"></th>
@@ -64,7 +59,7 @@
 	</table>
 	<div class="panelBar">
 		<div class="pages">
-			<span>显示${pages.numPerPage}</span><span>条，共${pages.totalCount}条</span>
+			<span>共${pages.totalCount}条</span>
 		</div>
 		<div class="pagination" targetType="navTab" totalCount="${pages.totalCount}" numPerPage="${pages.numPerPage}" pageNumShown="${pages.pageNumShown}" currentPage="${pages.currentPage}"></div>
 	</div>

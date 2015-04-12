@@ -36,32 +36,19 @@ public class UserController {
 	@Autowired
 	private TaskService taskService;
 
-	@RequestMapping(value="find",method={RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(value="list",method={RequestMethod.POST,RequestMethod.GET})
 	public String find(Model model,Integer pageNum,HttpServletRequest request){
-		String target=request.getParameter("show");
 		QueryFilter filter = new QueryFilter(request);
+		pageNum=pageNum==null? 1:pageNum;
+		filter.setPage(pageNum);
+		filter.setPageSize(18);
+		String target=request.getParameter("show");
 		Page<UserInfo> pages=userService.find(filter);
 		model.addAttribute("pages", pages);
 		if("dialog".equals(target)){
 			return "userListDialog";
 		}
 		return "userList";
-	}
-	@RequestMapping(value="list",method={RequestMethod.POST,RequestMethod.GET})
-	public String query(Model model,String name,Integer pageNum,HttpServletRequest request){
-		String target=request.getParameter("show");
-		name=(name==null)? "%":name;
-		Page<UserInfo> pages=userService.query("from UserInfo where name like '%"+name+"%'", null, pageNum, 17);
-		model.addAttribute("name", name);
-		model.addAttribute("pages", pages);
-		if("dialog".equals(target)){
-			return "userListDialog";
-		}
-		return "userList";
-	}
-	@RequestMapping(value="lookup",method={RequestMethod.POST,RequestMethod.GET})
-	public String lookup(Model model,String name,Integer pageNum){
-		return "userLookup";
 	}
 
 	@RequestMapping(value = "/save",method=RequestMethod.POST)
@@ -132,6 +119,10 @@ public class UserController {
 		model.addAttribute("roleNames", roleNames.substring(0, roleNames.length()-1));
 		model.addAttribute("user", user);
 		return  "userDetail";
+	}
+	@RequestMapping(value = "/center")
+	public String center(Model model) {
+		return  "userCenter";
 	}
 	
 

@@ -28,8 +28,9 @@ table.list td{padding:0; border:none;}
 	</div>
 	</form>
 </div>
-<form action="budget/saveUpdate" id="budgetForm" onsubmit="return validateCallback(this)">
-<input type="hidden" name="structrueId" value="${structrueId}" />
+<form action="budget/saveOrUpdate" id="budgetForm" onsubmit="return validateCallback(this)">
+<input type="hidden" name="structure.id" value="${structrueId}" />
+<input type="hidden" name="id" value="${info.id}" />
 <div class="pageContent" style="height:400px;  overflow: auto;">
 <div class="panelBar">
 		<ul class="toolBar">
@@ -47,22 +48,22 @@ table.list td{padding:0; border:none;}
 				<th type="del" >&nbsp;</th>
 				<th type="text" name="budgets[#index#].name" size="12" fieldClass="required" >科目名称</th>
 				<th type="text" name="budgets[#index#].no" size="11" fieldClass="required" >科目编码</th>
-				<th type="text" name="budgets[#index#].january" size="9" fieldClass="number">一月</th>
-				<th type="text" name="budgets[#index#].february" size="9" fieldClass="number">二月</th>
-				<th type="text" name="budgets[#index#].march" size="9" fieldClass="number">三月</th>
-				<th type="text" name="budgets[#index#].april" size="9" fieldClass="number">四月</th>
-				<th type="text" name="budgets[#index#].may" size="9" fieldClass="number">五月</th>
-				<th type="text" name="budgets[#index#].june" size="9" fieldClass="number">六月</th>
-				<th type="text" name="budgets[#index#].july" size="9" fieldClass="number">七月</th>
-				<th type="text" name="budgets[#index#].august" size="9" fieldClass="number">八月</th>
-				<th type="text" name="budgets[#index#].september" size="9" fieldClass="number">九月</th>
-				<th type="text" name="budgets[#index#].october" size="9" fieldClass="number">十月</th>
-				<th type="text" name="budgets[#index#].november" size="9" fieldClass="number">十一月</th>
-				<th type="text" name="budgets[#index#].december" size="9" fieldClass="number">十二月</th>
+				<th type="text" name="budgets[#index#].january" size="9" fieldClass="number" defaultVal="0.0">一月</th>
+				<th type="text" name="budgets[#index#].february" size="9" fieldClass="number" defaultVal="0.0">二月</th>
+				<th type="text" name="budgets[#index#].march" size="9" fieldClass="number" defaultVal="0.0">三月</th>
+				<th type="text" name="budgets[#index#].april" size="9" fieldClass="number" defaultVal="0.0">四月</th>
+				<th type="text" name="budgets[#index#].may" size="9" fieldClass="number" defaultVal="0.0">五月</th>
+				<th type="text" name="budgets[#index#].june" size="9" fieldClass="number" defaultVal="0.0">六月</th>
+				<th type="text" name="budgets[#index#].july" size="9" fieldClass="number" defaultVal="0.0">七月</th>
+				<th type="text" name="budgets[#index#].august" size="9" fieldClass="number" defaultVal="0.0">八月</th>
+				<th type="text" name="budgets[#index#].september" size="9" fieldClass="number" defaultVal="0.0">九月</th>
+				<th type="text" name="budgets[#index#].october" size="9" fieldClass="number" defaultVal="0.0">十月</th>
+				<th type="text" name="budgets[#index#].november" size="9" fieldClass="number" defaultVal="0.0">十一月</th>
+				<th type="text" name="budgets[#index#].december" size="9" fieldClass="number" defaultVal="0.0">十二月</th>
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${pages.data}" var="e" varStatus="es">
+		<c:forEach items="${info.budgets}" var="e" varStatus="es">
 			<tr target="e_id" rel="${e.id}" class="unitBox">
 					<td><a href="javascript:void(0)" class="btnDel ">删除</a></td>
 					<td><input type="text" name="budgets[${es.index}].name" value="${e.name}"
@@ -97,12 +98,6 @@ table.list td{padding:0; border:none;}
 			</c:forEach>
 		</tbody>
 	</table>
-	</div>
-	<div class="panelBar">
-		<div class="pages">
-			<span>共50条</span>
-		</div>
-		<div class="pagination" rel="jbsxBox" totalCount="200" numPerPage="20" pageNumShown="5" currentPage="1"></div>
 	</div>
 </div>
 </form>

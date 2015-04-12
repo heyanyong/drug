@@ -30,5 +30,5 @@ public interface BudgetDao {
 	public Page<BudgetInfo> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows);
 	public String queryOneField(String hql);
-	
+	public void saveOrUpdate(BudgetInfo budget);
 }

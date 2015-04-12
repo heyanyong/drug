@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <form id="pagerForm" method="post" action="echase/list">
 	<input type="hidden" name="pageNum" value="1" />
-	<input type="hidden" name="name" value="${name}" />
 </form>
 
 <div class="pageHeader">
@@ -13,10 +12,10 @@
 		<table class="searchContent">
 			<tr>
 				<td>
-					工号：<input type="text"   name="no" />
+					工号：<input type="text"   name="Q_t.no_like" />
 				</td>
 				<td>
-					姓名：<input type="text"   name="name" />
+					姓名：<input type="text"   name="Q_t.name_like" />
 				</td>
 				<td>
 					<div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div>

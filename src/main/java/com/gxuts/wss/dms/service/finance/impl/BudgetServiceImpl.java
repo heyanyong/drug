@@ -93,4 +93,9 @@ public class BudgetServiceImpl implements BudgetService {
 		return budgetDao.query(hql, params, currentPage, rows);
 	}
 
+	@Override
+	public void saveOrUpdate(BudgetInfo budget) {
+		budgetDao.saveOrUpdate(budget);
+	}
+
 }

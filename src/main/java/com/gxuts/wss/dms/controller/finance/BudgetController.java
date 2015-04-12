@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.finance.BudgetInfo;
-import com.gxuts.wss.dms.entity.finance.BudgetUpdateBill;
+import com.gxuts.wss.dms.entity.finance.BudgetBill;
 import com.gxuts.wss.dms.entity.hr.StructureInfo;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
-import com.gxuts.wss.dms.service.finance.BudgetService;
+import com.gxuts.wss.dms.service.finance.BudgetBillService;
 import com.gxuts.wss.dms.service.hr.UserService;
 import com.gxuts.wss.dms.service.process.FlowService;
 import com.gxuts.wss.dms.util.DateUtil;
@@ -35,7 +35,7 @@ import org.springframework.ui.Model;
 @RequestMapping(value = "/budget")
 public class BudgetController {
 	@Autowired
-	private BudgetService budgetService;
+	private BudgetBillService budgetBillService;
 	@Autowired
 	private FlowService flowService;
 	@Autowired
@@ -45,7 +45,6 @@ public class BudgetController {
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
 	@ResponseBody
 	public Json delete(@PathVariable Integer id) {
-		budgetService.delete(new BudgetInfo(id));
 		Json json = new Json("成功", "200", "budgetList", "budgetList", null,null);
 		return json;
 	}
@@ -57,29 +56,19 @@ public class BudgetController {
 	@MethodName(name="打开部门预算明细")
 	@RequestMapping(value = "/detail/{sid}")
 	public String edit(@PathVariable Integer sid, Model model) {
-		Page<BudgetInfo> pages = budgetService.query("from BudgetInfo where structure.id="+sid, null, null, null);
+		BudgetBill info = budgetBillService.getObject("from BudgetBill where structure.id="+sid, null);
 		model.addAttribute("structrueId", sid);
-		model.addAttribute("pages", pages);
+		model.addAttribute("info", info);
 		return "budgetDetail";
 	}
-	@RequestMapping(value = "/saveUpdate")
+	@RequestMapping(value = "/saveOrUpdate")
 	@ResponseBody
-	public Json saveUpdate(BudgetUpdateBill bill,HttpSession session) {
-		List<BudgetInfo> budgets=bill.getBudgets();
-		int sid=bill.getStructrueId();
-		for(BudgetInfo b:budgets){
-			b.setStructure(new StructureInfo(sid));
-			budgetService.saveUpdate(b);
-		}
+	public Json saveOrUpdate(BudgetBill bill) {
+		System.out.println(bill);
+	    budgetBillService.saveOrUpdate(bill);
 		return new Json("更新成功","200","budgetList","budgetList",null,null);
 	}
 
-	@RequestMapping(value="add")
-	public String add(Model m){
-		
-		m.addAttribute("no", "FYBX"+DateUtil.date2String(new Date(), "yyMMddHHmmss")+new Random().nextInt(100));
-		return "budgetAdd";
-	}
 	@RequestMapping(value="/deal/{id}", method = RequestMethod.POST)
 	@ResponseBody
 	public Json deal(@PathVariable Integer id,HttpSession s){

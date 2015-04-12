@@ -3,15 +3,14 @@
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <form id="pagerForm" method="post" action="user/list">
 	<input type="hidden" name="pageNum" value="1" />
-	<input type="hidden" name="name" value="${name}" />
 </form>
 <div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="user/find" method="post" rel=”pagerForm”>
+	<form onsubmit="return navTabSearch(this);" action="user/list" method="post" rel=”pagerForm”>
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
 				<td>
-					姓名：<input type="text" name="Q_t.name_like" value="" />
+					 姓名：<input type="text" name="Q_t.name_like" value="" />
 				</td>
 				<td>
 					工号：<input type="text" name="Q_t.no_like" value="" />
@@ -48,14 +47,12 @@
 			<li class="line">line</li>
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
 			<li class="line">line</li>
-			<li><a class="icon" href="user/reset/{e_id}" target="navTab"  title="实要导出这些记录吗?"><span>重置</span></a></li>
-			<li class="line">line</li>
-			<li><a class="icon"   target="dwzExport" targetType="navTab"  ><span>查看流程</span></a></li>
+			<li><a class="icon" href="user/reset/{e_id}" target="navTab"  title="实要导出这些记录吗?"><span>重置密码</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon" onclick="navTab.reload();" ><span>刷新列表</span></a></li>
 		</ul>
 	</div>
-	<table class="table" width="100%" layoutH="138">
+	<table class="table" width="100%" layoutH="113">
 		<thead>
 			<tr>
 				<th width="25"></th>
@@ -90,7 +87,7 @@
 	</table>
 	<div class="panelBar">
 		<div class="pages">
-			<span>显示${pages.numPerPage}</span><span>条，共${pages.totalCount}条</span>
+			<span>共${pages.totalCount}条</span>
 		</div>
 		<div class="pagination" targetType="navTab" totalCount="${pages.totalCount}" numPerPage="${pages.numPerPage}" pageNumShown="${pages.pageNumShown}" currentPage="${pages.currentPage}"></div>
 	</div>

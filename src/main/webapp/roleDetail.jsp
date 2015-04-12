@@ -34,8 +34,8 @@
 		</select>
 	</div>
 	<div class="col col3">
- 		<span id="addUrl">添加权限>></span><br />
- 		<span id="removeUrl">移除权限</span><br /> 
+ 		<span id="addUrl">添加权限&gt;&gt;</span><br />
+ 		<span id="removeUrl">&lt;&lt;移除权限</span><br /> 
  		<span id="remove_allUrl">移除所有</span><br /> 
 	</div>
 	<div class="col" id="col3role">

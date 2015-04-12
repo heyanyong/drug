@@ -49,7 +49,7 @@ public class BaseDao<T> implements BaseDaoI<T> {
 		return this.find(hql, params, filter.getPage(), filter.getPageSize());
 	}
 	public Page<T> find(String hql, Map<String, Object> params, Integer currentPage, Integer pageSize) {
-		Query q = getSession().createQuery(hql);
+		Query q = getSession().createQuery(hql+" order by createDate desc");
 		Page<T> page=new Page<T>();
 		if (params != null && !params.isEmpty()) {
 			for (String key : params.keySet()) {
@@ -60,18 +60,18 @@ public class BaseDao<T> implements BaseDaoI<T> {
 			page.setData(q.list());
 			return page;
 		}
+		page.setTotalCount(q.list().size());
 		page.setData( q.setFirstResult((currentPage - 1) * pageSize).setMaxResults(pageSize).list());
+		page.setCurrentPage(currentPage);
+		page.setNumPerPage(pageSize);
+		page.setPageNumShown(5);
 		 return page;
-//		page.setTotalCount(q.list().size());
-//		page.setData(q.setFirstResult((currentPage - 1) * numPerPage).setMaxResults(numPerPage).list());
-//		page.setPageNumShown(5);
-//		page.setCurrentPage(currentPage);
-//		page.setNumPerPage(numPerPage);
 	}
 	public Serializable save(T t){
 		return getSession().save(t);
-		
-		
+	}
+	public void saveOrUpdate(T t){
+		 getSession().saveOrUpdate(t);
 	}
 	@SuppressWarnings("unchecked")
 	public T get(Class<T> c, Serializable id){

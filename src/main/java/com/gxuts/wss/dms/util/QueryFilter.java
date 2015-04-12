@@ -16,9 +16,6 @@ import org.nutz.dao.sql.Criteria;
  * 
  * 此类还包含了排序、分页、预先抓取参数设置功能
  * 
- * http://git.oschina.net/sphsyv/sypro
- * 
- * @author 孙宇
  *
  */
 public class QueryFilter {
@@ -378,5 +375,12 @@ public class QueryFilter {
 		}
 		return cri;
 	}
+
+	@Override
+	public String toString() {
+		return "QueryFilter [page=" + page + ", pageSize=" + pageSize
+				+ ", sort=" + sort + ", params=" + params + "]";
+	}
+	
 
 }

@@ -15,7 +15,7 @@
 	<div id="login">
 		<div id="login_header">
 			<h1 class="login_logo">
-				<a href="http://demo.dwzjs.com"><img src="themes/default/images/login_logo.gif" /></a>
+				<a href="/"><img src="themes/default/images/login_logo.gif" /></a>
 			</h1>
 			<div class="login_headerContent">
 				<div class="navList">
@@ -45,7 +45,7 @@
 						<input type="checkbox" id="isRemember" />记住我 &nbsp;&nbsp;&nbsp;&nbsp;
 					</div>
 					<div class="login_bar">
-						<input class="sub" type="submit" value=" ">
+						<input class="sub" type="submit" value=" " />
 					</div>
 					<p style="color:red;"><br /><c:if test="${param.loginMsg==1}">用户名或密码错误</c:if></p>
 				</form>
@@ -65,5 +65,8 @@
 		</div>
 	</div>
 </body>
- 
+ <script>
+	var no=document.getElementById("userNo"); 
+	no.focus();
+ </script>
 </html>

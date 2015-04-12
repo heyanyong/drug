@@ -12,6 +12,7 @@ public interface BudgetService {
 	public BudgetInfo get(Class<BudgetInfo> c, Serializable id);
 
 	public void delete(BudgetInfo budget);
+	public void saveOrUpdate(BudgetInfo budget);
 
 	public void update(BudgetInfo budget);
 
