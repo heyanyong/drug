@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.business.SupplierInfo;
+import com.gxuts.wss.dms.util.QueryFilter;
 
 public interface SupplierService {
 	public Serializable save(SupplierInfo supplier);
@@ -29,5 +30,7 @@ public interface SupplierService {
 
 	public Page<SupplierInfo> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows);
+
+	public Page<SupplierInfo> find(QueryFilter filter);
 	
 }

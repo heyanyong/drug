@@ -161,25 +161,15 @@
 				<div class="accordion" fillSpace="sidebar">
 					<div class="accordionHeader">
 						<h2>
-							<span>Folder</span>业务操作
+							<span>Folder</span>商务管理
 						</h2>
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
 							<li><a>常用单据</a>
 								<ul>
-									<li><a href="drug/list" target="navTab" rel="drugList">库存管理</a></li>
-									<li><a href="purchase/add" target="navTab"
-										rel="purchaseAdd">新增采购需求</a></li>
-									<li><a href="contract/add" target="navTab"
-										rel="contractAdd">新增采购合同</a></li>
-									<li><a href="exportAdd.jsp" target="navTab"
-										rel="pagexportDetail">新增出库单</a></li>
-									<li><a href="contract/list" target="navTab"
-										rel="contractList">采购合同列表</a></li>
-									<li><a href="purchase/list" target="navTab"
-										rel="purchaseList">采购需求列表</a></li>
-									<li><a href="export/list" target="navTab" rel="exportList">出库单列表</a></li>
+									<li><a href="payment/add" target="navTab" rel="drugList">付款申请</a></li>
+									<li><a href="export/list" target="navTab" rel="exportList">付款申请报表</a></li>
 								</ul></li>
 							<li><a>供应商管理</a>
 								<ul>
@@ -225,7 +215,24 @@
 									<li><a href="article/add" target="navTab" rel="articleAdd">新增文章</a></li>
 									<li><a href="article/list" target="navTab"
 										rel="articleList">文章列表</a></li>
-								</ul></li>
+								</ul>
+							</li>
+							<li><a>固定资产管理</a>
+								<ul>
+									<li><a href="drug/list" target="navTab" rel="drugList">库存管理</a></li>
+									<li><a href="purchase/add" target="navTab"
+										rel="purchaseAdd">新增采购需求</a></li>
+									<li><a href="contract/add" target="navTab"
+										rel="contractAdd">新增采购合同</a></li>
+									<li><a href="exportAdd.jsp" target="navTab"
+										rel="pagexportDetail">新增出库单</a></li>
+									<li><a href="contract/list" target="navTab"
+										rel="contractList">采购合同列表</a></li>
+									<li><a href="purchase/list" target="navTab"
+										rel="purchaseList">采购需求列表</a></li>
+									<li><a href="export/list" target="navTab" rel="exportList">出库单列表</a></li>
+								</ul>
+							</li>
 							<li><a href="tabsPage.html" target="navTab">主框架面板</a>
 								<ul>
 									<li><a href="main.html" target="navTab" rel="main">我的主页</a></li>

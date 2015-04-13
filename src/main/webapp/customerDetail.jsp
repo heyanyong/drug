@@ -2,26 +2,26 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="pageContent">
-	<form method="post" action="customer/update" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
+	<form method="post" action="info/update" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
 		<div class="pageFormContent" layoutH="56">
 			<fieldset>
 				<legend>基本信息</legend>
 			<p>
 				<label>客 户 编号：</label>
-				<input name="id" type="hidden"   value="${customer.id}" />
-				<input name="no" type="text"   value="${customer.no}" readonly="readonly" size="30"/>
+				<input name="id" type="hidden"   value="${info.id}" />
+				<input name="no" type="text"   value="${info.no}" readonly="readonly" size="30"/>
 			</p>
 			<p>
 				<label>客户全称：</label>
-				<input name="name" class="required" type="text" size="30"   value="${customer.name}"/>
+				<input name="name" class="required" type="text" size="30"   value="${info.name}"/>
 			</p>
 			<p>
 				<label>简称：</label>
-				<input name="simpleName"   type="text"  size="30"   value="${customer.simpleName}"/>
+				<input name="simpleName"   type="text"  size="30"   value="${info.simpleName}"/>
 			</p>
 			<p>
 				<label>英文名称：</label>
-				<input name="englishName"   type="text" size="30"   value="${customer.englishName}"/>
+				<input name="englishName"   type="text" size="30"   value="${info.englishName}"/>
 			</p>
 			<p>
 			<label>客户类型：</label>
@@ -33,22 +33,22 @@
 			</p>
 			<p>
 				<label>联系人：</label>
-				<input name="contactPerson"   type="text" size="30"   value="${customer.contactPerson}"/>
+				<input name="contactPerson"   type="text" size="30"   value="${info.contactPerson}"/>
 			</p>
 			<p>
 				<label>联系电话：</label>
-				<input name="phone"   type="text" size="30"   value="${customer.phone}"/>
+				<input name="phone"   type="text" size="30"   value="${info.phone}"/>
 			</p>
 			<p>
 				<label>通讯地址：</label>
-				<input name="address"   type="text" size="30"   value="${customer.address}"/>
+				<input name="address"   type="text" size="30"   value="${info.address}"/>
 			</p>
 			</fieldset>
 			<fieldset>
 				<legend>相关信息</legend>
 			<p>
 				<label>开发人员：</label>
-				<input name="devUser"  type="text" size="30"   value="${customer.createUser.name}"/>
+				<input name="devUser"  type="text" size="30"   value="${info.createUser.name}"/>
 			</p>
 			<p>
 				<label>开发部门：</label>
@@ -82,14 +82,14 @@
 			<dl class="nowrap">
 				<dt>备注：</dt>
 				<dd>
-					<textarea name="textarea1" cols="88" rows="2" name="remark">${customer.remark}</textarea>
+					<textarea name="textarea1" cols="88" rows="2" name="remark">${info.remark}</textarea>
 				</dd>
 			</dl>
 			</fieldset>
 			<div class="divider"></div>
 			<p>
 				<label>建档日期：</label>
-				<input readonly="readonly" type="text" size="30" value="${customer.createDate}" />
+				<input readonly="readonly" type="text" size="30" value="${info.createDate}" />
 			</p>
 			<p>
 				<label>管户经理：</label>
@@ -97,11 +97,11 @@
 			</p>
 			<p>
 				<label>最新修改时间：</label>
-				<input readonly="readonly" type="text" size="30" value="${customer.updateDate}" />
+				<input readonly="readonly" type="text" size="30" value="${info.updateDate}" />
 			</p>
 			<p>
 				<label>最新修改人员：</label>
-				<input readonly="readonly" type="text" size="30" value="${customer.updateUser.no}"/>
+				<input readonly="readonly" type="text" size="30" value="${info.updateUser.no}"/>
 			</p>
 		</div>
 		<div class="formBar">

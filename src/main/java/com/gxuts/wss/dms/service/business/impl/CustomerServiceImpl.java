@@ -12,6 +12,7 @@ import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.dao.business.CustomerDao;
 import com.gxuts.wss.dms.entity.business.CustomerInfo;
 import com.gxuts.wss.dms.service.business.CustomerService;
+import com.gxuts.wss.dms.util.QueryFilter;
 @Service("customerService")
 @Transactional
 public class CustomerServiceImpl implements CustomerService {
@@ -80,6 +81,11 @@ public class CustomerServiceImpl implements CustomerService {
 			Integer currentPage, Integer rows) {
 		hql="from CustomerInfo";
 		return customerDao.query(hql, params, currentPage, rows);
+	}
+
+	@Override
+	public Page<CustomerInfo> find(QueryFilter filter) {
+		return customerDao.find(filter);
 	}
 
 	 

@@ -6,6 +6,8 @@ import java.util.Map;
 
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.business.CustomerInfo;
+import com.gxuts.wss.dms.entity.hr.UserInfo;
+import com.gxuts.wss.dms.util.QueryFilter;
 
 public interface CustomerService {
 	public Serializable save(CustomerInfo customer);
@@ -29,5 +31,5 @@ public interface CustomerService {
 
 	public Page<CustomerInfo> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows);
-	
+	public Page<CustomerInfo> find(QueryFilter filter);
 }

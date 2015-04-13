@@ -12,10 +12,16 @@
 		<table class="searchContent">
 			<tr>
 				<td>
-					我的客户：<input type="text" name="keyword" />
+					名称：<input type="text" name="Q_t.name_like" value="" />
 				</td>
 				<td>
-					建档日期：<input type="text" class="date" readonly="true" />
+					编号：<input type="text" name="Q_t.no_like" value="" />
+				</td>
+				<td>
+					建档日期：<input type="text" class="date" name="Q_t.createDate_>=" readonly="true" />
+				</td>
+				<td>
+					<div class="buttonActive"><div class="buttonContent"><button type="submit">检 索</button></div></div>
 				</td>
 			</tr>
 		</table>
@@ -36,7 +42,7 @@
 			<li class="line">line</li>
 			<li><a class="edit" href="customer/edit/{e_id}" rel="customerEdit" target="navTab"><span>修改</span></a></li>
 			<li class="line">line</li>
-			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
+			<li><a class="icon" onclick="navTab.reload();" ><span>刷新列表</span></a></li>
 		</ul>
 	</div>
 	<table class="table" width="100%" layoutH="138">

@@ -12,6 +12,7 @@ import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.dao.business.SupplierDao;
 import com.gxuts.wss.dms.entity.business.SupplierInfo;
 import com.gxuts.wss.dms.service.business.SupplierService;
+import com.gxuts.wss.dms.util.QueryFilter;
 @Service("supplierService")
 @Transactional
 public class SupplierServiceImpl implements SupplierService {
@@ -79,6 +80,11 @@ public class SupplierServiceImpl implements SupplierService {
 			Integer currentPage, Integer rows) {
 		hql="from SupplierInfo";
 		return supplierDao.query(hql, params, currentPage, rows);
+	}
+
+	@Override
+	public Page<SupplierInfo> find(QueryFilter filter) {
+		return supplierDao.find(filter);
 	}
 
 	 

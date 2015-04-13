@@ -42,13 +42,17 @@ public class CustomerController {
 			Integer row, Model model) {
 		Page<CustomerInfo> pages = customerService.query(null, null, null, null);
 		model.addAttribute("pages", pages);
+		String target=request.getParameter("show");
+		if("dialog".equals(target)){
+			return "customerListDialog";
+		}
 		return "customerList";
 	}
 
 	@RequestMapping(value = "/edit/{id}")
 	public String edit(@PathVariable Integer id, Model model) {
-		CustomerInfo customer = customerService.get(CustomerInfo.class, id);
-		model.addAttribute("customer", customer);
+		CustomerInfo info = customerService.get(CustomerInfo.class, id);
+		model.addAttribute("info", info);
 		return "customerDetail";
 	}
 	@RequestMapping(value = "/update",method=RequestMethod.POST)

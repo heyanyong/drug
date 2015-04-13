@@ -2,13 +2,16 @@ package com.gxuts.wss.dms.entity.business;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -47,6 +50,7 @@ public class CustomerInfo implements Serializable{
 	}
 	public CustomerInfo() {
 	}
+	
 	
 	public String getSimpleName() {
 		return simpleName;
@@ -163,7 +167,10 @@ public class CustomerInfo implements Serializable{
 	public void setUpdateUser(UserInfo updateUser) {
 		this.updateUser = updateUser;
 	}
-	
-	
+	@Override
+	public String toString() {
+		return "CustomerInfo [id=" + id + ", no="
+				+ no + ", name=" + name + "]";
+	}
 	
 }

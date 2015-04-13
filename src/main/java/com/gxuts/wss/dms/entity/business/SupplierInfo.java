@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 @Entity
@@ -22,11 +23,19 @@ public class SupplierInfo implements Serializable{
 	private UserInfo createUser;
 	private Date updateDate;
 	private UserInfo updateUser;
-	
+	@ManyToOne
+	private CustomerInfo customer;
 	
 	public SupplierInfo() {};
 	public SupplierInfo(Integer id) {
 	this.id=id;
+	}
+	
+	public CustomerInfo getCustomer() {
+		return customer;
+	}
+	public void setCustomer(CustomerInfo customer) {
+		this.customer = customer;
 	}
 	public Integer getId() {
 		return id;
