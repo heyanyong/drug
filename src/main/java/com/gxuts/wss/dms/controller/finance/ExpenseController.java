@@ -92,8 +92,6 @@ public class ExpenseController {
 		bill.setCreateDate(new Date());
 		bill.setCreateUser((UserInfo) session.getAttribute("loginUser"));
 		expenseService.save(bill);
-		// return new
-		// Json("请假单录入","200",null,"userList","forwardConfirm","user/edit/1");
 		return new Json("报销单保存成功", "200", "expenseList", "expenseList",
 				"closeCurrent", "expense/list");
 	}

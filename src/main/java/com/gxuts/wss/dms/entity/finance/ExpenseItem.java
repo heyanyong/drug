@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.gxuts.wss.dms.entity.hr.StructureInfo;
 import com.gxuts.wss.dms.util.annotation.FieldName;
 
 @Entity
@@ -21,18 +22,30 @@ public class ExpenseItem {
 	private Integer id;
 	@FieldName(name="费用科目编码")
 	private String no;
-	@FieldName(name="费用科目")
+	@FieldName(name="费用科目名称")
 	private String name;
 	private int page;
 	private double money;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createDate;
+	
+	@ManyToOne
+	private StructureInfo structure;
 	@ManyToOne
 	private ExpenseBill expense;
 	
 	public ExpenseBill getExpense() {
 		return expense;
 	}
+	
+	public StructureInfo getStructure() {
+		return structure;
+	}
+
+	public void setStructure(StructureInfo structure) {
+		this.structure = structure;
+	}
+
 	public void setExpense(ExpenseBill expense) {
 		this.expense = expense;
 	}

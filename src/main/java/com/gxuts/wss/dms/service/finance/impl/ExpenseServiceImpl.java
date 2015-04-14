@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.dao.finance.ExpenseDao;
+import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.finance.ExpenseBill;
 import com.gxuts.wss.dms.entity.finance.ExpenseItem;
 import com.gxuts.wss.dms.service.finance.ExpenseService;
@@ -20,12 +21,14 @@ public class ExpenseServiceImpl implements ExpenseService {
 	private ExpenseDao expenseDao;
 
 	@Override
-	public Serializable save(ExpenseBill expense) {
+	public Json save(ExpenseBill expense) {
 		List<ExpenseItem> items=expense.getItems();
 		for(ExpenseItem it:items){
 			it.setExpense(expense);
 		}
-		return expenseDao.save(expense);
+	    expenseDao.save(expense);
+		return new Json("报销单保存成功", "200", "expenseList", "expenseList",
+				"closeCurrent", "expense/list");
 		
 	}
 

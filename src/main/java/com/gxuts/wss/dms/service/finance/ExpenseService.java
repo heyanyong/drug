@@ -5,10 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.gxuts.wss.dms.base.Page;
+import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.finance.ExpenseBill;
 
 public interface ExpenseService {
-	public Serializable save(ExpenseBill expense);
+	public Json save(ExpenseBill expense);
 	public ExpenseBill get(Class<ExpenseBill> c, Serializable id);
 
 	public void delete(ExpenseBill expense);

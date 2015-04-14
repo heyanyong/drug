@@ -71,6 +71,7 @@
 								<th type="text" name="items[#index#].name" >费用名称</th>
 								<th type="text" name="items[#index#].money" >金额</th>
 								<th type="text" name="items[#index#].page"  size="12" fieldClass="digits">发票张数</th>
+								<th type="text" name="items[#index#].structrue"  size="12" defaultVal="${loginUser.structrue.id }" >部门</th>
 							</tr>
 						</thead>
 						<tbody>	</tbody>
