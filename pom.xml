@@ -16,6 +16,32 @@
 		<activiti>5.17.0</activiti>
 	</properties>
 	<dependencies>
+	
+	<dependency>
+	<groupId>org.nutz</groupId>
+	<artifactId>nutz</artifactId>
+	<version>1.b.51</version>
+</dependency>
+<dependency>
+	<groupId>org.apache.poi</groupId>
+	<artifactId>poi</artifactId>
+	<version>3.11</version>
+</dependency>
+<dependency>
+	<groupId>org.apache.poi</groupId>
+	<artifactId>poi-scratchpad</artifactId>
+	<version>3.11</version>
+</dependency>
+<dependency>
+	<groupId>com.alibaba</groupId>
+	<artifactId>fastjson</artifactId>
+	<version>1.2.3</version>
+</dependency>
+	<dependency>
+	<groupId>net.bull.javamelody</groupId>
+	<artifactId>javamelody-core</artifactId>
+	<version>1.55.0</version>
+</dependency>
 	<dependency>
 	<groupId>commons-fileupload</groupId>
 	<artifactId>commons-fileupload</artifactId>
