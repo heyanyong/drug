@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.finance.ExpenseBill;
+import com.gxuts.wss.dms.entity.hr.StructureInfo;
 
 public interface ExpenseDao {
 	public Serializable save(ExpenseBill expense);
@@ -29,5 +30,7 @@ public interface ExpenseDao {
 
 	public Page<ExpenseBill> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows);
-	
+	public String queryOneField(String hql);
+	public double getExpenseThisMonth(StructureInfo structure,String no);
+	public double getBudgetThisMonth(StructureInfo structure, String no);
 }

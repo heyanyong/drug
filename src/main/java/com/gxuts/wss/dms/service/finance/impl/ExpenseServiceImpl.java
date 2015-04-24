@@ -1,6 +1,7 @@
 package com.gxuts.wss.dms.service.finance.impl;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +14,10 @@ import com.gxuts.wss.dms.dao.finance.ExpenseDao;
 import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.finance.ExpenseBill;
 import com.gxuts.wss.dms.entity.finance.ExpenseItem;
+import com.gxuts.wss.dms.entity.hr.StructureInfo;
 import com.gxuts.wss.dms.service.finance.ExpenseService;
+
+import cucumber.api.java.ca.Cal;
 @Service("expenseService")
 @Transactional
 public class ExpenseServiceImpl implements ExpenseService {
@@ -23,7 +27,16 @@ public class ExpenseServiceImpl implements ExpenseService {
 	@Override
 	public Json save(ExpenseBill expense) {
 		List<ExpenseItem> items=expense.getItems();
+		Calendar date=Calendar.getInstance();
 		for(ExpenseItem it:items){
+			//已用
+			double used=expenseDao.getExpenseThisMonth(it.getStructure(), it.getNo());
+			//预算
+			double budget=expenseDao.getBudgetThisMonth(it.getStructure(),it.getNo());
+			double m=budget-used-it.getMoney();
+			if(m<0){
+				return new Json(it.getName()+"超标"+-m, "300", null, null,null, null);
+			}
 			it.setExpense(expense);
 		}
 	    expenseDao.save(expense);
@@ -88,6 +101,11 @@ public class ExpenseServiceImpl implements ExpenseService {
 	public Page<ExpenseBill> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows) {
 		return expenseDao.query(hql, params, currentPage, rows);
+	}
+
+	@Override
+	public double getExpenseThisMonth(StructureInfo structure, String no) {
+		return expenseDao.getExpenseThisMonth(structure, no);
 	}
 
 }

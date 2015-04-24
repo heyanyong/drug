@@ -185,15 +185,51 @@ public class DateUtil {
 		return (int)((d2.getTime()-d1.getTime())/(1000*3600*24));
 	}
 	public static Date getStartTimeOfDate(Date currentDate) {
-		Assert.notNull(currentDate);
 		String strDateTime = date2String(currentDate,"yyyy-MM-dd") + " 00:00:00";
 		return string2Date(strDateTime,"yyyy-MM-dd hh:mm:ss");
 	}
 	
 	public static Date getEndTimeOfDate(Date currentDate) {
-		Assert.notNull(currentDate);
 		String strDateTime = date2String(currentDate,"yyyy-MM-dd") + " 59:59:59";
 		return string2Date(strDateTime,"yyyy-MM-dd hh:mm:ss");
+	}
+	public static int getCurrentYear() {
+		 return Calendar.getInstance().get(Calendar.YEAR);
+	}
+ 
+	/*
+	 * 返回月份英文表示
+	 */
+	public static String getCurrentMonth(){
+		String m=null;
+		Calendar c=Calendar.getInstance();
+		switch (c.get(Calendar.MONTH)) {
+		case 0:
+			m= "january"; break;
+		case 1:
+			m= "february";break;
+		case 2:
+			m= "march";break;
+		case 3:
+			m= "april";break;
+		case 4:
+			m= "may";break;
+		case 5:
+			m= "june";break;
+		case 6:
+			m= "july";break;
+		case 7:
+			m= "august";break;
+		case 8:
+			m= "september";break;
+		case 9:
+			m= "october";break;
+		case 10:
+			m= "november";break;
+		case 11:
+			m= "december";break;
+		}
+		return m;
 	}
 	
 	public static void main(String[] args){
@@ -201,6 +237,8 @@ public class DateUtil {
 		String str2 = "2011-01-10";
 		Date date1 = DateUtil.string2Date(str1, "yyyy-MM-dd");
 		Date date2 = DateUtil.string2Date(str2, "yyyy-MM-dd");
-		System.out.println(daysBetween(date1, date2));
-	}
+//		System.out.println(Calendar.getInstance().getTime().getMonth());
+//		System.out.println(Calendar.MONTH);
+		System.out.println(getCurrentYear());
+	} 
 }

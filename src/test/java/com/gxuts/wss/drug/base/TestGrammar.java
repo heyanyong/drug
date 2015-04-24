@@ -36,8 +36,8 @@ public class TestGrammar {
 		 
 	 public static void main(String[] args) {
 		 Calendar cal=Calendar.getInstance();//使用日历类
-		  int year=cal.get(Calendar.YEAR);//得到年
-		  System.out.println(year);
+		  int year=cal.get(Calendar.MONTH);//得到年
+		  System.out.println(cal.JANUARY);
 		 
 		 
 		 

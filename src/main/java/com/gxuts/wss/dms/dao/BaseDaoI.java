@@ -34,5 +34,5 @@ public interface BaseDaoI<T> {
 
 	public Page<T> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows);
-
+	public String queryOneField(String hql);
 }

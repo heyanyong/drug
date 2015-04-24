@@ -7,6 +7,7 @@ import java.util.Map;
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.finance.ExpenseBill;
+import com.gxuts.wss.dms.entity.hr.StructureInfo;
 
 public interface ExpenseService {
 	public Json save(ExpenseBill expense);
@@ -30,5 +31,5 @@ public interface ExpenseService {
 
 	public Page<ExpenseBill> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows);
-	
+	public double getExpenseThisMonth(StructureInfo structure,String no);
 }

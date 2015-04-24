@@ -56,6 +56,13 @@ public class Json {
 	public void setForwardUrl(String forwardUrl) {
 		this.forwardUrl = forwardUrl;
 	}
-	
 
+	@Override
+	public String toString() {
+		return "Json [message=" + message + ", statusCode=" + statusCode
+				+ ", navTabId=" + navTabId + ", rel=" + rel + ", callbackType="
+				+ callbackType + ", forwardUrl=" + forwardUrl + "]";
+	}
+	
+	
 }
