@@ -140,8 +140,6 @@ public class UserInfo implements Serializable {
 		this.structure = structure;
 	}
 
-	 
-
 	public List<RoleInfo> getRoles() {
 		return roles;
 	}
@@ -200,11 +198,18 @@ public class UserInfo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "UserInfo [id=" + id + ", no=" + no + ", name=" + name
-				+ ", age=" + age + ", password=" + password + ", sex=" + sex
-				+ ", createDate=" + createDate + ", createUser=" + createUser
-				+ ", structure=" + structure + ", roles=" + roles + "]";
+		return "[id=" + id + ", no=" + no + ", name=" + name + "]";
 	}
+	@Override
+	public boolean equals(Object obj) {
+		UserInfo u=(UserInfo)obj;
+		return this.id==u.getId();
+	}
+	@Override
+	public int hashCode() {
+		return this.id.hashCode()*7;
+	}
+	
 
 	 
 	 

@@ -1,4 +1,4 @@
-package com.gxuts.wss.drug.service;
+package com.gxuts.wss.drug.service.hr;
 
 import java.util.Date;
 
@@ -16,7 +16,7 @@ import com.gxuts.wss.dms.service.hr.SignService;
 
 @RunWith(SpringJUnit4ClassRunner.class) 
 @ContextConfiguration(locations={"classpath:/spring/applicationContext.xml"})
-public class TestExportService {
+public class TestLeaveService {
 	@Autowired
 	private ExportService exportService;
 	

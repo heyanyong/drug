@@ -1,4 +1,4 @@
-package com.gxuts.wss.drug.service;
+package com.gxuts.wss.drug.service.business;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

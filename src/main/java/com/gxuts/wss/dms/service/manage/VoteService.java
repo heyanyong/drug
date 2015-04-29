@@ -5,11 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import com.gxuts.wss.dms.base.Page;
+import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.entity.manage.VoteInfo;
+import com.gxuts.wss.dms.entity.manage.VoteItem;
 
 public interface VoteService {
-	public void vote(UserInfo user,int voteId,int itId);
 	public Serializable save(VoteInfo vote);
 	public VoteInfo get(Class<VoteInfo> c, Serializable id);
 	public VoteInfo get(String hql, Map<String, Object> params);
@@ -22,4 +23,5 @@ public interface VoteService {
 	public VoteInfo getByHql(String hql);
 	public void delete(VoteInfo vote);
 	public void update(VoteInfo vote);
+	public Json  vote(UserInfo user, int voteId, int itId);
 }

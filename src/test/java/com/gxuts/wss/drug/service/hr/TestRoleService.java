@@ -1,4 +1,4 @@
-package com.gxuts.wss.drug.service;
+package com.gxuts.wss.drug.service.hr;
 
 import java.util.Date;
 import java.util.List;

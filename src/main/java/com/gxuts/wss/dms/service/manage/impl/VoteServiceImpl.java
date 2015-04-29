@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.dao.manage.VoteDao;
+import com.gxuts.wss.dms.dao.manage.VoteItemDao;
+import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.entity.manage.VoteInfo;
 import com.gxuts.wss.dms.entity.manage.VoteItem;
@@ -19,6 +21,8 @@ import com.gxuts.wss.dms.service.manage.VoteService;
 public class VoteServiceImpl implements VoteService {
 	@Autowired
 	private VoteDao voteDao;
+	@Autowired
+	private VoteItemDao voteItemDao;
 
 	@Override
 	public Serializable save(VoteInfo vote) {
@@ -81,17 +85,30 @@ public class VoteServiceImpl implements VoteService {
 		voteDao.update(vote);
 	}
 	@Override
-	public void vote(UserInfo user, int voteId, int itId) {
+	public Json vote(UserInfo user,int voteId,int itId) {
 		VoteInfo vote=voteDao.get(VoteInfo.class, voteId);
-		List<VoteItem> items=vote.getItems();
-		for(VoteItem v:items){
-			if(v.getId()==itId){
-				v.getUsers().add(user);
-				v.setVoteNum(v.getVoteNum()+1);
+		StringBuilder oUsers=new StringBuilder();
+		List<VoteItem> its=vote.getItems();
+		for(VoteItem it:its){
+			String iu=it.getUsers();
+			if(iu !=null){
+				oUsers.append(iu);
 			}
 		}
-		voteDao.update(vote);
+		if(oUsers.indexOf(user.getNo())>-1){
+			return new Json("aready", "300", null, null, null, null);
+		}
+		VoteItem voteItem = voteItemDao.get(VoteItem.class, itId);
+		String iusers=voteItem.getUsers();
+		if(iusers==null||iusers.length()<1){
+			voteItem.setUsers(user.getName()+"("+user.getNo()+")");
+		}else{
+			voteItem.setUsers(iusers+","+user.getName()+"("+user.getNo()+")");
+		}
+		voteItem.setVoteNum(voteItem.getVoteNum()+1);
+		voteItemDao.update(voteItem);
+		return new Json("ok", "200", null, null, null, null);
 	}
 	 
-
+	 
 }

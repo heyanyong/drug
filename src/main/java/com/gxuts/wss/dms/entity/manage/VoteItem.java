@@ -1,15 +1,15 @@
 package com.gxuts.wss.dms.entity.manage;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,11 +25,19 @@ public class VoteItem {
 	private String name;
 	private String pic;
 	private int voteNum;
-	@OneToMany(fetch=FetchType.EAGER)
-	private Set<UserInfo> users;
+	private String users;
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createDate;
+	
+	public VoteItem() {}
+	public VoteItem(String name) {
+		this.name = name;
+	}
+	public VoteItem(String name,int voteNum) {
+		this.name = name;
+		this.voteNum = voteNum;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -54,11 +62,11 @@ public class VoteItem {
 	public void setVoteNum(int voteNum) {
 		this.voteNum = voteNum;
 	}
-
-	public Set<UserInfo> getUsers() {
+	
+	public String getUsers() {
 		return users;
 	}
-	public void setUsers(Set<UserInfo> users) {
+	public void setUsers(String users) {
 		this.users = users;
 	}
 	public Date getCreateDate() {
@@ -69,10 +77,9 @@ public class VoteItem {
 	}
 	@Override
 	public String toString() {
-		return "VoteItem [name=" + name + ", voteNum=" + voteNum + ", users="
-				+ users + "]";
+		return "name=" + name + ", voteNum=" + voteNum + ", users="
+				+ users ;
 	}
-	
 	
 }
 
