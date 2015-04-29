@@ -1,5 +1,6 @@
 package com.gxuts.wss.dms.entity.finance;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.entity.sys.AttaFile;
 @Entity
-public class ExpenseBill {
+public class ExpenseBill implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;

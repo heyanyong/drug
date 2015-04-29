@@ -1,5 +1,6 @@
 package com.gxuts.wss.dms.entity.finance;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -18,7 +19,7 @@ import com.gxuts.wss.dms.entity.hr.StructureInfo;
 import com.gxuts.wss.dms.util.annotation.FieldName;
 
 @Entity
-public class ExpenseItem {
+public class ExpenseItem  implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;

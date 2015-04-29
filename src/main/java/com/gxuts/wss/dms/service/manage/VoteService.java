@@ -9,6 +9,7 @@ import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.entity.manage.VoteInfo;
 import com.gxuts.wss.dms.entity.manage.VoteItem;
+import com.gxuts.wss.dms.util.QueryFilter;
 
 public interface VoteService {
 	public Serializable save(VoteInfo vote);
@@ -24,4 +25,5 @@ public interface VoteService {
 	public void delete(VoteInfo vote);
 	public void update(VoteInfo vote);
 	public Json  vote(UserInfo user, int voteId, int itId);
+	public Page<VoteInfo> find(QueryFilter filter);
 }

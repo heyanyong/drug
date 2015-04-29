@@ -67,11 +67,12 @@
 						<thead>
 							<tr>
 								<th type="del" width="28">删除</th>
-								<th type="text" defaultVal="#index#" size="12"  >序号</th>
-								<th type="text" name="items[#index#].name" >费用名称</th>
+								<th type="text" defaultVal="#index#" size="1" readonly="readonly" >序号</th>
+								<th type="lookup" lookupGroup="budgets[#index#].subject" lookupUrl="subject/list?show=dialog" id="budgets[#index#].subject.name"  name="budgets[#index#].name" size="12" fieldClass="required" size="12">费用科目</th>
+								<th type="text" name="items[#index#].name" >科目编码</th>
 								<th type="text" name="items[#index#].money" >金额</th>
 								<th type="text" name="items[#index#].page"  size="12" fieldClass="digits">发票张数</th>
-								<th type="text" name="items[#index#].structrue"  size="12" defaultVal="${loginUser.structrue.id }" >部门</th>
+								<th type="text" name="items[#index#].structrue"  size="12" defaultVal="${loginUser.structure.id }" >部门</th>
 							</tr>
 						</thead>
 						<tbody>	</tbody>

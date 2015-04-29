@@ -46,9 +46,9 @@ table.list td{padding:0; border:none;}
 		<thead>
 			<tr>
 				<th type="del" >&nbsp;</th>
-				<th type="lookup" lookupGroup="budgets[#index#].subject" lookupUrl="subject/list?show=dialog"   name="budgets[#index#].subject.name" size="12" fieldClass="required" >科目名称</th>
-				<th type="text" name="budgets[#index#].subject.no" size="11" fieldClass="required" >科目编码</th>
-				<th type="text" name="budgets[#index#].january" size="9" fieldClass="number" defaultVal="0.0">一月</th>
+				<th type="lookup" lookupGroup="budgets[#index#].subject" lookupUrl="subject/list?show=dialog" id="budgets[#index#].subject.name"  name="budgets[#index#].name" size="12" fieldClass="required" >科目名称</th>
+				<th type="text"  id="budgets[#index#].subject.no"  name="budgets[#index#].no" size="11" fieldClass="required" >科目编码</th>
+				<th type="text" name="budgets[#index#].january" id="budgets[#index#].january" size="9" fieldClass="number" defaultVal="0.0">一月</th>
 				<th type="text" name="budgets[#index#].february" size="9" fieldClass="number" defaultVal="0.0">二月</th>
 				<th type="text" name="budgets[#index#].march" size="9" fieldClass="number" defaultVal="0.0">三月</th>
 				<th type="text" name="budgets[#index#].april" size="9" fieldClass="number" defaultVal="0.0">四月</th>

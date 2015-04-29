@@ -53,8 +53,8 @@ public class ExpenseController {
 	@RequestMapping(value = "list")
 	public String getList(HttpServletRequest request, Integer currentPage,
 			Integer row, Model model) {
-		Page<ExpenseBill> pages = expenseService.query("from ExpenseBill",
-				null, null, null);
+		currentPage=currentPage==null? 1:currentPage;
+		Page<ExpenseBill> pages = expenseService.query("from ExpenseBill",null, currentPage, 17);
 		model.addAttribute("pages", pages);
 		return "expenseList";
 	}

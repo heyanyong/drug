@@ -75,6 +75,52 @@ public class UploadController {
 		}
 		return fr;
 	}
+	@RequestMapping(value = "/one", method = { RequestMethod.POST,RequestMethod.GET })
+	public String tableUpload(HttpServletRequest req, HttpServletResponse rep,HttpSession session) {
+		String userNo=((UserInfo)session.getAttribute("loginUser")).getNo();
+		AttaFile fr=new AttaFile();
+		String savePath = req.getSession().getServletContext().getRealPath("");
+		String webPath = "\\files\\" + userNo+new Date().getTime()+"\\";
+		savePath = savePath + webPath;
+		File filePath =new File(savePath);
+		filePath.mkdir();
+		// 把文件上传到服务器指定位置，并向前台返回文件名
+		if (req.getParameter("up") != null) {
+			DiskFileItemFactory fac = new DiskFileItemFactory();
+			ServletFileUpload upload = new ServletFileUpload(fac);
+			List fileList = null;
+			try {
+				// 文件类型解析req
+				fileList = (List<FileItem>) upload.parseRequest(req);
+			} catch (FileUploadException ex) {
+				// 终止文件上传，此处抛出异常
+				ex.printStackTrace();
+			}
+			Iterator it = fileList.iterator();
+			while (it.hasNext()) {
+				FileItem item = (FileItem) it.next();
+				if (!item.isFormField()) {
+					String name = item.getName();
+					String type = item.getContentType();
+					if (item.getName() == null
+							|| item.getName().trim().equals("")) {
+						continue;
+					}
+					File file = new File(savePath + name);
+					try {
+						// 将文件存入本地服务器
+						item.write(file);
+						fr.setFileType(name.substring(name.indexOf(".")));
+						fr.setWebPath(webPath+name);
+						fr.setFileName(name);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+		return "{\"id\":\"1\",\"fileName\":\"300\",\"attachmentPath\":\"300\",\"attachmentSize\":\"300\"}";
+	}
 	@RequestMapping(value = "/editor", method = { RequestMethod.POST,RequestMethod.GET })
 	public AttaEditor image(HttpServletRequest req, HttpServletResponse rep,HttpSession session) {
 		String userNo=((UserInfo)session.getAttribute("loginUser")).getNo();

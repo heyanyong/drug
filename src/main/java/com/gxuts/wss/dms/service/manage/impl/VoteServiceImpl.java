@@ -16,6 +16,7 @@ import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.entity.manage.VoteInfo;
 import com.gxuts.wss.dms.entity.manage.VoteItem;
 import com.gxuts.wss.dms.service.manage.VoteService;
+import com.gxuts.wss.dms.util.QueryFilter;
 @Service("voteService")
 @Transactional
 public class VoteServiceImpl implements VoteService {
@@ -108,6 +109,10 @@ public class VoteServiceImpl implements VoteService {
 		voteItem.setVoteNum(voteItem.getVoteNum()+1);
 		voteItemDao.update(voteItem);
 		return new Json("ok", "200", null, null, null, null);
+	}
+	@Override
+	public Page<VoteInfo> find(QueryFilter filter) {
+		return voteDao.find(filter);
 	}
 	 
 	 

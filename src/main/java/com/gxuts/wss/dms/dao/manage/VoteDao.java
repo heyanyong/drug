@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.manage.VoteInfo;
+import com.gxuts.wss.dms.util.QueryFilter;
 
 public interface VoteDao {
 	public Serializable save(VoteInfo vote);
@@ -20,5 +21,6 @@ public interface VoteDao {
 	public VoteInfo getByHql(String hql);
 	public void delete(VoteInfo vote);
 	public void update(VoteInfo vote);
+	public Page<VoteInfo> find(QueryFilter filter);
 
 }

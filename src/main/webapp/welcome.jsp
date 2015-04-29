@@ -198,25 +198,9 @@
 								<ul>
 									<li><a href="leave/add" target="navTab" rel="leaveAdd">请假申请</a></li>
 									<li><a href="leave/list" target="navTab" rel="leaveList">请假列表</a></li>
-									<li><a href="contract/list" target="navTab"
-										rel="contractList">采购合同</a></li>
-									<li><a href="demo_page2.html" target="navTab" rel="page2">出库查询</a></li>
+									<li><a href="vote/list" target="navTab" rel="voteList">投票管理</a></li>
 								</ul></li>
-							<li><a>考勤管理</a>
-								<ul>
-									<li><a href="sign/list" target="navTab" rel="signList">个人考勤记录</a></li>
-									<li><a href="userAdd.jsp" target="navTab" rel="userAdd">新增用户</a></li>
-									<li><a href="role/list" target="navTab" rel="roleList">角色管理</a></li>
-									<li><a href="structure/show?all=1" target="navTab"
-										rel="structureList">部门管理</a></li>
-								</ul></li>
-							<li><a>资讯管理</a>
-								<ul>
-									<li><a href="article/add" target="navTab" rel="articleAdd">新增文章</a></li>
-									<li><a href="article/list" target="navTab"
-										rel="articleList">文章列表</a></li>
-								</ul>
-							</li>
+							
 							<li><a>固定资产管理</a>
 								<ul>
 									<li><a href="drug/list" target="navTab" rel="drugList">库存管理</a></li>
@@ -360,6 +344,14 @@
 									<li><a href="structure/show" target="navTab"
 										rel="structureList">部门管理</a></li>
 								</ul></li>
+							<li><a>考勤管理</a>
+								<ul>
+									<li><a href="sign/list" target="navTab" rel="signList">个人考勤记录</a></li>
+									<li><a href="userAdd.jsp" target="navTab" rel="userAdd">新增用户</a></li>
+									<li><a href="role/list" target="navTab" rel="roleList">角色管理</a></li>
+									<li><a href="structure/show?all=1" target="navTab"
+										rel="structureList">部门管理</a></li>
+								</ul></li>
 							<li><a>用人需求</a>
 								<ul>
 									<li><a href="user/list" target="navTab" rel="userList">用人需求</a></li>
@@ -371,30 +363,6 @@
 									<li><a href="userAdd.jsp" target="navTab" rel="userAdd">离职报表</a></li>
 								</ul></li>
 
-							<li><a href="demo_page1.html" target="navTab"
-								rel="demo_page1">查询我的客户</a></li>
-							<li><a href="demo_page1.html" target="navTab"
-								rel="demo_page2">表单查询页面</a></li>
-							<li><a href="demo_page4.html" target="navTab"
-								rel="demo_page4">表单录入页面</a></li>
-							<li><a href="demo_page42.html" target="navTab"
-								rel="demo_page42">表单录入页面test</a></li>
-							<li><a href="demo_page5.html" target="navTab"
-								rel="demo_page5">有文本输入的表单</a></li>
-							<li><a href="javascript:;">有提示的表单输入页面</a>
-								<ul>
-									<li><a href="javascript:;">页面一</a></li>
-									<li><a href="javascript:;">页面二</a></li>
-								</ul></li>
-							<li><a href="javascript:;">选项卡和图形的页面</a>
-								<ul>
-									<li><a href="javascript:;">页面一</a></li>
-									<li><a href="javascript:;">页面二</a></li>
-								</ul></li>
-							<li><a href="javascript:;">选项卡和图形切换的页面</a></li>
-							<li><a href="javascript:;">左右两个互动的页面</a></li>
-							<li><a href="javascript:;">列表输入的页面</a></li>
-							<li><a href="javascript:;">双层栏目列表的页面</a></li>
 						</ul>
 					</div>
 					<div class="accordionHeader">
@@ -417,7 +385,20 @@
 					</div>
 					<div class="accordionContent">
 						<ul class="tree">
-							<li><a href="newPage1.html" target="dialog" rel="dlg_page">列表</a></li>
+							<li><a>资讯管理</a>
+								<ul>
+									<li><a href="article/add" target="navTab" rel="articleAdd">新增文章</a></li>
+									<li><a href="article/list" target="navTab"
+										rel="articleList">文章列表</a></li>
+								</ul>
+							</li>
+							<li><a>通知公告</a>
+								<ul>
+									<li><a href="article/add" target="navTab" rel="articleAdd">新增文章</a></li>
+									<li><a href="article/list" target="navTab"
+										rel="articleList">文章列表</a></li>
+								</ul>
+							</li>
 						</ul>
 					</div>
 					<div class="accordionHeader">
@@ -427,7 +408,7 @@
 					</div>
 					<div class="accordionContent">
 						<ul class="tree">
-							<li><a href="newPage1.html" target="dialog" rel="dlg_page">列表</a></li>
+							<li><a href="newPage1.html" target="navTab" rel="dlg_page">合同审批</a></li>
 						</ul>
 					</div>
 					<div class="accordionHeader">

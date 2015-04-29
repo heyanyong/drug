@@ -1,5 +1,6 @@
 package com.gxuts.wss.dms.entity.manage;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 @Entity
-public class VoteItem {
+public class VoteItem implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;

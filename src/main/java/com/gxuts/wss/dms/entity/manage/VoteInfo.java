@@ -1,5 +1,6 @@
 package com.gxuts.wss.dms.entity.manage;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +22,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 
 @Entity
-public class VoteInfo {
+public class VoteInfo  implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
@@ -36,7 +37,6 @@ public class VoteInfo {
 	private Date endTime;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "vote_item", joinColumns = { @JoinColumn(name = "vote_id")})
 	private List<VoteItem> items;
 
 	@Temporal(TemporalType.DATE)
@@ -48,7 +48,7 @@ public class VoteInfo {
 	public Integer getId() {
 		return id;
 	}
-
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -85,7 +85,7 @@ public class VoteInfo {
 		this.endTime = endTime;
 	}
 
-	public boolean isShowVoter() {
+	public boolean getIsShowVoter() {
 		return isShowVoter;
 	}
 
