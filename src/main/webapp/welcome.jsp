@@ -346,21 +346,19 @@
 								</ul></li>
 							<li><a>考勤管理</a>
 								<ul>
-									<li><a href="sign/list" target="navTab" rel="signList">个人考勤记录</a></li>
-									<li><a href="userAdd.jsp" target="navTab" rel="userAdd">新增用户</a></li>
-									<li><a href="role/list" target="navTab" rel="roleList">角色管理</a></li>
-									<li><a href="structure/show?all=1" target="navTab"
-										rel="structureList">部门管理</a></li>
+									<li><a href="signException/list" target="navTab" rel="signExceptionList">个人考勤记录</a></li>
+									<li><a href="sign/list" target="navTab" rel="signList">考勤记录总表</a></li>
+									<li><a href="sign/list" target="navTab" rel="signList">考勤异常申请</a></li>
 								</ul></li>
 							<li><a>用人需求</a>
 								<ul>
-									<li><a href="user/list" target="navTab" rel="userList">用人需求</a></li>
-									<li><a href="userAd d.jsp" target="navTab" rel="userAdd">需求报表</a></li>
+									<li><a href="enrol/list" target="navTab" rel="enrolList">用人需求</a></li>
+									<li><a href="enrol/add" target="navTab" rel="userAdd">需求报表</a></li>
 								</ul></li>
 							<li><a>离职申请</a>
 								<ul>
-									<li><a href="user/list" target="navTab" rel="userList">离职申请</a></li>
-									<li><a href="userAdd.jsp" target="navTab" rel="userAdd">离职报表</a></li>
+									<li><a href="quit/add" target="navTab" rel="quitAdd">离职申请</a></li>
+									<li><a href="quit/list" target="navTab" rel="quit/addList">离职报表</a></li>
 								</ul></li>
 
 						</ul>
@@ -395,8 +393,7 @@
 							<li><a>通知公告</a>
 								<ul>
 									<li><a href="article/add" target="navTab" rel="articleAdd">新增文章</a></li>
-									<li><a href="article/list" target="navTab"
-										rel="articleList">文章列表</a></li>
+									<li><a href="article/list" target="navTab" rel="articleList">文章列表</a></li>
 								</ul>
 							</li>
 						</ul>
