@@ -2,12 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
- .voteDetail{position: absolute;}
- .voteDetail .voteItem{float: left; width:150px; height: 220px;  margin: 20px; }
- .voteDetail .voteItem img{ position: absolute;bottom:30px;  width: 150px;}
- .voteDetail .voteItem p{position: absolute; bottom: 0px; height:20px;width: 150px; line-height:20px;text-align: center;}
+ .voteDetail{  border:1px solid red; }
+ .voteDetail .voteItem{float: left; width:150px; height: 235px;  margin: 20px; border:1px solid #000033;text-align: center;}
+ .voteDetail .voteItem .picdiv{   height:190px;  border:1px solid #ff6600; position:relative;}
+ .voteDetail .voteItem img{   width: 150px; position:absolute; bottom:0px; left:0;max-height:190px; margin:0;}
+ .voteDetail .voteItem .title{width:100%; }
  .voteDetail .voteItem span{margin-right:20px;}
- .voteDetail .voteItem .pillar{margin-left:auto;margin-right:auto;bottom:30px;width:40px; background: yellow;}
+ .voteDetail .voteItem .pillar{margin-left:auto;margin-right:auto; position:absolute; bottom:0px; left:35%; width:40px; background: yellow;}
 </style>
 <div class="pageContent article" layoutH="56">
 	<h2>${info.name}</h2>
@@ -19,22 +20,25 @@
 	  <div class="divider"></div>
 	<div class="voteDetail">
 		<div class="voteItem">
-			<img alt="" src="images/profile-pic.jpg" />
-			<p>
-				<span>10票</span><button value="投票">投票</button>
-			</p>
+			<div class="picdiv"><img alt="" src="pic.png" /></div>
+			<div>
+				<div class="title">fafdafafafa</div>
+				<span>10</span><button value="21">fd</button>
+			</div>
 		</div>
 		<div class="voteItem">
-			<img alt="" src="images/profile-pic.jpg" />
-			<p>
-				<span>10票</span><button value="投票">投票</button>
-			</p>
+			<div class="picdiv"><img alt="" src="pic2.png" /></div>
+			<div>
+				<div class="title">fafdafafafa</div>
+				<span>10</span><button value="21">fd</button>
+			</div>
 		</div>
 		<div class="voteItem">
-			<div class="pillar" style="height:30px;"></div>
-			<p>
-				<span>10票</span><button value="投票">投票</button>
-			</p>
+			<div class="picdiv"><div class="pillar" style="height:30px;"></div></div>
+			<div>
+				<div class="title">fafdafafafa</div>	
+				<span>10</span><button value="212">dfd</button>
+			</div>
 		</div>
 	</div>
 </div>
