@@ -8,7 +8,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 自定义注解，记录一下当前方法的中文名字
+ *  记录当前方法的中文名字
  *
  */
 @Target(ElementType.METHOD)

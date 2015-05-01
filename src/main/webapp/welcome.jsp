@@ -407,6 +407,7 @@
 							<li><a href="expense/add" target="navTab" rel="expenseAdd">费用报销</a></li>
 							<li><a href="expense/list" target="navTab" rel="expenseList">费用报销报表</a></li>
 							<li><a href="budget/list" target="navTab" rel="budgetList">部门预算维护</a></li>
+							<li><a href="subject/list" target="navTab" rel="subjectList">费用科目维护</a></li>
 						</ul>
 					</div>
 					<div class="accordionHeader">
