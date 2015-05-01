@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import com.gxuts.wss.dms.base.Page;
+import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.business.DrugInfo;
 import com.gxuts.wss.dms.entity.business.PurchaseBill;
 import com.gxuts.wss.dms.entity.business.PurchaseContractBill;
@@ -25,6 +26,7 @@ import com.gxuts.wss.dms.service.business.DrugService;
 import com.gxuts.wss.dms.service.business.PurchaseContractService;
 import com.gxuts.wss.dms.service.finance.ExpenseService;
 
+import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring/applicationContext.xml" })
 @Transactional  
@@ -44,8 +46,9 @@ public class TestExpenseService {
 		List<ExpenseItem> items=new ArrayList<ExpenseItem>();
 		items.add(item1);
 		bill.setItems(items);
-		System.out.println(expenseService.save(bill));
-		
+		Json json;
+		System.out.println(json=expenseService.save(bill));
+		assertEquals("200", json.getStatusCode());
 	}
 	@Ignore
 	@Test
