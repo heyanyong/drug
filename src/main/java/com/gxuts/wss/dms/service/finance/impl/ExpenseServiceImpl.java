@@ -29,10 +29,13 @@ public class ExpenseServiceImpl implements ExpenseService {
 		List<ExpenseItem> items=expense.getItems();
 		Calendar date=Calendar.getInstance();
 		for(ExpenseItem it:items){
-			//已用
-			double used=expenseDao.getExpenseThisMonth(it.getStructure(), it.getNo());
 			//预算
 			double budget=expenseDao.getBudgetThisMonth(it.getStructure(),it.getNo());
+			if(budget<=0){
+				return new Json("当月预算为"+budget, "300", null, null,null, null);
+			}
+			//已用
+			double used=expenseDao.getExpenseThisMonth(it.getStructure(), it.getNo());
 			double m=budget-used-it.getMoney();
 			if(m<0){
 				return new Json(it.getName()+"超标"+-m, "300", null, null,null, null);

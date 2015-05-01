@@ -19,8 +19,8 @@ import com.gxuts.wss.dms.util.DateUtil;
 public class ExpenseDaoImpl extends BaseDao<ExpenseBill> implements ExpenseDao {
 
 	// 已用
+	@Override
 	public double getExpenseThisMonth(StructureInfo structure, String no) {
-
 		Query q = this.getSession().createQuery(
 				"select sum(money) from ExpenseItem where createDate>=? and createDate<=? and structure.id=? and no=?");
 		q.setDate(0, DateUtil.getFirstDayOfMonth(Calendar.getInstance()));
@@ -35,7 +35,7 @@ public class ExpenseDaoImpl extends BaseDao<ExpenseBill> implements ExpenseDao {
 		}
 	}
 
-	@Override
+	@Override//预算
 	public double getBudgetThisMonth(StructureInfo structure, String no) {
 		Query q = this.getSession().createQuery(
 				"select "+DateUtil.getCurrentMonth()+" from BudgetInfo where   structure.id=? and no=? and year=?");

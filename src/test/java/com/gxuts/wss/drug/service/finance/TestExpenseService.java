@@ -45,6 +45,7 @@ public class TestExpenseService {
 		items.add(item1);
 		bill.setItems(items);
 		System.out.println(expenseService.save(bill));
+		
 	}
 	@Ignore
 	@Test
