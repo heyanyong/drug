@@ -23,35 +23,27 @@
 				<label>部门：</label> <input type="text"  size="30" readonly="readonly" value="${loginUser.name}" />
 			</p>
 			<p>
-				<label>开始日期：</label>
-				<input type="text" name="startDate" class="date required"   size="30" dateFmt="yyyy-MM-dd HH:mm:ss"  /><a class="inputDateButton" href="javascript:;">选择</a>
+				<label>最后工作日期：</label>
+				<input type="text" name="lastWorkDate" class="date required"   size="30" dateFmt="yyyy-MM-dd"  /><a class="inputDateButton" href="javascript:;">选择</a>
 			</p>
 			<p>
-				<label>结束日期：</label>
-				<input type="text" name="endDate"  class="date required" size="30" dateFmt="yyyy-MM-dd HH:mm:ss"   /><a class="inputDateButton" href="javascript:;">选择</a>
-			</p>
-			<p>
-				<label>总小时数：</label> <input type="text"    size="30" name="hours" onclick="calculateHours()" />
-			</p>
-			<p>
-				<label>请假类型：</label> <select name="type" class="combox">
+				<label>离职类型：</label> <select name="type" class="combox required">
 					<option value="">请选择</option>
-					<option value="事假" selected="selected">事假</option>
-					<option value="补休假">补休假</option>
-					<option value="年假">年假</option>
-					<option value="产假">产假</option>
+					<option value="自愿离职" selected="selected">自愿离职</option>
+					<option value="合同终止">合同终止</option>
+					<option value="解雇">解雇</option>
 				</select>
 			</p>
 			<p>
 				<label>工作交接人：</label>
 				<input type="hidden" name="cadidate.id" />
-				<input type="text"  name="cadidate.name" size="30" value=""  readonly="readonly" lookupGroup="cadidate" />
+				<input type="text"  name="cadidate.name" size="30"   readonly="readonly" lookupGroup="cadidate" />
 				<a class="btnLook" href="user/lookup" lookupGroup="cadidate">查找带回</a>		
 			</p>
 			<dl class="nowrap">
-				<dt>请假说明：</dt>
+				<dt>离职说明：</dt>
 				<dd>
-					<textarea name="reason" cols="95" rows="6" ></textarea>
+					<textarea name="reason" cols="95" rows="6" class="required" ></textarea>
 				</dd>
 			</dl>
 		

@@ -84,7 +84,7 @@
 		DWZ.init("dwz.frag.xml", {
 			loginUrl : "login_dialog.html",
 			loginTitle : "登录", // 弹出登录对话框
-			loginUrl:"login.jsp",	// 跳到登录页面
+			loginUrl:"login_dialog.html",	// 跳到登录页面
 			statusCode : {
 				ok : 200,
 				error : 300,

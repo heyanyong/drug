@@ -30,8 +30,11 @@ public class LoginFilter implements Filter {
 //			 user.setName("admin");
 //			 req.getSession(true).setAttribute("loginUser", user);
 			 chain.doFilter(request, response);
+		 }else if (req.getHeader("X-Requested-With") != null) {
+			 resp.getWriter().write("{\"message\":\"登陆超时\",\"statusCode\":\"301\"}");
 		 }else{
 			 resp.sendRedirect("/drug/login.jsp");
+			 
 		 }
 	}
 

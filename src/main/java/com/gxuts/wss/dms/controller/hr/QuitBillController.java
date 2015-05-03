@@ -103,7 +103,7 @@ public class QuitBillController {
 	@RequestMapping(value = "add")
 	public String add(Model m) {
 		m.addAttribute("no",
-				"QJ" + DateUtil.date2String(new Date(), "yyMMddHHmmss")
+				"LZ" + DateUtil.date2String(new Date(), "yyMMddHHmmss")
 						+ new Random().nextInt(100));
 		return "quitBillAdd";
 	}

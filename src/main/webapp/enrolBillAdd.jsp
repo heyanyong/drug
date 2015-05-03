@@ -23,33 +23,43 @@
 				<label>部门：</label> <input type="text"  size="30" readonly="readonly" value="${loginUser.name}" />
 			</p>
 			<p>
-				<label>开始日期：</label>
-				<input type="text" name="startDate" class="date required"   size="30" dateFmt="yyyy-MM-dd HH:mm:ss"  /><a class="inputDateButton" href="javascript:;">选择</a>
+				<label>需求人数：</label> <input type="text" size="30" name="number" />
 			</p>
 			<p>
-				<label>结束日期：</label>
+				<label>角色类型：</label> <input type="text" size="30" name="position" />
+			</p>
+			<p>
+				<label>期限日期：</label>
 				<input type="text" name="endDate"  class="date required" size="30" dateFmt="yyyy-MM-dd HH:mm:ss"   /><a class="inputDateButton" href="javascript:;">选择</a>
 			</p>
 			<p>
-				<label>总小时数：</label> <input type="text"    size="30" name="hours" onclick="calculateHours()" />
-			</p>
-			<p>
-				<label>请假类型：</label> <select name="type" class="combox">
+				<label>需求类型：</label> <select name="type" class="combox">
 					<option value="">请选择</option>
-					<option value="事假" selected="selected">事假</option>
-					<option value="补休假">补休假</option>
-					<option value="年假">年假</option>
-					<option value="产假">产假</option>
+					<option value="增员">增员</option>
+					<option value="补员">补员</option>
 				</select>
 			</p>
 			<p>
-				<label>工作交接人：</label>
-				<input type="hidden" name="cadidate.id" />
-				<input type="text"  name="cadidate.name" size="30" value=""  readonly="readonly" lookupGroup="cadidate" />
-				<a class="btnLook" href="enrol/lookup" lookupGroup="cadidate">查找带回</a>		
+				<label>角色层次：</label> <select name="type" class="combox">
+					<option value="">请选择</option>
+					<option value="普通员工" selected="selected">普通员工</option>
+					<option value="管理层">管理层</option>
+					<option value="决策层">决策层</option>
+				</select>
+			</p>
+			<p>
+				<label>角色：</label>
+				<input type="text"  name="roleName" size="30" value=""  readonly="readonly" lookupGroup="cadidate" />
+				<a class="btnLook" href="enrol/lookup" lookupGroup="role">查找带回</a>		
 			</p>
 			<dl class="nowrap">
-				<dt>请假说明：</dt>
+				<dt>用人要求：</dt>
+				<dd>
+					<textarea name="requirement" cols="95" rows="6" ></textarea>
+				</dd>
+			</dl>
+			<dl class="nowrap">
+				<dt>备注：</dt>
 				<dd>
 					<textarea name="reason" cols="95" rows="6" ></textarea>
 				</dd>

@@ -103,7 +103,7 @@ public class EnrolBillController {
 	@RequestMapping(value = "add")
 	public String add(Model m) {
 		m.addAttribute("no",
-				"QJ" + DateUtil.date2String(new Date(), "yyMMddHHmmss")
+				"YR" + DateUtil.date2String(new Date(), "yyMMddHHmmss")
 						+ new Random().nextInt(100));
 		return "enrolBillAdd";
 	}

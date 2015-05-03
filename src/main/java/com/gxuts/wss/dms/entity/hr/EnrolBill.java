@@ -24,6 +24,7 @@ public class EnrolBill implements Serializable {
 	private String requirement;
 	private String type;
 	private String reason;
+	private String roleName;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
