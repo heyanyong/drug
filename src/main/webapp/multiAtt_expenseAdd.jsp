@@ -48,15 +48,6 @@
 					<option value="公司" selected>银行存款</option>
 				</select>
 			</p>
-			<dl class="nowrap">
-			<dt>附件：</dt>
-			<dd>
-				<input name="attachment.attachmentPath" value="" type="hidden">
-				<input class="readonly" name="attachment.fileName" value="" readonly="readonly" type="text" size="30"/>
-				<a class="btnAttach" href="depart/attachmentLookup.html" lookupGroup="attachment" width="560" height="300" title="附件">附件</a>
-				<span class="info">(附件)</span>
-			</dd>
-		</dl>
 			</fieldset>
 			<fieldset>
 				<legend>相关信息</legend>
@@ -88,7 +79,33 @@
 					</table>
 				</div>
 			</fieldset>
-			 
+			 <fieldset>
+				<legend>附件信息</legend>
+					 <input id="testFileInput2" type="file" name="image2" 
+		uploaderOption="{
+			swf:'uploadify/scripts/uploadify.swf',
+			uploader:'upload/some?up=1',
+			formData:{up:'test', ajax:1},
+			queueID:'fileQueue',
+			buttonImage:'uploadify/img/add.jpg',
+			buttonClass:'my-uploadify-button',
+			removeCompleted:false, 
+			width:102,
+			auto:true,
+			onUploadSuccess:function(file, data, response){
+			  oneFileUp(file, data, response);
+			},
+			onCancel:function(file){alert(1);} 
+		}"
+	/>
+	
+	<div id="fileQueue" class="fileQueue"></div>
+	<!-- 
+	<input type="image" src="uploadify/img/upload.jpg" onclick="$('#testFileInput2').uploadify('upload', '*');"/>
+	<input type="image" src="uploadify/img/cancel.jpg" onclick="$('#testFileInput2').uploadify('cancel', '*');"/>
+ -->
+				
+			</fieldset>
 		</div>
 		<div class="formBar">
 			<ul>
@@ -101,3 +118,14 @@
 				
 	</form>
 </div>
+<script>
+ var row=0;
+ function oneFileUp(file, data, response) {
+	 f=eval('(' + data + ')');
+	 //alert('路径' + f.webPath+ '名字' + f.fileName+ '类型' + f.fileType);  
+	 $("#detailForm").append("<input type='hidden' name='files["+row+"].webPath' value='"+f.webPath+"' />");
+	 $("#detailForm").append("<input type='hidden' name='files["+row+"].fileName' value='"+f.fileName+"' />");
+	 $("#detailForm").append("<input type='hidden' name='files["+row+"].fileType' value='"+f.fileType+"' />");
+	 row++;
+ }
+</script>

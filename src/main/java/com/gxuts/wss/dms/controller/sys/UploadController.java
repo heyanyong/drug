@@ -80,10 +80,11 @@ public class UploadController {
 		String userNo=((UserInfo)session.getAttribute("loginUser")).getNo();
 		AttaFile fr=new AttaFile();
 		String savePath = req.getSession().getServletContext().getRealPath("");
-		String webPath = "\\files\\" + userNo+new Date().getTime()+"\\";
+		String webPath = "/files/" + userNo+new Date().getTime()+"/";
 		savePath = savePath + webPath;
 		File filePath =new File(savePath);
 		filePath.mkdir();
+		String name = null;
 		// 把文件上传到服务器指定位置，并向前台返回文件名
 		if (req.getParameter("up") != null) {
 			DiskFileItemFactory fac = new DiskFileItemFactory();
@@ -100,8 +101,7 @@ public class UploadController {
 			while (it.hasNext()) {
 				FileItem item = (FileItem) it.next();
 				if (!item.isFormField()) {
-					String name = item.getName();
-					String type = item.getContentType();
+					 name = item.getName();
 					if (item.getName() == null
 							|| item.getName().trim().equals("")) {
 						continue;
@@ -110,16 +110,14 @@ public class UploadController {
 					try {
 						// 将文件存入本地服务器
 						item.write(file);
-						fr.setFileType(name.substring(name.indexOf(".")));
-						fr.setWebPath(webPath+name);
-						fr.setFileName(name);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
 			}
 		}
-		return "{\"id\":\"1\",\"fileName\":\"300\",\"attachmentPath\":\"300\",\"attachmentSize\":\"300\"}";
+//		return "{\"id\":\"1\",\"fileName\":\""+fr.getFileName()+"\",\"attachmentPath\":\""+fr.getWebPath()+"\",\"attachmentSize\":\"300\"}";
+		return "{\"id\":\"1\",\"fileName\":\""+name+"\",\"attachmentPath\":\""+webPath+name+"\",\"attachmentSize\":\"300\"}";
 	}
 	@RequestMapping(value = "/editor", method = { RequestMethod.POST,RequestMethod.GET })
 	public AttaEditor image(HttpServletRequest req, HttpServletResponse rep,HttpSession session) {

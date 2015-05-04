@@ -6,7 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+/**
+ * 表单附件类
+ * @author nf0830
+ */
 @Entity
 public class AttaFile  implements Serializable{
 	@Id
@@ -16,6 +19,9 @@ public class AttaFile  implements Serializable{
 	private String webPath;
 	private String fileName;
 	private String fileType;
+	
+	
+	
 	public boolean isOk() {
 		return isOk;
 	}
