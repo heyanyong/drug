@@ -196,8 +196,7 @@
 						<ul class="tree treeFolder">
 							<li><a>常用单据</a>
 								<ul>
-									<li><a href="leave/add" target="navTab" rel="leaveAdd">请假申请</a></li>
-									<li><a href="leave/list" target="navTab" rel="leaveList">请假列表</a></li>
+									
 									<li><a href="vote/list" target="navTab" rel="voteList">投票管理</a></li>
 								</ul></li>
 							
@@ -336,31 +335,44 @@
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-							<li><a>组织架构</a>
+							<li><a>常用流程</a>
 								<ul>
-									<li><a href="user/list" target="navTab" rel="userList">用户列表</a></li>
-									<li><a href="userAdd.jsp" target="navTab" rel="userAdd">新增用户</a></li>
-									<li><a href="role/list" target="navTab" rel="roleList">角色管理</a></li>
-									<li><a href="structure/show" target="navTab"
-										rel="structureList">部门管理</a></li>
-								</ul></li>
-							<li><a>考勤管理</a>
-								<ul>
+									<li><a href="leave/list" target="navTab" rel="leaveAdd">请假申请</a></li>
 									<li><a href="signException/list" target="navTab" rel="signExceptionList">个人考勤记录</a></li>
-									<li><a href="sign/list" target="navTab" rel="signList">考勤记录总表</a></li>
 									<li><a href="sign/list" target="navTab" rel="signList">考勤异常申请</a></li>
-								</ul></li>
-							<li><a>用人需求</a>
-								<ul>
 									<li><a href="enrol/list" target="navTab" rel="enrolList">用人需求</a></li>
-									<li><a href="enrol/add" target="navTab" rel="userAdd">需求报表</a></li>
-								</ul></li>
-							<li><a>离职申请</a>
+									<li><a href="quit/list" target="navTab" rel="quitAdd">离职申请</a></li>
+								</ul>
+							</li>
+							<c:if test="${!empty renliziyuan_dm}">
+							<li><a>部门报表</a>
 								<ul>
-									<li><a href="quit/add" target="navTab" rel="quitAdd">离职申请</a></li>
-									<li><a href="quit/list" target="navTab" rel="quit/addList">离职报表</a></li>
-								</ul></li>
-
+									<li><a href="leave/list" target="navTab" rel="leaveList">请假列表</a></li>
+									<li><a href="sign/list" target="navTab" rel="signList">考勤记录总表</a></li>
+									<li><a href="enrol/list" target="navTab" rel="userAdd">用人需求报表</a></li>
+									<li><a href="quit/list" target="navTab" rel="quit/addList">离职申请报表</a></li>
+								</ul>
+							</li>
+							</c:if>
+							<c:if test="${!empty renliziyuan_cm}">
+							<li><a>汇总报表</a>
+								<ul>
+									<li><a href="leave/list" target="navTab" rel="leaveList">请假列表</a></li>
+									<li><a href="sign/list" target="navTab" rel="signList">考勤记录总表</a></li>
+									<li><a href="enrol/list" target="navTab" rel="userAdd">用人需求报表</a></li>
+									<li><a href="quit/list" target="navTab" rel="quit/addList">离职申请报表</a></li>
+								</ul>
+							</li>
+							</c:if>
+							<c:if test="${!empty renliziyuan_mm}">
+							<li style=""><a>维护管理</a>
+								<ul>
+									<li><a href="user/list" target="navTab" rel="userList">用户管理</a></li>
+									<li><a href="role/list" target="navTab" rel="roleList">角色管理</a></li>
+									<li><a href="structure/show" target="navTab" rel="structureList">部门管理</a></li>
+								</ul>
+							</li>
+							</c:if>
 						</ul>
 					</div>
 					<div class="accordionHeader">

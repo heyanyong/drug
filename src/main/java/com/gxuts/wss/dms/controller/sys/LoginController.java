@@ -72,6 +72,12 @@ public class LoginController {
 			for(RoleInfo role:roles){
 				permisions.addAll(role.getUrls());
 			}
+			for(UrlInfo ui:permisions){
+				String url=ui.getUrl();
+				if((!url.contains("/"))&&url.contains("_")){
+					session.setAttribute(url, url);
+				}
+			}
 			session.setAttribute("permisions", permisions);
 			return "redirect:/index";
 		}
