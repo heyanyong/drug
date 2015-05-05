@@ -31,8 +31,7 @@
 <script src="js/jquery.bgiframe.js" type="text/javascript"></script>
 <script src="xheditor/xheditor-1.2.1.min.js" type="text/javascript"></script>
 <script src="xheditor/xheditor_lang/zh-cn.js" type="text/javascript"></script>
-<script src="uploadify/scripts/jquery.uploadify.js"
-	type="text/javascript"></script>
+<script src="uploadify/scripts/jquery.uploadify.js" type="text/javascript"></script>
 
 <!-- svg图表  supports Firefox 3.0+, Safari 3.0+, Chrome 5.0+, Opera 9.5+ and Internet Explorer 6.0+ -->
 <script type="text/javascript" src="chart/raphael.js"></script>
@@ -73,10 +72,10 @@
 <script src="js/dwz.history.js" type="text/javascript"></script>
 <script src="js/dwz.combox.js" type="text/javascript"></script>
 <script src="js/dwz.print.js" type="text/javascript"></script>
-<script src="js/my.extend.js" type="text/javascript"></script>
 <!-- 可以用dwz.min.js替换前面全部dwz.*.js (注意：替换是下面dwz.regional.zh.js还需要引入)
 <script src="bin/dwz.min.js" type="text/javascript"></script>
 -->
+<script src="js/my.extend.js" type="text/javascript"></script>
 <script src="js/dwz.regional.zh.js" type="text/javascript"></script>
 <script src="themes/jquery.ztree.core-3.5.js"></script>
 <script type="text/javascript">
@@ -196,9 +195,24 @@
 						<ul class="tree treeFolder">
 							<li><a>常用单据</a>
 								<ul>
-									
 									<li><a href="vote/list" target="navTab" rel="voteList">投票管理</a></li>
-								</ul></li>
+								</ul>
+							</li>
+							<li><a>部门报表</a>
+								<ul>
+									<li><a href="vote/list" target="navTab" rel="voteList">投票管理</a></li>
+								</ul>
+							</li>
+							<li><a>汇总报表</a>
+								<ul>
+									<li><a href="vote/list" target="navTab" rel="voteList">投票管理</a></li>
+								</ul>
+							</li>
+							<li><a>维护管理</a>
+								<ul>
+									<li><a href="vote/list" target="navTab" rel="voteList">投票管理</a></li>
+								</ul>
+							</li>
 							
 							<li><a>固定资产管理</a>
 								<ul>
@@ -335,7 +349,7 @@
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
-							<li><a>常用流程</a>
+							<li><a>常用单据</a>
 								<ul>
 									<li><a href="leave/list" target="navTab" rel="leaveAdd">请假申请</a></li>
 									<li><a href="signException/list" target="navTab" rel="signExceptionList">个人考勤记录</a></li>
@@ -365,7 +379,7 @@
 							</li>
 							</c:if>
 							<c:if test="${!empty renliziyuan_mm}">
-							<li style=""><a>维护管理</a>
+							<li><a>维护管理</a>
 								<ul>
 									<li><a href="user/list" target="navTab" rel="userList">用户管理</a></li>
 									<li><a href="role/list" target="navTab" rel="roleList">角色管理</a></li>
@@ -382,10 +396,27 @@
 					</div>
 					<div class="accordionContent">
 						<ul class="tree">
-							<li><a href="expense/add" target="navTab" rel="expenseAdd">费用报销</a></li>
-							<li><a href="expense/list" target="navTab" rel="expenseList">费用报销报表</a></li>
-							<li><a href="budget/list" target="navTab" rel="budgetList">部门预算维护</a></li>
-							<li><a href="subject/list" target="navTab" rel="subjectList">费用科目维护</a></li>
+							<li><a>常用单据</a>
+								<ul>
+									<li><a href="expense/list" target="navTab" rel="expenseList">费用报销报表</a></li>
+								</ul>
+							</li>
+							<li><a>部门报表</a>
+								<ul>
+									<li><a href="expense/list" target="navTab" rel="expenseList">费用报销报表</a></li>
+								</ul>
+							</li>
+							<li><a>汇总报表</a>
+								<ul>
+									<li><a href="expense/list" target="navTab" rel="expenseList">费用报销报表</a></li>
+								</ul>
+							</li>
+							<li><a>维护管理</a>
+								<ul>
+									<li><a href="budget/list" target="navTab" rel="budgetList">部门预算维护</a></li>
+									<li><a href="subject/list" target="navTab" rel="subjectList">费用科目维护</a></li>	
+								</ul>
+							</li>
 						</ul>
 					</div>
 					<div class="accordionHeader">
@@ -398,8 +429,7 @@
 							<li><a>资讯管理</a>
 								<ul>
 									<li><a href="article/add" target="navTab" rel="articleAdd">新增文章</a></li>
-									<li><a href="article/list" target="navTab"
-										rel="articleList">文章列表</a></li>
+									<li><a href="article/list" target="navTab" rel="articleList">文章列表</a></li>
 								</ul>
 							</li>
 							<li><a>通知公告</a>
