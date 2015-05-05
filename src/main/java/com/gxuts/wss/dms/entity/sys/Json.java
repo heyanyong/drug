@@ -1,4 +1,4 @@
-package com.gxuts.wss.dms.entity;
+package com.gxuts.wss.dms.entity.sys;
 
 public class Json {
 	private String message="操作成功";

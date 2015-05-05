@@ -11,10 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.dao.manage.VoteDao;
 import com.gxuts.wss.dms.dao.manage.VoteItemDao;
-import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.entity.manage.VoteInfo;
 import com.gxuts.wss.dms.entity.manage.VoteItem;
+import com.gxuts.wss.dms.entity.sys.Json;
 import com.gxuts.wss.dms.service.manage.VoteService;
 import com.gxuts.wss.dms.util.QueryFilter;
 @Service("voteService")

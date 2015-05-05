@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gxuts.wss.dms.base.Page;
-import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.hr.LeaveBill;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
+import com.gxuts.wss.dms.entity.sys.Json;
 import com.gxuts.wss.dms.service.hr.LeaveBillService;
 import com.gxuts.wss.dms.service.hr.UserService;
 import com.gxuts.wss.dms.service.process.FlowService;

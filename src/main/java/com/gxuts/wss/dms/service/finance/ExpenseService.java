@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.gxuts.wss.dms.base.Page;
-import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.finance.ExpenseBill;
 import com.gxuts.wss.dms.entity.hr.StructureInfo;
+import com.gxuts.wss.dms.entity.sys.Json;
 
 public interface ExpenseService {
 	public Json save(ExpenseBill expense);

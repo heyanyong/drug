@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.entity.sys.AttaFile;
 import com.gxuts.wss.dms.entity.sys.AttaEditor;
+import com.gxuts.wss.dms.entity.sys.Json;
 
 @Controller
 @RequestMapping(value = "/upload")

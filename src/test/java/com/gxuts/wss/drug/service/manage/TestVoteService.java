@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.entity.manage.VoteInfo;
 import com.gxuts.wss.dms.entity.manage.VoteItem;
+import com.gxuts.wss.dms.entity.sys.Json;
 import com.gxuts.wss.dms.service.manage.VoteService;
 
 @RunWith(SpringJUnit4ClassRunner.class)

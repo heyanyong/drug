@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.gxuts.wss.dms.base.Page;
-import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.entity.manage.VoteInfo;
 import com.gxuts.wss.dms.entity.manage.VoteItem;
+import com.gxuts.wss.dms.entity.sys.Json;
 import com.gxuts.wss.dms.util.QueryFilter;
 
 public interface VoteService {

@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.gxuts.wss.dms.base.Page;
-import com.gxuts.wss.dms.entity.Json;
+import com.gxuts.wss.dms.entity.sys.Json;
 import com.gxuts.wss.dms.entity.sys.UrlInfo;
 import com.gxuts.wss.dms.service.sys.UrlService;
 import com.gxuts.wss.dms.util.annotation.MethodName;

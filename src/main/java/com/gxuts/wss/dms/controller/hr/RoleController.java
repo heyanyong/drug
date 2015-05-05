@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gxuts.wss.dms.base.Page;
-import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.hr.RoleInfo;
+import com.gxuts.wss.dms.entity.sys.Json;
 import com.gxuts.wss.dms.entity.sys.UrlInfo;
 import com.gxuts.wss.dms.service.hr.RoleService;
 import com.gxuts.wss.dms.service.hr.UserService;

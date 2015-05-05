@@ -31,8 +31,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gxuts.wss.dms.base.Page;
-import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
+import com.gxuts.wss.dms.entity.sys.Json;
 import com.gxuts.wss.dms.service.process.FlowService;
 @Controller
 @RequestMapping(value="/flow")

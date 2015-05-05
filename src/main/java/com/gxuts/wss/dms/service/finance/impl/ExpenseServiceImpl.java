@@ -11,10 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.dao.finance.ExpenseDao;
-import com.gxuts.wss.dms.entity.Json;
 import com.gxuts.wss.dms.entity.finance.ExpenseBill;
 import com.gxuts.wss.dms.entity.finance.ExpenseItem;
 import com.gxuts.wss.dms.entity.hr.StructureInfo;
+import com.gxuts.wss.dms.entity.sys.Json;
 import com.gxuts.wss.dms.service.finance.ExpenseService;
 
 import cucumber.api.java.ca.Cal;
