@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.entity.manage.VoteInfo;
+import com.gxuts.wss.dms.entity.manage.VoteItem;
 import com.gxuts.wss.dms.entity.sys.Json;
 import com.gxuts.wss.dms.service.manage.VoteService;
 import com.gxuts.wss.dms.util.QueryFilter;
@@ -52,22 +53,32 @@ public class VoteController {
 		return new Json();
 	}
 	@RequestMapping(value = "/view/{id}")
-	public String edit(@PathVariable Integer id, Model model) {
+	public String view(@PathVariable Integer id, Model model) {
 		VoteInfo vote = voteService.get(VoteInfo.class, id);
+		List<VoteItem> items=vote.getItems();
+		int total=0;
+		for(VoteItem i:items){
+			total+=i.getVoteNum();
+		}
+		model.addAttribute("total", total);
 		model.addAttribute("info", vote);
 		return "voteView";
+	}
+	@RequestMapping(value = "/edit/{id}")
+	public String eidt(@PathVariable Integer id, Model model) {
+		VoteInfo vote = voteService.get(VoteInfo.class, id);
+		model.addAttribute("info", vote);
+		return "voteDetail";
 	}
 	@RequestMapping(value="update",method={RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
 	public Json update(Model model,VoteInfo vote){
-		System.out.println(vote);
 		voteService.update(vote);
 		return new Json();
 	}
 	@RequestMapping(value="delete",method={RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
 	public Json delete(Model model,VoteInfo vote){
-		System.out.println(vote);
 		voteService.delete(vote);
 		return new Json();
 	}

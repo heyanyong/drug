@@ -11,11 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.hr.RoleInfo;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.entity.manage.ArticleInfo;
+import com.gxuts.wss.dms.entity.sys.Json;
 import com.gxuts.wss.dms.entity.sys.UrlInfo;
 import com.gxuts.wss.dms.service.hr.UserService;
 import com.gxuts.wss.dms.service.manage.ArticleService;
@@ -83,6 +85,34 @@ public class LoginController {
 			}
 			session.setAttribute("permisions", permisions);
 			return "redirect:/index";
+		}
+	}
+	@MethodName(name="超时登录验证")
+	@RequestMapping(value="/checkLoginDialog", method=RequestMethod.POST)
+	@ResponseBody
+	public Json checkLoginDialog(UserInfo user , HttpServletRequest request){
+		UserInfo loginUser=userService.checkLogin(user);
+		if(loginUser==null){
+			return new Json("登陆失败", "300", null, null, null, null);
+		}else{
+			HttpSession session=request.getSession();
+			session.setAttribute("loginUser", loginUser);
+			List<RoleInfo> roles=loginUser.getRoles();
+			List<UrlInfo> permisions=new ArrayList<UrlInfo>();
+			for(RoleInfo role:roles){
+				List<UrlInfo> urls=role.getUrls();
+				if(urls!=null){
+					permisions.addAll(urls);
+				}
+			}
+			for(UrlInfo ui:permisions){
+				String url=ui.getUrl();
+				if((!url.contains("/"))&&url.contains("_")){
+					session.setAttribute(url, url);
+				}
+			}
+			session.setAttribute("permisions", permisions);
+			return new Json("登陆成功", "200", null, null, "closeCurrent", null);
 		}
 	}
 }

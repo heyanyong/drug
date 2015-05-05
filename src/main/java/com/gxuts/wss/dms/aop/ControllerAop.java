@@ -110,9 +110,9 @@ public class ControllerAop {
 			}
 		}
 		// System.out.println("参数：" + JSON.toJSONString(argsList, filter, SerializerFeature.WriteDateUseDateFormat, SerializerFeature.DisableCircularReferenceDetect));
-		controllerLog.setArgsContent(JSON.toJSONString(argsList, filter, SerializerFeature.WriteDateUseDateFormat, SerializerFeature.DisableCircularReferenceDetect));
+		//controllerLog.setArgsContent(JSON.toJSONString(argsList, filter, SerializerFeature.WriteDateUseDateFormat, SerializerFeature.DisableCircularReferenceDetect));
 		// System.out.println("返回值：" + JSON.toJSONString(returnValue, filter, SerializerFeature.WriteDateUseDateFormat, SerializerFeature.DisableCircularReferenceDetect));
-		controllerLog.setReturnValue(JSON.toJSONString(returnValue, filter, SerializerFeature.WriteDateUseDateFormat, SerializerFeature.DisableCircularReferenceDetect));
+		//controllerLog.setReturnValue(JSON.toJSONString(returnValue, filter, SerializerFeature.WriteDateUseDateFormat, SerializerFeature.DisableCircularReferenceDetect));
 		//controllerLogService.save(controllerLog);
 	}
 

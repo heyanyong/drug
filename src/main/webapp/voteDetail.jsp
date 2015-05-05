@@ -25,11 +25,11 @@
 			<fieldset>
 				<legend>基本信息</legend>
 				<p>
-					<label>编号：</label> <input name="no" type="text" value="${no}"
+					<label>编号：</label> <input name="no" type="text" value="${info.no}"
 						readonly="readonly" name="no" size="30" />
 				</p>
 				<p>
-					<label>标题：</label> <input name="name" class="required"
+					<label>标题：</label> <input name="name" class="required" value="${info.name}"
 						type="text" size="30" />
 				</p>
 			</fieldset>
@@ -38,7 +38,7 @@
 				<dl class="nowrap">
 				<dt>内容介绍：</dt>
 				<dd>
-					<textarea name="content" cols="95" rows="4"></textarea>
+					<textarea name="content" cols="95" rows="4">${info.content}</textarea>
 				</dd>
 			</dl>
 			</fieldset>
@@ -57,7 +57,25 @@
 								<th type="attach" name="items[#index#].attachment.fileName" lookupGroup="items[#index#].attachment" lookupUrl="depart/attachmentLookup.html" size="12">图片</th>
 							</tr>
 						</thead>
-						<tbody>	</tbody>
+						<tbody>
+						<c:forEach items="${info.items}" var="e" varStatus="es">
+							<tr class="unitBox">
+								<td><a href="javascript:void(0)" class="btnDel ">删除</a></td>
+								<td><input type="text" name="" value="${es.index}" size="2"
+									class="textInput"></td>
+								<td><input type="text" name="items[${es.index}].name" value="${e.name}"
+									size="12" class="textInput"></td>
+								<td><input type="text" name="items[${es.index}].voteNum" value="${e.voteNum}"
+									size="6" class="digits textInput"></td>
+								<td><input type="hidden" name="items[${es.index}].attachment.id"><input
+									type="text" name="items[0].attachment.fileName" size="12"
+									readonly="readonly" class="textInput readonly"><a
+									class="btnAttach" href="depart/attachmentLookup.html"
+									lookupgroup="items[0].attachment" lookuppk="id" width="560"
+									height="300" title="查找带回">查找带回</a></td>
+							</tr>
+							</c:forEach>
+						</tbody>
 					</table>
 				</div>
 			</div>

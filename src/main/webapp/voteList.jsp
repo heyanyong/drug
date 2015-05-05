@@ -30,9 +30,9 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="voteAdd.jsp" target="navTab"><span>添加</span></a></li>
-			<li><a class="delete" href="vote/delete/{e_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li><a class="edit" href="echase/edit/{e_id}" target="navTab"><span>修改</span></a></li>
+			<li><a class="add" href="voteAdd.jsp" rel="voteAdd" target="navTab"><span>添加</span></a></li>
+			<li><a class="delete" href="vote/delete?id={e_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="edit" href="vote/edit/{e_id}" target="navTab"><span>修改</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
 			<li class="line">line</li>

@@ -3,7 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <style>
-table.list td{padding:0; border:none;}
+table .list td{padding:0; border:none;  }
+.floatLeft { float: left;}
 </style>
 <div class="pageHeader" style="border:1px #B8D0D6 solid">
 	<form id="pagerForm" onsubmit="return divSearch(this, 'budgetDetail');" action="budget/detail" method="post">
@@ -31,7 +32,7 @@ table.list td{padding:0; border:none;}
 <form action="budget/saveOrUpdate" id="budgetForm" onsubmit="return validateCallback(this)">
 <input type="hidden" name="structure.id" value="${structrueId}" />
 <input type="hidden" name="id" value="${info.id}" />
-<div class="pageContent" style="height:400px;  overflow: auto;">
+<div class="pageContent" layoutH="56" style="overflow: auto;">
 <div class="panelBar">
 		<ul class="toolBar">
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" title="实要导出这些记录吗?"><span>EXCEL导入</span></a></li>
@@ -41,12 +42,12 @@ table.list td{padding:0; border:none;}
 			<li><a class="icon" onclick="saveUpdate()" ><span>保存更新</span></a></li>
 		</ul>
 	</div>
-	<div style="overflow: auto;">
-	<table class="list nowrap itemDetail" addButton="追加条目"   >
+	<div style="overflow: auto;width: 1400px;">
+	<table class="list nowrap itemDetail" addButton="追加条目" width="100%"  >
 		<thead>
 			<tr>
 				<th type="del" >&nbsp;</th>
-				<th type="lookup" lookupGroup="budgets[#index#]" lookupUrl="subject/list?show=dialog"   name="budgets[#index#].name" size="12" fieldClass="required" >科目名称</th>
+				<th type="lookup" lookupGroup="budgets[#index#]" lookupUrl="subject/list?show=dialog"   name="budgets[#index#].name" size="12" fieldClass="required floatLeft" >科目名称</th>
 				<th type="text" name="budgets[#index#].no" size="11" fieldClass="required" >科目编码</th>
 				<th type="text" name="budgets[#index#].january" id="budgets[#index#].january" size="9" fieldClass="number" defaultVal="0.0">一月</th>
 				<th type="text" name="budgets[#index#].february" size="9" fieldClass="number" defaultVal="0.0">二月</th>

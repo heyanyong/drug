@@ -27,6 +27,7 @@ public class VoteInfo  implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String name;
+	private String no;
 	private String content;
 	private boolean isShowVoter;
 	@Temporal(TemporalType.TIMESTAMP)
@@ -49,6 +50,14 @@ public class VoteInfo  implements Serializable{
 		return id;
 	}
 	
+	public String getNo() {
+		return no;
+	}
+
+	public void setNo(String no) {
+		this.no = no;
+	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}

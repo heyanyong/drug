@@ -66,7 +66,10 @@
 	</div>
 </body>
  <script>
+ 	
 	var no=document.getElementById("userNo"); 
 	no.focus();
+	
+	
  </script>
 </html>
