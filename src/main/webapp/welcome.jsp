@@ -395,7 +395,7 @@
 						</h2>
 					</div>
 					<div class="accordionContent">
-						<ul class="tree">
+						<ul class="tree treeFolder">
 							<li><a>常用单据</a>
 								<ul>
 									<li><a href="expense/list" target="navTab" rel="expenseList">费用报销报表</a></li>

@@ -45,7 +45,9 @@ public class SubjectController {
 	@MethodName(name="保存一个科目")
 	@RequestMapping(value = "/save")
 	@ResponseBody
-	public Json save(SubjectInfo subject) {
+	public Json save(SubjectInfo subject,HttpSession session) {
+		subject.setCreateDate(new Date());
+		subject.setCreateUser((UserInfo) session.getAttribute("loginUser"));
 		subjectService.save(subject);
 		Json json = new Json("成功", "200", "subjectList", "subjectList", "forward","subject/list");
 		return json;

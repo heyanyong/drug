@@ -9,9 +9,6 @@ import com.alibaba.fastjson.serializer.PropertyFilter;
 /**
  * 由于hibernate在懒加载的时候，转换json会出问题，所以编写了这个类用于过滤没有预先抓取出来的属性，以免代理对象被fastjson转换导致出错
  * 
- * http://git.oschina.net/sphsyv/sypro
- * 
- * @author 孙宇
  *
  */
 public class JsonPropertyFilter implements PropertyFilter {

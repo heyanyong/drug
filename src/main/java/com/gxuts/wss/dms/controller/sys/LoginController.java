@@ -70,7 +70,10 @@ public class LoginController {
 			List<RoleInfo> roles=loginUser.getRoles();
 			List<UrlInfo> permisions=new ArrayList<UrlInfo>();
 			for(RoleInfo role:roles){
-				permisions.addAll(role.getUrls());
+				List<UrlInfo> urls=role.getUrls();
+				if(urls!=null){
+					permisions.addAll(urls);
+				}
 			}
 			for(UrlInfo ui:permisions){
 				String url=ui.getUrl();

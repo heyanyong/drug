@@ -24,11 +24,6 @@ public class LoginFilter implements Filter {
 		 HttpServletResponse resp=(HttpServletResponse) response;
 		 String url=req.getRequestURI();
 		 if((req.getSession(true).getAttribute("loginUser")!=null)||url.contains("ogin")||url.contains("register")){
-//			 UserInfo user=new UserInfo();
-//			 user.setId(100);
-//			 user.setNo("admin");
-//			 user.setName("admin");
-//			 req.getSession(true).setAttribute("loginUser", user);
 			 chain.doFilter(request, response);
 		 }else if (req.getHeader("X-Requested-With") != null) {
 			 resp.getWriter().write("{\"message\":\"登陆超时\",\"statusCode\":\"301\",\"navTabId\":\"null\",\"rel\":\"null\",\"callbackType\":\"forward\",\"forwardUrl\":\"login.jsp\"}");

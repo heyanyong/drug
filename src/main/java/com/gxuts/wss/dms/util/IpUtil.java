@@ -11,10 +11,6 @@ import org.nutz.mapl.Mapl;
 /**
  * IP工具类
  * 
- * http://git.oschina.net/sphsyv/sypro
- * 
- * @author 孙宇
- *
  */
 public class IpUtil {
 

@@ -61,6 +61,7 @@
 <div class="divider"></div>
 <div class="information">
 			 <p>
+			 	<input  type="hidden" readonly="readonly" name="createUser.id" value="${info.createUser.id}" />
 				<label>创建人：</label> <input  type="text" readonly="readonly" value="${info.createUser.name}" />
 			</p>
 			 <p>
@@ -100,9 +101,7 @@
 			</table>
 			</div>
 		</div>
-			
 	</form>
-		
 </div>
 
 <script>

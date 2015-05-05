@@ -9,7 +9,6 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.activiti.engine.RuntimeService;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +26,6 @@ import com.gxuts.wss.dms.service.hr.LeaveBillService;
 import com.gxuts.wss.dms.service.hr.UserService;
 import com.gxuts.wss.dms.service.process.FlowService;
 import com.gxuts.wss.dms.util.DateUtil;
-import com.gxuts.wss.dms.util.MysqlUtil;
 import com.gxuts.wss.dms.util.annotation.MethodName;
 
 @Controller
@@ -67,10 +65,9 @@ public class LeaveBillController {
 		List<Object[]> comments = null;
 		if (pid != null) {
 			comments = flowService.getCommentByprocessInstance(pid);
+			model.addAttribute("comments", comments);
 		}
 		model.addAttribute("info", info);
-		Object a;
-		model.addAttribute("comments", comments);
 		return "leaveDetail";
 	}
 
@@ -92,19 +89,16 @@ public class LeaveBillController {
 	public Json save(LeaveBill leaveBill, HttpSession session) {
 		leaveBill.setCreateDate(new Date());
 		leaveBill.setCreateUser((UserInfo) session.getAttribute("loginUser"));
-		leaveBill.setCadidate(null);
 		leaveBillService.save(leaveBill);
-		// return new
-		// Json("请假单录入","200",null,"userList","forwardConfirm","user/edit/1");
-		return new Json("请假单保存成功", "200", "leaveList", "leaveList",
-				"forward", "leave/list");
+		// return new Json("请假单录入","200",null,"userList","forwardConfirm","user/edit/1");
+		return new Json("请假单保存成功", "200", "leaveList", "leaveList", "forward", "leave/list");
 	}
 
 	@MethodName(name = "添加请假单")
 	@RequestMapping(value = "add")
 	public String add(Model m) {
 		m.addAttribute("no",
-				"QJ" + DateUtil.date2String(new Date(), "yyMMddHHmmss")
+				"HRQJ" + DateUtil.date2String(new Date(), "yyMMddHHmmss")
 						+ new Random().nextInt(100));
 		return "leaveBillAdd";
 	}
@@ -130,4 +124,5 @@ public class LeaveBillController {
 				+ pi.getId() + " where id=" + id);
 		return new Json("提交办理成功", "200", "leaveList", "leaveList", null, null);
 	}
+	
 }
