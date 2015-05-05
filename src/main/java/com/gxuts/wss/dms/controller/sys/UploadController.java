@@ -18,6 +18,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest;
 
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.entity.sys.AttaFile;
@@ -162,5 +164,35 @@ public class UploadController {
 			}
 		}
 		return fr;
+	}
+	@RequestMapping("/file")
+	@ResponseBody
+	public AttaFile uploadFile(DefaultMultipartHttpServletRequest multipartRequest, HttpSession session) {
+		AttaFile returnFile=new AttaFile();
+		if (multipartRequest != null) {
+			Iterator<String> iterator = multipartRequest.getFileNames();
+			while (iterator.hasNext()) {
+				MultipartFile file = multipartRequest.getFile((String) iterator.next());
+				if (!file.isEmpty()) {
+					System.out.println(file.getContentType());// 获取文件MIME类型
+					System.out.println(file.getName());// 获取表单中文件组件的名字
+					System.out.println(file.getOriginalFilename());// 获取上传文件的原名
+					System.out.println(file.getSize());// 获取文件的字节大小，单位byte
+					try {
+						// 文件保存路径
+						String filePath = session.getServletContext().getRealPath("/") + File.separator;
+						File uploadFile = new File(filePath + file.getOriginalFilename());
+						uploadFile.mkdirs();
+						file.transferTo(uploadFile);// 保存到一个目标文件中。
+					} catch (Exception e) {
+						returnFile.setFileName("文件上传失败");
+						returnFile.setOk(false);
+						System.out.println(e.getLocalizedMessage());
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+		return returnFile;
 	}
 }
