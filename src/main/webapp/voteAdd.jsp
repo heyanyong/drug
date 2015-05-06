@@ -25,13 +25,28 @@
 			<fieldset>
 				<legend>基本信息</legend>
 				<p>
-					<label>编号：</label> <input name="no" type="text" value="${no}"
+					<label>编 号：</label> <input name="no" type="text" value="${no}"
 						readonly="readonly" name="no" size="30" />
 				</p>
 				<p>
-					<label>标题：</label> <input name="name" class="required"
-						type="text" size="30" />
+					<input type="hidden" name="createUser.id" value="${loginUser.id}" />
+					<label>发起人：</label> <input name="createUser.name" type="text" value="${loginUser.name}"
+						readonly="readonly" name="no" size="30" />
 				</p>
+				<p>
+					<label>部 门：</label> <input   type="text" value="${loginUser.structure.name}" readonly="readonly" name="no" size="30" />
+				</p>
+				<p>
+					<label>标 题：</label> <input name="name" class="required"  type="text" size="30" />
+				</p>
+				<p>
+				<label>开始日期：</label>
+				<input type="text" name="startTime" class="date required"   size="30" dateFmt="yyyy-MM-dd HH:mm:ss"  /><a class="inputDateButton" href="javascript:;">选择</a>
+			</p>
+			<p>
+				<label>结束日期：</label>
+				<input type="text" name="endTime"  class="date required" size="30" dateFmt="yyyy-MM-dd HH:mm:ss"   /><a class="inputDateButton" href="javascript:;">选择</a>
+			</p>
 			</fieldset>
 			<fieldset>
 				<legend>内容介绍</legend>
@@ -47,14 +62,14 @@
 			<div class="panel collapse" minH="180"  style="width:65%;">
 				<h1>投票明细 </h1>
 				<div>
-					<table class="list nowrap itemDetail" addButton="新建从表1条目" width="100%">
+					<table class="list nowrap itemDetail" addButton="追加明细项" width="100%">
 						<thead>
 							<tr>
 								<th type="del" width="28">删除</th>
 								<th type="text" defaultVal="#index#" size="2"  >序号</th>
-								<th type="text" name="items[#index#].name"  >名称</th>
-								<th type="text" name="items[#index#].voteNum"  size="6" fieldClass="digits">初始票数</th>
-								<th type="attach" name="items[#index#].attachment.fileName" lookupGroup="items[#index#].attachment" lookupUrl="depart/attachmentLookup.html" size="12">图片</th>
+								<th type="text" name="items[#index#].name" size="60" >名称</th>
+								<th type="text" name="items[#index#].voteNum"  size="10" fieldClass="digits">初始票数</th>
+								<th type="attach" name="items[#index#].attachment.fileName" lookupGroup="items[#index#].attachment" lookupUrl="depart/attachmentLookup.html" size="30">图片</th>
 							</tr>
 						</thead>
 						<tbody>	</tbody>

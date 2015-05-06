@@ -12,10 +12,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.gxuts.wss.dms.base.Page;
-import com.gxuts.wss.dms.entity.business.DrugInfo;
+import com.gxuts.wss.dms.entity.csrm.DrugInfo;
 import com.gxuts.wss.dms.entity.hr.RoleInfo;
 import com.gxuts.wss.dms.entity.hr.SignInfo;
-import com.gxuts.wss.dms.service.business.DrugService;
+import com.gxuts.wss.dms.service.csrm.DrugService;
 import com.gxuts.wss.dms.service.hr.SignService;
 
 

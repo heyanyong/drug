@@ -10,8 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -23,13 +21,14 @@ import com.gxuts.wss.dms.entity.hr.UserInfo;
 
 @Entity
 public class VoteInfo  implements Serializable{
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String name;
 	private String no;
 	private String content;
-	private boolean isShowVoter;
+	private Boolean isShowVoter;
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	private Date startTime;
@@ -94,11 +93,11 @@ public class VoteInfo  implements Serializable{
 		this.endTime = endTime;
 	}
 
-	public boolean getIsShowVoter() {
+	public Boolean getIsShowVoter() {
 		return isShowVoter;
 	}
 
-	public void setShowVoter(boolean isShowVoter) {
+	public void setShowVoter(Boolean isShowVoter) {
 		this.isShowVoter = isShowVoter;
 	}
 

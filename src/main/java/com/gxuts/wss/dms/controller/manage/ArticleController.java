@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gxuts.wss.dms.base.Page;
-import com.gxuts.wss.dms.entity.business.CustomerInfo;
+import com.gxuts.wss.dms.entity.csrm.CustomerInfo;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.entity.manage.ArticleInfo;
 import com.gxuts.wss.dms.entity.sys.Json;

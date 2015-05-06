@@ -11,7 +11,7 @@
 .clear{clear: both;width:100%;height:1px;}
 .taskCenter{width:56%;  overflow: atuo;margin-top:15px;}
 .static{width:35%;height:300px;margin-top:15px; overflow: auto;overflow-y:hidden; }
-
+input .view,textarea .view,select .view{border:none}
 
 /*文章*/
 .article h2{text-align: center;margin:10px;font-size: 18px;}

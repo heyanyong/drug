@@ -50,7 +50,7 @@ public class VoteController {
 		vote.setCreateUser((UserInfo) session.getAttribute("loginUser"));
 		vote.setCreateDate(new Date());
 		voteService.save(vote);
-		return new Json();
+		return new Json("保存成功", "200", "voteList", "voteList", "forward", "vote/list");
 	}
 	@RequestMapping(value = "/view/{id}")
 	public String view(@PathVariable Integer id, Model model) {
@@ -74,7 +74,7 @@ public class VoteController {
 	@ResponseBody
 	public Json update(Model model,VoteInfo vote){
 		voteService.update(vote);
-		return new Json();
+		return new Json("更新成功", "200", "voteList", "voteList", null, null);
 	}
 	@RequestMapping(value="delete",method={RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody

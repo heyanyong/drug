@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Map;
 
 import com.gxuts.wss.dms.base.Page;
-import com.gxuts.wss.dms.entity.business.CustomerInfo;
+import com.gxuts.wss.dms.entity.csrm.CustomerInfo;
 import com.gxuts.wss.dms.entity.sys.ControllerLog;
 
 public interface ControllerLogDao {

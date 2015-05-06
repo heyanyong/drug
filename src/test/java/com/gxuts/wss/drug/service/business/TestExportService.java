@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.gxuts.wss.dms.entity.business.ExportBill;
+import com.gxuts.wss.dms.entity.csrm.ExportBill;
 import com.gxuts.wss.dms.entity.hr.SignInfo;
-import com.gxuts.wss.dms.service.business.ExportService;
+import com.gxuts.wss.dms.service.csrm.ExportService;
 import com.gxuts.wss.dms.service.hr.SignService;
 
 

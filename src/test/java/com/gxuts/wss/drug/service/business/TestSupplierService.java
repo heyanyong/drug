@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.gxuts.wss.dms.entity.business.CustomerInfo;
-import com.gxuts.wss.dms.entity.business.SupplierInfo;
-import com.gxuts.wss.dms.service.business.SupplierService;
+import com.gxuts.wss.dms.entity.csrm.CustomerInfo;
+import com.gxuts.wss.dms.entity.csrm.SupplierInfo;
+import com.gxuts.wss.dms.service.csrm.SupplierService;
 
 
 @RunWith(SpringJUnit4ClassRunner.class) 

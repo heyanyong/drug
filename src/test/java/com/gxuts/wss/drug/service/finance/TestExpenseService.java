@@ -14,16 +14,16 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import com.gxuts.wss.dms.base.Page;
-import com.gxuts.wss.dms.entity.business.DrugInfo;
-import com.gxuts.wss.dms.entity.business.PurchaseBill;
-import com.gxuts.wss.dms.entity.business.PurchaseContractBill;
+import com.gxuts.wss.dms.entity.csrm.DrugInfo;
+import com.gxuts.wss.dms.entity.csrm.PurchaseBill;
+import com.gxuts.wss.dms.entity.csrm.PurchaseContractBill;
 import com.gxuts.wss.dms.entity.finance.ExpenseBill;
 import com.gxuts.wss.dms.entity.finance.ExpenseItem;
 import com.gxuts.wss.dms.entity.hr.StructureInfo;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.entity.sys.Json;
-import com.gxuts.wss.dms.service.business.DrugService;
-import com.gxuts.wss.dms.service.business.PurchaseContractService;
+import com.gxuts.wss.dms.service.csrm.DrugService;
+import com.gxuts.wss.dms.service.csrm.PurchaseContractService;
 import com.gxuts.wss.dms.service.finance.ExpenseService;
 
 import static org.junit.Assert.*;
