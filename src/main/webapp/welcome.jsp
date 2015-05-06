@@ -147,23 +147,24 @@ $(function(){
 						<ul class="tree treeFolder">
 							<li><a>常用单据</a>
 								<ul>
-									<li><a href="payment/add" target="navTab" rel="drugList">付款申请</a></li>
-									<li><a href="export/list" target="navTab" rel="exportList">付款申请报表</a></li>
-								</ul></li>
-							<li><a>供应商管理</a>
-								<ul>
-									<li><a href="supplier/list" target="navTab"
-										rel="supplierList">供应商</a></li>
-									<li><a href="supplier/add" target="navTab"
-										rel="supplierAdd">新增供应商</a></li>
-								</ul></li>
-							<li><a>客户管理</a>
-								<ul>
-									<li><a href="customer/list" target="navTab"
-										rel="customerList">客户汇总</a></li>
-									<li><a href="customer/add" target="navTab"
-										rel="customerAdd">新增客户</a></li>
-								</ul></li>
+									<li><a href="pay/list" target="navTab" rel="payList">付款申请</a></li>
+									<li><a href="supplier/list" target="navTab" rel="supplierList">供应商</a></li>
+									<li><a href="customer/list" target="navTab" rel="customerList">客户汇总</a></li>
+								</ul>
+							</li>
+							<li><a>部门报表</a>
+								<ul><li><a href="pay/list" target="navTab" rel="payList">付款申请</a></li>
+									<li><a href="supplier/list" target="navTab" rel="supplierList">供应商</a></li>
+									<li><a href="customer/list" target="navTab" rel="customerList">客户汇总</a></li>
+								</ul>
+							</li>
+							<li><a>汇总报表</a>
+								<ul><li><a href="pay/list" target="navTab" rel="payList">付款申请</a></li>
+									<li><a href="supplier/list" target="navTab" rel="supplierList">供应商</a></li>
+									<li><a href="customer/list" target="navTab" rel="customerList">客户汇总</a></li>
+								</ul>
+							</li>
+							 
 						</ul>
 					</div>
 					<div class="accordionHeader">

@@ -62,6 +62,8 @@ public class PayBill implements Serializable{
 	private Date updateDate;
 	@ManyToOne
 	private UserInfo updateUser;
+	private Integer status=1;
+	private String flowId;
 
 	public PayBill(Integer id) {
 		this.id = id;
@@ -69,6 +71,18 @@ public class PayBill implements Serializable{
 	public PayBill() {
 	}
 	
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	public String getFlowId() {
+		return flowId;
+	}
+	public void setFlowId(String flowId) {
+		this.flowId = flowId;
+	}
 	public List<PayItem> getItems() {
 		return items;
 	}

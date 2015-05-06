@@ -50,12 +50,7 @@
 			</fieldset>
 			<fieldset>
 				<legend>内容介绍</legend>
-				<dl class="nowrap">
-				<dt>内容介绍：</dt>
-				<dd>
-					<textarea name="content" cols="95" rows="4">${info.content}</textarea>
-				</dd>
-			</dl>
+					<textarea class="editor" name="content" rows="5" cols="100" tools="simple">${info.content }</textarea>
 			</fieldset>
 		
 		<div class="divider"></div>
