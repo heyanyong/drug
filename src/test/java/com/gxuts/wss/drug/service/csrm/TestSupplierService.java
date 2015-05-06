@@ -1,4 +1,4 @@
-package com.gxuts.wss.drug.service.business;
+package com.gxuts.wss.drug.service.csrm;
 
 
 import org.junit.Test;

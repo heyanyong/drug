@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.dao.business.PayDao;
 import com.gxuts.wss.dms.entity.business.PayBill;
+import com.gxuts.wss.dms.entity.business.PayItem;
 import com.gxuts.wss.dms.service.business.PayService;
 import com.gxuts.wss.dms.util.QueryFilter;
 @Service("payService")

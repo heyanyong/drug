@@ -1,4 +1,4 @@
-package com.gxuts.wss.drug.service.business;
+package com.gxuts.wss.drug.service.csrm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,6 @@ public class TestPurchaseService {
 		 drugs.add(drug1);
 		 drugs.add(drug2);
 		 purchase.setDrugs(drugs);   
-		 purchase.setId(44);//被忽略
 		 purchaseService.save(purchase);
 	}
 	@Test

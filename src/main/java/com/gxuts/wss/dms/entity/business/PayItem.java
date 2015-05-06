@@ -1,6 +1,7 @@
 package com.gxuts.wss.dms.entity.business;
 
 import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,24 +16,37 @@ import javax.persistence.Id;
 public class PayItem implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	private String used; 				//用途
-	private Double income; 				//已收
-	private Double recome; 				//应收
-	private Double convert; 			//折算
-	private Double payment;  			//付款总计
-	private String payCurrency;  		 //付款币种
-	private String incCurrency;  		 //已收币种
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String no;               
-	 
-
-	PayItem(Integer id) {
+	private String used; 				//用途
+	private Double income; 				//已收
+	private Double recome; 				//应收
+	private Double computed; 			//折算
+	private Double payment;  			//付款总计
+	private String payCurrency;  		 //付款币种
+	private String incCurrency;  		 //已收币种
+	
+	public PayItem(Integer id) {
 		this.id = id;
 	}
-	PayItem() {
+	public PayItem() {
+	}
+	public PayItem(String no) {
+		this.no=no;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getNo() {
+		return no;
+	}
+	public void setNo(String no) {
+		this.no = no;
 	}
 	public String getUsed() {
 		return used;
@@ -52,11 +66,11 @@ public class PayItem implements Serializable{
 	public void setRecome(Double recome) {
 		this.recome = recome;
 	}
-	public Double getConvert() {
-		return convert;
+	public Double getComputed() {
+		return computed;
 	}
-	public void setConvert(Double convert) {
-		this.convert = convert;
+	public void setComputed(Double computed) {
+		this.computed = computed;
 	}
 	public Double getPayment() {
 		return payment;
@@ -76,17 +90,6 @@ public class PayItem implements Serializable{
 	public void setIncCurrency(String incCurrency) {
 		this.incCurrency = incCurrency;
 	}
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getNo() {
-		return no;
-	}
-	public void setNo(String no) {
-		this.no = no;
-	}
+	 
 	
 }

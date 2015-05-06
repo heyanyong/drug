@@ -3,8 +3,8 @@ package com.gxuts.wss.dms.entity.business;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,6 +27,7 @@ import com.gxuts.wss.dms.entity.sys.AttaFile;
 @Entity
 public class PayBill implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private String type;     			//业务类型
 	private String currency; 			//币种
 	private Double incTotal; 			//已收
@@ -37,11 +38,16 @@ public class PayBill implements Serializable{
 	private String payTotalCH; 			//总计大写
 	private String riskType;  			//风险类型
 	private String payType;  			//付款方式
+	@ManyToOne
 	private CustomerInfo customer;  	//客户
+	@ManyToOne
 	private SupplierInfo supplier;  	//供应商
 	private Date  exchangeTime;  		//外汇牌价时间
 	private String remark;
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private List<AttaFile> files;
+	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER) 
+	private List<PayItem> items;        //付款子表
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -61,6 +67,13 @@ public class PayBill implements Serializable{
 		this.id = id;
 	}
 	public PayBill() {
+	}
+	
+	public List<PayItem> getItems() {
+		return items;
+	}
+	public void setItems(List<PayItem> items) {
+		this.items = items;
 	}
 	public String getType() {
 		return type;
@@ -194,7 +207,5 @@ public class PayBill implements Serializable{
 	public void setUpdateUser(UserInfo updateUser) {
 		this.updateUser = updateUser;
 	}
-	
-	 
 	
 }
