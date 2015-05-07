@@ -46,7 +46,7 @@ public class TestFlowService {
 	//zip部署测试
 	@Test
 	public void testDeployByZIP(){
-		File file=new File("D:\\flowtest.zip");
+		File file=new File("D:\\leave.zip");
 		String filename="请假";
 		flowService.deployByZIP(file, filename);
 	}
@@ -76,11 +76,12 @@ public class TestFlowService {
 //		List<String> assigneeList=null;
 		variables.put("assigneeList",null);
 		ProcessInstance pi=flowService.startProcess(processDefinitionKey, businessKey, variables);
+		System.out.println(pi.getId());
 	}
 	//个人任务测试：任务名称 任务key 表单ID
 	@Test
 	public void testQueryTask(){
-		Page<Object[]> page=flowService.queryPersonTask("CY008", 0, 10);
+		Page<Object[]> page=flowService.queryPersonTask("CY009", 0, 10);
 		List<Object[]> list=page.getData();
 		 for (int i = 0; i < list.size(); i++) {
 			for (int j = 0; j < list.get(i).length; j++) {

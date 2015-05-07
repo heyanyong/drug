@@ -176,17 +176,25 @@ $(function(){
 						<ul class="tree treeFolder">
 							<li><a>常用单据</a>
 								<ul>
+									<li><a href="vote/list" target="navTab" rel="voteList">办公用品申购</a></li>
 									<li><a href="vote/list" target="navTab" rel="voteList">投票管理</a></li>
+									<li><a href="vote/list" target="navTab" rel="voteList">活动审批</a></li>
+									<li><a href="vote/list" target="navTab" rel="voteList">名片申请</a></li>
+									<li><a href="vote/list" target="navTab" rel="voteList">用车申请</a></li>
+									<li><a href="vote/list" target="navTab" rel="voteList">印章使用申请</a></li>
+									<li><a href="vote/list" target="navTab" rel="voteList">印章新刻申请</a></li>
 								</ul>
 							</li>
 							<li><a>部门报表</a>
 								<ul>
 									<li><a href="vote/list" target="navTab" rel="voteList">投票管理</a></li>
+									<li><a href="vote/list" target="navTab" rel="voteList">活动审批</a></li>
 								</ul>
 							</li>
 							<li><a>汇总报表</a>
 								<ul>
 									<li><a href="vote/list" target="navTab" rel="voteList">投票管理</a></li>
+									<li><a href="vote/list" target="navTab" rel="voteList">活动审批</a></li>
 								</ul>
 							</li>
 							<li><a>维护管理</a>
@@ -332,6 +340,7 @@ $(function(){
 						<ul class="tree treeFolder">
 							<li><a>常用单据</a>
 								<ul>
+									<li><a href="leave/list" target="navTab" rel="leaveAdd">加班申请</a></li>
 									<li><a href="leave/list" target="navTab" rel="leaveAdd">请假申请</a></li>
 									<li><a href="signException/list" target="navTab" rel="signExceptionList">个人考勤记录</a></li>
 									<li><a href="sign/list" target="navTab" rel="signList">考勤异常申请</a></li>
@@ -379,7 +388,8 @@ $(function(){
 						<ul class="tree treeFolder">
 							<li><a>常用单据</a>
 								<ul>
-									<li><a href="expense/list" target="navTab" rel="expenseList">费用报销报表</a></li>
+									<li><a href="expense/list" target="navTab" rel="expenseList">费用报销</a></li>
+									<li><a href="expense/list" target="navTab" rel="expenseList">预算调整申请</a></li>
 								</ul>
 							</li>
 							<li><a>部门报表</a>
@@ -429,6 +439,7 @@ $(function(){
 					<div class="accordionContent">
 						<ul class="tree">
 							<li><a href="newPage1.html" target="navTab" rel="dlg_page">合同审批</a></li>
+							<li><a href="newPage1.html" target="navTab" rel="dlg_page">业务审批</a></li>
 						</ul>
 					</div>
 					<div class="accordionHeader">

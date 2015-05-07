@@ -1,17 +1,14 @@
 package com.gxuts.wss.dms.dao.finance.impl;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.gxuts.wss.dms.dao.BaseDao;
 import com.gxuts.wss.dms.dao.finance.ExpenseDao;
 import com.gxuts.wss.dms.entity.finance.ExpenseBill;
-import com.gxuts.wss.dms.entity.finance.ExpenseItem;
 import com.gxuts.wss.dms.entity.hr.StructureInfo;
 import com.gxuts.wss.dms.util.DateUtil;
 
