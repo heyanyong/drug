@@ -24,8 +24,8 @@
 		<div class="voteItem">
 			<div class="picdiv"><div class="pillar" style="height:${e.voteNum+1}px;"></div></div>
 			<div>
-				<div class="title">${e.name }</div>	
-				<span>${e.voteNum }票</span><button value="212">投 票</button>
+				<div class="title">${e.name}</div>	
+				<span>${e.voteNum}票</span><a href="vote/voteTo?voteId=${info.id}&itId=${e.id}" class="icon" target="ajaxTodo"   title="确定要投当前项吗?">投 票</a>
 			</div>
 		</div>
 	  </c:forEach>

@@ -82,5 +82,12 @@ public class VoteController {
 		voteService.delete(vote);
 		return new Json();
 	}
+	@RequestMapping(value="voteTo",method={RequestMethod.POST,RequestMethod.GET})
+	@ResponseBody
+	public Json voteTo(Integer voteId,Integer itId,HttpSession s){
+		UserInfo user=(UserInfo)s.getAttribute("loginUser");
+		voteService.vote(user, voteId, itId);
+		return new Json();
+	}
 	
 }

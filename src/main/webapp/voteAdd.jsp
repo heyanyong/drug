@@ -25,28 +25,39 @@
 			<fieldset>
 				<legend>基本信息</legend>
 				<p>
-					<label>编 号：</label> <input name="no" type="text" value="${no}"
-						readonly="readonly" name="no" size="30" />
+					<label>编 号：</label> <input name="no" type="text" value="${no}" readonly="readonly" size="30" />
 				</p>
 				<p>
 					<input type="hidden" name="createUser.id" value="${loginUser.id}" />
-					<label>发起人：</label> <input name="createUser.name" type="text" value="${loginUser.name}"
-						readonly="readonly" name="no" size="30" />
+					<label>发起人：</label> <input type="text" value="${loginUser.name}" readonly="readonly" size="30" />
 				</p>
 				<p>
-					<label>部 门：</label> <input   type="text" value="${loginUser.structure.name}" readonly="readonly" name="no" size="30" />
+					<label>部 门：</label> <input type="text" value="${loginUser.structure.name}" readonly="readonly" size="30" />
 				</p>
 				<p>
 					<label>标 题：</label> <input name="name" class="required"  type="text" size="30" />
 				</p>
+				
+				<p> <label>显示投票人：</label>
+				    <input type="radio" name="isShowVoter" value="true" checked="checked"/>是  
+       				<input type="radio" name="isShowVoter" value="false"/>否
+				</p>
+				<p> <label>状态：</label>
+				    <select name="isOpen" >
+						<option value="true">马上开启</option>
+						<option value="false">禁止投票</option>
+					</select>
+				</p>
 				<p>
-				<label>开始日期：</label>
-				<input type="text" name="startTime" class="date required"   size="30" dateFmt="yyyy-MM-dd HH:mm:ss"  /><a class="inputDateButton" href="javascript:;">选择</a>
-			</p>
-			<p>
-				<label>结束日期：</label>
-				<input type="text" name="endTime"  class="date required" size="30" dateFmt="yyyy-MM-dd HH:mm:ss"   /><a class="inputDateButton" href="javascript:;">选择</a>
-			</p>
+					 <label>开始时间：</label>
+					 <input type="text" name="startTime" class="date required" size="30" dateFmt="yyyy-MM-dd HH:mm:ss" />
+					 <a class="inputDateButton" href="javascript:;">选择</a>
+				</p>
+				<p>
+					<label>结束时间：</label> 
+					<input type="text" name="endTime" class="date required" size="30" dateFmt="yyyy-MM-dd HH:mm:ss" />
+					<a class="inputDateButton" href="javascript:;">选择</a>
+				</p>
 			</fieldset>
 			<fieldset>
 				<legend>内容介绍</legend>
@@ -61,10 +72,10 @@
 						<thead>
 							<tr>
 								<th type="del" width="28">删除</th>
-								<th type="text" defaultVal="#index#" size="2"  >序号</th>
-								<th type="text" name="items[#index#].name" size="60" >名称</th>
-								<th type="text" name="items[#index#].voteNum"  size="10" fieldClass="digits">初始票数</th>
-								<th type="attach" name="items[#index#].attachment.fileName" lookupGroup="items[#index#].attachment" lookupUrl="depart/attachmentLookup.html" size="30">图片</th>
+								<th type="text" defaultVal="#index#" size="1"  >序号</th>
+								<th type="text" name="items[#index#].name" size="52" >名称</th>
+								<th type="text" name="items[#index#].voteNum"  size="6" fieldClass="digits">初始票数</th>
+								<th type="attach" name="items[#index#].attachment.fileName" lookupGroup="items[#index#].attachment" lookupUrl="depart/attachmentLookup.html" size="25">图片</th>
 							</tr>
 						</thead>
 						<tbody>	</tbody>

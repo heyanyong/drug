@@ -26,4 +26,5 @@ public interface VoteService {
 	public void update(VoteInfo vote);
 	public Json  vote(UserInfo user, int voteId, int itId);
 	public Page<VoteInfo> find(QueryFilter filter);
+	public VoteInfo getAvailable();
 }

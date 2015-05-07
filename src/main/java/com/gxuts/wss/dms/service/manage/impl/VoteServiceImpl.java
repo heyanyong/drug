@@ -114,6 +114,10 @@ public class VoteServiceImpl implements VoteService {
 	public Page<VoteInfo> find(QueryFilter filter) {
 		return voteDao.find(filter);
 	}
+	@Override
+	public VoteInfo getAvailable() {
+		return  voteDao.getAvailable();
+	}
 	 
 	 
 }

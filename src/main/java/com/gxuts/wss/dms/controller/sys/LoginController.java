@@ -17,10 +17,12 @@ import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.hr.RoleInfo;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.entity.manage.ArticleInfo;
+import com.gxuts.wss.dms.entity.manage.VoteInfo;
 import com.gxuts.wss.dms.entity.sys.Json;
 import com.gxuts.wss.dms.entity.sys.UrlInfo;
 import com.gxuts.wss.dms.service.hr.UserService;
 import com.gxuts.wss.dms.service.manage.ArticleService;
+import com.gxuts.wss.dms.service.manage.VoteService;
 import com.gxuts.wss.dms.service.process.FlowService;
 import com.gxuts.wss.dms.util.annotation.MethodName;
 
@@ -29,14 +31,18 @@ public class LoginController {
 	@Autowired
 	private ArticleService articleService;
 	@Autowired
+	private VoteService voteService;
+	@Autowired
 	private UserService userService;
 	@Autowired
 	private FlowService flowService;
 	@MethodName(name="访问主页")
 	@RequestMapping(value="index")
 	public String index(Model m,HttpSession session,String  pageNum){
+		//vote
+		VoteInfo vote =voteService.getAvailable();
+		m.addAttribute("vote", vote);
 		//news
-		System.out.println("++++request index++++ ");
 		Page<ArticleInfo> pages = articleService.query(null, null, null, 5);
 		List<ArticleInfo> news=pages.getData();
 		m.addAttribute("news", news);

@@ -2,22 +2,16 @@ package com.gxuts.wss.dms.entity.manage;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.gxuts.wss.dms.entity.hr.UserInfo;
 @Entity
 public class VoteItem implements Serializable{
 	private static final long serialVersionUID = 1L;

@@ -62,7 +62,7 @@
 				<td>${e.name}</td>
 				<td>${e.startTime}</td>
 				<td>${e.endTime}</td>
-				<td>${e.isShowVoter}</td>
+				<td>${e.no}</td>
 				<td>${e.createDate}</td>
 				<td>${e.createUser.name}</td>
 			</tr>

@@ -20,7 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 
 @Entity
-public class VoteInfo  implements Serializable{
+public class VoteInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,12 +28,13 @@ public class VoteInfo  implements Serializable{
 	private String name;
 	private String no;
 	private String content;
+	private Boolean isOpen;
 	private Boolean isShowVoter;
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date startTime;
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date endTime;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -48,7 +49,15 @@ public class VoteInfo  implements Serializable{
 	public Integer getId() {
 		return id;
 	}
-	
+
+	public Boolean getIsOpen() {
+		return isOpen;
+	}
+
+	public void setIsOpen(Boolean isOpen) {
+		this.isOpen = isOpen;
+	}
+
 	public String getNo() {
 		return no;
 	}
@@ -97,7 +106,7 @@ public class VoteInfo  implements Serializable{
 		return isShowVoter;
 	}
 
-	public void setShowVoter(Boolean isShowVoter) {
+	public void setIsShowVoter(Boolean isShowVoter) {
 		this.isShowVoter = isShowVoter;
 	}
 

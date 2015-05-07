@@ -22,5 +22,6 @@ public interface VoteDao {
 	public void delete(VoteInfo vote);
 	public void update(VoteInfo vote);
 	public Page<VoteInfo> find(QueryFilter filter);
+	public VoteInfo getAvailable();
 
 }
