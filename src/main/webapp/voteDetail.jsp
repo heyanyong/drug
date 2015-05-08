@@ -67,7 +67,7 @@
 			</fieldset>
 		
 		<div class="divider"></div>
-			<div class="panel collapse" minH="180"  style="width:65%;">
+			<div class="panel collapse" minH="180"  style="width:40%;">
 				<h1>投票明细 </h1>
 				<div>
 					<table class="list nowrap itemDetail" addButton="追加明细项" width="100%">
@@ -75,9 +75,8 @@
 							<tr>
 								<th type="del" width="28">删除</th>
 								<th type="text" defaultVal="#index#" size="1"  >序号</th>
-								<th type="text" name="items[#index#].name" size="52" >名称</th>
+								<th type="text" name="items[#index#].name" size="50" >名称</th>
 								<th type="text" name="items[#index#].voteNum"  size="6" fieldClass="digits">票数</th>
-								<th type="attach" name="items[#index#].attachment.fileName" lookupGroup="items[#index#].attachment" lookupUrl="depart/attachmentLookup.html" size="25">图片</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -87,15 +86,9 @@
 								<td><input type="text" name="" value="${es.index}" size="1" readonly="readonly"
 									class="textInput"></td>
 								<td><input type="text" name="items[${es.index}].name" value="${e.name}"
-									size="52" class="textInput"></td>
+									size="50" class="textInput"></td>
 								<td><input type="text" name="items[${es.index}].voteNum" value="${e.voteNum}"
 									size="6" class="digits textInput view" readonly="readonly"></td>
-								<td><input type="hidden" name="items[${es.index}].attachment.id"><input
-									type="text" name="items[0].attachment.fileName" size="25"
-									readonly="readonly" class="textInput readonly"><a
-									class="btnAttach" href="depart/attachmentLookup.html"
-									lookupgroup="items[0].attachment" lookuppk="id" width="560"
-									height="300" title="查找带回">查找带回</a></td>
 							</tr>
 							</c:forEach>
 						</tbody>

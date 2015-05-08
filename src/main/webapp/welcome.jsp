@@ -517,7 +517,7 @@ $(function(){
 									<li><a href="article/view/${e.id}" target="navTab" rel="article${e.id}">${e.name}</a><span>${e.createDate}</span></li>
 									</c:forEach>
 									<c:if test="${!empty vote}">
-									<li><a href="vote/view/${vote.id}" target="navTab" rel="vote${vote.id}">${vote.name}</a><span>${vote.createDate}</span></li>
+									<li><a href="vote/view/${vote.id}" target="navTab" rel="vote${vote.id}"><img src="images/vote.png"/>&nbsp;${vote.name}</a><span>${vote.createDate}</span></li>
 									</c:if>
 								</ul>
 							</div>

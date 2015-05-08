@@ -43,7 +43,7 @@ public class LoginController {
 		VoteInfo vote =voteService.getAvailable();
 		m.addAttribute("vote", vote);
 		//news
-		Page<ArticleInfo> pages = articleService.query(null, null, null, 5);
+		Page<ArticleInfo> pages = articleService.query(null, null, null, 4);
 		List<ArticleInfo> news=pages.getData();
 		m.addAttribute("news", news);
 		

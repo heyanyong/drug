@@ -4,13 +4,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <style>
- .voteDetail{margin-left: auto; margin-right: auto; }
- .voteDetail .voteItem{float: left; width:150px; height: 255px;  margin: 20px; border:1px solid #DBDBDB;text-align: center;}
+ .voteDetail{margin-left: 26%; }
+ .voteDetail .voteItem{float: left; width:130px; height: 255px;  margin: 10px 5px;  text-align: center;}
  .voteDetail .voteItem .picdiv{   height:190px;   position:relative; overflow: auto;}
  .voteDetail .voteItem img{   width: 150px; position:absolute; bottom:0px; left:0;max-height:190px; margin:0;}
- .voteDetail .voteItem .title{width:100%;padding: 8px 0px; font-size: 15px; }
- .voteDetail .voteItem span{margin-right:20px; color:red;}
- .voteDetail .voteItem .pillar{border-bottom:1px solid yellow;margin-left:auto;margin-right:auto; position:absolute; bottom:0px; left:35%; width:40px; background: yellow;}
+ .voteDetail .voteItem .title{width:100%;padding: 12px 0px; font-size: 15px; }
+ .voteDetail .voteItem span{margin-right:10px; color:red;}
+ .voteDetail .voteItem .abtn{ border:1px solid #ccc;padding:2px 4px;}
+ .voteDetail .voteItem .pillar{border-bottom:1px solid #a1cbee;margin-left:auto;margin-right:auto; position:absolute; bottom:0px; left:35%; width:40px; background: #a1cbee;}
 </style>
 <div class="pageContent article" layoutH="56">
 	<h2>${info.name}</h2>
@@ -28,8 +29,7 @@
 				<div class="title">${e.name}</div>	
 				<span>${e.voteNum}票</span>
 				<c:if test="${!fn:contains(oUsers, loginUser.no)}"></c:if>
-				 <a href="vote/voteTo?voteId=${info.id}&itId=${e.id}" class="icon" target="ajaxTodo"   title="确定要投当前项吗?">投 票</a>
-				
+				 <a href="vote/voteTo?voteId=${info.id}&itId=${e.id}" class="abtn" target="ajaxTodo"   title="确定要投  ${e.name} 一票吗?">投 票</a>
 			</div>
 		</div>
 	  </c:forEach>

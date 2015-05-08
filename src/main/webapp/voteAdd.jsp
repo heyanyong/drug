@@ -65,7 +65,7 @@
 			</fieldset>
 		
 		<div class="divider"></div>
-			<div class="panel collapse" minH="180"  style="width:65%;">
+			<div class="panel collapse" minH="150"  style="width:40%;">
 				<h1>投票明细 </h1>
 				<div>
 					<table class="list nowrap itemDetail" addButton="追加明细项" width="100%">
@@ -73,9 +73,8 @@
 							<tr>
 								<th type="del" width="28">删除</th>
 								<th type="text" defaultVal="#index#" size="1"  >序号</th>
-								<th type="text" name="items[#index#].name" size="52" >名称</th>
+								<th type="text" name="items[#index#].name" size="50" >名称</th>
 								<th type="text" name="items[#index#].voteNum"  size="6" fieldClass="digits">初始票数</th>
-								<th type="attach" name="items[#index#].attachment.fileName" lookupGroup="items[#index#].attachment" lookupUrl="depart/attachmentLookup.html" size="25">图片</th>
 							</tr>
 						</thead>
 						<tbody>	</tbody>

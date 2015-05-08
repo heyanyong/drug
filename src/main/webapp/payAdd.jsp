@@ -63,21 +63,21 @@
 				<a class="inputDateButton" href="javascript:;">选择</a>
 			</p>
 			
-			<dl class="nowrap">
-				<dd>
+			<dl class="nowrap" >
+				<dd style="background: #e0eef8">
 					<fieldset>
 						<legend>款项信息</legend>
-						<table class="list nowrap itemDetail" addButton="追加明细项" width="100%">
+						<table class="list nowrap itemDetail" addButton="追加明细项" width="100%" >
 							<thead>
 								<tr>
 									<th type="del" width="24"></th>
-									<th type="text" name="items[#index#].used" size="12">用途</th>
-									<th type="text" name="items[#index#].income" size="6" fieldClass="digits">已收</th>
-									<th type="text" name="items[#index#].recome" size="6" fieldClass="digits">应收</th>
-									<th type="text" name="items[#index#].computed" size="6" fieldClass="digits">折算</th>
-									<th type="text" name="items[#index#].payment" size="6" fieldClass="digits">付款总记</th>
-									<th type="text" name="items[#index#].payment" size="6" fieldClass="digits">已收币种</th>
-									<th type="enum" name="items[#index#].payCurrency" enumUrl="demo/database/db_select.html" size="6">应收币种</th>
+									<th type="text" name="items[#index#].used" size="14">用途</th>
+									<th type="text" name="items[#index#].income" size="10" fieldClass="digits">已收</th>
+									<th type="text" name="items[#index#].recome" size="10" fieldClass="digits">应收</th>
+									<th type="text" name="items[#index#].computed" size="10" fieldClass="digits">折算</th>
+									<th type="text" name="items[#index#].payment" size="10" fieldClass="digits">付款总记</th>
+									<th type="enum" name="items[#index#].payCurrency" enumUrl="depart/currency.html" size="10">已收币种</th>
+									<th type="enum" name="items[#index#].payCurrency" enumUrl="depart/currency.html" size="10">应收币种</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -111,7 +111,7 @@
 					<option value="USD">USD</option>
 				</select>
 			</p>
-			<dl class="nowrap">
+			<!-- <dl class="nowrap">
 			  <dd>
 				<fieldset>
 					<legend>分批付款情况</legend>
@@ -128,7 +128,7 @@
 					</table>
 				 </fieldset>
 				</dd>
-			</dl>
+			</dl> -->
 			<dl class="nowrap">
 				<dt>备注：</dt>
 				<dd>
