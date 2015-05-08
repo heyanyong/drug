@@ -23,10 +23,10 @@ public class LoginFilter implements Filter {
 		 HttpServletRequest req=(HttpServletRequest) request;
 		 HttpServletResponse resp=(HttpServletResponse) response;
 		 String url=req.getRequestURI();
-		 if((req.getSession(true).getAttribute("loginUser")!=null)||url.contains("ogin")||url.contains("register")){
+		 if((req.getSession(true).getAttribute("loginUser")!=null)||url.contains("ogin")||url.contains("register")||url.contains(".js")){
 			 chain.doFilter(request, response);
 		 }else if (req.getHeader("X-Requested-With") != null) {
-			 resp.getWriter().write("{\"message\":\"登陆超时\",\"statusCode\":\"301\",\"navTabId\":\"null\",\"rel\":\"null\",\"callbackType\":\"forward\",\"forwardUrl\":\"login.jsp\"}");
+			 resp.getWriter().write("{\"message\":\"登陆超时\",\"statusCode\":\"301\"");
 		 }else{
 			 resp.sendRedirect("/drug/login.jsp");
 			 

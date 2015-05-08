@@ -30,7 +30,7 @@
 		</div>
 		<div id="login_content">
 			<div class="loginForm">
-				<form action="checkLogin" method="post" id="loginForm">
+				<form action="checkLogin" method="post" id="loginForm" onsubmit="return userLogin()">
 				
 					<p>
 						<label>用户名：</label>
@@ -38,11 +38,11 @@
 					</p>
 					<p>
 						<label>密码：</label>
-						<input type="password" name="password"  size="20" class="login_input" />
+						<input type="password" name="password" id="password"  size="20" class="login_input" />
 					</p>
 					
 					<div>
-						<input type="checkbox" id="isRemember" />记住我 &nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="checkbox" id="isRemember" />记住用户名 &nbsp;&nbsp;&nbsp;&nbsp;
 					</div>
 					<div class="login_bar">
 						<input class="sub" type="submit" value=" " />
@@ -65,11 +65,27 @@
 		</div>
 	</div>
 </body>
- <script>
- 	
-	var no=document.getElementById("userNo"); 
-	no.focus();
-	
-	
- </script>
+<script>
+$(document).ready(function() {
+	var isRemember=$.cookie("isRemember");
+	if (isRemember=="true") {
+		$("#isRemember").attr("checked", true);
+		$("#userNo").val($.cookie("userNo"));
+		$("#password").focus();
+	 }else{
+		 $("#userNo").focus();
+	 }
+});
+function userLogin() {
+	if ($("#isRemember").attr("checked")) {
+		var userNo = $("#userNo").val();
+		$.cookie("isRemember","true", { expires :15});  
+		$.cookie("userNo",userNo, { expires :15}); // 存储一个带7天期限的 cookie
+	} else {
+		$.cookie("isRemember","false", { expires : -1 }); // 删除 cookie
+		$.cookie("userNo",'', { expires : -1 });
+	}
+	return true;
+}
+</script>
 </html>

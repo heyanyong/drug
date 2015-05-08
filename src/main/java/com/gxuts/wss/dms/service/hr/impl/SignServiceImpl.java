@@ -119,5 +119,9 @@ public class SignServiceImpl implements SignService {
 	public Serializable save(SignInfo sign) {
 		return signDao.save(sign);
 	}
+	@Override
+	public void updateHasLeaveMoonth() {
+		signDao.executeHql("");
+	}
 
 }

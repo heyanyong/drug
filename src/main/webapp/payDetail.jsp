@@ -62,30 +62,6 @@
 				<label>外汇牌价时间：</label> <input type="text" name="exchangeTime" class="date required" size="30" dateFmt="yyyy-MM-dd HH:mm:ss" />
 				<a class="inputDateButton" href="javascript:;">选择</a>
 			</p>
-			
-			<dl class="nowrap">
-				<dd>
-					<fieldset>
-						<legend>款项信息</legend>
-						<table class="list nowrap itemDetail" addButton="追加明细项" width="100%">
-							<thead>
-								<tr>
-									<th type="del" width="24"></th>
-									<th type="text" name="items[#index#].used" size="12">用途</th>
-									<th type="text" name="items[#index#].income" size="6" fieldClass="digits">已收</th>
-									<th type="text" name="items[#index#].recome" size="6" fieldClass="digits">应收</th>
-									<th type="text" name="items[#index#].computed" size="6" fieldClass="digits">折算</th>
-									<th type="text" name="items[#index#].payment" size="6" fieldClass="digits">付款总记</th>
-									<th type="text" name="items[#index#].payment" size="6" fieldClass="digits">已收币种</th>
-									<th type="enum" name="items[#index#].payCurrency" enumUrl="demo/database/db_select.html" size="6">应收币种</th>
-								</tr>
-							</thead>
-							<tbody>
-							</tbody>
-						</table>
-					</fieldset>
-				</dd>
-			</dl>
 			<p>
 				<label>总共已收：</label> <input type="text" size="30" name="number" />
 			</p>
@@ -105,20 +81,44 @@
 				<label>付款总计大写：</label> <input type="text" size="30" name="number" />
 			</p>
 			<p>
-				<label>币种：</label> <select name="type"  style="width:100px">
+				<label>币种：</label> <select name="type" class="combox">
 					<option value="">请选择</option>
 					<option value="RMB">RMB</option>
 					<option value="USD">USD</option>
 				</select>
 			</p>
 			<dl class="nowrap">
+				<dd>
+					<fieldset>
+						<legend>款项信息</legend>
+						<table class="list nowrap itemDetail" addButton="追加明细项" width="100%">
+							<thead>
+								<tr>
+									<th type="del" width="28">删除</th>
+									<th type="text" name="items[#index#].used" size="12">用途</th>
+									<th type="text" name="items[#index#].income" size="6" fieldClass="digits">已收</th>
+									<th type="text" name="items[#index#].recome" size="6" fieldClass="digits">应收</th>
+									<th type="text" name="items[#index#].computed" size="6" fieldClass="digits">折算</th>
+									<th type="text" name="items[#index#].payment" size="6" fieldClass="digits">付款总记</th>
+									<th type="text" name="items[#index#].payment" size="6" fieldClass="digits">已收币种</th>
+									<th type="enum" name="items[#index#].payCurrency" enumUrl="demo/database/db_select.html" size="6">应收币种</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</fieldset>
+				</dd>
+			</dl>
+			<dl class="nowrap">
 			  <dd>
 				<fieldset>
 					<legend>分批付款情况</legend>
-					<table class="list nowrap itemDetail" addButton="追加明细项" width="100%">
+					<table class="list nowrap itemDetail" addButton="追加明细项"
+						width="100%">
 						<thead>
 							<tr>
-								<th type="del" width="24"> </th>
+								<th type="del" width="28">删除</th>
 								<th type="text" defaultVal="#index#" size="1">序号</th>
 								<th type="text" name="items[#index#].name" size="52">名称</th>
 								<th type="text" name="items[#index#].voteNum" size="6" fieldClass="digits">初始票数</th>
@@ -132,7 +132,7 @@
 			<dl class="nowrap">
 				<dt>备注：</dt>
 				<dd>
-					<textarea name="remark" cols="90" rows="3"></textarea>
+					<textarea name="remark" cols="95" rows="3"></textarea>
 				</dd>
 			</dl>
 		</div>

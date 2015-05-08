@@ -32,5 +32,6 @@ public interface SignService {
 			Integer currentPage, Integer rows);
 	public SignInfo getByHql(String hql);
 	public SignInfo getByRecord(String userNo,Date recordDate);
+	void updateHasLeaveMoonth();
 
 }

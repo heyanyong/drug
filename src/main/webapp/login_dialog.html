@@ -1,16 +1,18 @@
 
 <div class="pageContent">
-	
 	<form method="post" action="checkLoginDialog" class="pageForm" onsubmit="return validateCallback(this, dialogAjaxDone)">
 		<div class="pageFormContent" layoutH="58">
 			<div class="unit">
 				<label>用户名：</label>
-				<input type="text" name="no" size="30" class="required"/>
+				<input type="text" name="no" id="userNo" size="20" class="login_input" />
 			</div>
 			<div class="unit">
 				<label>密码：</label>
-				<input type="password" name="password" size="30" class="required"/>
+				<input type="password" name="password" id="password"  size="20" class="login_input" />
 			</div>
+		</div>
+		<div>
+			<input type="checkbox" id="isRemember" />记住用户名
 		</div>
 		<div class="formBar">
 			<ul>
@@ -19,6 +21,16 @@
 			</ul>
 		</div>
 	</form>
-	
 </div>
-
+<script>
+	var isRemember=$.cookie("isRemember");
+	alert(1);
+	if (isRemember=="true") {
+		alert(2);
+		$("#isRemember").attr("checked", true);
+		$("#userNo").val($.cookie("userNo"));
+		$("#password").focus();
+	 }else{
+		 $("#userNo").focus();
+	 }
+</script>

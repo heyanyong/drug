@@ -44,11 +44,12 @@
 		<thead>
 			<tr>
 				<th>编号</th> 
-				<th>创建日期</th>
 				<th>申请人</th> 
-				<th>部门</th> 
-				<th>请假小时数</th> 
-				<th>交接人</th> 
+				<th>供应商</th> 
+				<th>付款总记</th> 
+				<th>风险类型</th> 
+				<th>付款方式</th> 
+				<th>创建日期</th>
 				<th width="65">状态</th> 
 				<th>操作</th> 
 			</tr>
@@ -57,10 +58,12 @@
 		<c:forEach items="${pages.data}" var="e">
 			<tr target="e_id" rel="${e.id}">
 				<td>${e.no}</td>
-				<td>${e.createDate}</td>
 				<td>${e.createUser.name}</td>
-				<td>${e.createUser.structure.name}</td>
-				<td>${e.no}</td>
+				<td>${e.supplier.name}</td>
+				<td>${e.payTotal}</td>
+				<td>${e.riskType}</td>
+				<td>${e.payType}</td>
+				<td>${e.createDate}</td>
 				<td><img src="images/status${e.status}.png" /></td>
 				<td><c:if test="${e.status==2}"> <a href="flow/image/${e.flowId}" target="navTab">查看办理进度</a></c:if>
 					<c:if test="${e.status==1}"> 
