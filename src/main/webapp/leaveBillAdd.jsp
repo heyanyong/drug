@@ -46,7 +46,7 @@
 				<label>工作交接人：</label>
 				<input type="hidden" name="cadidate.id" />
 				<input type="text"  name="cadidate.name" size="30" value=""  readonly="readonly" lookupGroup="cadidate" />
-				<a class="btnLook" href="user/lookup" lookupGroup="cadidate">查找带回</a>		
+				<a class="btnLook" href="userLookup.jsp" lookupGroup="cadidate">查找带回</a>		
 			</p>
 			<dl class="nowrap">
 				<dt>请假说明：</dt>

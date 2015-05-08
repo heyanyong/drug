@@ -1,11 +1,8 @@
 package com.gxuts.wss.dms.controller.manage;
 
 import java.util.Date;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.entity.manage.VoteInfo;
-import com.gxuts.wss.dms.entity.manage.VoteItem;
 import com.gxuts.wss.dms.entity.sys.Json;
 import com.gxuts.wss.dms.service.manage.VoteService;
 import com.gxuts.wss.dms.util.QueryFilter;
@@ -46,8 +42,7 @@ public class VoteController {
 	}
 	@RequestMapping(value="save",method={RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
-	public Json save(Model model,VoteInfo vote,HttpSession session){
-		vote.setCreateUser((UserInfo) session.getAttribute("loginUser"));
+	public Json save(VoteInfo vote){
 		vote.setCreateDate(new Date());
 		voteService.save(vote);
 		return new Json("保存成功", "200", "voteList", "voteList", "forward", "vote/list");
@@ -55,12 +50,8 @@ public class VoteController {
 	@RequestMapping(value = "/view/{id}")
 	public String view(@PathVariable Integer id, Model model) {
 		VoteInfo vote = voteService.get(VoteInfo.class, id);
-		List<VoteItem> items=vote.getItems();
-		int total=0;
-		for(VoteItem i:items){
-			total+=i.getVoteNum();
-		}
-		model.addAttribute("total", total);
+		model.addAttribute("oUsers", vote.getUsersVoted());
+		model.addAttribute("total", vote.getTotalVote());
 		model.addAttribute("info", vote);
 		return "voteView";
 	}
@@ -80,14 +71,14 @@ public class VoteController {
 	@ResponseBody
 	public Json delete(Model model,VoteInfo vote){
 		voteService.delete(vote);
-		return new Json();
+		return new Json("删除成功", "200", "voteList", "voteList", null, null);
 	}
 	@RequestMapping(value="voteTo",method={RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
 	public Json voteTo(Integer voteId,Integer itId,HttpSession s){
 		UserInfo user=(UserInfo)s.getAttribute("loginUser");
-		voteService.vote(user, voteId, itId);
-		return new Json();
+		Json json=voteService.vote(user, voteId, itId);
+		return json;
 	}
 	
 }

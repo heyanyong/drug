@@ -74,24 +74,24 @@
 						<thead>
 							<tr>
 								<th type="del" width="28">删除</th>
-								<th type="text" defaultVal="#index#" size="2"  >序号</th>
-								<th type="text" name="items[#index#].name" size="60" >名称</th>
-								<th type="text" name="items[#index#].voteNum"  size="10" fieldClass="digits">票数</th>
-								<th type="attach" name="items[#index#].attachment.fileName" lookupGroup="items[#index#].attachment" lookupUrl="depart/attachmentLookup.html" size="30">图片</th>
+								<th type="text" defaultVal="#index#" size="1"  >序号</th>
+								<th type="text" name="items[#index#].name" size="52" >名称</th>
+								<th type="text" name="items[#index#].voteNum"  size="6" fieldClass="digits">票数</th>
+								<th type="attach" name="items[#index#].attachment.fileName" lookupGroup="items[#index#].attachment" lookupUrl="depart/attachmentLookup.html" size="25">图片</th>
 							</tr>
 						</thead>
 						<tbody>
 						<c:forEach items="${info.items}" var="e" varStatus="es">
 							<tr class="unitBox">
 								<td><a href="javascript:void(0)" class="btnDel ">删除</a></td>
-								<td><input type="text" name="" value="${es.index}" size="2" readonly="readonly"
+								<td><input type="text" name="" value="${es.index}" size="1" readonly="readonly"
 									class="textInput"></td>
 								<td><input type="text" name="items[${es.index}].name" value="${e.name}"
-									size="60" class="textInput"></td>
+									size="52" class="textInput"></td>
 								<td><input type="text" name="items[${es.index}].voteNum" value="${e.voteNum}"
-									size="10" class="digits textInput view" readonly="readonly"></td>
+									size="6" class="digits textInput view" readonly="readonly"></td>
 								<td><input type="hidden" name="items[${es.index}].attachment.id"><input
-									type="text" name="items[0].attachment.fileName" size="30"
+									type="text" name="items[0].attachment.fileName" size="25"
 									readonly="readonly" class="textInput readonly"><a
 									class="btnAttach" href="depart/attachmentLookup.html"
 									lookupgroup="items[0].attachment" lookuppk="id" width="560"

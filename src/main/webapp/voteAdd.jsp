@@ -25,10 +25,10 @@
 			<fieldset>
 				<legend>基本信息</legend>
 				<p>
+					<input type="hidden" name="createUser.id" value="${loginUser.id}" />
 					<label>编 号：</label> <input name="no" type="text" value="${no}" readonly="readonly" size="30" />
 				</p>
 				<p>
-					<input type="hidden" name="createUser.id" value="${loginUser.id}" />
 					<label>发起人：</label> <input type="text" value="${loginUser.name}" readonly="readonly" size="30" />
 				</p>
 				<p>

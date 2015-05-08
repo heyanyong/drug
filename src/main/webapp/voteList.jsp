@@ -51,6 +51,7 @@
 				<th>开始时间</th>
 				<th>结束时间</th>
 				<th>显示投票人</th>
+				<th>是否开启</th>
 				<th>创建时间</th>
 				<th>创建人</th>
 			</tr>
@@ -62,7 +63,8 @@
 				<td>${e.name}</td>
 				<td>${e.startTime}</td>
 				<td>${e.endTime}</td>
-				<td>${e.no}</td>
+				<td>${e.isShowVoter==true? "是":"否"}</td>
+				<td>${e.isOpen==true? "是":"否"}</td>
 				<td>${e.createDate}</td>
 				<td>${e.createUser.name}</td>
 			</tr>

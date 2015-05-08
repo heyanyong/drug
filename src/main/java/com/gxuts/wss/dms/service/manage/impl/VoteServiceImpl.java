@@ -1,6 +1,7 @@
 package com.gxuts.wss.dms.service.manage.impl;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -88,6 +89,12 @@ public class VoteServiceImpl implements VoteService {
 	@Override
 	public Json vote(UserInfo user,int voteId,int itId) {
 		VoteInfo vote=voteDao.get(VoteInfo.class, voteId);
+		if(vote.getEndTime().before(new Date())){
+			return new Json("已过期", "300", null, null, null, null);
+		}
+		if(vote.getIsOpen()==false){
+			return new Json("投票未开启", "300", null, null, null, null);
+		}
 		StringBuilder oUsers=new StringBuilder();
 		List<VoteItem> its=vote.getItems();
 		for(VoteItem it:its){
@@ -97,8 +104,12 @@ public class VoteServiceImpl implements VoteService {
 			}
 		}
 		if(oUsers.indexOf(user.getNo())>-1){
-			return new Json("aready", "300", null, null, null, null);
+			return new Json("您已经投过票了", "300", null, null, null, null);
 		}
+		voteItem(user, itId);
+		return new Json("投票成功", "200", null, null,"forward","vote/view/"+voteId);
+	}
+	public void voteItem(UserInfo user, int itId) {
 		VoteItem voteItem = voteItemDao.get(VoteItem.class, itId);
 		String iusers=voteItem.getUsers();
 		if(iusers==null||iusers.length()<1){
@@ -108,7 +119,6 @@ public class VoteServiceImpl implements VoteService {
 		}
 		voteItem.setVoteNum(voteItem.getVoteNum()+1);
 		voteItemDao.update(voteItem);
-		return new Json("ok", "200", null, null, null, null);
 	}
 	@Override
 	public Page<VoteInfo> find(QueryFilter filter) {
@@ -118,6 +128,5 @@ public class VoteServiceImpl implements VoteService {
 	public VoteInfo getAvailable() {
 		return  voteDao.getAvailable();
 	}
-	 
 	 
 }

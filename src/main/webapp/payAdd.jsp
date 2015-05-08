@@ -11,6 +11,7 @@
 		</div>
 		<div class="pageFormContent payBill" layoutH="56">
 			<p>
+				 <input name="createUser.id" type="hidden"   value="${loginUser.id}" size="30"/>
 				<label>编号：</label> <input name="no" type="text" readonly="readonly" value="${no}" size="30"/>
 			</p>
 			<p>
@@ -20,25 +21,89 @@
 				<label>申请工号：</label> <input   value="${loginUser.no}" readonly="readonly" type="text"	size="30"/>
 			</p>
 			<p>
-				<label>部门：</label> <input type="text"  size="30" readonly="readonly" value="${loginUser.name}" />
+				<label>部门：</label> <input type="text"  size="30" readonly="readonly" value="${loginUser.structrue.name}" />
 			</p>
 			<p>
-				<label>需求人数：</label> <input type="text" size="30" name="number" />
+				<label>所属客户：</label>
+				<input type="hidden" name="customer.id"/>
+				<input type="text" class="required" name="customer.name" size="30" readonly="readonly"/>
+				<a class="btnLook"  href="customer/list?show=dialog" lookupGroup="customer"  width="500" >查找带回</a>		
 			</p>
 			<p>
-				<label>角色类型：</label> <input type="text" size="30" name="position" />
+				<label>供应商：</label>
+				<input type="hidden" name="supplier.id"/>
+				<input type="text" class="required" name="supplier.name" size="30" readonly="readonly"/>
+				<a class="btnLook"  href="supplier/list?show=dialog" lookupGroup="supplier"  width="500" >查找带回</a>		
 			</p>
 			<p>
-				<label>期限日期：</label>
-				<input type="text" name="endDate"  class="date required" size="30" dateFmt="yyyy-MM-dd HH:mm:ss"   /><a class="inputDateButton" href="javascript:;">选择</a>
-			</p>
-			<p>
-				<label>需求类型：</label> <select name="type" class="combox">
+				<label>业务类型：</label> <select name="type" >
 					<option value="">请选择</option>
-					<option value="增员">增员</option>
-					<option value="补员">补员</option>
+					<option value="代理">代理</option>
+					<option value="采购">采购</option>
 				</select>
 			</p>
+			<p>
+				<label>风险类型：</label> <select name="riskType" >
+					<option value="">请选择</option>
+					<option value="高风险">高风险</option>
+					<option value="低风险">低风险</option>
+				</select>
+			</p>
+			<p>
+				<label>付款方式：</label> <select name="payType" >
+					<option value="">请选择</option>
+					<option value="高风险">高风险</option>
+					<option value="低风险">低风险</option>
+				</select>
+			</p>
+			<fieldset>
+				<legend>款项信息</legend>
+				<h1>投票明细 </h1>
+					<table class="list nowrap itemDetail" addButton="追加明细项" width="100%">
+						<thead>
+							<tr>
+								<th type="del" width="28">删除</th>
+								<th type="text" name="items[#index#].used" size="52" >用途</th>
+								<th type="text" name="items[#index#].income"  size="6" fieldClass="digits">已收</th>
+								<th type="text" name="items[#index#].recome"  size="6" fieldClass="digits">应收</th>
+								<th type="text" name="items[#index#].computed"  size="6" fieldClass="digits">折算</th>
+								<th type="text" name="items[#index#].payment"  size="6" fieldClass="digits">付款总记</th>
+								<th type="text" name="items[#index#].payment"  size="6" fieldClass="digits">已收币种</th>
+								<th type="enum" name="items[#index#].payCurrency"  enumUrl="demo/database/db_select.html"  size="6"  >应收币种</th>
+							</tr>
+						</thead>
+						<tbody>	</tbody>
+					</table>
+				<p>
+					<label>外汇牌价时间：</label> <input type="text" name="exchangeTime" class="date required" size="30" dateFmt="yyyy-MM-dd HH:mm:ss" />
+						<a class="inputDateButton" href="javascript:;">选择</a>
+				</p>
+				<p>
+					<label>总共已收：</label> <input type="text" size="30" name="number" />
+				</p>
+				<p>
+					<label>总共应收：</label> <input type="text" size="30" name="number" />
+				</p>
+				<p>
+					<label>超期应收：</label> <input type="text" size="30" name="number" />
+				</p>
+				<p>
+					<label>这笔后应收：</label> <input type="text" size="30" name="number" />
+				</p>
+				<p>
+					<label>付款总计：</label> <input type="text" size="30" name="number" />
+				</p>
+				<p>
+					<label>付款总计大写：</label> <input type="text" size="30" name="number" />
+				</p>
+			<p>
+				<label>币种：</label> <select name="type" class="combox">
+					<option value="">请选择</option>
+					<option value="RMB">RMB</option>
+					<option value="USD">USD</option>
+				</select>
+			</p>
+			</fieldset>
 			<p>
 				<label>角色层次：</label> <select name="type" class="combox">
 					<option value="">请选择</option>
@@ -46,11 +111,6 @@
 					<option value="管理层">管理层</option>
 					<option value="决策层">决策层</option>
 				</select>
-			</p>
-			<p>
-				<label>角色：</label>
-				<input type="text"  name="roleName" size="30" value=""  readonly="readonly" lookupGroup="cadidate" />
-				<a class="btnLook" href="pay/lookup" lookupGroup="role">查找带回</a>		
 			</p>
 			<dl class="nowrap">
 				<dt>用人要求：</dt>
@@ -61,10 +121,27 @@
 			<dl class="nowrap">
 				<dt>备注：</dt>
 				<dd>
-					<textarea name="reason" cols="95" rows="6" ></textarea>
+					<textarea name="remark" cols="95" rows="6" ></textarea>
 				</dd>
 			</dl>
 			</div>
+			
+			<fieldset>
+				<legend>分批付款情况</legend>
+				<h1>投票明细 </h1>
+					<table class="list nowrap itemDetail" addButton="追加明细项" width="100%">
+						<thead>
+							<tr>
+								<th type="del" width="28">删除</th>
+								<th type="text" defaultVal="#index#" size="1"  >序号</th>
+								<th type="text" name="items[#index#].name" size="52" >名称</th>
+								<th type="text" name="items[#index#].voteNum"  size="6" fieldClass="digits">初始票数</th>
+								<th type="attach" name="items[#index#].attachment.fileName" lookupGroup="items[#index#].attachment" lookupUrl="depart/attachmentLookup.html" size="25">图片</th>
+							</tr>
+						</thead>
+						<tbody>	</tbody>
+					</table>
+			</fieldset>
 	</form>
 </div>
 <script>

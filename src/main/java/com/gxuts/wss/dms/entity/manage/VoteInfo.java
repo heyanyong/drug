@@ -133,7 +133,24 @@ public class VoteInfo implements Serializable {
 	public void setCreateUser(UserInfo createUser) {
 		this.createUser = createUser;
 	}
-
+	public int getTotalVote(){
+		int total=0;
+		for(VoteItem i:items){
+			total+=i.getVoteNum();
+		}
+		return total;
+	}
+	
+	public String getUsersVoted(){
+		StringBuilder usersVoted=new StringBuilder();
+		for(VoteItem it:items){
+			String ud=it.getUsers();
+			if(ud!=null){
+				usersVoted.append(ud);
+			}
+		}
+		return usersVoted.toString();
+	}
 	@Override
 	public String toString() {
 		return "VoteInfo [name=" + name + ", items=" + items + "]";

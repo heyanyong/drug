@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <style>
  .voteDetail{margin-left: auto; margin-right: auto; }
  .voteDetail .voteItem{float: left; width:150px; height: 255px;  margin: 20px; border:1px solid #DBDBDB;text-align: center;}
@@ -25,7 +26,10 @@
 			<div class="picdiv"><div class="pillar" style="height:${e.voteNum+1}px;"></div></div>
 			<div>
 				<div class="title">${e.name}</div>	
-				<span>${e.voteNum}票</span><a href="vote/voteTo?voteId=${info.id}&itId=${e.id}" class="icon" target="ajaxTodo"   title="确定要投当前项吗?">投 票</a>
+				<span>${e.voteNum}票</span>
+				<c:if test="${!fn:contains(oUsers, loginUser.no)}"></c:if>
+				 <a href="vote/voteTo?voteId=${info.id}&itId=${e.id}" class="icon" target="ajaxTodo"   title="确定要投当前项吗?">投 票</a>
+				
 			</div>
 		</div>
 	  </c:forEach>
