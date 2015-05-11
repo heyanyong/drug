@@ -11,12 +11,9 @@
 				<input type="password" name="password" id="password"  size="20" class="login_input" />
 			</div>
 		</div>
-		<div>
-			<input type="checkbox" id="isRemember" />记住用户名
-		</div>
 		<div class="formBar">
 			<ul>
-				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">提交</button></div></div></li>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">登 陆</button></div></div></li>
 				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
 			</ul>
 		</div>
@@ -24,9 +21,7 @@
 </div>
 <script>
 	var isRemember=$.cookie("isRemember");
-	alert(1);
 	if (isRemember=="true") {
-		alert(2);
 		$("#isRemember").attr("checked", true);
 		$("#userNo").val($.cookie("userNo"));
 		$("#password").focus();

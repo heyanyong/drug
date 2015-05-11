@@ -118,7 +118,7 @@ public class LoginController {
 				}
 			}
 			session.setAttribute("permisions", permisions);
-			return new Json("登陆成功", "200", null, null, "closeCurrent", null);
+			return new Json(null, "200", null, null, "closeCurrent", null);
 		}
 	}
 }

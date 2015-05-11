@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="pageHeader">
-	<form onsubmit="return dwzSearch(this,'dialog');" action="sysurl/save" method="post">
+	<form onsubmit="return dialogSearch(this,'dialog');" action="sysurl/save" method="post">
 	 <div class="pageContent">
 	 <table class="table" width="100%" layoutH="100">
 		<tr>

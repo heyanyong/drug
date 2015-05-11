@@ -32,8 +32,6 @@
 			<li><a class="add" href="sys/urlAdd.jsp" target="dialog"><span>添加</span></a></li>
 			<li class="line">line</li>
 			<li><a class="delete" href="sysurl/delete/{e_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li class="line">line</li>
-			<li><a class="edit" href="sysurl/edit/{e_id}" target="navTab"  rel="roleDeatil"><span>修改</span></a></li>
 		</ul>
 	</div>
 	<table class="table" width="50%" layoutH="138">

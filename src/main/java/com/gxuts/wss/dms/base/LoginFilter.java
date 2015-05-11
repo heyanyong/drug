@@ -26,7 +26,7 @@ public class LoginFilter implements Filter {
 		 if((req.getSession(true).getAttribute("loginUser")!=null)||url.contains("ogin")||url.contains("register")||url.contains(".js")){
 			 chain.doFilter(request, response);
 		 }else if (req.getHeader("X-Requested-With") != null) {
-			 resp.getWriter().write("{\"message\":\"登陆超时\",\"statusCode\":\"301\"");
+			 resp.getWriter().write("{\"message\":\"登陆超时\",\"statusCode\":\"301\"}");
 		 }else{
 			 resp.sendRedirect("/drug/login.jsp");
 			 

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<style>
+ 
+</style>
 <div class="pageContent">
 	<form id="detailForm" method="post" action="pay/save" class="pageForm required-validate"
 		onsubmit="return validateCallback(this, navTabAjaxDone);">
@@ -71,11 +74,11 @@
 							<thead>
 								<tr>
 									<th type="del" width="24"></th>
-									<th type="text" name="items[#index#].used" size="14">用途</th>
-									<th type="text" name="items[#index#].income" size="10" fieldClass="digits">已收</th>
-									<th type="text" name="items[#index#].recome" size="10" fieldClass="digits">应收</th>
-									<th type="text" name="items[#index#].computed" size="10" fieldClass="digits">折算</th>
-									<th type="text" name="items[#index#].payment" size="10" fieldClass="digits">付款总记</th>
+									<th type="text" name="items[#index#].used" size="14" fieldClass="inputNob">用途</th>
+									<th type="text" name="items[#index#].income" size="10" fieldClass="digits inputNob">已收</th>
+									<th type="text" name="items[#index#].recome" size="10" fieldClass="digits inputNob">应收</th>
+									<th type="text" name="items[#index#].computed" size="10" fieldClass="digits inputNob">折算</th>
+									<th type="text" name="items[#index#].payment" size="10" fieldClass="digits inputNob">付款总记</th>
 									<th type="enum" name="items[#index#].payCurrency" enumUrl="depart/currency.html" size="10">已收币种</th>
 									<th type="enum" name="items[#index#].payCurrency" enumUrl="depart/currency.html" size="10">应收币种</th>
 								</tr>
@@ -147,4 +150,5 @@
 		$("#" + form).attr("action", "pay/deal");
 		$("#" + form).submit();
 	}
+	$(".itemDetail input").css("border","none");
 </script>

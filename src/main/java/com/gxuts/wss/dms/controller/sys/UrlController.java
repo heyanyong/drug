@@ -22,22 +22,24 @@ public class UrlController {
 	
 	@MethodName(name="保存一个URL")
 	@RequestMapping(value = "/save")
-	public String save(UrlInfo url) {
+	@ResponseBody
+	public Json save(UrlInfo url) {
 		urlService.save(url);
-		return "sys/urlList";
+		return new Json("操作成功","200","sysurlList","sysurlList","closeCurrent",null);
 	}
 	@MethodName(name="删除一个URL")
 	@RequestMapping(value = "/delete/{id}")
-	public String delete(@PathVariable Integer id) {
+	@ResponseBody
+	public Json delete(@PathVariable Integer id) {
 		urlService.delete(new UrlInfo(id));
-		return "sys/urlList";
+		return new Json("操作成功","200","sysurlList","sysurlList",null,null);
 	}
 	@MethodName(name="更新一个URL")
 	@RequestMapping(value = "/update",method={RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
 	public Json update(UrlInfo url) {
 		urlService.update(url);
-		return new Json();
+		return new Json("操作成功","200","sysurlList","sysurlList",null,null);
 	}
 	@MethodName(name="查看一个URL")
 	@RequestMapping(value = "/edit/{id}")

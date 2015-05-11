@@ -67,7 +67,7 @@
 			</fieldset>
 		
 		<div class="divider"></div>
-			<div class="panel collapse" minH="180"  style="width:40%;">
+			<div class="panel collapse" minH="180"  style="width:50%;">
 				<h1>投票明细 </h1>
 				<div>
 					<table class="list nowrap itemDetail" addButton="追加明细项" width="100%">

@@ -64,7 +64,6 @@ public class UserController {
 		user.setRoles(roles);
 		user.setCreateDate(new Date());
 		user.setCreateUser((UserInfo)session.getAttribute("loginUser"));
-		System.out.println("UserController save"+user);
 		userService.save(user);
 		Json json =new Json("成功","200","userList","userList",null,null);
 		return json;
@@ -124,6 +123,14 @@ public class UserController {
 	@RequestMapping(value = "/center")
 	public String center(Model model) {
 		return  "userCenter";
+	}
+	@RequestMapping(value = "/changepwd",method=RequestMethod.POST)
+	@ResponseBody
+	public Json changePassword(String password,HttpSession session) {
+		UserInfo user=(UserInfo)session.getAttribute("loginUser");
+		user.setPassword(MD5Util.computeMD5(password));
+		userService.update(user);
+		return  new Json("更新成功","200",null,null,"closeCurrent",null);
 	}
 	
 

@@ -33,10 +33,12 @@ public class LeaveBill implements Serializable{
 	private String no;
 	private String name;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	private Date createDate;
 	@ManyToOne
 	private UserInfo createUser;
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date updateDate;
 	private UserInfo updateUser;
 	private String flowId;

@@ -103,12 +103,6 @@ $(function(){
 			<div class="headerNav">
 				<a class="logo" href="/">标志</a>
 				<ul class="nav">
-					<li id="switchEnvBox"><a href="javascript:">（<span>北京</span>）切换城市
-					</a>
-						<ul>
-							<li><a href="sidebar_1.html">北京</a></li>
-							<li><a href="sidebar_2.html">上海</a></li>
-						</ul></li>
 					<li><a href="user/center" target="navTab">${loginUser.name}</a></li>
 					<li><a href="changepwd.html" target="dialog" width="600">设置</a></li>
 					<li><a href="logout">退出</a></li>
@@ -148,8 +142,8 @@ $(function(){
 							<li><a>常用单据</a>
 								<ul>
 									<li><a href="pay/list" target="navTab" rel="payList">付款申请</a></li>
-									<li><a href="supplier/list" target="navTab" rel="supplierList">供应商</a></li>
-									<li><a href="customer/list" target="navTab" rel="customerList">客户汇总</a></li>
+									<li><a href="supplier/list" target="navTab" rel="supplierList">供应商管理</a></li>
+									<li><a href="customer/list" target="navTab" rel="customerList">客户管理</a></li>
 								</ul>
 							</li>
 							<li><a>部门报表</a>
@@ -340,8 +334,8 @@ $(function(){
 						<ul class="tree treeFolder">
 							<li><a>常用单据</a>
 								<ul>
-									<li><a href="leave/list" target="navTab" rel="leaveAdd">加班申请</a></li>
-									<li><a href="leave/list" target="navTab" rel="leaveAdd">请假申请</a></li>
+									<li><a href="leave/list" target="navTab" rel="leaveList">加班申请</a></li>
+									<li><a href="leave/list" target="navTab" rel="leaveList">请假申请</a></li>
 									<li><a href="signException/list" target="navTab" rel="signExceptionList">个人考勤记录</a></li>
 									<li><a href="sign/list" target="navTab" rel="signList">考勤异常申请</a></li>
 									<li><a href="enrol/list" target="navTab" rel="enrolList">用人需求</a></li>
@@ -455,7 +449,7 @@ $(function(){
 							<li><a href="flow/allTask" target="navTab" rel="allTask">流程跟踪</a></li>
 							<li><a href="controllerLog/list" target="navTab" rel="controllerLogList">操作记录</a></li>
 							<li><a href="role/list" target="navTab" rel="roleList">权限管理</a></li>
-							<li><a href="sysurl/list" target="navTab" rel="urlList">URL维护</a></li>
+							<li><a href="sysurl/list" target="navTab" rel="sysurlList">URL维护</a></li>
 							<li><a href="monitoring" target="_blank" rel="monitoring">服务器运行监控</a></li>
 						</ul>
 					</div>
@@ -501,9 +495,9 @@ $(function(){
 										src="themes/mail.png" /></a><span>个人消息</span>
 								</p>
 								<p>
-									<a href="user/list?show=dialog" target="dialog" height="300"
-										rel="userListDialog2" title="工作日历"><img
-										src="themes/ico02.png" /></a><span>工作日历</span>
+									<a href="notice/list?show=dialog" target="dialog" height="300"
+										rel="noticeDialog" title="工作日历">
+										<img src="themes/ico02.png" /></a><span>工作日历</span>
 								</p>
 								<p>
 									<a href="user/list?show=dialog" target="dialog" height="300"

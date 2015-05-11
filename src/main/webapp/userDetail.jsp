@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script src="js/my.extend.js" type="text/javascript"></script>
 <div class="pageContent">
 	<form id="detailForm" method="post" action="user/update" 
@@ -18,6 +19,7 @@
 		<div class="pageFormContent" layoutH="56">
 			<p>
 				<label>账号：</label> <input name="no" type="text" value="${user.no}" size="30"/>
+				<input name="password" type="hidden" value="${user.password}" size="30"/>
 			</p>
 			<p>
 				<label>姓名：</label> <input name="name" value="${user.name}" class="required" type="text"
@@ -72,7 +74,11 @@
 <div class="divider"></div>
 <div class="information">
 			 <p>
+			 	<input  type="hidden" name="createUser.id" value="${user.createUser.id}" />
 				<label>创建人：</label> <input  type="text" value="${user.createUser.name}" />
+			</p>
+			 <p>
+				<label>创建时间：</label> <input name="createDate"  type="text" value="<fmt:formatDate value='${user.createDate}' pattern='yyyy-MM-dd'/>"/>
 			</p>
 			 <p>
 				<label>创建人账号：</label> <input  type="text" value="${user.createUser.no}" />
