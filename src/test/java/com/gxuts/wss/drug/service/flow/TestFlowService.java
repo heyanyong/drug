@@ -75,8 +75,7 @@ public class TestFlowService {
 		variables.put("assignee", "assignee1");
 //		List<String> assigneeList=null;
 		variables.put("assigneeList",null);
-		ProcessInstance pi=flowService.startProcess(processDefinitionKey, businessKey, variables);
-		System.out.println(pi.getId());
+		flowService.startProcess(processDefinitionKey, businessKey, variables);
 	}
 	//个人任务测试：任务名称 任务key 表单ID
 	@Test

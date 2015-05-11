@@ -65,11 +65,19 @@ public class FlowServiceImpl implements FlowService {
 		page.setNumPerPage(numPerPage);
 		return page;
 	}
-	public ProcessInstance startProcess(String processDefinitionKey,String businessKey,Map<String,Object> variables){
+	public String startProcess(String processDefinitionKey,String businessKey,Map<String,Object> variables){
 		ProcessInstance pi=runtimeService.startProcessInstanceByKey(processDefinitionKey, businessKey,variables);
-		Task t=taskService.createTaskQuery().processInstanceId(pi.getId()).singleResult();
-		taskService.complete(t.getId());
-		return pi;
+		Task task=taskService.createTaskQuery().processInstanceId(pi.getId()).singleResult();
+		taskService.addComment(task.getId(), pi.getId(),"提交");
+		taskService.complete(task.getId());
+		List<Task> tasks= taskService.createTaskQuery().processInstanceId(pi.getId()).active().list();
+		String result = "";
+		for(Task t:tasks){
+			result+=t.getName()+":"+t.getAssignee()+" ";
+		}
+		String[] bk=businessKey.split("#");
+		userService.executeHql("update "+bk[6]+" set status=2,flowId= "+ pi.getId() + " where id= " + bk[5]);
+		return result;
 	}
 	@Override
 	public Page<Object[]> queryPersonTask(String no,Integer currentPage, Integer numPerPage) {

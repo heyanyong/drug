@@ -83,8 +83,7 @@ public class BudgetController {
 		variables.put("roleGrade", roleGrade);
 		variables.put("assignee", null);
 		variables.put("assigneeList", null);	
-		ProcessInstance pi= flowService.startProcess(processDefinitionKey, businessKey, variables);
-		userService.executeHql("update BudgetInfo set status=2,flowId="+pi.getId()+" where id="+id);
+		String pi= flowService.startProcess(processDefinitionKey, businessKey, variables);
 		return new Json("提交办理成功","200","budgetList","budgetList",null,null);
 	}
 	
