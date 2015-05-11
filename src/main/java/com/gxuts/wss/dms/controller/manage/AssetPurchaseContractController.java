@@ -18,7 +18,7 @@ import com.gxuts.wss.dms.entity.sys.Json;
 import com.gxuts.wss.dms.service.manage.AssetPurchaseContractService;
 
 @Controller
-@RequestMapping(value = "/assetPurchase")
+@RequestMapping(value = "/assetPurchaseContract")
 public class AssetPurchaseContractController {
 	@Autowired
 	private AssetPurchaseContractService assetPurchaseService;

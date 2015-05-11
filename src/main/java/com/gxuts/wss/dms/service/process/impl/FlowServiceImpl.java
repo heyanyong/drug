@@ -73,7 +73,7 @@ public class FlowServiceImpl implements FlowService {
 		List<Task> tasks= taskService.createTaskQuery().processInstanceId(pi.getId()).active().list();
 		String result = "";
 		for(Task t:tasks){
-			result+=t.getName()+":"+t.getAssignee()+" ";
+			result+=t.getName()+"("+t.getAssignee()+") ";
 		}
 		String[] bk=businessKey.split("#");
 		userService.executeHql("update "+bk[6]+" set status=2,flowId= "+ pi.getId() + " where id= " + bk[5]);
@@ -139,7 +139,7 @@ public class FlowServiceImpl implements FlowService {
 		List<Task> tasks= taskService.createTaskQuery().processInstanceId(processInstanceId).active().list();
 		String result = "";
 		for(Task t:tasks){
-			result+=t.getName()+":"+t.getAssignee()+" ";
+			result+=t.getName()+"("+t.getAssignee()+") ";
 		}
 		if(result.equals("")){
 			String[] bk=p.getBusinessKey().split("#");

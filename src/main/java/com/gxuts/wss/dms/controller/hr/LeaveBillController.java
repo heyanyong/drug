@@ -119,7 +119,7 @@ public class LeaveBillController {
 		variables.put("assignee", null);
 		variables.put("assigneeList", null);
 		String  dealer = flowService.startProcess(processDefinitionKey, businessKey, variables);
-		return new Json("提交成功,到达"+dealer+"办理", "200", "leaveList", "leaveList", null, null);
+		return new Json("提交成功,流程到达: "+dealer+"办理", "200", "leaveList", "leaveList", null, null);
 	}
 	
 }
