@@ -118,11 +118,8 @@ public class LeaveBillController {
 		variables.put("roleGrade", roleGrade);
 		variables.put("assignee", null);
 		variables.put("assigneeList", null);
-		ProcessInstance pi = flowService.startProcess(processDefinitionKey,
-				businessKey, variables);
-		userService.executeHql("update LeaveBill set status=2,flowId="
-				+ pi.getId() + " where id=" + id);
-		return new Json("提交办理成功", "200", "leaveList", "leaveList", null, null);
+		String  dealer = flowService.startProcess(processDefinitionKey, businessKey, variables);
+		return new Json("提交成功,流程到达: "+dealer+"办理", "200", "leaveList", "leaveList", null, null);
 	}
 	
 }

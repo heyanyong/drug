@@ -1,13 +1,16 @@
 package com.gxuts.wss.dms.entity.manage;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -15,14 +18,20 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 
+/**
+ * 资产采购需求单
+ * @author nf0830
+ *
+ */
 @Entity
-public class AssetInfo {
+public class AssetPurchaseBill {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	private String no;
 	private String name;
-	
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<AssetInfo> items;
 	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -35,13 +44,14 @@ public class AssetInfo {
 	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
 	private Date updateTime;
 	
-	public AssetInfo(){}
-	public AssetInfo(Integer id){
-		this.id=id;
-	}
-	public AssetInfo(String name){
+	public AssetPurchaseBill(){}
+	public AssetPurchaseBill(String name){
 		this.name=name;
 	}
+	public AssetPurchaseBill(Integer id){
+		this.id=id;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -59,6 +69,12 @@ public class AssetInfo {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public List<AssetInfo> getItems() {
+		return items;
+	}
+	public void setItems(List<AssetInfo> items) {
+		this.items = items;
 	}
 	public Date getCreateDate() {
 		return createDate;
@@ -85,4 +101,4 @@ public class AssetInfo {
 		this.updateTime = updateTime;
 	}
 	
- }
+}
