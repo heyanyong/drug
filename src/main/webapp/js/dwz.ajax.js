@@ -166,6 +166,10 @@ function dialogAjaxDone(json){
 		if ("closeCurrent" == json.callbackType) {
 			$.pdialog.closeCurrent();
 		}
+		if ("reloadDialog" == json.callbackType) {
+		   var dialog = $("body").data(json.navTabId);
+	       $.pdialog.reload(dialog.data("url"), { data:{}, dialogId:json.navTabId, callback: null })
+		}
 	}
 }
 

@@ -45,7 +45,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public int executeHql(String hql) {
-		return 0;
+		return noticeDao.executeHql(hql);
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public Page<NoticeInfo> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows) {
-		return noticeDao.query("from NoticeInfo", params, currentPage, rows);
+		return noticeDao.query(hql, params, currentPage, rows);
 	}
 
 	@Override

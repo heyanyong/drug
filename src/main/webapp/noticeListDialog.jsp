@@ -8,7 +8,7 @@
 </form>
 
 <div class="pageHeader">
-	<form onsubmit="return dialogSearch(this,'dialog');" action="notice/save" method="post">
+	<form onsubmit="return validateCallback(this, dialogAjaxDone)" action="notice/save" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
@@ -32,20 +32,20 @@
 	</form>
 </div>
 <div class="pageContent">
-	<table class="table" width="100%" layoutH="100">
+	<table class="table" width="100%" layoutH="100" nowrapTD="false">
 		<thead>
 			<tr>
-				<th >提醒日期</th>
+				<th width="130">提醒日期</th>
 				<th >内容</th>
-				<th >操作</th>
+				<th width="50">操作</th>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${pages.data}" var="e">
 			<tr target="e_id" rel="${e.id}">
-				<td>${e.alertTime}</td>
+				<td><fmt:formatDate value="${e.alertTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 				<td>${e.content}</td>
-				<td>&nbsp;<c:if test="${e.isAvailable==true}"><a href="notice/ignore?id=${e.id}" target="ajaxTodo">忽略</a> </c:if></td>
+				<td>&nbsp;<c:if test="${e.isAvailable==true}"><a href="notice/ignore?id=${e.id}" target="ajaxTodo"  callback="$.pdialog.reload('notice/list?show=dialog', {data:{}, dialogId:'noticeListDialog', callback:null}) ">忽略</a> </c:if></td>
 			</tr>
 			</c:forEach>
 		</tbody>

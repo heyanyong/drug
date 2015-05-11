@@ -496,7 +496,7 @@ $(function(){
 								</p>
 								<p>
 									<a href="notice/list?show=dialog" target="dialog" height="300"
-										rel="noticeDialog" title="工作日历">
+										rel="noticeListDialog" title="备忘录">
 										<img src="themes/ico02.png" /></a><span>工作日历</span>
 								</p>
 								<p>
