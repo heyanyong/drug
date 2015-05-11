@@ -43,6 +43,15 @@ public class AssetPurchaseBill {
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
 	private Date updateTime;
+	
+	public AssetPurchaseBill(){}
+	public AssetPurchaseBill(String name){
+		this.name=name;
+	}
+	public AssetPurchaseBill(Integer id){
+		this.id=id;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

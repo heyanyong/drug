@@ -34,6 +34,14 @@ public class AssetInfo {
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
 	private Date updateTime;
+	
+	public AssetInfo(){}
+	public AssetInfo(Integer id){
+		this.id=id;
+	}
+	public AssetInfo(String name){
+		this.name=name;
+	}
 	public Integer getId() {
 		return id;
 	}

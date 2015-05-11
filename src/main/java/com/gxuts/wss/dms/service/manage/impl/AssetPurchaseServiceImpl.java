@@ -7,8 +7,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.gxuts.wss.dms.base.Page;
+import com.gxuts.wss.dms.dao.manage.AssetDao;
 import com.gxuts.wss.dms.dao.manage.AssetPurchaseDao;
+import com.gxuts.wss.dms.entity.manage.AssetInfo;
 import com.gxuts.wss.dms.entity.manage.AssetPurchaseBill;
 import com.gxuts.wss.dms.service.manage.AssetPurchaseService;
 import com.gxuts.wss.dms.util.QueryFilter;
@@ -17,6 +20,8 @@ import com.gxuts.wss.dms.util.QueryFilter;
 public class AssetPurchaseServiceImpl implements AssetPurchaseService {
 	@Autowired
 	private AssetPurchaseDao assetPurchaseDao;
+	@Autowired
+	private AssetDao assetDao;
 
 	@Override
 	public Serializable save(AssetPurchaseBill assetPurchase) {
@@ -69,7 +74,12 @@ public class AssetPurchaseServiceImpl implements AssetPurchaseService {
 	}
 	@Override
 	public void delete(AssetPurchaseBill assetPurchase) {
+		assetPurchase=assetPurchaseDao.get(AssetPurchaseBill.class, assetPurchase.getId());
+		List<AssetInfo> items=assetPurchase.getItems();
 		assetPurchaseDao.delete(assetPurchase);
+		for (AssetInfo asset:items) {
+			assetDao.delete(asset);
+		}
 	}
 	@Override
 	public void update(AssetPurchaseBill assetPurchase) {
