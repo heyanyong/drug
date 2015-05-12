@@ -1,7 +1,6 @@
 package com.gxuts.wss.dms.controller.sys;
 
 import java.io.File;
-import java.io.PrintWriter;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -15,6 +14,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,7 +24,6 @@ import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequ
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.entity.sys.AttaFile;
 import com.gxuts.wss.dms.entity.sys.AttaEditor;
-import com.gxuts.wss.dms.entity.sys.Json;
 
 @Controller
 @RequestMapping(value = "/upload")
@@ -194,5 +193,10 @@ public class UploadController {
 			}
 		}
 		return returnFile;
+	}
+	@RequestMapping("/diskList")
+	public String personFile(HttpSession session, Integer currentPage, Integer row, Model model) {
+		UserInfo user= (UserInfo)session.getAttribute("loginUser");
+		return "diskListDialog";
 	}
 }

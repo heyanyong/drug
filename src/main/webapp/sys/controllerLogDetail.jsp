@@ -5,8 +5,8 @@
 <style>
 .conlogtab{margin-top:30px; margin-left:10%; height:450px; overflow: auto; }
 .conlogtab table {     width:90%; }
-.conlogtab td{ border:1px solid #AAAAAA;word-wrap:break-word;  }
-.conlogtab .tabtitle{white-space: nowrap;line-height: 20px; width:17%; text-align: center;background: #ccc;font-weight: bold; letter-spacing: 2px;}
+.conlogtab td{ border:1px solid #a1cbee;word-wrap:break-word;  }
+.conlogtab .tabtitle{white-space: nowrap;line-height: 20px; width:17%; text-align: center;background: #f6f5fb;font-weight: bold; letter-spacing: 2px;}
 </style>
 <div class="conlogtab">
 <table >

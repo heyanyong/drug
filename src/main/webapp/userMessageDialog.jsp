@@ -8,21 +8,16 @@
 </form>
 
 <div class="pageHeader">
-	<form onsubmit="return validateCallback(this, dialogAjaxDone)" action="notice/save" method="post">
+	<form action="upload/one?up=1" method="post" enctype="multipart/form-data" class="pageForm required-validate" onsubmit="return iframeCallback(this)">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
-				<td colspan="2">
+				<td >
 					<input type="hidden"  name="createUser.id" value="${loginUser.id}" />
-					<label>提醒日期：</label>
-					<input type="text" class="date" style="float:left;" name="alertTime" dateFmt="yyyy-MM-dd HH:mm:ss"/>
-					 	<a class="inputDateButton" href="javascript:;">选择</a>
+					<label>文件：</label> <input type="file" name="image" class="required" size="30" />
 				</td>
 			</tr>
 			<tr>
-				<td>
-					<label>备忘内容：</label><textarea   name="content" rows="3" cols="60" class="required" ></textarea>
-				</td>
 				<td>
 					<div class="buttonActive"  ><div class="buttonContent"><button type="submit">保 存</button></div></div>
 				</td>
@@ -35,17 +30,17 @@
 	<table class="table" width="100%" layoutH="100" nowrapTD="false">
 		<thead>
 			<tr>
-				<th width="130">提醒日期</th>
-				<th >内容</th>
+				<th width="130">保存日期</th>
+				<th >文件名</th>
 				<th width="50">操作</th>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${pages.data}" var="e">
 			<tr>
-				<td><fmt:formatDate value="${e.alertTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-				<td>${e.content}</td>
-				<td>&nbsp;<c:if test="${e.isAvailable==true}">
+				<td><fmt:formatDate value="" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+				<td></td>
+				<td>&nbsp;<c:if test="">
 				<a href="notice/ignore?id=${e.id}" target="ajaxTodo"  callback="$.pdialog.reload('notice/list?show=dialog', {data:{}, dialogId:'noticeListDialog', callback:null}) ">忽略</a> 
 				</c:if></td>
 			</tr>

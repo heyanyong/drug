@@ -45,7 +45,7 @@ public class NoticeController {
 	@ResponseBody
 	public Json ignore(String id){
 		noticeService.executeHql("update NoticeInfo set isAvailable=false  where id="+id);
-		return new Json("操作成功","200","noticeListDialog","noticeListDialog","reloadDialog",null);
+		return new Json(null,"200","noticeListDialog","noticeListDialog","reloadDialog","noticeListDialog");
 	}
 	
 }

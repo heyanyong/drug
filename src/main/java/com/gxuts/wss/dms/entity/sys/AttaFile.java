@@ -3,9 +3,13 @@ package com.gxuts.wss.dms.entity.sys;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.gxuts.wss.dms.entity.hr.UserInfo;
 /**
  * 表单附件类
  * @author nf0830
@@ -19,9 +23,17 @@ public class AttaFile  implements Serializable{
 	private String webPath;
 	private String fileName;
 	private String fileType;
+	@ManyToOne(fetch=FetchType.LAZY)
+	private UserInfo createUser;
 	
 	
 	
+	public UserInfo getCreateUser() {
+		return createUser;
+	}
+	public void setCreateUser(UserInfo createUser) {
+		this.createUser = createUser;
+	}
 	public boolean isOk() {
 		return isOk;
 	}

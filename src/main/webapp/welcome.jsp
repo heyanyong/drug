@@ -103,7 +103,7 @@ $(function(){
 			<div class="headerNav">
 				<a class="logo" href="/">标志</a>
 				<ul class="nav">
-					<li><a href="user/center" target="navTab">${loginUser.name}</a></li>
+					<li><a href="user/center" target="navTab" rel="userCenter">${loginUser.name}</a></li>
 					<li><a href="changepwd.html" target="dialog" width="600">设置</a></li>
 					<li><a href="logout">退出</a></li>
 				</ul>
@@ -490,18 +490,17 @@ $(function(){
 										src="themes/ico06.png" /></a><span>通讯录查询</span>
 								</p>
 								<p>
-									<a href="user/list?show=dialog" target="dialog" height="300"
-										rel="userListDialog1" title="个人消息"><img
+									<a  rel="userMessageDialog" title="个人消息"><img
 										src="themes/mail.png" /></a><span>个人消息</span>
 								</p>
 								<p>
 									<a href="notice/list?show=dialog" target="dialog" height="300"
 										rel="noticeListDialog" title="备忘录">
-										<img src="themes/ico02.png" /></a><span>工作日历</span>
+										<img src="themes/ico02.png" /></a><span>备忘录</span>
 								</p>
 								<p>
-									<a href="user/list?show=dialog" target="dialog" height="300"
-										rel="userListDialog3" title="文档记录"><img
+									<a href="upload/diskList?show=dialog" target="dialog" height="300"
+										rel="diskListDialog" title="文档记录"><img
 										src="themes/d01.png" /></a><span>文档记录</span>
 								</p>
 							</div>
