@@ -176,4 +176,8 @@ public class FlowServiceImpl implements FlowService {
 		return assignee;
 	}
 	
+	public String instanceList() {
+		return null;
+	}
+	
 }

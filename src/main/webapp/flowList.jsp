@@ -32,7 +32,7 @@
 			<li><a class="icon"  target="dwzExport" targetType="navTab"  ><span>刷新列表</span></a></li>
 		</ul>
 	</div>
-	<table class="table" width="100%" layoutH="110">
+	<table class="table" width="60%" layoutH="110">
 		<thead>
 			<tr>
 				<th>流程名称</th> 

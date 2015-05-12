@@ -44,7 +44,7 @@
 															href="${e[10]}/edit/${e[11]}?show=deal&processInstanceId=${e[5]}&taskId=${e[0]}"
 															target="navTab">${e[9]}</a></td>
 														<td>${e[1]}(${e[7]})</td>
-														<td><a href="flow/image/${e[5]}" target="navTab" title="流程跟踪"><img alt="" src="images/flowView.png" /></a></td>
+														<td width="30"><a href="flow/image/${e[5]}" target="navTab" title="流程跟踪"><img alt="" src="images/flowView.png" /></a></td>
 													</tr>
 												</c:forEach>
 											</tbody>

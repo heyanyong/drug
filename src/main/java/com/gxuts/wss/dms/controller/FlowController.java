@@ -143,5 +143,10 @@ public class FlowController {
 		in.close();
 		return null;
 	}
+	@RequestMapping(value="instanceList")
+	public String instanceList(HttpServletRequest request,String  pageNum){
+		pageNum=pageNum==null? "0":pageNum;
+		return "instanceList";
+	}
 	 
 }

@@ -104,7 +104,7 @@ $(function(){
 				<a class="logo" href="/">标志</a>
 				<ul class="nav">
 					<li><a href="user/center" target="navTab" rel="userCenter">${loginUser.name}</a></li>
-					<li><a href="changepwd.html" target="dialog" width="600">设置</a></li>
+					<li><a href="changepwd.html" target="dialog" width="400" height="200">设置</a></li>
 					<li><a href="logout">退出</a></li>
 				</ul>
 				<ul class="themeList" id="themeList">
@@ -446,7 +446,7 @@ $(function(){
 							<li><a href="menu/show" target="navTab" rel="menuList">菜单设置</a></li>
 							<li><a href="flow/flowList" target="navTab" rel="flowList">系统流程</a></li>
 							<li><a href="flow/deployList" target="navTab" rel="flowDeployList">流程部署记录</a></li>
-							<li><a href="flow/allTask" target="navTab" rel="allTask">流程跟踪</a></li>
+							<li><a href="flow/instanceList" target="navTab" rel="instanceList">流程跟踪</a></li>
 							<li><a href="controllerLog/list" target="navTab" rel="controllerLogList">操作记录</a></li>
 							<li><a href="role/list" target="navTab" rel="roleList">权限管理</a></li>
 							<li><a href="sysurl/list" target="navTab" rel="sysurlList">URL维护</a></li>
