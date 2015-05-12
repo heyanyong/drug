@@ -82,7 +82,7 @@
 			<thead>
 			  <tr>
 			    <th width="130">流程节点</th>
-			    <th width="120">办理人</th>
+			    <th width="80">办理人</th>
 			    <th width="155">办理时间</th>
 			    <th width="30">结果</th>
 			    <th>批注</th>
