@@ -68,7 +68,7 @@ public class FlowServiceImpl implements FlowService {
 	public String startProcess(String processDefinitionKey,String businessKey,Map<String,Object> variables){
 		ProcessInstance pi=runtimeService.startProcessInstanceByKey(processDefinitionKey, businessKey,variables);
 		Task task=taskService.createTaskQuery().processInstanceId(pi.getId()).singleResult();
-		taskService.addComment(task.getId(), pi.getId(),"提交");
+		taskService.addComment(task.getId(), pi.getId(),null,"提交");
 		taskService.complete(task.getId());
 		List<Task> tasks= taskService.createTaskQuery().processInstanceId(pi.getId()).active().list();
 		String result = "";
@@ -156,14 +156,15 @@ public class FlowServiceImpl implements FlowService {
 				.list();
 		List<Comment> comments = taskService.getProcessInstanceComments(processInstanceId);
 		for (HistoricTaskInstance t:tasks) {
-			Object[] pt=new Object[5];
+			Object[] pt=new Object[6];
 			pt[0]=t.getName();
 			pt[1]=t.getAssignee();
 			pt[2]=t.getCreateTime();
 			pt[3]=t.getEndTime();
 			for(Comment c:comments){
 				 if(t.getId().equals(c.getTaskId())){
-					 pt[4]=c.getFullMessage();
+					 pt[4]=c.getType();
+					 pt[5]=c.getFullMessage();
 				 } 
 			}
 			data.add(pt);

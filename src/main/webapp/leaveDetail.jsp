@@ -27,17 +27,17 @@
 			</p>
 			<p>
 				<label>开始日期：</label>
-				<input type="text" name="startDate" class="date required" value="${info.startDate}"    size="30" dateFmt="yyyy-MM-dd HH:mm:ss"  /><a class="inputDateButton" href="javascript:;">选择</a>
+				<input type="text" name="startDate" class="date required" value="<fmt:formatDate value='${info.startDate}' pattern='yyyy-MM-dd HH:mm:ss'/>"  size="30" dateFmt="yyyy-MM-dd HH:mm:ss"   size="30" dateFmt="yyyy-MM-dd HH:mm:ss"  /><a class="inputDateButton" href="javascript:;">选择</a>
 			</p>
 			<p>
 				<label>结束日期：</label>
-				<input type="text" name="endDate"  class="date required" value="${info.endDate}"  size="30" dateFmt="yyyy-MM-dd HH:mm:ss"   /><a class="inputDateButton" href="javascript:;">选择</a>
+				<input type="text" name="endDate"  class="date required" value="<fmt:formatDate value='${info.endDate}' pattern='yyyy-MM-dd HH:mm:ss'/>"  size="30" dateFmt="yyyy-MM-dd HH:mm:ss"   /><a class="inputDateButton" href="javascript:;">选择</a>
 			</p>
 			<p>
 				<label>总小时数：</label> <input type="text"    size="30" name="hours" value="${info.hours }" onclick="calculateHours()" />
 			</p>
 			<p>
-				<label>请假类型：</label> <select name="type" class="combox">
+				<label>请假类型：</label> <select name="type">
 					<option value="">请选择</option>
 					<option value="事假" selected="selected">事假</option>
 					<option value="补休假">补休假</option>
@@ -58,8 +58,7 @@
 				</dd>
 			</dl>
 		
-<div class="divider"></div>
-<div class="information">
+<%-- <div class="information">
 			 <p>
 			 	<input  type="hidden" readonly="readonly" name="createUser.id" value="${info.createUser.id}" />
 				<label>创建人：</label> <input  type="text" readonly="readonly" value="${info.createUser.name}" />
@@ -76,15 +75,16 @@
 			 <p>
 				<label>最后更新时间：</label> <input  type="text" readonly="readonly" value="${info.updateDate}" />
 			</p>
-			</div>
+			</div> --%>
 			<div class="divider"></div>
 			<div class="comments" >
-			<table class="table"  >
+			<table  >
 			<thead>
 			  <tr>
-			    <th width="200">审批</th>
-			    <th width="200">办理人</th>
-			    <th width="400">办理时间</th>
+			    <th width="130">流程节点</th>
+			    <th width="120">办理人</th>
+			    <th width="155">办理时间</th>
+			    <th width="30">结果</th>
 			    <th>批注</th>
 			  </tr>
 			</thead>
@@ -92,9 +92,12 @@
 			<c:forEach items="${comments}" var="e">
 			  <tr>
 			    <td>${e[0]}</td>
-			    <td>${e[1]}</td>
-			    <td><fmt:formatDate value="${e[2]}" type="date"/>--<fmt:formatDate value="${e[3]}" type="date"/></td>
+			    <td><code>${e[1]}</code></td>
+			    <td>
+			    开始：<fmt:formatDate value='${e[2]}' pattern='yyyy-MM-dd HH:mm:ss'/><br />
+			   结束：<fmt:formatDate value="${e[3]}"  pattern='yyyy-MM-dd HH:mm:ss'/></td>
 			    <td>${e[4]}</td>
+			    <td>${e[5]}</td>
 			  </tr>
 			  </c:forEach>
 			  </tbody>

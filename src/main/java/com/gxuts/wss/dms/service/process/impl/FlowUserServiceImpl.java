@@ -28,7 +28,7 @@ public class FlowUserServiceImpl implements FlowUserService {
 		List<UserInfo> users=userDao.manyByRole(roleName);
 		List<String> nos=new ArrayList<String>(users.size());
 		for (UserInfo user:users) {
-			nos.add(user.getNo());
+			nos.add(user.getName()+"("+user.getNo()+")");
 		}
 		return nos;
 	}
@@ -37,26 +37,31 @@ public class FlowUserServiceImpl implements FlowUserService {
 	@Override
 	public String leaderByRole(int departmentId, String roleName) {
 		UserInfo user=null;
-		String no=null;
+		String assignee=null;
 		StructureInfo dept=structureDao.get(StructureInfo.class, departmentId);
 		if(dept==null){
 			return null;
 		}else {
 			  user=userDao.departmentOneRole(departmentId, roleName);
 			if(user!=null){
-				no=user.getNo();
+				assignee=user.getName()+"("+user.getNo()+")";
 			}else{
-				no= leaderByRole(dept.getpId(), roleName);
+				assignee= leaderByRole(dept.getpId(), roleName);
 			}
 		}
-		return no;
+		return assignee;
 	}
 
 
 	@Override
 	public  String  oneByRole(String roleName) {
 		List<UserInfo> users=userDao.manyByRole(roleName);
-		return users==null? null:users.get(0).getNo();
+		if(users!=null){
+			UserInfo u=users.get(0);
+			return u.getName()+"("+u.getNo()+")";
+		}else{
+			return null;
+		}
 	}
 
 }

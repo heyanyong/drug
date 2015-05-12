@@ -69,7 +69,7 @@ public class FlowController {
 	public String taskList(Model m,HttpSession session,String  pageNum){
 		pageNum=pageNum==null? "0":pageNum;
 		UserInfo user=(UserInfo) session.getAttribute("loginUser");
-		Page<Object[]> page=flowService.queryPersonTask(user.getNo(), Integer.parseInt(pageNum), 2);
+		Page<Object[]> page=flowService.queryPersonTask(user.getName()+"("+user.getNo()+")", Integer.parseInt(pageNum), 2);
 		m.addAttribute("taskPage", page);
 		return "taskCenter";
 	}
@@ -77,7 +77,7 @@ public class FlowController {
 	public String historyTaskList(Model m,HttpSession session,String  pageNum){
 		pageNum=pageNum==null? "0":pageNum;
 		UserInfo user=(UserInfo) session.getAttribute("loginUser");
-		Page<Object[]> page=flowService.queryPersonTaskHistory(user.getNo(), Integer.parseInt(pageNum), 10);
+		Page<Object[]> page=flowService.queryPersonTaskHistory(user.getName()+"("+user.getNo()+")", Integer.parseInt(pageNum), 10);
 		m.addAttribute("taskPage", page);
 		return "taskCenter";
 	}

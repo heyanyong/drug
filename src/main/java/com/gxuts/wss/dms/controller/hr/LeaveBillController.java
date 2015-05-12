@@ -113,7 +113,7 @@ public class LeaveBillController {
 				+ user.getName() + "#" + user.getNo() + "#请假申请#leave#" + id
 				+ "#" + "LeaveBill";
 		Map<String, Object> variables = new HashMap<String, Object>();
-		variables.put("creater", user.getNo());
+		variables.put("creater", user.getName()+"("+user.getNo()+")");
 		variables.put("departmentId", user.getStructure().getId());
 		variables.put("roleGrade", roleGrade);
 		variables.put("assignee", null);

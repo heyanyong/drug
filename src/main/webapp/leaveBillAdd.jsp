@@ -34,7 +34,7 @@
 				<label>总小时数：</label> <input type="text"    size="30" name="hours" onclick="calculateHours()" />
 			</p>
 			<p>
-				<label>请假类型：</label> <select name="type" class="combox">
+				<label>请假类型：</label> <select name="type">
 					<option value="">请选择</option>
 					<option value="事假" selected="selected">事假</option>
 					<option value="补休假">补休假</option>
@@ -55,24 +55,6 @@
 				</dd>
 			</dl>
 		
-<div class="divider"></div>
-<div class="information">
-			 <p>
-				<label>创建人：</label> <input  type="text" readonly="readonly" value="${user.createUser.name}" />
-			</p>
-			 <p>
-				<label>创建人账号：</label> <input  type="text" readonly="readonly" value="${user.createUser.no}" />
-			</p>
-			 <p>
-				<label>最后更新人：</label> <input  type="text" readonly="readonly" value="${user.updateUser.name}" />
-			</p>
-			 <p>
-				<label>更新人账号：</label> <input  type="text" readonly="readonly" value="${user.updateUser.no}" />
-			</p>
-			 <p>
-				<label>最后更新时间：</label> <input  type="text" readonly="readonly" value="${user.updateTime}" />
-			</p>
-			</div>
 			</div>
 	</form>
 </div>

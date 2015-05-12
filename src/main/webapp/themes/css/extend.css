@@ -22,3 +22,8 @@ input .view,textarea .view,select .view{border:none}
 
 /*information*/
 .information{ color: #7B7B7B;}
+
+/*审批留言*/
+.comments table {width:729px; overflow: auto; }
+.comments table th{font-weight: bold;padding:5px;background: #b8d0d6;border:1px solid #ccc;}
+.comments table td{ padding:4px;border:1px solid #ccc; line-height: 1.3em; background: #F8F8FF;}
