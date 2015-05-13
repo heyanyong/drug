@@ -64,7 +64,7 @@ public class FlowController {
 		return new Json(msg,"200","leaveList","leaveList","closeCurrent","leave/list");
 		
 	}
-	@RequestMapping(value="/transfer")
+	@RequestMapping(value="/recall")
 	@ResponseBody
 	public Json recall(String instanceId,String reason){
 		try {
