@@ -30,20 +30,20 @@
 												<c:forEach items="${taskPage.data}" var="e">
 													<tr target="sid_obj" rel="${e[0]}">
 														<td width="130"><a
-															href="${e[10]}/edit/${e[11]}?show=deal&processInstanceId=${e[5]}&taskId=${e[0]}"
+															href="${e[9]}/edit/${e[10]}?show=deal&processInstanceId=${e[5]}&taskId=${e[0]}"
 															target="navTab"><fmt:formatDate value="${e[3]}"
 																	type="date" /> <fmt:formatDate value="${e[3]}"
 																	type="time" /></a></td>
 														<td width="100"><a
-															href="${e[10]}/edit/${e[11]}?show=deal&processInstanceId=${e[5]}&taskId=${e[0]}"
+															href="${e[9]}/edit/${e[10]}?show=deal&processInstanceId=${e[5]}&taskId=${e[0]}"
 															target="navTab">${e[6]}</a></td>
 														<td width="80"><a
-															href="${e[10]}/edit/${e[11]}?show=deal&processInstanceId=${e[5]}&taskId=${e[0]}"
+															href="${e[9]}/edit/${e[10]}?show=deal&processInstanceId=${e[5]}&taskId=${e[0]}"
 															target="navTab">${e[7]}</a></td>
 														<td><a
-															href="${e[10]}/edit/${e[11]}?show=deal&processInstanceId=${e[5]}&taskId=${e[0]}"
-															target="navTab">${e[9]}</a></td>
-														<td>${e[1]}(${e[7]})</td>
+															href="${e[9]}/edit/${e[10]}?show=deal&processInstanceId=${e[5]}&taskId=${e[0]}"
+															target="navTab">${e[8]}</a></td>
+														<td>${e[11]}</td>
 														<td width="30"><a href="flow/track/${e[5]}" target="navTab" title="流程跟踪"><img alt="" src="images/flowView.png" /></a></td>
 													</tr>
 												</c:forEach>

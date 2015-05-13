@@ -4,12 +4,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>流程跟踪</title>
+<style>
+ 
+.conlogtab{margin-top:30px;   overflow: auto; margin-left:10px; }
+.conlogtab table {     width:90%; }
+.conlogtab td{ border:1px solid #a1cbee;word-wrap:break-word;line-height: 20px; padding:5px; }
+.conlogtab .tabtitle{white-space: nowrap;line-height: 20px; width:17%; text-align: center;background: #f6f5fb;font-weight: bold; letter-spacing: 2px;}
+</style>
 </head>
 <body>
-<div style="width:100% ; height:50px; padding:10px 20px; ">
-  <span style="font-weight: bold;">当前办理情况</span>  ${current}
-</div>
-<iframe src="flow/image/${flowId}"   style="width:100% ; height:400px; overflow: auto;border:none;">
+	<div class="conlogtab">
+		<table>
+			<tr>
+				<td class="tabtitle">当前办理情况</td>
+				<td>${current}</td>
+			</tr>
+		</table>
+	</div>
+	<iframe src="flow/image/${flowId}"   style="width:100% ; height:400px; overflow: auto;border:none; margin-left:10px;">
 </iframe>
 </body>
 </html>

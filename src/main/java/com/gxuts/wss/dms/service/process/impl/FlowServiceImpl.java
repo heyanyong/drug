@@ -96,6 +96,7 @@ public class FlowServiceImpl implements FlowService {
 			pt[8]=bk[2];  //任务名
 			pt[9]=bk[3];  //url
 			pt[10]=bk[4]; //Billid
+			pt[11]="审批中"; //Billid
 			data.add(pt);
 		}
 		int totalCount=taskService.createTaskQuery().taskAssignee(no).list().size();
@@ -119,10 +120,12 @@ public class FlowServiceImpl implements FlowService {
 				String[] bk=p.getBusinessKey().split("#");
 				pt[6]=bk[0];  //部门
 				pt[7]=bk[1];  //姓名
-				pt[8]=bk[2];  //工号
-				pt[9]=bk[3];  //任务名
-				pt[10]=bk[4]; //url
-				pt[11]=bk[5]; //Billid
+				pt[8]=bk[2];  //任务名
+				pt[9]=bk[3];  //url
+				pt[10]=bk[4]; //Billid
+				pt[11]="审批中"; //Billid
+			}else{
+				pt[11]="已结束"; //status
 			}
 			data.add(pt);
 		}
