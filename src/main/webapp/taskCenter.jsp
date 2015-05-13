@@ -22,7 +22,7 @@
 											   <th>所属部门</th>
 											   <th>发起人</th>
 											   <th>任务标题</th>
-											   <th>当前节点</th>
+											   <th>任务情况</th>
 											   <th>跟踪</th>
 											 </tr>
 											</thead>
@@ -44,7 +44,7 @@
 															href="${e[10]}/edit/${e[11]}?show=deal&processInstanceId=${e[5]}&taskId=${e[0]}"
 															target="navTab">${e[9]}</a></td>
 														<td>${e[1]}(${e[7]})</td>
-														<td width="30"><a href="flow/image/${e[5]}" target="navTab" title="流程跟踪"><img alt="" src="images/flowView.png" /></a></td>
+														<td width="30"><a href="flow/track/${e[5]}" target="navTab" title="流程跟踪"><img alt="" src="images/flowView.png" /></a></td>
 													</tr>
 												</c:forEach>
 											</tbody>

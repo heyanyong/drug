@@ -109,6 +109,17 @@ public class FlowController {
 		m.addAttribute("pages", pages);
 		return "flowList";
 	}
+	@RequestMapping(value="/track/{flowId}")
+	public String track(@PathVariable String flowId ,Model m){
+		List<Task> tasks= taskService.createTaskQuery().processInstanceId(flowId).active().list();
+		String current = "";
+		for(Task t:tasks){
+			current+=t.getName()+":"+t.getAssignee()+" <br />";
+		}
+		m.addAttribute("current", current);
+		m.addAttribute("flowId", flowId);
+		return "flowTrack";
+	}
 	
 	/**
 	 * 查看流程图
@@ -120,12 +131,6 @@ public class FlowController {
 		ProcessDefinition pd = repositoryService.createProcessDefinitionQuery().processDefinitionId(pi.getProcessDefinitionId()).singleResult();
 		m.addAttribute("deploymentId", pd.getDeploymentId());
 		m.addAttribute("imageName", pd.getDiagramResourceName());
-		List<Task> tasks= taskService.createTaskQuery().processInstanceId(flowId).active().list();
-		String current = "";
-		for(Task t:tasks){
-			current+=t.getName()+":"+t.getAssignee()+" ";
-		}
-		m.addAttribute("current", current);
 		String activityId = pi.getActivityId();
 		// 获取当前活动对象
 		if(activityId!=null){

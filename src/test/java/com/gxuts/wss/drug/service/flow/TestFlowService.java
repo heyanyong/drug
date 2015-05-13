@@ -64,7 +64,7 @@ public class TestFlowService {
 	@Test
 	public void testStart(){
 		String processDefinitionKey="leave";
-		String businessKey="商务部#李四#CY001#请假申请#leave#1#LeaveBill";
+		String businessKey="IT部#管理员(admin)#请假申请#leave#1#LeaveBill";
 		Map<String, Object> variables=new HashMap<String, Object>();
 		variables.put("creater", "管理员(admin)");
 		variables.put("departmentId", 10);
@@ -80,19 +80,19 @@ public class TestFlowService {
 	//个人任务测试：任务名称 任务key 表单ID
 	@Test
 	public void testQueryTask(){
-		Page<Object[]> page=flowService.queryPersonTask("CY009", 0, 10);
+		Page<Object[]> page=flowService.queryPersonTask("管理员(admin)", 0, 10);
 		List<Object[]> list=page.getData();
 		 for (int i = 0; i < list.size(); i++) {
 			for (int j = 0; j < list.get(i).length; j++) {
 				Object[] obj=list.get(i);
-				System.out.print(obj[j]);
+				System.out.print(obj[j]+"——");
 			}
 			System.out.println();
 		}
 	}
 	@Test
 	public void testQueryTaskHistory(){
-		Page<Object[]> page=flowService.queryPersonTaskHistory("admin", 0, 10);
+		Page<Object[]> page=flowService.queryPersonTaskHistory("管理员(admin)", 0, 10);
 		List<Object[]> list=page.getData();
 		for (int i = 0; i < list.size(); i++) {
 			for (int j = 0; j < list.get(i).length; j++) {
