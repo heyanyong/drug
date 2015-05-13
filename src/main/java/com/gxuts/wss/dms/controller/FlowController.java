@@ -111,10 +111,14 @@ public class FlowController {
 	}
 	@RequestMapping(value="/track/{flowId}")
 	public String track(@PathVariable String flowId ,Model m){
-		List<Task> tasks= taskService.createTaskQuery().processInstanceId(flowId).active().list();
 		String current = "";
-		for(Task t:tasks){
-			current+=t.getName()+":"+t.getAssignee()+" <br />";
+		List<Task> tasks= taskService.createTaskQuery().processInstanceId(flowId).active().list();
+		if(tasks==null||tasks.size()==0){
+			current="流程已结束";
+		}else{
+			for(Task t:tasks){
+				current+=t.getName()+":"+t.getAssignee()+" <br />";
+			}
 		}
 		m.addAttribute("current", current);
 		m.addAttribute("flowId", flowId);
