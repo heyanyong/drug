@@ -3,7 +3,6 @@ package com.gxuts.wss.dms.service.process.impl;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipInputStream;
@@ -15,7 +14,6 @@ import org.activiti.engine.TaskService;
 import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
-import org.activiti.engine.runtime.ProcessInstanceQuery;
 import org.activiti.engine.task.Comment;
 import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -179,6 +177,10 @@ public class FlowServiceImpl implements FlowService {
 	
 	public String instanceList() {
 		return null;
+	}
+	@Override
+	public void recall(String instanceId, String reason) {
+		runtimeService.deleteProcessInstance(instanceId, "撤消:"+reason);
 	}
 	
 }

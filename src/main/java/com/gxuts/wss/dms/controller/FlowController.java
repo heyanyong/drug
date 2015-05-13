@@ -64,6 +64,16 @@ public class FlowController {
 		return new Json(msg,"200","leaveList","leaveList","closeCurrent","leave/list");
 		
 	}
+	@RequestMapping(value="/transfer")
+	@ResponseBody
+	public Json recall(String instanceId,String reason){
+		try {
+			flowService.recall(instanceId, reason);
+		} catch (Exception e) {
+			return new Json("任务无法撤消","300","leaveList","leaveList","closeCurrent","leave/list");
+		}
+		return new Json("任务成功撤消","200","leaveList","leaveList","closeCurrent","leave/list");
+	}
 	 
 	@RequestMapping(value="/taskList")
 	public String taskList(Model m,HttpSession session,String  pageNum){

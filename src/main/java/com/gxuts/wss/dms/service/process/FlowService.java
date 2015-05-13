@@ -1,19 +1,12 @@
 package com.gxuts.wss.dms.service.process;
 
 import java.io.File;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
-import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
-import org.activiti.engine.runtime.ProcessInstance;
-import org.activiti.engine.task.Comment;
-import org.activiti.engine.task.Task;
-import org.springframework.stereotype.Service;
 
 import com.gxuts.wss.dms.base.Page;
-import com.gxuts.wss.dms.entity.FlowEntity;
 public interface FlowService {
 	public void deployByZIP(File file, String filename);
 	public Page<ProcessDefinition> queryDeploy(Integer currentPage, Integer numPerPage);
@@ -22,5 +15,17 @@ public interface FlowService {
 	public Page<Object[]> queryPersonTaskHistory(String no, Integer currentPage,Integer numPerPage);
 	public String dealTask(String taskId,String processInstanceId, int outcome, String comment) ;
 	public List<Object[]> getCommentByprocessInstance(String processInstanceId);
+	/**
+	 * 任务转交
+	 * @param taskId
+	 * @param assignee
+	 * @return
+	 */
 	public String transfer(String taskId, String assignee);
+	/**
+	 * 撤消
+	 * @param 流程实例ID
+	 * @param 撤销原因
+	 */
+	public void recall(String instanceId,String reason);
 }

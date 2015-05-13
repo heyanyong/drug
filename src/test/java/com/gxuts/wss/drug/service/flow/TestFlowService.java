@@ -66,7 +66,7 @@ public class TestFlowService {
 		String processDefinitionKey="leave";
 		String businessKey="商务部#李四#CY001#请假申请#leave#1#LeaveBill";
 		Map<String, Object> variables=new HashMap<String, Object>();
-		variables.put("creater", "admin");
+		variables.put("creater", "管理员(admin)");
 		variables.put("departmentId", 10);
 		variables.put("billId", 1);
 		variables.put("outcome", 1);
@@ -128,7 +128,12 @@ public class TestFlowService {
 	//跳转
 	@Test
 	public void testJump(){
+		flowService.transfer("7516", "赵什么(CY004)");
 	}
-	
+	//撤消
+	@Test
+	public void cancelProcessInstance(){
+		flowService.recall("5001", "哈哈");
+	}
 
 }
