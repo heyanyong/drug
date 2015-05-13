@@ -2,27 +2,21 @@ package com.gxuts.wss.dms.controller;
 
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
-import org.activiti.engine.impl.persistence.entity.DeploymentEntity;
 import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
 import org.activiti.engine.impl.pvm.process.ActivityImpl;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
-import org.apache.xmlbeans.impl.jam.mutable.MElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -164,10 +158,10 @@ public class FlowController {
 	}
 	@RequestMapping(value="instanceList")
 	public String instanceList(String dept,String userName,String userNo,String title,
-			String startTime,String endTime,String  pageNum){
+			String startTime,String endTime,String  pageNum,Model m){
 		StringBuilder bk=new StringBuilder();
 		if(dept!=null&&!"".equals(dept)){
-			bk.append(dept+"#");
+			bk.append(dept+"%#");
 		}
 		if(userName!=null&&!"".equals(userName)){
 			bk.append(userName);
@@ -184,7 +178,8 @@ public class FlowController {
 		}
 		pageNum=pageNum==null? "0":pageNum;
 		
-		Page<Object[]> ins=flowService.instanceList(bk.toString(),startTime,endTime,Integer.parseInt(pageNum));
+		Page<Object[]> ins=flowService.instanceList(bk.toString(),startTime,endTime,0,10);
+		m.addAttribute("page", ins);
 		return "instanceList";
 	}
 	 

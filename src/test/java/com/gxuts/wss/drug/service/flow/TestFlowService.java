@@ -161,7 +161,7 @@ public class TestFlowService {
 		if(title!=null&&!"".equals(title)){
 			bk.append("%"+title+"%#");
 		}
-		Page<Object[]> page=flowService.instanceList(bk.toString(), startTime, endTime, 0);
+		Page<Object[]> page=flowService.instanceList(bk.toString(), startTime, endTime, 0,0);
 		List<Object[]> data=page.getData();
 		for (Object[] vo:data) {
 			System.out.print(vo[0]);

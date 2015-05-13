@@ -182,11 +182,11 @@ public class FlowServiceImpl implements FlowService {
 	}
 	//活动的流程实例列表
 	@Override
-	public Page<Object[]> instanceList(String bk, String startTime, String endTime, int parseInt) {
+	public Page<Object[]> instanceList(String bk, String startTime, String endTime, int currentPage,int row) {
 		startTime=startTime==null? "1999-05-13 14:21:24":startTime;
 		endTime=endTime==null? "3000-05-13 14:21:24":endTime;
 		String sql="select * from act_hi_procinst WHERE BUSINESS_KEY_ LIKE '"+bk+"' "
-				+ "and START_TIME_>='"+startTime+"' and START_TIME_<='"+endTime+"'";
+				+ "and START_TIME_>='"+startTime+"' and START_TIME_<='"+endTime+"'  LIMIT "+currentPage+","+row;
 		 List<ProcessInstance> ins=runtimeService.createNativeProcessInstanceQuery().sql(sql).list();
 		 List<Object[]> data=new ArrayList<Object[]>();
 		 for(ProcessInstance in:ins){

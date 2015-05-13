@@ -28,5 +28,5 @@ public interface FlowService {
 	 * @param 撤销原因
 	 */
 	public void recall(String instanceId,String reason);
-	public Page<Object[]> instanceList(String bk, String startTime, String endTime, int parseInt);
+	public Page<Object[]> instanceList(String bk, String startTime, String endTime, int currentPage,int row);
 }
