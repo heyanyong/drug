@@ -175,13 +175,31 @@ public class FlowServiceImpl implements FlowService {
 		taskService.setAssignee(taskId, assignee);
 		return assignee;
 	}
-	
-	public String instanceList() {
-		return null;
-	}
+	 
 	@Override
 	public void recall(String instanceId, String reason) {
 		runtimeService.deleteProcessInstance(instanceId, "撤消:"+reason);
 	}
+	//活动的流程实例列表
+	@Override
+	public Page<Object[]> instanceList(String bk, String startTime, String endTime, int parseInt) {
+		startTime=startTime==null? "1999-05-13 14:21:24":startTime;
+		endTime=endTime==null? "3000-05-13 14:21:24":endTime;
+		String sql="select * from act_hi_procinst WHERE BUSINESS_KEY_ LIKE '"+bk+"' "
+				+ "and START_TIME_>='"+startTime+"' and START_TIME_<='"+endTime+"'";
+		 List<ProcessInstance> ins=runtimeService.createNativeProcessInstanceQuery().sql(sql).list();
+		 List<Object[]> data=new ArrayList<Object[]>();
+		 for(ProcessInstance in:ins){
+			 Object[] pt=new Object[4];
+			 String[] bks=in.getBusinessKey().split("#");
+			 pt[0]=in.getId(); //flowid
+			 pt[1]=bks[0];     //部门
+			 pt[2]=bks[1]; 		//办理人
+			 pt[3]=bks[2];		//标题
+			 data.add(pt);
+		 }
+		return new Page<Object[]>(data, 1, 1, 0);
+	}
+	
 	
 }

@@ -163,8 +163,28 @@ public class FlowController {
 		return null;
 	}
 	@RequestMapping(value="instanceList")
-	public String instanceList(HttpServletRequest request,String  pageNum){
+	public String instanceList(String dept,String userName,String userNo,String title,
+			String startTime,String endTime,String  pageNum){
+		StringBuilder bk=new StringBuilder();
+		if(dept!=null&&!"".equals(dept)){
+			bk.append(dept+"#");
+		}
+		if(userName!=null&&!"".equals(userName)){
+			bk.append(userName);
+		}else{
+			bk.append("%");
+		}
+		if(userNo!=null&&!"".equals(userNo)){
+			bk.append("("+userNo+")#");
+		}else{
+			bk.append("%");
+		}
+		if(title!=null&&!"".equals(title)){
+			bk.append(title+"#");
+		}
 		pageNum=pageNum==null? "0":pageNum;
+		
+		Page<Object[]> ins=flowService.instanceList(bk.toString(),startTime,endTime,Integer.parseInt(pageNum));
 		return "instanceList";
 	}
 	 

@@ -135,5 +135,41 @@ public class TestFlowService {
 	public void cancelProcessInstance(){
 		flowService.recall("5001", "哈哈");
 	}
+	//实例列表撤消
+	@Test
+	public void instanceList(){
+		StringBuilder bk=new StringBuilder();
+		String dept="";
+		String userName="";
+		String userNo="";
+		String title="";
+		String startTime="2015-05-13 14:21:23";
+		String endTime="2015-05-13 14:21:25";
+		if(dept!=null&&!"".equals(dept)){
+			bk.append(dept+"%#");
+		}
+		if(userName!=null&&!"".equals(userName)){
+			bk.append(userName);
+		}else{
+			bk.append("%");
+		}
+		if(userNo!=null&&!"".equals(userNo)){
+			bk.append("("+userNo+")#");
+		}else{
+			bk.append("%");
+		}
+		if(title!=null&&!"".equals(title)){
+			bk.append("%"+title+"%#");
+		}
+		Page<Object[]> page=flowService.instanceList(bk.toString(), startTime, endTime, 0);
+		List<Object[]> data=page.getData();
+		for (Object[] vo:data) {
+			System.out.print(vo[0]);
+			System.out.print(vo[1]);
+			System.out.print(vo[2]);
+			System.out.print(vo[3]);
+			System.out.println();
+		}
+	}
 
 }
