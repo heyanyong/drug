@@ -126,6 +126,10 @@ public class FlowController {
 	@RequestMapping(value="/image/{flowId}")
 	public String viewDeal(@PathVariable String flowId ,Model m){
 		ProcessInstance pi = runtimeService.createProcessInstanceQuery().processInstanceId(flowId).singleResult();
+		if(pi==null){
+			m.addAttribute("isEnd",true);
+			return "flowImg";
+		}
 		ProcessDefinition pd = repositoryService.createProcessDefinitionQuery().processDefinitionId(pi.getProcessDefinitionId()).singleResult();
 		m.addAttribute("deploymentId", pd.getDeploymentId());
 		m.addAttribute("imageName", pd.getDiagramResourceName());

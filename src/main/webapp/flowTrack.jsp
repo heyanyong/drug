@@ -13,6 +13,7 @@
 </style>
 </head>
 <body>
+<div class="pageContent" layoutH="7">
 	<div class="conlogtab">
 		<table>
 			<tr>
@@ -23,5 +24,6 @@
 	</div>
 	<iframe src="flow/image/${flowId}"   style="width:100% ; height:400px; overflow: auto;border:none; margin-left:10px;">
 </iframe>
+</div>
 </body>
 </html>

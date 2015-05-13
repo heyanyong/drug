@@ -87,10 +87,12 @@ public class LeaveBillController {
 	@RequestMapping(value = "/save")
 	@ResponseBody
 	public Json save(LeaveBill leaveBill, HttpSession session) {
+		if(leaveBill.getCadidate().getId()==null){
+			return new Json("请选择工作交接人", "300",null, null, null, null);
+		}
 		leaveBill.setCreateDate(new Date());
 		leaveBill.setCreateUser((UserInfo) session.getAttribute("loginUser"));
 		leaveBillService.save(leaveBill);
-		// return new Json("请假单录入","200",null,"userList","forwardConfirm","user/edit/1");
 		return new Json("请假单保存成功", "200", "leaveList", "leaveList", "forward", "leave/list");
 	}
 
@@ -110,7 +112,7 @@ public class LeaveBillController {
 		String processDefinitionKey = "leave";
 		int roleGrade = userService.getMaxRole(user.getRoles()).getGrade();
 		String businessKey = user.getStructure().getName() + "#"
-				+ user.getName() + "#" + user.getNo() + "#请假申请#leave#" + id
+				+ user.getName() + "(" + user.getNo() + ")#请假申请#leave#" + id
 				+ "#" + "LeaveBill";
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("creater", user.getName()+"("+user.getNo()+")");

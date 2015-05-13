@@ -12,6 +12,7 @@ import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.history.HistoricTaskInstance;
+import org.activiti.engine.history.ProcessInstanceHistoryLog;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Comment;
@@ -66,7 +67,7 @@ public class FlowServiceImpl implements FlowService {
 	public String startProcess(String processDefinitionKey,String businessKey,Map<String,Object> variables){
 		ProcessInstance pi=runtimeService.startProcessInstanceByKey(processDefinitionKey, businessKey,variables);
 		Task task=taskService.createTaskQuery().processInstanceId(pi.getId()).singleResult();
-		taskService.addComment(task.getId(), pi.getId(),null,"提交");
+		taskService.addComment(task.getId(), pi.getId(),"_","提交");
 		taskService.complete(task.getId());
 		List<Task> tasks= taskService.createTaskQuery().processInstanceId(pi.getId()).active().list();
 		String result = "";
@@ -115,9 +116,10 @@ public class FlowServiceImpl implements FlowService {
 			pt[3]=t.getCreateTime();
 			pt[4]=t.getEndTime();
 			pt[5]=t.getProcessInstanceId();
+			String[] bk;
 			ProcessInstance p=runtimeService.createProcessInstanceQuery().processInstanceId(t.getProcessInstanceId()).singleResult();
 			if(p!=null){
-				String[] bk=p.getBusinessKey().split("#");
+				bk=p.getBusinessKey().split("#");
 				pt[6]=bk[0];  //部门
 				pt[7]=bk[1];  //姓名
 				pt[8]=bk[2];  //任务名
@@ -125,6 +127,13 @@ public class FlowServiceImpl implements FlowService {
 				pt[10]=bk[4]; //Billid
 				pt[11]="审批中"; //Billid
 			}else{
+				ProcessInstanceHistoryLog lp=historyService.createProcessInstanceHistoryLogQuery(t.getProcessInstanceId()).singleResult();
+				bk=lp.getBusinessKey().split("#");
+				pt[6]=bk[0];  //部门
+				pt[7]=bk[1];  //姓名
+				pt[8]=bk[2];  //任务名
+				pt[9]=bk[3];  //url
+				pt[10]=bk[4]; //Billid
 				pt[11]="已结束"; //status
 			}
 			data.add(pt);
@@ -145,31 +154,35 @@ public class FlowServiceImpl implements FlowService {
 		}
 		if(result.equals("")){
 			String[] bk=p.getBusinessKey().split("#");
-			userService.executeHql("update "+bk[6]+" set status=3 where flowId="+processInstanceId);
+			userService.executeHql("update "+bk[5]+" set status=3 where flowId="+processInstanceId);
 		}
 		return result;
 		
 	}
 	//
-	public List<Object[]> getCommentByprocessInstance(String processInstanceId){
-		List<Object[]> data=new ArrayList<Object[]>();
-		List<HistoricTaskInstance> tasks=historyService.createHistoricTaskInstanceQuery().processInstanceId(processInstanceId)
-				.finished()
-				.list();
-		List<Comment> comments = taskService.getProcessInstanceComments(processInstanceId);
-		for (HistoricTaskInstance t:tasks) {
-			Object[] pt=new Object[6];
-			pt[0]=t.getName();
-			pt[1]=t.getAssignee();
-			pt[2]=t.getCreateTime();
-			pt[3]=t.getEndTime();
-			for(Comment c:comments){
-				 if(t.getId().equals(c.getTaskId())){
-					 pt[4]=c.getType();
-					 pt[5]=c.getFullMessage();
-				 } 
+	public List<Object[]> getCommentByprocessInstance(String processInstanceId) {
+		List<Object[]> data = new ArrayList<Object[]>();
+		List<HistoricTaskInstance> tasks = historyService
+				.createHistoricTaskInstanceQuery()
+				.processInstanceId(processInstanceId).finished().list();
+		List<Comment> comments = taskService
+				.getProcessInstanceComments(processInstanceId);
+		for (HistoricTaskInstance t : tasks) {
+			String reason=t.getDeleteReason();
+			if (reason!=null&&"completed".equals(reason)) {
+				Object[] pt = new Object[6];
+				pt[0] = t.getName();
+				pt[1] = t.getAssignee();
+				pt[2] = t.getCreateTime();
+				pt[3] = t.getEndTime();
+				for (Comment c : comments) {
+					if (t.getId().equals(c.getTaskId())) {
+						pt[4] = c.getType();
+						pt[5] = c.getFullMessage();
+					}
+				}
+				data.add(pt);
 			}
-			data.add(pt);
 		}
 		return data;
 	}
@@ -193,12 +206,13 @@ public class FlowServiceImpl implements FlowService {
 		 List<ProcessInstance> ins=runtimeService.createNativeProcessInstanceQuery().sql(sql).list();
 		 List<Object[]> data=new ArrayList<Object[]>();
 		 for(ProcessInstance in:ins){
-			 Object[] pt=new Object[4];
+			 Object[] pt=new Object[5];
 			 String[] bks=in.getBusinessKey().split("#");
 			 pt[0]=in.getId(); //flowid
 			 pt[1]=bks[0];     //部门
 			 pt[2]=bks[1]; 		//办理人
 			 pt[3]=bks[2];		//标题
+			 pt[4]=bks[4];		//billID
 			 data.add(pt);
 		 }
 		return new Page<Object[]>(data, 1, 1, 0);

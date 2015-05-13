@@ -25,7 +25,12 @@
 		} 
 	};
 	function onMouseUp(event, treeId, treeNode) {
-		$.bringBack({id:treeNode.id, name:treeNode.name});
+		if(!treeNode.isParent==true){
+			$.bringBack({id:treeNode.id, name:treeNode.name});
+		}else{
+			var zTree = $.fn.zTree.getZTreeObj("structrueLLKTree");
+			zTree.expandNode(treeNode);
+		}
 	}
 	
 	$.ajax({

@@ -31,12 +31,12 @@
 				<input type="text" name="endDate"  class="date required" size="30" dateFmt="yyyy-MM-dd HH:mm:ss"   /><a class="inputDateButton" href="javascript:;">选择</a>
 			</p>
 			<p>
-				<label>总小时数：</label> <input type="text"    size="30" name="hours" onclick="calculateHours()" />
+				<label>总小时数：</label> <input type="text"  class="required"   size="30" name="hours" onclick="calculateHours()" />
 			</p>
 			<p>
-				<label>请假类型：</label> <select name="type">
-					<option value="">请选择</option>
-					<option value="事假" selected="selected">事假</option>
+				<label>请假类型：</label> <select name="type" class="required">
+					<option value=""  selected="selected">请选择</option>
+					<option value="事假">事假</option>
 					<option value="补休假">补休假</option>
 					<option value="年假">年假</option>
 					<option value="产假">产假</option>
@@ -45,7 +45,7 @@
 			<p>
 				<label>工作交接人：</label>
 				<input type="hidden" name="cadidate.id" />
-				<input type="text"  name="cadidate.name" size="30" value=""  readonly="readonly" lookupGroup="cadidate" />
+				<input type="text"  name="cadidate.name" size="30"   readonly="readonly" lookupGroup="cadidate"  />
 				<a class="btnLook" href="userLookup.jsp" lookupGroup="cadidate">查找带回</a>		
 			</p>
 			<dl class="nowrap">

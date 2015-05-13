@@ -31,18 +31,24 @@
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
 		</ul>
 	</div>
-	<table class="table" width="100%" layoutH="138">
+	<table class="table" width="70%" layoutH="138">
 		<thead>
 			<tr>
-				<th ></th>
-				<th >分类</th>
+				<th >部门</th>
+				<th >人员</th>
+				<th >流程标题</th>
+				<th >表单ID</th>
+				<th >操作</th>
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${pages.data}" var="e">
-			<tr target="e_id" rel="${e.id}">
-				<td></td>
-				<td>${e.id}</td>
+		<c:forEach items="${page.data}" var="e">
+			<tr target="e_id" rel="${e[0]}">
+				<td>${e[1]}</td>
+				<td>${e[2]}</td>
+				<td>${e[3]}</td>
+				<td>${e[4]}</td>
+				<td><a href="flow/recall?instanceId=${e[0]}">撤消</a></td>
 			</tr>
 			</c:forEach>
 		</tbody>
