@@ -1,18 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <div class="pageContent">
 	<form id="detailForm" method="post" action="leave/update" 
 		class="pageForm required-validate"
 		onsubmit="return validateCallback(this, navTabAjaxDone);">
+		<c:if test="${!(param.taskDes eq 'over')}"> 
 		<div class="formBar">
 			<ul>
-				<li><a class="buttonActive" href="javascript:saveBill('detailForm');"><span>保存</span></a></li>
-				<li><a class="buttonActive" href="sys/taskTransfer.jsp?processInstanceId=${param.processInstanceId}&taskId=${param.taskId}" target="dialog" ><span>任务转交</span></a></li>
-				<li><a class="buttonActive" href="sys/taskDeal.jsp?taskId=${param.taskId}" target="dialog" ><span>办理任务</span></a></li>
+				<c:if test="${fn:contains(param.taskDes, '转办')}"><li><a class="buttonActive" href="javascript:saveBill('detailForm');"><span>保存</span></a></li></c:if>
+				<c:if test="${fn:contains(param.taskDes, '转办')}">   <li><a class="buttonActive" href="sys/taskTransfer.jsp?taskId=${param.taskId}" target="dialog" ><span>任务转交</span></a></li></c:if>
+				<li><a class="buttonActive" href="sys/taskDeal.jsp?processInstanceId=${param.processInstanceId}&taskId=${param.taskId}" target="dialog" ><span>办理任务</span></a></li>
 			</ul>
-		</div> 
+		</div>
+		</c:if>
 		<div class="pageFormContent leaveBill" layoutH="56">
 			<p>
 				<label>编号：</label> <input name="no" type="text" readonly="readonly" value="${info.no}" size="30"/>
@@ -84,8 +87,8 @@
 			  <tr>
 			    <th width="130">流程节点</th>
 			    <th width="80">办理人</th>
-			    <th width="155">办理时间</th>
-			    <th width="30">结果</th>
+			    <th width="155">任务结束</th>
+			    <th width="35">结果</th>
 			    <th>批注</th>
 			  </tr>
 			</thead>
@@ -95,8 +98,8 @@
 			    <td>${e[0]}</td>
 			    <td><code>${e[1]}</code></td>
 			    <td>
-			    开始：<fmt:formatDate value='${e[2]}' pattern='yyyy-MM-dd HH:mm:ss'/><br />
-			   结束：<fmt:formatDate value="${e[3]}"  pattern='yyyy-MM-dd HH:mm:ss'/></td>
+			    <%-- 开始：<fmt:formatDate value='${e[2]}' pattern='yyyy-MM-dd HH:mm:ss'/><br />
+			   结束： --%><fmt:formatDate value="${e[3]}"  pattern='yyyy-MM-dd HH:mm:ss'/></td>
 			    <td>${e[4]}</td>
 			    <td>${e[5]}</td>
 			  </tr>

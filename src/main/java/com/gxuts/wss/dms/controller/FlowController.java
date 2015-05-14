@@ -3,11 +3,13 @@ package com.gxuts.wss.dms.controller;
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -20,11 +22,16 @@ import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest;
@@ -61,10 +68,10 @@ public class FlowController {
 	}
 	@RequestMapping(value="/transfer")
 	@ResponseBody
-	public Json transfer(String taskId,String assigneeId){
+	public Json transfer(String taskId,Integer assigneeId){
 		UserInfo user=userService.get(UserInfo.class, assigneeId);
 		String assignee=user.getName()+"("+user.getNo()+")";
-		flowService.transfer(taskId,assigneeId);
+		flowService.transfer(taskId,assignee);
 		return new Json("任务到达:"+assignee+"办理","200","leaveList","leaveList","closeCurrent","leave/list");
 		
 	}
@@ -197,32 +204,46 @@ public class FlowController {
 		return "instanceList";
 	}
 	
-	@RequestMapping(value="deploy")
+	@RequestMapping(value="deploy",method=RequestMethod.POST)
 	@ResponseBody
-	public Json deployByZIP(DefaultMultipartHttpServletRequest multipartRequest, HttpSession session,String flowName) {
-		Json json=new Json();
-		if (multipartRequest != null) {
-			Iterator<String> iterator = multipartRequest.getFileNames();
-			while (iterator.hasNext()) {
-				MultipartFile file = multipartRequest.getFile((String) iterator.next());
-				if (!file.isEmpty()) {
-					try {
-						// 文件保存路径
-						String filePath = session.getServletContext().getRealPath("/") + File.separator;
-						File uploadFile = new File(filePath + file.getOriginalFilename());
-						uploadFile.mkdirs();
-						file.transferTo(uploadFile);// 保存到一个目标文件中。
-						flowService.deployByZIP(uploadFile, flowName);
-					} catch (Exception e) {
-						json.setMessage("部署失败");
-						json.setStatusCode("300");
-						System.out.println(e.getLocalizedMessage());
-						e.printStackTrace();
-					}
+	public Json deployByZIP(HttpServletRequest request,String flowName,HttpSession session) {
+		String userNo=((UserInfo)session.getAttribute("loginUser")).getNo();
+		String savePath = session.getServletContext().getRealPath("");
+		String webPath = "\\files\\" + userNo+new Date().getTime()+"\\";
+		savePath = savePath + webPath;
+		File filePath =new File(savePath);
+		File file=null;
+		filePath.mkdir();
+		System.out.println(flowName);
+		String flowName2=request.getParameter("flowName");
+		// 把文件上传到服务器指定位置，并向前台返回文件名
+		DiskFileItemFactory fac = new DiskFileItemFactory();
+		ServletFileUpload upload = new ServletFileUpload(fac);
+		List fileList = null;
+		try {
+			// 文件类型解析req
+			fileList = (List<FileItem>) upload.parseRequest(request);
+		} catch (FileUploadException ex) {
+			// 终止文件上传，此处抛出异常
+			ex.printStackTrace();
+		}
+		Iterator it = fileList.iterator();
+		while (it.hasNext()) {
+			FileItem item = (FileItem) it.next();
+			if (!item.isFormField()) {
+				String name = item.getName();
+				String type = item.getContentType();
+				if (item.getName() == null || item.getName().trim().equals("")) {
+					continue;
+				}
+				file = new File(savePath + name);
+				try {
+					item.write(file); // 将文件存入本地服务器
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
-			return new Json("上传失败","300");
 		}
-		return json;
+		return new Json("上传失败","300");
 	}
 }

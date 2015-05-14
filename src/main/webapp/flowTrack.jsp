@@ -22,7 +22,7 @@
 			</tr>
 		</table>
 	</div>
-	<iframe src="flow/image/${flowId}"   style="width:100% ; height:400px; overflow: auto;border:none; margin-left:10px;">
+	<iframe src="flow/image/${flowId}"   style="width:96% ; height:400px; overflow: auto;border:none; margin-left:10px;">
 </iframe>
 </div>
 </body>

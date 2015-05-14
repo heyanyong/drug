@@ -7,11 +7,11 @@
 	 <table class="table" width="100%" layoutH="100">
 		<tr>
 		  <td>name:</td>
-		  <td><input name="name" type="text" /></td>
+		  <td><input name="name" type="text" class="required"/></td>
 		</tr>
 		<tr>
 		  <td>url:</td>
-		  <td><input name="url" type="text" /></td>
+		  <td><input name="url" type="text" class="required"/></td>
 		</tr>
 	</table>
 	   <input type="submit" /><br />

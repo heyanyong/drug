@@ -4,17 +4,19 @@
 <div class="pageContent">
 	<form id="taskTransferForm" method="post" action="flow/transfer" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
 		<div class="pageFormContent" layoutH="58">
-			<div>
+			<div style="width:320px; overflow: auto; float: left;">
 				<ul id="strTaskTransferTree" class="ztree"></ul>
 			</div>
-			<div>
+			<div  style=" overflow: auto; float: left;">
 			<input type="hidden" name="taskId" value="${param.taskId}" />
 			<input type="hidden" name="assigneeId" />
-			<input type="text" name="assignee" />
+			 转交人：<br /><br />
+			 <input type="text" name="assignee" />
 			</div>
 		</div>
 		<div class="formBar">
 			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">确认转交</button></div></div></li>
 				<li><div class="button"><div class="buttonContent"><button class="close" type="button">关闭</button></div></div></li>
 			</ul>
 		</div>

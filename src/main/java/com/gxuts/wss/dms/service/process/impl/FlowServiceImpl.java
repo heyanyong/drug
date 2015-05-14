@@ -83,13 +83,14 @@ public class FlowServiceImpl implements FlowService {
 		List<Task> list=taskService.createTaskQuery().taskAssignee(no).orderByTaskCreateTime().asc().listPage(currentPage, numPerPage);
 		List<Object[]> data=new ArrayList<Object[]>();
 		for(Task t:list){
-			Object[] pt=new Object[12];
+			Object[] pt=new Object[13];
 			pt[0]=t.getId();
 			pt[1]=t.getName();
 			pt[2]=t.getAssignee();
 			pt[3]=t.getCreateTime();
 			pt[4]=t.getDueDate();
 			pt[5]=t.getProcessInstanceId();
+			pt[12]=t.getDescription();
 			ProcessInstance p=runtimeService.createProcessInstanceQuery().processInstanceId(t.getProcessInstanceId()).singleResult();
 			String[] bk=p.getBusinessKey().split("#");
 			pt[6]=bk[0];  //部门
@@ -109,7 +110,7 @@ public class FlowServiceImpl implements FlowService {
 				.taskAssignee(no).finished().orderByDueDateNullsLast().desc().listPage(currentPage, numPerPage);
 		List<Object[]> data=new ArrayList<Object[]>();
 		for(HistoricTaskInstance t:list){
-			Object[] pt=new Object[12];
+			Object[] pt=new Object[13];
 			pt[0]=t.getId();
 			pt[1]=t.getName();
 			pt[2]=t.getAssignee();
@@ -136,6 +137,7 @@ public class FlowServiceImpl implements FlowService {
 				pt[10]=bk[4]; //Billid
 				pt[11]="已结束"; //status
 			}
+			pt[12]="over";
 			data.add(pt);
 		}
 		return new Page<Object[]>(data, currentPage, numPerPage, 0);

@@ -18,7 +18,9 @@
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${outcome==1}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow4" sourceRef="leave_usertask3" targetRef="endevent1"></sequenceFlow>
-    <userTask id="usertask1" name="经理审批" activiti:assignee="${flowUserService.leaderByRole(departmentId, &quot;经理&quot;)}"></userTask>
+    <userTask id="usertask1" name="经理审批" activiti:assignee="${flowUserService.leaderByRole(departmentId, &quot;经理&quot;)}">
+      <documentation>转办</documentation>
+    </userTask>
     <sequenceFlow id="flow5" sourceRef="leave_usertask2" targetRef="usertask1">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${outcome==1}]]></conditionExpression>
     </sequenceFlow>

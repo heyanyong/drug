@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <h2 class="contentTitle">请选择需要部署的流程压缩包</h2>
-<form action="flow/deploy" method="post" enctype="multipart/form-data" class="pageForm required-validate" onsubmit="return iframeCallback(this, $.bringBack)">
+<form action="flow/deploy" method="post" enctype="multipart/form-data" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
 
 <div class="pageContent">
 	<div class="pageFormContent" layoutH="97">
