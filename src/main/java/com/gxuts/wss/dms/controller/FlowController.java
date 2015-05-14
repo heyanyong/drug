@@ -1,8 +1,10 @@
 package com.gxuts.wss.dms.controller;
 
+import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -24,9 +26,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest;
 
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
+import com.gxuts.wss.dms.entity.sys.AttaFile;
 import com.gxuts.wss.dms.entity.sys.Json;
 import com.gxuts.wss.dms.service.hr.UserService;
 import com.gxuts.wss.dms.service.process.FlowService;
@@ -191,5 +196,33 @@ public class FlowController {
 		m.addAttribute("page", ins);
 		return "instanceList";
 	}
-	 
+	
+	@RequestMapping(value="deploy")
+	@ResponseBody
+	public Json deployByZIP(DefaultMultipartHttpServletRequest multipartRequest, HttpSession session,String flowName) {
+		Json json=new Json();
+		if (multipartRequest != null) {
+			Iterator<String> iterator = multipartRequest.getFileNames();
+			while (iterator.hasNext()) {
+				MultipartFile file = multipartRequest.getFile((String) iterator.next());
+				if (!file.isEmpty()) {
+					try {
+						// 文件保存路径
+						String filePath = session.getServletContext().getRealPath("/") + File.separator;
+						File uploadFile = new File(filePath + file.getOriginalFilename());
+						uploadFile.mkdirs();
+						file.transferTo(uploadFile);// 保存到一个目标文件中。
+						flowService.deployByZIP(uploadFile, flowName);
+					} catch (Exception e) {
+						json.setMessage("部署失败");
+						json.setStatusCode("300");
+						System.out.println(e.getLocalizedMessage());
+						e.printStackTrace();
+					}
+				}
+			}
+			return new Json("上传失败","300");
+		}
+		return json;
+	}
 }

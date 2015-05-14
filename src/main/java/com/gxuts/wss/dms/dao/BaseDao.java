@@ -49,7 +49,7 @@ public class BaseDao<T> implements BaseDaoI<T> {
 		return this.find(hql, params, filter.getPage(), filter.getPageSize());
 	}
 	public Page<T> find(String hql, Map<String, Object> params, Integer currentPage, Integer pageSize) {
-		Query q = getSession().createQuery(hql+" order by createDate desc");
+		Query q = getSession().createQuery(hql+" order by id desc");
 		Page<T> page=new Page<T>();
 		if (params != null && !params.isEmpty()) {
 			for (String key : params.keySet()) {
@@ -179,7 +179,7 @@ public class BaseDao<T> implements BaseDaoI<T> {
 		currentPage=currentPage==null? 1:currentPage; 
 		numPerPage=numPerPage==null? 17:numPerPage;
 		Page<T> page=new Page<T>();
-		Query q =  getSession().createQuery(hql+" order by createDate desc");
+		Query q =  getSession().createQuery(hql+" order by id desc");
 		if (params != null && !params.isEmpty()) {
 			for (String key : params.keySet()) {
 				q.setParameter(key, params.get(key));

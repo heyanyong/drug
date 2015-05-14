@@ -1,5 +1,6 @@
 package com.gxuts.wss.dms.entity.manage;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +25,8 @@ import com.gxuts.wss.dms.entity.hr.UserInfo;
  *
  */
 @Entity
-public class AssetPurchaseContractBill {
+public class AssetPurchaseContractBill implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;

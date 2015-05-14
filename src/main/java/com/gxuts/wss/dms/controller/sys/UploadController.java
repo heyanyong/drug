@@ -117,7 +117,6 @@ public class UploadController {
 				}
 			}
 		}
-//		return "{\"id\":\"1\",\"fileName\":\""+fr.getFileName()+"\",\"attachmentPath\":\""+fr.getWebPath()+"\",\"attachmentSize\":\"300\"}";
 		return "{\"id\":\"1\",\"fileName\":\""+name+"\",\"attachmentPath\":\""+webPath+name+"\",\"attachmentSize\":\"300\"}";
 	}
 	@RequestMapping(value = "/editor", method = { RequestMethod.POST,RequestMethod.GET })

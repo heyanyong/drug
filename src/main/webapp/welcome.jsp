@@ -7,20 +7,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>DMS</title>
-<link href="themes/default/style.css" rel="stylesheet" type="text/css"
-	media="screen" />
-<link href="themes/css/core.css" rel="stylesheet" type="text/css"
-	media="screen" />
-<link href="themes/css/print.css" rel="stylesheet" type="text/css"
-	media="print" />
-<link href="uploadify/css/uploadify.css" rel="stylesheet"
-	type="text/css" media="screen" />
-<link href="themes/css/extend.css" rel="stylesheet" type="text/css"
-	media="screen" />
+<link href="themes/default/style.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="themes/css/core.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="themes/css/print.css" rel="stylesheet" type="text/css" media="print" />
+<link href="uploadify/css/uploadify.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="themes/css/extend.css" rel="stylesheet" type="text/css" media="screen" />
 <!--[if IE]>
 <link href="themes/css/ieHack.css" rel="stylesheet" type="text/css" media="screen"/>
 <![endif]-->
-
 <!--[if lte IE 9]>
 <script src="js/speedup.js" type="text/javascript"></script>
 <![endif]-->
@@ -110,14 +104,12 @@ $(function(){
 				<ul class="themeList" id="themeList">
 					<li theme="default"><div class="selected">蓝色</div></li>
 					<li theme="green"><div>绿色</div></li>
-					<!--<li theme="red"><div>红色</div></li>-->
 					<li theme="purple"><div>紫色</div></li>
 					<li theme="silver"><div>银色</div></li>
 					<li theme="azure"><div>天蓝</div></li>
 				</ul>
 			</div>
 		</div>
-
 		<div id="leftside">
 			<div id="sidebar_s">
 				<div class="collapse">
@@ -130,12 +122,9 @@ $(function(){
 				<div class="toggleCollapse">
 					<div>收缩</div>
 				</div>
-
 				<div class="accordion" fillSpace="sidebar">
 					<div class="accordionHeader">
-						<h2>
-							<span>Folder</span>商务管理
-						</h2>
+						<h2> <span>Folder</span>商务管理 </h2>
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
@@ -146,25 +135,26 @@ $(function(){
 									<li><a href="customer/list" target="navTab" rel="customerList">客户管理</a></li>
 								</ul>
 							</li>
+							<c:if test="${!empty shangwu_dm}">
 							<li><a>部门报表</a>
 								<ul><li><a href="pay/list" target="navTab" rel="payList">付款申请</a></li>
-									<li><a href="supplier/list" target="navTab" rel="supplierList">供应商</a></li>
-									<li><a href="customer/list" target="navTab" rel="customerList">客户汇总</a></li>
+									<li><a href="supplier/list" target="navTab" rel="supplierList">部门供应商</a></li>
+									<li><a href="customer/list" target="navTab" rel="customerList">部门客户汇总</a></li>
 								</ul>
 							</li>
+							</c:if>
+							<c:if test="${!empty shangwu_cm}">
 							<li><a>汇总报表</a>
 								<ul><li><a href="pay/list" target="navTab" rel="payList">付款申请</a></li>
-									<li><a href="supplier/list" target="navTab" rel="supplierList">供应商</a></li>
+									<li><a href="supplier/list" target="navTab" rel="supplierList">供应商汇总</a></li>
 									<li><a href="customer/list" target="navTab" rel="customerList">客户汇总</a></li>
 								</ul>
 							</li>
-							 
+							</c:if>
 						</ul>
 					</div>
 					<div class="accordionHeader">
-						<h2>
-							<span>Folder</span>行政管理
-						</h2>
+						<h2> <span>Folder</span>行政管理 </h2>
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
@@ -179,156 +169,36 @@ $(function(){
 									<li><a href="vote/list" target="navTab" rel="voteList">印章新刻申请</a></li>
 								</ul>
 							</li>
+							<c:if test="${!empty xingzheng_dm}">
 							<li><a>部门报表</a>
 								<ul>
 									<li><a href="vote/list" target="navTab" rel="voteList">投票管理</a></li>
 									<li><a href="vote/list" target="navTab" rel="voteList">活动审批</a></li>
 								</ul>
 							</li>
+							</c:if>
+							<c:if test="${!empty xingzheng_cm}">
 							<li><a>汇总报表</a>
 								<ul>
 									<li><a href="vote/list" target="navTab" rel="voteList">投票管理</a></li>
 									<li><a href="vote/list" target="navTab" rel="voteList">活动审批</a></li>
 								</ul>
 							</li>
+							</c:if>
+							<c:if test="${!empty xingzheng_mm}">
 							<li><a>维护管理</a>
 								<ul>
 									<li><a href="vote/list" target="navTab" rel="voteList">投票管理</a></li>
+									<li><a href="vote/list" target="navTab" rel="voteList">固定资产采购申请</a></li>
+									<li><a href="vote/list" target="navTab" rel="voteList">固定资产采购合同</a></li>
+									<li><a href="vote/list" target="navTab" rel="voteList">固定资产库存管理</a></li>
 								</ul>
 							</li>
-							
-							<li><a>固定资产管理</a>
-								<ul>
-									<li><a href="drug/list" target="navTab" rel="drugList">库存管理</a></li>
-									<li><a href="purchase/add" target="navTab"
-										rel="purchaseAdd">新增采购需求</a></li>
-									<li><a href="contract/add" target="navTab"
-										rel="contractAdd">新增采购合同</a></li>
-									<li><a href="exportAdd.jsp" target="navTab"
-										rel="pagexportDetail">新增出库单</a></li>
-									<li><a href="contract/list" target="navTab"
-										rel="contractList">采购合同列表</a></li>
-									<li><a href="purchase/list" target="navTab"
-										rel="purchaseList">采购需求列表</a></li>
-									<li><a href="export/list" target="navTab" rel="exportList">出库单列表</a></li>
-								</ul>
-							</li>
-							<li><a href="tabsPage.html" target="navTab">主框架面板</a>
-								<ul>
-									<li><a href="main.html" target="navTab" rel="main">我的主页</a></li>
-									<li><a href="http://www.baidu.com" target="navTab"
-										rel="page1">页面一(外部页面)</a></li>
-									<li><a href="demo_page2.html" target="navTab"
-										rel="external" external="true">iframe navTab页面</a></li>
-									<li><a href="demo_page1.html" target="navTab" rel="page1"
-										fresh="false">替换页面一</a></li>
-									<li><a href="demo_page2.html" target="navTab" rel="page2">页面二</a></li>
-									<li><a href="demo_page4.html" target="navTab" rel="page3"
-										title="页面三（自定义标签名）">页面三</a></li>
-									<li><a href="demo_page4.html" target="navTab" rel="page4"
-										fresh="false">测试页面（fresh="false"）</a></li>
-									<li><a href="w_editor.html" target="navTab">表单提交会话超时</a></li>
-									<li><a href="demo/common/ajaxTimeout.html" target="navTab">navTab会话超时</a></li>
-									<li><a href="demo/common/ajaxTimeout.html" target="dialog">dialog会话超时</a></li>
-									<li><a href="index_menu.html" target="_blank">横向导航条</a></li>
-								</ul></li>
-
-							<li><a>常用组件</a>
-								<ul>
-									<li><a href="w_panel.html" target="navTab" rel="w_panel">面板</a></li>
-									<li><a href="w_tabs.html" target="navTab" rel="w_tabs">选项卡面板</a></li>
-									<li><a href="w_dialog.html" target="navTab" rel="w_dialog">弹出窗口</a></li>
-									<li><a href="w_alert.html" target="navTab" rel="w_alert">提示窗口</a></li>
-									<li><a href="w_list.html" target="navTab" rel="w_list">CSS表格容器</a></li>
-									<li><a href="demo_page1.html" target="navTab"
-										rel="w_table">表格容器</a></li>
-									<li><a href="w_removeSelected.html" target="navTab"
-										rel="w_table">表格数据库排序+批量删除</a></li>
-									<li><a href="w_tree.html" target="navTab" rel="w_tree">树形菜单</a></li>
-									<li><a href="w_accordion.html" target="navTab"
-										rel="w_accordion">滑动菜单</a></li>
-									<li><a href="w_editor.html" target="navTab" rel="w_editor">编辑器</a></li>
-									<li><a href="w_datepicker.html" target="navTab"
-										rel="w_datepicker">日期控件</a></li>
-									<li><a href="demo/database/db_widget.html" target="navTab"
-										rel="db">suggest+lookup+主从结构</a></li>
-									<li><a href="demo/database/treeBringBack.html"
-										target="navTab" rel="db">tree查找带回</a></li>
-									<li><a href="demo/database/treeBringBack.html"
-										target="navTab" rel="db">tree查找带回</a></li>
-									<li><a href="demo/sortDrag/1.html" target="navTab"
-										rel="sortDrag">单个sortDrag示例</a></li>
-									<li><a href="demo/sortDrag/2.html" target="navTab"
-										rel="sortDrag">多个sortDrag示例</a></li>
-									<li><a href="demo/sortDrag/form.html" target="navTab"
-										rel="sortDrag">可拖动表单示例</a></li>
-								</ul></li>
-							<li><a>报表查询</a>
-								<ul>
-									<li><a href="test.jsp" target="navTab" rel="w_panel">面板</a></li>
-									<li><a href="test.jsp" target="navTab" rel="w_tabs">选项卡面板</a></li>
-									<li><a href="test.jsp" target="navTab" rel="w_dialog">弹出窗口</a></li>
-									<li><a href="test.jsp" target="navTab" rel="w_alert">提示窗口</a></li>
-									<li><a href="test.jsp" target="navTab" rel="w_list">CSS表格容器</a></li>
-									<li><a href="test.jsp" target="navTab" rel="w_table">表格容器</a></li>
-									<li><a href="test.jsp" target="navTab" rel="w_table">表格数据库排序+批量删除</a></li>
-									<li><a href="test.jsp" target="navTab" rel="w_tree">树形菜单</a></li>
-									<li><a href="test.jsp" target="navTab" rel="w_accordion">滑动菜单</a></li>
-									<li><a href="test.jsp" target="navTab" rel="w_editor">编辑器</a></li>
-									<li><a href="test.jsp" target="navTab" rel="w_datepicker">日期控件</a></li>
-									<li><a href="test.jsp" target="navTab" rel="db">suggest+lookup+主从结构</a></li>
-									<li><a href="test.jsp" target="navTab" rel="db">tree查找带回</a></li>
-									<li><a href="test.jsp" target="navTab" rel="sortDrag">单个sortDrag示例</a></li>
-									<li><a href="test.jsp" target="navTab" rel="sortDrag">多个sortDrag示例</a></li>
-									<li><a href="demo/sortDrag/form.html" target="navTab"
-										rel="sortDrag">可拖动表单示例</a></li>
-								</ul></li>
-							<li><a>表单组件</a>
-								<ul>
-									<li><a href="w_validation.html" target="navTab"
-										rel="w_validation">表单验证</a></li>
-									<li><a href="w_button.html" target="navTab" rel="w_button">按钮</a></li>
-									<li><a href="w_textInput.html" target="navTab"
-										rel="w_textInput">文本框/文本域</a></li>
-									<li><a href="w_combox.html" target="navTab" rel="w_combox">下拉菜单</a></li>
-									<li><a href="w_checkbox.html" target="navTab"
-										rel="w_checkbox">多选框/单选框</a></li>
-									<li><a href="demo_upload.html" target="navTab"
-										rel="demo_upload">iframeCallback表单提交</a></li>
-									<li><a href="w_uploadify.html" target="navTab"
-										rel="w_uploadify">uploadify多文件上传</a></li>
-									<li><a href="w_uploadify2.html" target="navTab"
-										rel="w_uploadify">uploadify多文件上传</a></li>
-								</ul></li>
-							<li><a>组合应用</a>
-								<ul>
-									<li><a href="demo/pagination/layout1.html" target="navTab"
-										rel="pagination1">局部刷新分页1</a></li>
-									<li><a href="demo/pagination/layout2.html" target="navTab"
-										rel="pagination2">局部刷新分页2</a></li>
-								</ul></li>
-							<li><a>图表</a>
-								<ul>
-									<li><a href="chart/test/barchart.html" target="navTab"
-										rel="chart">柱状图(垂直)</a></li>
-									<li><a href="chart/test/hbarchart.html" target="navTab"
-										rel="chart">柱状图(水平)</a></li>
-									<li><a href="chart/test/linechart.html" target="navTab"
-										rel="chart">折线图</a></li>
-									<li><a href="chart/test/linechart2.html" target="navTab"
-										rel="chart">曲线图</a></li>
-									<li><a href="chart/test/linechart3.html" target="navTab"
-										rel="chart">曲线图(自定义X坐标)</a></li>
-									<li><a href="chart/test/piechart.html" target="navTab"
-										rel="chart">饼图</a></li>
-								</ul></li>
-							<li><a href="dwz.frag.xml" target="navTab" external="true">dwz.frag.xml</a></li>
+							</c:if>
 						</ul>
 					</div>
 					<div class="accordionHeader">
-						<h2>
-							<span>Folder</span>人力资源
-						</h2>
+						<h2> <span>Folder</span>人力资源 </h2>
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
@@ -374,9 +244,7 @@ $(function(){
 						</ul>
 					</div>
 					<div class="accordionHeader">
-						<h2>
-							<span>Folder</span>账务管理
-						</h2>
+						<h2> <span>Folder</span>账务管理 </h2>
 					</div>
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
@@ -386,28 +254,32 @@ $(function(){
 									<li><a href="expense/list" target="navTab" rel="expenseList">预算调整申请</a></li>
 								</ul>
 							</li>
+							<c:if test="${!empty caiwu_dm}">
 							<li><a>部门报表</a>
 								<ul>
 									<li><a href="expense/list" target="navTab" rel="expenseList">费用报销报表</a></li>
 								</ul>
 							</li>
+							</c:if>
+							<c:if test="${!empty caiwu_cm}">
 							<li><a>汇总报表</a>
 								<ul>
 									<li><a href="expense/list" target="navTab" rel="expenseList">费用报销报表</a></li>
 								</ul>
 							</li>
+							</c:if>
+							<c:if test="${!empty caiwu_mm}">
 							<li><a>维护管理</a>
 								<ul>
 									<li><a href="budget/list" target="navTab" rel="budgetList">部门预算维护</a></li>
 									<li><a href="subject/list" target="navTab" rel="subjectList">费用科目维护</a></li>	
 								</ul>
 							</li>
+							</c:if>
 						</ul>
 					</div>
 					<div class="accordionHeader">
-						<h2>
-							<span>Folder</span>信息管理
-						</h2>
+						<h2> <span>Folder</span>信息管理 </h2>
 					</div>
 					<div class="accordionContent">
 						<ul class="tree">
@@ -436,6 +308,7 @@ $(function(){
 							<li><a href="newPage1.html" target="navTab" rel="dlg_page">业务审批</a></li>
 						</ul>
 					</div>
+					<c:if test="${!empty system_root}">
 					<div class="accordionHeader">
 						<h2>
 							<span>Folder</span>系统管理
@@ -445,7 +318,7 @@ $(function(){
 						<ul class="tree">
 							<li><a href="menu/show" target="navTab" rel="menuList">菜单设置</a></li>
 							<li><a href="flow/flowList" target="navTab" rel="flowList">系统流程</a></li>
-							<li><a href="flow/deployList" target="navTab" rel="flowDeployList">流程部署记录</a></li>
+							<li><a href="flow/deployList" target="navTab" rel="flowDeployList">流程部署</a></li>
 							<li><a href="flow/instanceList" target="navTab" rel="instanceList">流程跟踪</a></li>
 							<li><a href="controllerLog/list" target="navTab" rel="controllerLogList">操作记录</a></li>
 							<li><a href="role/list" target="navTab" rel="roleList">权限管理</a></li>
@@ -453,6 +326,7 @@ $(function(){
 							<li><a href="monitoring" target="_blank" rel="monitoring">服务器运行监控</a></li>
 						</ul>
 					</div>
+					</c:if>
 				</div>
 			</div>
 		</div>

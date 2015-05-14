@@ -9,7 +9,6 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.activiti.engine.runtime.ProcessInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,6 +60,9 @@ public class LeaveBillController {
 	@RequestMapping(value = "/edit/{id}")
 	public String edit(@PathVariable Integer id, Model model) {
 		LeaveBill info = leaveBillService.get(LeaveBill.class, id);
+		if(info==null){
+			return "sys/missing";
+		}
 		String pid = info.getFlowId();
 		List<Object[]> comments = null;
 		if (pid != null) {

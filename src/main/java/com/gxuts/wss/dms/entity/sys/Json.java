@@ -20,6 +20,11 @@ public class Json {
 		this.callbackType = callbackType;
 		this.forwardUrl = forwardUrl;
 	}
+	public Json(String massage, String code) {
+		this.message=massage;
+		this.statusCode=code;
+	}
+
 	public String getMessage() {
 		return message;
 	}

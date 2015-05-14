@@ -38,9 +38,11 @@
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
 			<li class="line">line</li>
 			<li><a class="icon"  target="dwzExport" targetType="navTab"  ><span>刷新列表</span></a></li>
+			<li class="line">line</li>
+			<li><a class="icon" href="javascript:$.printBox('divid')"><span>打印</span></a></li>
 		</ul>
 	</div>
-	<table class="table" width="100%" layoutH="138">
+	<table class="table" width="100%" layoutH="138" id="divid">
 		<thead>
 			<tr>
 				<th>编号</th> 

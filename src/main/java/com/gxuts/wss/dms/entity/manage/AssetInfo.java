@@ -1,5 +1,6 @@
 package com.gxuts.wss.dms.entity.manage;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -16,7 +17,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 
 @Entity
-public class AssetInfo {
+public class AssetInfo implements Serializable{
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
