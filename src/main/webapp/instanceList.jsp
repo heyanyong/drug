@@ -48,7 +48,7 @@
 				<td>${e[2]}</td>
 				<td>${e[3]}</td>
 				<td>${e[4]}</td>
-				<td><a href="flow/recall?instanceId=${e[0]}">撤消</a></td>
+				<td><a href="sys/flowRecall.jsp?processInstanceId=${e[0]}" target="dialog">撤消</a></td>
 			</tr>
 			</c:forEach>
 		</tbody>

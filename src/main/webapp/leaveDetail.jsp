@@ -9,9 +9,10 @@
 		<div class="formBar">
 			<ul>
 				<li><a class="buttonActive" href="javascript:saveBill('detailForm');"><span>保存</span></a></li>
-				<li><a class="buttonActive" href="dealTask.jsp?processInstanceId=${param.processInstanceId}&taskId=${param.taskId}" target="dialog" ><span>办理任务</span></a></li>
+				<li><a class="buttonActive" href="taskTransfer.jsp?processInstanceId=${param.processInstanceId}&taskId=${param.taskId}" target="dialog" ><span>任务转交</span></a></li>
+				<li><a class="buttonActive" href="taskDeal.jsp?taskId=${param.taskId}" target="dialog" ><span>办理任务</span></a></li>
 			</ul>
-		</div>
+		</div> 
 		<div class="pageFormContent leaveBill" layoutH="56">
 			<p>
 				<label>编号：</label> <input name="no" type="text" readonly="readonly" value="${info.no}" size="30"/>

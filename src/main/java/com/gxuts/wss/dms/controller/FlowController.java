@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.hr.UserInfo;
 import com.gxuts.wss.dms.entity.sys.Json;
+import com.gxuts.wss.dms.service.hr.UserService;
 import com.gxuts.wss.dms.service.process.FlowService;
 @Controller
 @RequestMapping(value="/flow")
@@ -39,6 +41,8 @@ public class FlowController {
 	private RuntimeService runtimeService;
 	@Autowired
 	private TaskService taskService;
+	@Autowired
+	private UserService userService;
 	
 	
 	
@@ -52,10 +56,11 @@ public class FlowController {
 	}
 	@RequestMapping(value="/transfer")
 	@ResponseBody
-	public Json transfer(String taskId,String assignee){
-		flowService.transfer(taskId,assignee);
-		String msg= "任务到达:"+assignee+"办理";
-		return new Json(msg,"200","leaveList","leaveList","closeCurrent","leave/list");
+	public Json transfer(String taskId,String assigneeId){
+		UserInfo user=userService.get(UserInfo.class, assigneeId);
+		String assignee=user.getName()+"("+user.getNo()+")";
+		flowService.transfer(taskId,assigneeId);
+		return new Json("任务到达:"+assignee+"办理","200","leaveList","leaveList","closeCurrent","leave/list");
 		
 	}
 	@RequestMapping(value="/recall")
