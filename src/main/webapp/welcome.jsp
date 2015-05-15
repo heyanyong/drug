@@ -93,7 +93,7 @@ $(function(){
 </head>
   <body>
 	<div id="layout">
-		<div id="header">
+		 <div id="header">
 			<div class="headerNav">
 				<a class="logo" href="/">标志</a>
 				<ul class="nav">
@@ -109,7 +109,7 @@ $(function(){
 					<li theme="azure"><div>天蓝</div></li>
 				</ul>
 			</div>
-		</div>
+		</div> 
 		<div id="leftside">
 			<div id="sidebar_s">
 				<div class="collapse">
@@ -352,7 +352,7 @@ $(function(){
 				<div class="navTab-panel tabsPageContent layoutBox">
 					<div class="page unitBox">
 						<div class="pageFormContent" layoutH="60">
-							<div class="oftenFunction">
+							 <div class="oftenFunction">
 								<p>
 									<a href="sign/list?show=dialog" target="dialog" height="300"
 										rel="signListDialog" title="考勤查询"><img
@@ -378,7 +378,7 @@ $(function(){
 										src="themes/d01.png" /></a><span>文档记录</span>
 								</p>
 							</div>
-							<div class="lastNews">
+							 <div class="lastNews">
 								<ul>
 									<c:forEach items="${news}" var="e">
 									<li><a href="article/view/${e.id}" target="navTab" rel="article${e.id}">${e.name}</a><span>${e.createDate}</span></li>
@@ -387,12 +387,12 @@ $(function(){
 									<li><a href="vote/view/${vote.id}" target="navTab" rel="vote${vote.id}"><img src="images/vote.png"/>&nbsp;${vote.name}</a><span>${vote.createDate}</span></li>
 									</c:if>
 								</ul>
-							</div>
+							</div> 
 							<div class="clear"></div>
 							<div class="taskCenter" id="personTaskList">
 									 
 							</div>
-							<div class="static">
+							 <div class="static">
 								<div id="chartHolder"></div>
 							</div>
 						</div>
@@ -431,7 +431,6 @@ $(function(){
 
 	$(function() {
 		var r = Raphael("chartHolder");
-
 		r.text(titleXpos, titleYpos, title).attr({
 			"font-size" : 20
 		});
@@ -465,7 +464,6 @@ $(function(){
 				});
 			}
 		});
-
 	});
 </script>
 </html>

@@ -30,7 +30,7 @@
 	<c:forEach items="${taskPage.data}" var="e">
 		<tr target="sid_obj" rel="${e[0]}">
 			<td width="130"><a
-				href="${e[9]}/edit/${e[10]}?show=task&processInstanceId=${e[5]}&taskId=${e[0]}&taskDes=${e[12]}"
+				href="${e[9]}/edit/${e[10]}?dealer=${e[2]}&processInstanceId=${e[5]}&taskId=${e[0]}&taskDes=${e[12]}"
 				target="navTab"><fmt:formatDate value="${e[3]}" pattern='yyyy-MM-dd HH:mm:ss' /></a></td>
 			<td width="100"><a
 				href="${e[9]}/edit/${e[10]}?show=task&processInstanceId=${e[5]}&taskId=${e[0]}&taskDes=${e[12]}"

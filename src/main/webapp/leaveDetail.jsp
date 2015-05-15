@@ -7,6 +7,8 @@
 	<form id="leaveDetailF" method="post" action="leave/update" 
 		class="pageForm required-validate"
 		onsubmit="return validateCallback(this, navTabAjaxDone);">
+		${param.dealer}<br>
+		${fn:contains(param.dealer,info.createUser.no)||fn:contains(param.taskDes, '修改')}
 		<c:if test="${!(param.taskDes eq 'over')}"> 
 		<div class="formBar">
 			<ul>

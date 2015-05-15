@@ -6,13 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>XX科技有限公司办公系统</title>
-<link href="themes/css/login.css" rel="stylesheet" type="text/css" />
+<!-- <link href="themes/css/login.css" rel="stylesheet" type="text/css" /> -->
 <script src="js/jquery-1.7.2.js" type="text/javascript"></script>
 <script src="js/jquery.cookie.js" type="text/javascript"></script>
 </head>
 
 <body>
-	<div id="login">
+	<!-- <div id="login">
 		<div id="login_header">
 			<h1 class="login_logo">
 				<a href="/"><img src="themes/default/images/login_logo.gif" /></a>
@@ -29,7 +29,7 @@
 			</div>
 		</div>
 		<div id="login_content">
-			<div class="loginForm">
+			<div class="loginForm"> -->
 				<form action="checkLogin" method="post" id="loginForm" onsubmit="return userLogin()">
 				
 					<p>
@@ -48,7 +48,7 @@
 						<input class="sub" type="submit" value=" " />
 					</div>
 					<p style="color:red;"><br /><c:if test="${param.loginMsg==1}">用户名或密码错误</c:if></p>
-				</form>
+				</form><!-- 
 			</div>
 			<div class="login_banner"><img src="themes/default/images/login_banner.jpg" /></div>
 			<div class="login_main">
@@ -63,7 +63,7 @@
 		<div id="login_footer">
 			Copyright &copy; 2009 3232323 Inc. All Rights Reserved.
 		</div>
-	</div>
+	</div> -->
 </body>
 <script>
 $(document).ready(function() {
