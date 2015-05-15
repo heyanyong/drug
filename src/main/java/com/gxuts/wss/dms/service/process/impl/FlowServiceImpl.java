@@ -90,7 +90,7 @@ public class FlowServiceImpl implements FlowService {
 			pt[3]=t.getCreateTime();
 			pt[4]=t.getDueDate();
 			pt[5]=t.getProcessInstanceId();
-			pt[12]=t.getDescription();
+			pt[12]=t.getDescription()==null? "_":t.getDescription();
 			ProcessInstance p=runtimeService.createProcessInstanceQuery().processInstanceId(t.getProcessInstanceId()).singleResult();
 			String[] bk=p.getBusinessKey().split("#");
 			pt[6]=bk[0];  //部门

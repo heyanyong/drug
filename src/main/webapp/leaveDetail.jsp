@@ -4,14 +4,14 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <div class="pageContent">
-	<form id="detailForm" method="post" action="leave/update" 
+	<form id="leaveDetailF" method="post" action="leave/update" 
 		class="pageForm required-validate"
 		onsubmit="return validateCallback(this, navTabAjaxDone);">
 		<c:if test="${!(param.taskDes eq 'over')}"> 
 		<div class="formBar">
 			<ul>
-				<c:if test="${fn:contains(param.taskDes, '转办')}"><li><a class="buttonActive" href="javascript:saveBill('detailForm');"><span>保存</span></a></li></c:if>
-				<c:if test="${fn:contains(param.taskDes, '转办')}">   <li><a class="buttonActive" href="sys/taskTransfer.jsp?taskId=${param.taskId}" target="dialog" ><span>任务转交</span></a></li></c:if>
+				<c:if test="${fn:contains(param.taskDes, '修改')}"><li><a class="buttonActive" href="javascript:saveBill('leaveDetailF');"><span>保存</span></a></li></c:if>
+				<c:if test="${fn:contains(param.taskDes, '转办')}"><li><a class="buttonActive" href="sys/taskTransfer.jsp?taskId=${param.taskId}" target="dialog" ><span>任务转交</span></a></li></c:if>
 				<li><a class="buttonActive" href="sys/taskDeal.jsp?processInstanceId=${param.processInstanceId}&taskId=${param.taskId}" target="dialog" ><span>办理任务</span></a></li>
 			</ul>
 		</div>
@@ -53,7 +53,7 @@
 				<label>工作交接人：</label>
 				<input type="hidden" name="cadidate.id" value="${info.cadidate.id }" />
 				<input type="text"  name="cadidate.name" size="30" value="${info.cadidate.name }"  readonly="readonly" lookupGroup="cadidate" />
-				<a class="btnLook" href="user/lookup" lookupGroup="cadidate">查找带回</a>		
+				<a class="btnLook" href="userLookup.jsp" lookupGroup="cadidate">查找带回</a>		
 			</p>
 			<dl class="nowrap">
 				<dt>请假说明：</dt>
@@ -112,29 +112,29 @@
 </div>
 
 <script>
- function saveBill(form){
-	 $("#"+form).attr("action","leave/update");
-	 $("#"+form).submit();
- }
- function getDate(strDate) {
-     var st = strDate;
-     var a = st.split(" ");
-     var b = a[0].split("-");
-     var c = a[1].split(":");
-     var date = new Date(b[0], b[1], b[2], c[0], c[1], c[2])
-     return date;
- }
- function calculateHours(){
-	    var startDate=$(".leaveBill input[name='startDate']").val();
-	    var endDate=$(".leaveBill input[name='endDate']").val();
-	    if(startDate!="" && endDate!=""){
-		    var hours=getDate(endDate).getTime()-getDate(startDate).getTime();
-		    $(".leaveBill input[name='hours']").val(Math.ceil(hours/(1000*3600)));
-	    }
- }
- if("${param.show}"=="deal"){
-	 $("#detailForm input").attr("readonly","readonly");
- }
-
-
+	if ("${param.show}" == "task") {
+		editCtrl("#leaveDetailF", "${param.taskDes}");
+	}
+	function saveBill(form) {
+		$("#" + form).attr("action", "leave/update");
+		$("#" + form).submit();
+	}
+	function getDate(strDate) {
+		var st = strDate;
+		var a = st.split(" ");
+		var b = a[0].split("-");
+		var c = a[1].split(":");
+		var date = new Date(b[0], b[1], b[2], c[0], c[1], c[2])
+		return date;
+	}
+	function calculateHours() {
+		var startDate = $(".leaveBill input[name='startDate']").val();
+		var endDate = $(".leaveBill input[name='endDate']").val();
+		if (startDate != "" && endDate != "") {
+			var hours = getDate(endDate).getTime()
+					- getDate(startDate).getTime();
+			$(".leaveBill input[name='hours']").val(
+					Math.ceil(hours / (1000 * 3600)));
+		}
+	}
 </script>

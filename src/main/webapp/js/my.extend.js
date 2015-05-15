@@ -1,4 +1,16 @@
 
+function editCtrl(page, taskDes) {
+	$(page + " :input").attr("disabled", "disabled");
+	$(page + " :checkbox").attr("disabled", "disabled");
+	$(page + " :radio").attr("disabled", "disabled");
+	var reg = /\([^\)]+\)/g;
+	var arr;
+	while ((arr = reg.exec(taskDes)) != null) {
+		var field = new String(arr);
+		var inStr=field.substring(1, field.length - 1);
+		$(page + " :input[name='"+inStr+"']").removeAttr("disabled");
+	}
+}
 
 function jqchk(){ //jquery获取复选框值 
 	var chk_value =[]; 
