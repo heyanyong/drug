@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="themes/zTreeStyle.css" type="text/css">
 <div class="pageContent">
 	<div class="pageFormContent" layoutH="58">
 		<div>
-			<ul id="structrueULKTree" class="ztree"></ul>
+			<ul id="structrueLLKTree" class="ztree"></ul>
 		</div>
 	</div>
 	<div class="formBar">
@@ -25,7 +25,7 @@
 		} 
 	};
 	function onMouseUp(event, treeId, treeNode) {
-		$.bringBack({id:treeNode.id, name:treeNode.name});
+			$.bringBack({id:treeNode.id, name:treeNode.name});
 	}
 	
 	$.ajax({
@@ -33,7 +33,7 @@
 		url : "structure/list",
 		async : false,
 		success : function(data) {
-			$.fn.zTree.init($("#structrueULKTree"), setting, data);
+			$.fn.zTree.init($("#structrueLLKTree"), setting, data);
 		}
 	});
 </script>

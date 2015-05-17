@@ -1,5 +1,8 @@
 规定：
 1. 所有编辑界面的form 如leaveDetailF
+2. 打开流程跟踪的rel="track/flowid"
+3. 打开编辑界面的rel="mapping/id"
+
 
 
 菜单权限

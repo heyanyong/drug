@@ -33,16 +33,16 @@
 				href="${e[9]}/edit/${e[10]}?dealer=${e[2]}&processInstanceId=${e[5]}&taskId=${e[0]}&taskDes=${e[12]}"
 				target="navTab"><fmt:formatDate value="${e[3]}" pattern='yyyy-MM-dd HH:mm:ss' /></a></td>
 			<td width="100"><a
-				href="${e[9]}/edit/${e[10]}?show=task&processInstanceId=${e[5]}&taskId=${e[0]}&taskDes=${e[12]}"
+				href="${e[9]}/edit/${e[10]}?dealer=${e[2]}&processInstanceId=${e[5]}&taskId=${e[0]}&taskDes=${e[12]}"
 				target="navTab">${e[6]}</a></td>
 			<td width="80"><a
-				href="${e[9]}/edit/${e[10]}?show=task&processInstanceId=${e[5]}&taskId=${e[0]}&taskDes=${e[12]}"
+				href="${e[9]}/edit/${e[10]}?dealer=${e[2]}&processInstanceId=${e[5]}&taskId=${e[0]}&taskDes=${e[12]}"
 				target="navTab">${e[7]}</a></td>
 			<td><a
-				href="${e[9]}/edit/${e[10]}?show=task&processInstanceId=${e[5]}&taskId=${e[0]}&taskDes=${e[12]}"
+				href="${e[9]}/edit/${e[10]}?dealer=${e[2]}&processInstanceId=${e[5]}&taskId=${e[0]}&taskDes=${e[12]}"
 				target="navTab">${e[8]}</a></td>
 			<td>${e[11]}</td>
-			<td width="30"><a href="flow/track/${e[5]}" target="navTab" title="流程跟踪"><img alt="" src="images/flowView.png" /></a></td>
+			<td width="30"><a href="flow/track/${e[5]}" rel="track/${e[5]}" target="navTab" title="流程跟踪"><img alt="" src="images/flowView.png" /></a></td>
 		</tr>
 	</c:forEach>
   </tbody>

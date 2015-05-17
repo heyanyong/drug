@@ -1,0 +1,21 @@
+1	超级权限	/.*	2015/4/4 21:56:25
+2	系统维护菜单	system_root	
+3	人力部门报表菜单权限	renliziyuan_dm	2015/5/4 00:00:00
+4	人力汇总报表菜单权限	renliziyuan_cm	2015/5/4 00:00:00
+5	人力维护维护菜单权限	renliziyuan_mm	2015/5/4 00:00:00
+6	行政部门报表菜单权限	xingzheng_dm	
+7	行政汇总报表菜单权限	xingzhegn_mm	
+8	行政维护管理菜单权限	xingzheng_mm	
+9	财务部门报表菜单权限	caiwu_dm	
+10	财务汇总报表菜单权限	caiwu_cm	
+11	财务维护管理菜单权限	caiwu_mm
+12	商务部门报表菜单权限	shangwu_dm	
+13	商务汇总报表菜单权限	shangwu_cm	
+14	商务维护管理菜单权限	shangwu_mm	
+15	工作流权限	/flow/.*	2015/5/9 00:00:00
+16	请假单编辑页面	/leave/edit.*	2015/5/9 00:00:00
+17	药品列表	/drug/list	2015/4/3 21:56:15
+18	删除用户	/user/delete	2015/4/4 21:56:20
+19	用户列表	/user/list	2015/4/4 21:56:22
+20	费用报销	/expense/list	2015/4/4 00:00:00
+8	部门预算维护	/budget/list	2015/4/4 00:00:00

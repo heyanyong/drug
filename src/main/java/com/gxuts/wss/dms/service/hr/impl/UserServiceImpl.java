@@ -113,6 +113,11 @@ public class UserServiceImpl implements UserService {
 		return userDao.find(filter);
 	}
 
+	@Override
+	public String queryOneField(String hql) {
+		return userDao.queryOneField(hql);
+	}
+
 	 
 
 }

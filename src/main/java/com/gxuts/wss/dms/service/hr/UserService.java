@@ -28,4 +28,5 @@ public interface UserService {
 	public void reset(Integer id);
 	public RoleInfo getMaxRole(List<RoleInfo> roles);
 	public Page<UserInfo> find(QueryFilter filter);
+	public String queryOneField(String hql);
 }

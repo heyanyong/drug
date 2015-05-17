@@ -236,6 +236,7 @@ $(function(){
 							<li><a>维护管理</a>
 								<ul>
 									<li><a href="user/list" target="navTab" rel="userList">用户管理</a></li>
+									<li><a href="userAdd.jsp" target="navTab" rel="userList">添加用户</a></li>
 									<li><a href="role/list" target="navTab" rel="roleList">角色管理</a></li>
 									<li><a href="structure/show" target="navTab" rel="structureList">部门管理</a></li>
 								</ul>

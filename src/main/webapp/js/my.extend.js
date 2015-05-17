@@ -1,8 +1,6 @@
 
 function editCtrl(page, taskDes) {
 	$(page + " :input").attr("disabled", "disabled");
-	$(page + " :checkbox").attr("disabled", "disabled");
-	$(page + " :radio").attr("disabled", "disabled");
 	var reg = /\([^\)]+\)/g;
 	var arr;
 	while ((arr = reg.exec(taskDes)) != null) {

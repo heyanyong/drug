@@ -35,8 +35,8 @@
 			<p>
 				<label>部门名称：</label>
 				<input type="hidden" name="structure.id" id="structure.id"/>
-				<input type="text" class="required" id="structure.name" size="30"/>
-				<a class="btnLook"  href="structure/lookup" lookupGroup="structure"  width="300" >查找带回</a>		
+				<input type="text" class="required" name="structure.name" size="30"/>
+				<a class="btnLook"  href="structureLookup.jsp" lookupGroup="structure"  width="300" >查找带回</a>		
 			</p>
 			<p>
 				<label>角色：</label>

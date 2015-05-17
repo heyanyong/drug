@@ -7,17 +7,25 @@
 	<form id="leaveDetailF" method="post" action="leave/update" 
 		class="pageForm required-validate"
 		onsubmit="return validateCallback(this, navTabAjaxDone);">
-		${param.dealer}<br>
-		${fn:contains(param.dealer,info.createUser.no)||fn:contains(param.taskDes, '修改')}
-		<c:if test="${!(param.taskDes eq 'over')}"> 
 		<div class="formBar">
 			<ul>
-				<c:if test="${fn:contains(param.taskDes, '修改')}"><li><a class="buttonActive" href="javascript:saveBill('leaveDetailF');"><span>保存</span></a></li></c:if>
-				<c:if test="${fn:contains(param.taskDes, '转办')}"><li><a class="buttonActive" href="sys/taskTransfer.jsp?taskId=${param.taskId}" target="dialog" ><span>任务转交</span></a></li></c:if>
+				<li><a class="buttonActive" class="close"  href="javascript:navTab.closeCurrentTab();"><span>&nbsp;关&nbsp;&nbsp;闭&nbsp;</span></a></li>
+				<c:if test="${!(param.taskDes eq 'over')}"> 
+				<c:if test="${(loginUser.no eq info.createUser.no)||fn:contains(param.taskDes, '修改')}">
+				<li><a class="buttonActive" href="javascript:saveBill('leaveDetailF');"><span>&nbsp;保&nbsp;&nbsp;存&nbsp;</span></a></li>
+				</c:if>
+				<c:if test="${(loginUser.no eq info.createUser.no)&&(!empty param.dealer)}">
+				<li><a class="buttonActive" href="flow/recall?instanceId=${param.processInstanceId}" target="ajaxTodo"><span>撤消流程</span></a></li>
+				</c:if>
+				<c:if test="${fn:contains(param.taskDes, '转办')}">
+				<li><a class="buttonActive" href="sys/taskTransfer.jsp?taskId=${param.taskId}" target="dialog" ><span>任务转交</span></a></li>
+				</c:if>
+				<c:if test="${!empty param.dealer}">
 				<li><a class="buttonActive" href="sys/taskDeal.jsp?processInstanceId=${param.processInstanceId}&taskId=${param.taskId}" target="dialog" ><span>办理任务</span></a></li>
+				</c:if>
+				</c:if>
 			</ul>
 		</div>
-		</c:if>
 		<div class="pageFormContent leaveBill" layoutH="56">
 			<p>
 				<label>编号：</label> <input name="no" type="text" readonly="readonly" value="${info.no}" size="30"/>
@@ -63,7 +71,7 @@
 					<textarea name="reason" cols="95" rows="6" >${info.reason }</textarea>
 				</dd>
 			</dl>
-		
+		<input  type="hidden"  name="createUser.id" value="${info.createUser.id}"/>
 <%-- <div class="information">
 			 <p>
 			 	<input  type="hidden" readonly="readonly" name="createUser.id" value="${info.createUser.id}" />
@@ -114,7 +122,7 @@
 </div>
 
 <script>
-	if ("${param.show}" == "task") {
+	if ("${param.dealer}" != null || "${param.dealer}"!="") {
 		editCtrl("#leaveDetailF", "${param.taskDes}");
 	}
 	function saveBill(form) {

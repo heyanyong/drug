@@ -29,7 +29,7 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="sys/urlAdd.jsp" target="dialog"><span>添加</span></a></li>
+			<li><a class="add" href="sys/urlAdd.jsp" rel="sysurlList" target="dialog"><span>添加</span></a></li>
 			<li class="line">line</li>
 			<li><a class="delete" href="sysurl/delete/{e_id}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
 		</ul>

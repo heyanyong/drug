@@ -32,14 +32,13 @@ public class StructureController {
 	private UserService userService;
 	@MethodName(name="组织架构管理页面")
 	@RequestMapping(value="show",method={RequestMethod.POST,RequestMethod.GET})
-	public String page(Model model){
+	public String page(){
 		return "structureList";
 	}
 	@MethodName(name="使用组织架构")
 	@RequestMapping(value="lookup",method={RequestMethod.POST,RequestMethod.GET})
 	public String lookup(Model model){
 		System.out.println("Structure lookup");
-		List<StructureInfo> result=new ArrayList<StructureInfo>();
 		List<StructureInfo> list=structureService.queryAll();
 		Page<StructureInfo> page=new  Page<StructureInfo>();
 		page.setData(list);

@@ -63,9 +63,9 @@
 				<td>${e.createUser.name}</td>
 				<td>${e.createUser.structure.name}</td>
 				<td>${e.hours}</td>
-				<td>${e.no}</td>
+				<td>${e.cadidate.name}</td>
 				<td><img src="images/status${e.status}.png" /></td>
-				<td><c:if test="${e.status==2}"> <a href="flow/track/${e.flowId}" target="navTab">查看办理进度</a></c:if>
+				<td><c:if test="${e.status==2}"> <a href="flow/track/${e.flowId}" rel="track/${e.flowId}" target="navTab">查看办理进度</a></c:if>
 					<c:if test="${e.status==1}"> 
 					<a href="leave/deal/${e.id}" target="ajaxTodo">办理</a> &nbsp;|&nbsp;
 					<a href="leave/edit/${e.id}" target="navTab">修改</a> &nbsp;|&nbsp;

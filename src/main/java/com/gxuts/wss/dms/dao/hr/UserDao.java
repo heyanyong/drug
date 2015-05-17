@@ -25,4 +25,5 @@ public interface UserDao {
 	public UserInfo departmentOneRole(int departmentId,String roleName);
 	public List<UserInfo> manyByRole(String roleName);
 	public Page<UserInfo> find(QueryFilter filter);
+	public String queryOneField(String hql);
 }

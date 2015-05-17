@@ -11,6 +11,7 @@ import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.history.ProcessInstanceHistoryLog;
 import org.activiti.engine.repository.ProcessDefinition;
@@ -80,7 +81,7 @@ public class FlowServiceImpl implements FlowService {
 	}
 	@Override
 	public Page<Object[]> queryPersonTask(String no,Integer currentPage, Integer numPerPage) {
-		List<Task> list=taskService.createTaskQuery().taskAssignee(no).orderByTaskCreateTime().asc().listPage(currentPage, numPerPage);
+		List<Task> list=taskService.createTaskQuery().taskAssignee(no).orderByTaskCreateTime().desc().listPage(currentPage, numPerPage);
 		List<Object[]> data=new ArrayList<Object[]>();
 		for(Task t:list){
 			Object[] pt=new Object[13];
@@ -107,7 +108,7 @@ public class FlowServiceImpl implements FlowService {
 	@Override
 	public Page<Object[]> queryPersonTaskHistory(String no,Integer currentPage, Integer numPerPage) {
 		List<HistoricTaskInstance> list= historyService.createHistoricTaskInstanceQuery()
-				.taskAssignee(no).finished().orderByDueDateNullsLast().desc().listPage(currentPage, numPerPage);
+				.taskAssignee(no).finished().orderByDueDateNullsFirst().asc().listPage(currentPage, numPerPage);
 		List<Object[]> data=new ArrayList<Object[]>();
 		for(HistoricTaskInstance t:list){
 			Object[] pt=new Object[13];
@@ -196,6 +197,9 @@ public class FlowServiceImpl implements FlowService {
 	 
 	@Override
 	public void recall(String instanceId, String reason) {
+		ProcessInstance p=runtimeService.createProcessInstanceQuery().processInstanceId(instanceId).singleResult();
+		String[] bk=p.getBusinessKey().split("#");
+		userService.executeHql("update "+bk[5]+" set status=1 where id="+bk[4]);
 		runtimeService.deleteProcessInstance(instanceId, "撤消:"+reason);
 	}
 	//活动的流程实例列表
@@ -205,19 +209,27 @@ public class FlowServiceImpl implements FlowService {
 		endTime=endTime==null? "3000-05-13 14:21:24":endTime;
 		String sql="select * from act_hi_procinst WHERE BUSINESS_KEY_ LIKE '"+bk+"' "
 				+ "and START_TIME_>='"+startTime+"' and START_TIME_<='"+endTime+"'  LIMIT "+currentPage+","+row;
-		 List<ProcessInstance> ins=runtimeService.createNativeProcessInstanceQuery().sql(sql).list();
+		//List<ProcessInstance> ins=runtimeService.createNativeProcessInstanceQuery().sql(sql).list(); 
+		  List<HistoricProcessInstance> ins=historyService.createNativeHistoricProcessInstanceQuery().sql(sql).list(); 
 		 List<Object[]> data=new ArrayList<Object[]>();
-		 for(ProcessInstance in:ins){
-			 Object[] pt=new Object[5];
+		 for(HistoricProcessInstance in:ins){
+			 Object[] pt=new Object[10];
 			 String[] bks=in.getBusinessKey().split("#");
 			 pt[0]=in.getId(); //flowid
 			 pt[1]=bks[0];     //部门
 			 pt[2]=bks[1]; 		//办理人
 			 pt[3]=bks[2];		//标题
 			 pt[4]=bks[4];		//billID
+			 String no=userService.queryOneField("select no from "+bks[5]+" where id="+bks[4]);
+			 String status=userService.queryOneField("select status from "+bks[5]+" where id="+bks[4]);
+			 pt[5]=no;
+			 pt[6]=bks[3];     //vo map
+			 pt[7]=status;     //status
+			 pt[8]=in.getStartTime();     //status
+			 pt[9]=in.getEndTime();     //status
 			 data.add(pt);
 		 }
-		return new Page<Object[]>(data, 1, 1, 0);
+		return new Page<Object[]>(data, currentPage,row, 0);
 	}
 	
 	

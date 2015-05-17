@@ -63,7 +63,8 @@ public class FlowController {
 	public Json completeByDeal(String taskId,String processInstanceId, int outcome, String comment){
 		String userNo=flowService.dealTask(taskId, processInstanceId, outcome, comment);
 		String msg=userNo.length()<3? "流程结束":"任务到达:"+userNo+"办理";
-		return new Json(msg,"200","leaveList","leaveList","closeCurrent","leave/list");
+		
+		return new Json(msg,"200", "leaveList", "leaveList", "forward", "leave/list");
 		
 	}
 	@RequestMapping(value="/transfer")
@@ -90,7 +91,7 @@ public class FlowController {
 	public String taskList(Model m,HttpSession session,String  pageNum){
 		pageNum=pageNum==null? "0":pageNum;
 		UserInfo user=(UserInfo) session.getAttribute("loginUser");
-		Page<Object[]> page=flowService.queryPersonTask(user.getName()+"("+user.getNo()+")", Integer.parseInt(pageNum), 2);
+		Page<Object[]> page=flowService.queryPersonTask(user.getName()+"("+user.getNo()+")", Integer.parseInt(pageNum), 10);
 		m.addAttribute("taskPage", page);
 		return "taskCenter";
 	}
@@ -125,7 +126,7 @@ public class FlowController {
 		String current = "";
 		List<Task> tasks= taskService.createTaskQuery().processInstanceId(flowId).active().list();
 		if(tasks==null||tasks.size()==0){
-			current="流程已结束";
+			current="流程已结束或撤销";
 		}else{
 			for(Task t:tasks){
 				current+=t.getName()+":"+t.getAssignee()+" <br />";
