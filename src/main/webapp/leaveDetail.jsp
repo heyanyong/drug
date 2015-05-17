@@ -122,7 +122,7 @@
 </div>
 
 <script>
-	if ("${param.dealer}" != null || "${param.dealer}"!="") {
+	if ("${param.dealer}".length>1) {
 		editCtrl("#leaveDetailF", "${param.taskDes}");
 	}
 	function saveBill(form) {

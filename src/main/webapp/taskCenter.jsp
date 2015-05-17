@@ -48,7 +48,7 @@
   </tbody>
  </table>
 	<div class="panelBar">
-		<div class="pages"> <span> 共${taskPage.totalCount}条</span>
+		<div class="pages"> 
 		</div>
 		<div class="pagination" rel="personTaskList" totalCount="${taskPage.totalCount}"
 			numPerPage="${taskPage.numPerPage}" pageNumShown="${taskPage.pageNumShown}"
