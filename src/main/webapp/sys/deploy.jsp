@@ -2,12 +2,15 @@
 	pageEncoding="UTF-8"%>
 <h2 class="contentTitle">请选择包含“流程名.bpmn和流程名.png的压缩包zip”附件</h2>
 
-<form action="demo/database/db_attachmentBrightBack.html" method="post" enctype="multipart/form-data" class="pageForm required-validate" onsubmit="return iframeCallback(this, $.bringBack)">
+<form method="post" action="flow/deploy" enctype="multipart/form-data">
 
 <div class="pageContent">
 	<div class="pageFormContent" layoutH="97">
 		<dl>
-			<dt>zip附件：</dt><dd><input type="file" name="image" class="required" size="30" /></dd>
+			<dt>流程名称：</dt><dd><input type="text" name="name" class="required" size="30" /></dd>
+		</dl>
+		<dl>
+			<dt>zip附件：</dt><dd><input type="file" name="file" class="required" size="30" /></dd>
 		</dl>
 	</div>
 	<div class="formBar">

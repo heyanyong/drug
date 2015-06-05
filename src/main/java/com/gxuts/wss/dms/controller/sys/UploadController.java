@@ -1,6 +1,7 @@
 package com.gxuts.wss.dms.controller.sys;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -13,10 +14,12 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest;
@@ -198,4 +201,20 @@ public class UploadController {
 		UserInfo user= (UserInfo)session.getAttribute("loginUser");
 		return "diskListDialog";
 	}
+	
+	@RequestMapping(value="/formUpload", method = { RequestMethod.POST,RequestMethod.GET})
+	public String handleFormUpload(@RequestParam("name") String name, @RequestParam("file") MultipartFile file,HttpServletRequest req) throws IOException {
+		// MultipartFile是对当前上传的文件的封装，当要同时上传多个文件时，可以给定多个MultipartFile参数
+		if (!file.isEmpty()) {
+			String savePath = req.getSession().getServletContext().getRealPath("/files/"+System.currentTimeMillis()+"/");
+			String filename = file.getOriginalFilename();
+			byte[] bytes = file.getBytes();
+			FileUtils.writeByteArrayToFile(new File(savePath,filename), bytes);
+			System.out.println("上传成功");
+			return null;
+		} else {
+			System.out.println("上传失败");
+			return null;
+		}
+	} 
 }

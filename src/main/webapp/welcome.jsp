@@ -319,7 +319,7 @@ $(function(){
 						<ul class="tree">
 							<li><a href="menu/show" target="navTab" rel="menuList">菜单设置</a></li>
 							<li><a href="flow/flowList" target="navTab" rel="flowList">系统流程</a></li>
-							<li><a href="flow/deployList" target="navTab" rel="flowDeployList">流程部署</a></li>
+							<li><a href="flow/deployList" target="navTab" rel="deployList">流程部署</a></li>
 							<li><a href="flow/instanceList" target="navTab" rel="instanceList">流程跟踪</a></li>
 							<li><a href="controllerLog/list" target="navTab" rel="controllerLogList">操作记录</a></li>
 							<li><a href="role/list" target="navTab" rel="roleList">权限管理</a></li>

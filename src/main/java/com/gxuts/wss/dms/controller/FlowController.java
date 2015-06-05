@@ -1,6 +1,7 @@
 package com.gxuts.wss.dms.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Date;
@@ -26,12 +27,14 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest;
@@ -110,7 +113,7 @@ public class FlowController {
 		List<Deployment> deploys=repositoryService.createDeploymentQuery().orderByDeploymenTime().desc().listPage(pageNum, 1);
 		Page<Deployment> pages=new Page<Deployment>(deploys, pageNum, 1, deploys.size());
 		m.addAttribute("pages", pages);
-		return "flowDeployList";
+		return "sys/deployList";
 	}
 	@RequestMapping(value="flowList")
 	public String flowList(Integer pageNum,Model m){
@@ -207,44 +210,18 @@ public class FlowController {
 	
 	@RequestMapping(value="deploy",method=RequestMethod.POST)
 	@ResponseBody
-	public Json deployByZIP(HttpServletRequest request,String flowName,HttpSession session) {
-		String userNo=((UserInfo)session.getAttribute("loginUser")).getNo();
-		String savePath = session.getServletContext().getRealPath("");
-		String webPath = "\\files\\" + userNo+new Date().getTime()+"\\";
-		savePath = savePath + webPath;
-		File filePath =new File(savePath);
-		File file=null;
-		filePath.mkdir();
-		System.out.println(flowName);
-		String flowName2=request.getParameter("flowName");
-		// 把文件上传到服务器指定位置，并向前台返回文件名
-		DiskFileItemFactory fac = new DiskFileItemFactory();
-		ServletFileUpload upload = new ServletFileUpload(fac);
-		List fileList = null;
-		try {
-			// 文件类型解析req
-			fileList = (List<FileItem>) upload.parseRequest(request);
-		} catch (FileUploadException ex) {
-			// 终止文件上传，此处抛出异常
-			ex.printStackTrace();
+	public Json deployByZIP(@RequestParam("name") String name, @RequestParam("file") MultipartFile file,HttpSession session) throws IOException {
+		if (!file.isEmpty()) {
+			String userNo=((UserInfo)session.getAttribute("loginUser")).getNo();
+			String savePath = session.getServletContext().getRealPath("/files/"+userNo+System.currentTimeMillis()+"/");
+			String filename = file.getOriginalFilename();
+			byte[] bytes = file.getBytes();
+			File zipFile=new File(savePath,filename);
+			FileUtils.writeByteArrayToFile(zipFile, bytes);
+			flowService.deployByZIP(zipFile, name);
+			System.out.println("上传成功");
+			return new Json("部署成功","200");
 		}
-		Iterator it = fileList.iterator();
-		while (it.hasNext()) {
-			FileItem item = (FileItem) it.next();
-			if (!item.isFormField()) {
-				String name = item.getName();
-				String type = item.getContentType();
-				if (item.getName() == null || item.getName().trim().equals("")) {
-					continue;
-				}
-				file = new File(savePath + name);
-				try {
-					item.write(file); // 将文件存入本地服务器
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return new Json("上传失败","300");
+		return new Json("部署失败","300");
 	}
 }
