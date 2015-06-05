@@ -60,7 +60,8 @@
 				<td>
 				<a href="sys/flowRecall.jsp?processInstanceId=${e[0]}" target="dialog">撤消</a>&nbsp;|&nbsp;
 				<a href="${e[6]}/edit/${e[4]}" rel="${e[6]}${e[4]}" target="navTab">查看表单</a>&nbsp;|&nbsp;
-				<a href="flow/track/${e[0]}" rel="track/${e[0]}" target="navTab">跟踪流程</a>
+				<a href="flow/track/${e[0]}" rel="track/${e[0]}" target="navTab">跟踪流程</a>&nbsp;|&nbsp;
+				<%-- <a href="flow/track/${e[0]}" rel="track/${e[0]}" target="navTab">转办</a>&nbsp;|&nbsp; --%>
 				</td>
 			</tr>
 			</c:forEach>

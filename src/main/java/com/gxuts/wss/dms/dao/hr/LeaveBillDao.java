@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.hr.LeaveBill;
+import com.gxuts.wss.dms.util.QueryFilter;
 
 public interface LeaveBillDao {
 	public Serializable save(LeaveBill leaveBill);
@@ -29,4 +30,5 @@ public interface LeaveBillDao {
 
 	public Page<LeaveBill> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows);
+	public Page<LeaveBill> find(QueryFilter filter);
 }

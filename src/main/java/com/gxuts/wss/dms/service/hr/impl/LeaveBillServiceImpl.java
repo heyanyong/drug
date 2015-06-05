@@ -12,6 +12,7 @@ import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.dao.hr.LeaveBillDao;
 import com.gxuts.wss.dms.entity.hr.LeaveBill;
 import com.gxuts.wss.dms.service.hr.LeaveBillService;
+import com.gxuts.wss.dms.util.QueryFilter;
 @Service("leaveBillService")
 @Transactional
 public class LeaveBillServiceImpl implements LeaveBillService {
@@ -78,6 +79,11 @@ public class LeaveBillServiceImpl implements LeaveBillService {
 	public Page<LeaveBill> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows) {
 		return leaveBillDao.query(hql, params, currentPage, rows);
+	}
+
+	@Override
+	public Page<LeaveBill> find(QueryFilter filter) {
+		return leaveBillDao.find(filter);
 	}
 
 	 

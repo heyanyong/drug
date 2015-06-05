@@ -3,8 +3,10 @@ package com.gxuts.wss.dms.service.hr;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+
 import com.gxuts.wss.dms.base.Page;
 import com.gxuts.wss.dms.entity.hr.LeaveBill;
+import com.gxuts.wss.dms.util.QueryFilter;
 
 public interface LeaveBillService {
 	
@@ -30,4 +32,6 @@ public interface LeaveBillService {
 
 	public Page<LeaveBill> query(String hql, Map<String, Object> params,
 			Integer currentPage, Integer rows);
+
+	public Page<LeaveBill> find(QueryFilter filter);
 }

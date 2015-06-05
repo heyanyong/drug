@@ -9,10 +9,10 @@
 		onsubmit="return validateCallback(this, navTabAjaxDone);">
 		<div class="formBar">
 			<ul>
-				<li><a class="buttonActive" class="close"  href="javascript:navTab.closeCurrentTab();"><span>&nbsp;关&nbsp;&nbsp;闭&nbsp;</span></a></li>
+				<li><a class="buttonActive" class="close"  href="javascript:navTab.closeCurrentTab();"><span>关闭</span></a></li>
 				<c:if test="${!(param.taskDes eq 'over')}"> 
 				<c:if test="${(loginUser.no eq info.createUser.no)||fn:contains(param.taskDes, '修改')}">
-				<li><a class="buttonActive" href="javascript:saveBill('leaveDetailF');"><span>&nbsp;保&nbsp;&nbsp;存&nbsp;</span></a></li>
+				<li><a class="buttonActive" href="javascript:saveBill('leaveDetailF');"><span>保存</span></a></li>
 				</c:if>
 				<c:if test="${(loginUser.no eq info.createUser.no)&&(!empty param.dealer)}">
 				<li><a class="buttonActive" href="flow/recall?instanceId=${param.processInstanceId}" target="ajaxTodo"><span>撤消流程</span></a></li>
@@ -72,6 +72,8 @@
 				</dd>
 			</dl>
 		<input  type="hidden"  name="createUser.id" value="${info.createUser.id}"/>
+		<input  type="hidden"  name="id" value="${info.id}"/>
+		<input type="hidden" name="createDate" value="<fmt:formatDate value='${info.createDate}' pattern='yyyy-MM-dd'/>"/>
 <%-- <div class="information">
 			 <p>
 			 	<input  type="hidden" readonly="readonly" name="createUser.id" value="${info.createUser.id}" />
@@ -122,7 +124,7 @@
 </div>
 
 <script>
-	if ("${param.dealer}".length>1) {
+	if ("${param.dealer}".length>1&&!("${param.dealer}"=="${loginUser.name}(${loginUser.no})")) {
 		editCtrl("#leaveDetailF", "${param.taskDes}");
 	}
 	function saveBill(form) {

@@ -80,7 +80,7 @@ public class TestFlowService {
 	//个人任务测试：任务名称 任务key 表单ID
 	@Test
 	public void testQueryTask(){
-		Page<Object[]> page=flowService.queryPersonTask("管理员(admin)", 0, 10);
+		Page<Object[]> page=flowService.queryPersonTask("王主管(CY008)", 0, 10);
 		List<Object[]> list=page.getData();
 		 for (int i = 0; i < list.size(); i++) {
 			for (int j = 0; j < list.get(i).length; j++) {
@@ -116,7 +116,7 @@ public class TestFlowService {
 	//查批注信息 1节点名称 2办理时间-3完成时间 4办理人5 批注
 	@Test
 	public void testComment(){
-		List<Object[]> list=flowService.getCommentByprocessInstance("40001");
+		List<Object[]> list=flowService.getCommentByprocessInstance("20001");
 		 for (int i = 0; i < list.size(); i++) {
 				for (int j = 0; j < list.get(i).length; j++) {
 					Object[] obj=list.get(i);

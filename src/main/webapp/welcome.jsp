@@ -204,8 +204,8 @@ $(function(){
 						<ul class="tree treeFolder">
 							<li><a>常用单据</a>
 								<ul>
-									<li><a href="leave/list" target="navTab" rel="leaveList">加班申请</a></li>
-									<li><a href="leave/list" target="navTab" rel="leaveList">请假申请</a></li>
+									<li><a href="leave/persList" target="navTab" rel="leavePersList">加班申请</a></li>
+									<li><a href="leave/persList" target="navTab" rel="leavePersList">请假申请</a></li>
 									<li><a href="signException/list" target="navTab" rel="signExceptionList">个人考勤记录</a></li>
 									<li><a href="sign/list" target="navTab" rel="signList">考勤异常申请</a></li>
 									<li><a href="enrol/list" target="navTab" rel="enrolList">用人需求</a></li>
@@ -215,7 +215,7 @@ $(function(){
 							<c:if test="${!empty renliziyuan_dm}">
 							<li><a>部门报表</a>
 								<ul>
-									<li><a href="leave/list" target="navTab" rel="leaveList">请假列表</a></li>
+									<li><a href="leave/deptList" target="navTab" rel="leaveDeptList">部门请假列表</a></li>
 									<li><a href="sign/list" target="navTab" rel="signList">考勤记录总表</a></li>
 									<li><a href="enrol/list" target="navTab" rel="userAdd">用人需求报表</a></li>
 									<li><a href="quit/list" target="navTab" rel="quit/addList">离职申请报表</a></li>

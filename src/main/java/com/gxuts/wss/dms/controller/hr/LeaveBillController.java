@@ -25,6 +25,7 @@ import com.gxuts.wss.dms.service.hr.LeaveBillService;
 import com.gxuts.wss.dms.service.hr.UserService;
 import com.gxuts.wss.dms.service.process.FlowService;
 import com.gxuts.wss.dms.util.DateUtil;
+import com.gxuts.wss.dms.util.QueryFilter;
 import com.gxuts.wss.dms.util.annotation.MethodName;
 
 @Controller
@@ -42,17 +43,45 @@ public class LeaveBillController {
 	@ResponseBody
 	public Json delete(@PathVariable Integer id) {
 		leaveBillService.delete(new LeaveBill(id));
-		Json json = new Json("成功", "200", "leaveList", "leaveList", null, null);
+		Json json = new Json("成功", "200", "leavePersList", "leavePersList", null, null);
 		return json;
 	}
 
-	@MethodName(name = "请假单列表")
+	@MethodName(name = "请假单个人列表")
+	@RequestMapping(value = "persList")
+	public String getPersList(Integer pageNum,HttpServletRequest request){
+		Integer userId=((UserInfo)request.getSession().getAttribute("loginUser")).getId();
+		request.setAttribute("Q_t.createUser.id_eq_int",userId);
+		QueryFilter filter = new QueryFilter(request);
+		pageNum=pageNum==null? 1:pageNum;
+		filter.setPage(pageNum); 
+		filter.setPageSize(18);
+		Page<LeaveBill> pages=leaveBillService.find(filter);
+		request.setAttribute("pages", pages);
+		return "leaveBillList";
+	}
+	@MethodName(name = "请假单部门列表")
+	@RequestMapping(value = "deptList")
+	public String getDeptList(Integer pageNum,HttpServletRequest request){
+		Integer structureId=((UserInfo)request.getSession().getAttribute("loginUser")).getStructure().getId();
+		request.setAttribute("Q_t.createUser.structure.id_eq_int",structureId);
+		QueryFilter filter = new QueryFilter(request);
+		pageNum=pageNum==null? 1:pageNum;
+		filter.setPage(pageNum);
+		filter.setPageSize(18);
+		Page<LeaveBill> pages=leaveBillService.find(filter);
+		request.setAttribute("pages", pages);
+		return "leaveBillList";
+	}
+	@MethodName(name = "请假单汇总列表")
 	@RequestMapping(value = "list")
-	public String getList(HttpServletRequest request, Integer currentPage,
-			Integer row, Model model) {
-		Page<LeaveBill> pages = leaveBillService.query("from LeaveBill", null,
-				null, null);
-		model.addAttribute("pages", pages);
+	public String getList(Integer pageNum,HttpServletRequest request){
+		QueryFilter filter = new QueryFilter(request);
+		pageNum=pageNum==null? 1:pageNum;
+		filter.setPage(pageNum);
+		filter.setPageSize(18);
+		Page<LeaveBill> pages=leaveBillService.find(filter);
+		request.setAttribute("pages", pages);
 		return "leaveBillList";
 	}
 
@@ -80,7 +109,7 @@ public class LeaveBillController {
 		info.setUpdateDate(new Date());
 		info.setUpdateUser((UserInfo) session.getAttribute("loginUser"));
 		leaveBillService.update(info);
-		Json json = new Json("更新成功", "200", "leaveList", "leaveList", null,
+		Json json = new Json("更新成功", "200", "leavePersList", "leavePersList", null,
 				null);
 		return json;
 	}
@@ -95,7 +124,7 @@ public class LeaveBillController {
 		leaveBill.setCreateDate(new Date());
 		leaveBill.setCreateUser((UserInfo) session.getAttribute("loginUser"));
 		leaveBillService.save(leaveBill);
-		return new Json("请假单保存成功", "200", "leaveList", "leaveList", "forward", "leave/list");
+		return new Json("请假单保存成功", "200", "leavePersList", "leavePersList", "forward", "leave/persList");
 	}
 
 	@MethodName(name = "添加请假单")
@@ -123,7 +152,7 @@ public class LeaveBillController {
 		variables.put("assignee", null);
 		variables.put("assigneeList", null);
 		String  dealer = flowService.startProcess(processDefinitionKey, businessKey, variables);
-		return new Json("提交成功,流程到达: "+dealer+"办理", "200", "leaveList", "leaveList", "forward", "leave/list");
+		return new Json("提交成功,流程到达: "+dealer+"办理", "200", "leavePersList", "leavePersList", "forward", "leave/persList");
 	}
 	
 }

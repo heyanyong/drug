@@ -98,11 +98,11 @@ public class QueryFilter {
 	 */
 	public QueryFilter(HttpServletRequest request) {
 		this.request = request;
-		Enumeration<String> names = request.getParameterNames();
-		while (names.hasMoreElements()) {
-			String name = names.nextElement();
+		Enumeration<String> parNames = request.getParameterNames();
+		while (parNames.hasMoreElements()) {
+			String name = parNames.nextElement();
 			String value = StringUtils.trim(request.getParameter(name));
-			if (StringUtils.isNotBlank(value)) {
+			if (StringUtils.isNotBlank(value)&&name.toUpperCase().indexOf("Q_") > -1) {
 
 				addFilter(name, value);
 
@@ -126,6 +126,34 @@ public class QueryFilter {
 				}
 			}
 		}
+		Enumeration<String> attrNames=request.getAttributeNames();
+		while (attrNames.hasMoreElements()) {
+			String name = attrNames.nextElement();
+			if(name.toUpperCase().indexOf("Q_") > -1){
+			String value =request.getAttribute(name).toString();
+			if (StringUtils.isNotBlank(value)) {
+				addFilter(name, value);
+				if (name.equalsIgnoreCase("page")) {
+					this.setPage(Integer.parseInt(value));
+				}
+				if (name.equalsIgnoreCase("pageSize")) {
+					this.setPageSize(Integer.parseInt(value));
+				}
+				if (name.equalsIgnoreCase("sort")) {
+					this.setSort(value);
+				}
+				if (name.equalsIgnoreCase("order") && StringUtils.isNotBlank(this.getSort())) {// 有的前台datagrid插件，传递排序的时候是传递sort和order两个参数
+					this.setSort(this.getSort() + " " + value);// 所以这里适配一下其他插件的用法
+				}
+				if (name.equalsIgnoreCase("joinFetch")) {
+					this.setJoinFetch(value.replaceAll(" ", "").split(","));
+				}
+				if (name.equalsIgnoreCase("join")) {
+					this.setJoin(value.replaceAll(" ", "").split(","));
+				}
+			}
+		}
+		}
 	}
 
 	/**
@@ -139,7 +167,6 @@ public class QueryFilter {
 	 * @param value
 	 */
 	public void addFilter(String name, String value) {
-		if (name.toUpperCase().indexOf("Q_") > -1) {
 			String[] commands = name.split("_");
 			if (commands.length == 3 || commands.length == 4) {
 				// System.out.println(Json.toJson(commands));
@@ -363,7 +390,6 @@ public class QueryFilter {
 				}
 			}
 		}
-	}
 
 	public List<Object[]> getParams() {
 		return params;

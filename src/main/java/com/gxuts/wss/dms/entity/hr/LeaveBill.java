@@ -26,7 +26,7 @@ public class LeaveBill implements Serializable{
 	private String reason;
 	private Integer status=1;
 	private String type;
-	private String hours;
+	private int hours;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
@@ -40,6 +40,7 @@ public class LeaveBill implements Serializable{
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updateDate;
+	@ManyToOne
 	private UserInfo updateUser;
 	private String flowId;
 	
@@ -49,10 +50,10 @@ public class LeaveBill implements Serializable{
 	}
 	
 
-	public String getHours() {
+	public int getHours() {
 		return hours;
 	}
-	public void setHours(String hours) {
+	public void setHours(int hours) {
 		this.hours = hours;
 	}
 	public Date getStartDate() {
