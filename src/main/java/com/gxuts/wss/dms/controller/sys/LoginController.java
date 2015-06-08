@@ -63,7 +63,8 @@ public class LoginController {
 	
 	@RequestMapping(value="logout")
 	public String Logout(HttpSession session){
-		session.setAttribute("loginUser", null);
+		session.removeAttribute("loginUser");
+		session.invalidate();
 		return "redirect:/login.jsp";
 	}
 	@MethodName(name="登录验证")

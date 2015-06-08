@@ -73,6 +73,8 @@
 			</dl>
 		<input  type="hidden"  name="createUser.id" value="${info.createUser.id}"/>
 		<input  type="hidden"  name="id" value="${info.id}"/>
+		<input  type="hidden"  name="flowId" value="${info.flowId}"/>
+		<input  type="hidden"  name="status" value="${info.status}"/>
 		<input type="hidden" name="createDate" value="<fmt:formatDate value='${info.createDate}' pattern='yyyy-MM-dd'/>"/>
 <%-- <div class="information">
 			 <p>

@@ -31,6 +31,8 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<li><a class="add" href="sys/deploy.jsp" rel="deploy" target="dialog"><span>部署流程</span></a></li>
+			<li class="line">line</li>
+			<li><a class="icon" onclick="navTab.reload();" ><span>刷新列表</span></a></li>
 		</ul>
 	</div>
 	<table class="table" width="50%" layoutH="138">

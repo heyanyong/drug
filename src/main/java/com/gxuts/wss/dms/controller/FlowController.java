@@ -220,7 +220,7 @@ public class FlowController {
 			FileUtils.writeByteArrayToFile(zipFile, bytes);
 			flowService.deployByZIP(zipFile, name);
 			System.out.println("上传成功");
-			return new Json("部署成功","200");
+			return new Json("部署成功","200","deployList","deployList","closeCurrent",null);
 		}
 		return new Json("部署失败","300");
 	}
