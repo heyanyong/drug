@@ -136,7 +136,7 @@ public class FlowServiceImpl implements FlowService {
 				pt[8]=bk[2];  //任务名
 				pt[9]=bk[3];  //url
 				pt[10]=bk[4]; //Billid
-				if(lp.getDeleteReason().contains("撤消")){
+				if(lp.getDeleteReason()!=null&&lp.getDeleteReason().contains("撤消")){
 					pt[11]="已撤消"; //status
 				}else{
 					pt[11]="已结束"; //status

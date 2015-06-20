@@ -126,7 +126,7 @@
 </div>
 
 <script>
-	if ("${param.dealer}".length>1&&!("${param.dealer}"=="${loginUser.name}(${loginUser.no})")) {
+	if ("${param.dealer}".length>1) {
 		editCtrl("#leaveDetailF", "${param.taskDes}");
 	}
 	function saveBill(form) {

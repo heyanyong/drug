@@ -67,7 +67,7 @@ public class FlowController {
 		String userNo=flowService.dealTask(taskId, processInstanceId, outcome, comment);
 		String msg=userNo.length()<3? "流程结束":"任务到达:"+userNo+"办理";
 		
-		return new Json(msg,"200", "leaveList", "leaveList", "forward", "leave/list");
+		return new Json(msg,"200", "leaveList", "leaveList", "closeCurrent", null);
 		
 	}
 	@RequestMapping(value="/transfer")
